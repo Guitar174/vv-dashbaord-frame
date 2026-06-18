@@ -79,6 +79,7 @@ td { padding: 11px 16px; vertical-align: middle; }
           <th onclick="sortBy(1,1)" id="t1h1">Description</th>
           <th onclick="sortBy(1,2)" id="t1h2">Brand</th>
           <th onclick="sortBy(1,3)" id="t1h3">Qty</th>
+          <th onclick="sortBy(1,4)" id="t1h4">Unit Price</th>
         </tr></thead>
         <tbody id="body1"></tbody>
       </table>
@@ -96,6 +97,7 @@ td { padding: 11px 16px; vertical-align: middle; }
           <th onclick="sortBy(2,3)" id="t2h3">Description</th>
           <th onclick="sortBy(2,4)" id="t2h4">Brand</th>
           <th onclick="sortBy(2,5)" id="t2h5">Qty</th>
+          <th onclick="sortBy(2,6)" id="t2h6">Unit Price</th>
         </tr></thead>
         <tbody id="body2"></tbody>
       </table>
@@ -174,13 +176,13 @@ function applyFilter() {
   render(activeTab);
 }
 
-const KEYS1 = ['item_no','description','brand','qty'];
-const KEYS2 = ['sale_code','nickname','item_no','description','brand','qty'];
+const KEYS1 = ['item_no','description','brand','qty','unit_price'];
+const KEYS2 = ['sale_code','nickname','item_no','description','brand','qty','unit_price'];
 
 function sortBy(tab, col) {
   const s = state[tab];
   if (s.sortCol === col) s.sortDir *= -1; else { s.sortCol = col; s.sortDir = 1; }
-  const ids = tab===1 ? ['t1h0','t1h1','t1h2','t1h3'] : ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5'];
+  const ids = tab===1 ? ['t1h0','t1h1','t1h2','t1h3','t1h4'] : ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5','t2h6'];
   ids.forEach((id,i) => { const el = document.getElementById(id); if(el) el.className = i===col ? (s.sortDir===1?'sorted-asc':'sorted-desc') : ''; });
   doSort(tab); s.page = 1; render(tab);
 }
@@ -223,6 +225,7 @@ function render(tab) {
         <td class="td-desc">${hl(d.description,q)}</td>
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
         <td class="td-qty">${d.qty.toLocaleString()}</td>
+        <td class="td-qty">${d.unit_price ? d.unit_price.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2}) : '-'}</td>
       </tr>`).join('');
     } else {
       tbody.innerHTML = page.map(d => `<tr>
@@ -232,6 +235,7 @@ function render(tab) {
         <td class="td-desc">${hl(d.description,q)}</td>
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
         <td class="td-qty">${d.qty.toLocaleString()}</td>
+        <td class="td-qty">${d.unit_price ? d.unit_price.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2}) : '-'}</td>
       </tr>`).join('');
     }
   }

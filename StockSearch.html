@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stock Card Search — Vision Ventures</title>
-<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; }
@@ -284,10 +283,17 @@ function exportExcel() {
     : ['Sale Code','Nickname','Item No.','Description','Brand','Qty','Unit Price'];
   const keys = activeTab === 1 ? KEYS1 : KEYS2;
   const rows = s.filtered.map(d => keys.map(k => d[k]));
-  const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, activeTab === 1 ? 'Warehouse Stock' : 'By Salesperson');
-  XLSX.writeFile(wb, 'StockCard_' + new Date().toISOString().slice(0,10) + '.xlsx');
+  const doExport = () => {
+    const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
+    const wb2 = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb2, ws, activeTab === 1 ? 'Warehouse Stock' : 'By Salesperson');
+    XLSX.writeFile(wb2, 'StockCard_' + new Date().toISOString().slice(0,10) + '.xlsx');
+  };
+  if (window.XLSX) { doExport(); return; }
+  const sc = document.createElement('script');
+  sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+  sc.onload = doExport;
+  document.head.appendChild(sc);
 }
 
 document.getElementById('searchInput').addEventListener('input', applyFilter);

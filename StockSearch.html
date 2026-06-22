@@ -69,10 +69,10 @@ td { padding: 11px 16px; vertical-align: middle; }
 </div>
 <div class="search-bar">
   <input type="text" id="searchInput" placeholder="Search model name, item no, or description..." autofocus>
-  <select id="brandFilter" class="filter-sel"><option value="">All Brands</option></select>
-  <select id="spFilter" class="filter-sel" style="display:none"><option value="">All Salespersons</option></select>
+  <select id="brandFilter" class="filter-sel"><option value="">— Clear —</option></select>
+  <select id="spFilter" class="filter-sel" style="display:none"><option value="">— Clear —</option></select>
 <select id="qtyOp" class="filter-sel" style="min-width:150px">
-    <option value="">Qty condition</option>
+    <option value="">— Clear —</option>
     <option value="gte">At least (≥)</option>
     <option value="lte">At most (≤)</option>
     <option value="eq">Exactly (=)</option>
@@ -125,7 +125,7 @@ td { padding: 11px 16px; vertical-align: middle; }
   <div class="tab-panel" id="panel3">
     <div class="price-filter-bar">
       <select id="priceOp" class="filter-sel" style="min-width:160px">
-        <option value="">Price condition</option>
+        <option value="">— Clear —</option>
         <option value="gte">At least (≥)</option>
         <option value="lte">At most (≤)</option>
         <option value="eq">Exactly (=)</option>
@@ -133,7 +133,7 @@ td { padding: 11px 16px; vertical-align: middle; }
         <option value="lt">Less than (&lt;)</option>
       </select>
       <input type="number" id="priceVal" min="0" placeholder="Price" style="width:120px">
-      <select id="brandFilter3" class="filter-sel"><option value="">All Brands</option></select>
+      <select id="brandFilter3" class="filter-sel"><option value="">— Clear —</option></select>
     </div>
     <div class="table-wrap">
       <table>

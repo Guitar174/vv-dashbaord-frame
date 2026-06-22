@@ -67,16 +67,16 @@ td { padding: 11px 16px; vertical-align: middle; }
   <input type="text" id="searchInput" placeholder="Search model name, item no, or description..." autofocus>
   <select id="brandFilter" class="filter-sel"><option value="">All Brands</option></select>
   <select id="spFilter" class="filter-sel" style="display:none"><option value="">All Salespersons</option></select>
-  <select id="qtyOp" class="filter-sel" style="min-width:60px;max-width:64px;text-align:center">
-    <option value="">Qty</option>
-    <option value="gte">≥</option>
-    <option value="lte">≤</option>
-    <option value="eq">=</option>
-    <option value="gt">&gt;</option>
-    <option value="lt">&lt;</option>
+  <select id="qtyOp" class="filter-sel" style="min-width:150px">
+    <option value="">Qty condition</option>
+    <option value="gte">At least (≥)</option>
+    <option value="lte">At most (≤)</option>
+    <option value="eq">Exactly (=)</option>
+    <option value="gt">More than (&gt;)</option>
+    <option value="lt">Less than (&lt;)</option>
   </select>
-  <input type="number" id="qtyVal" list="qty-presets" min="0" placeholder="e.g. 10" style="width:88px">
-  <datalist id="qty-presets"><option value="10"><option value="20"><option value="30"></datalist>
+  <input type="number" id="qtyVal" list="qty-presets" min="0" placeholder="Qty" style="width:100px">
+  <datalist id="qty-presets"><option value="10"><option value="20"><option value="30"><option value="40"><option value="50"><option value="60"><option value="70"><option value="80"><option value="90"><option value="100"></datalist>
   <button class="btn-export" onclick="exportExcel()">⬇ Export Excel</button>
 </div>
 <div class="stats">

@@ -67,6 +67,16 @@ td { padding: 11px 16px; vertical-align: middle; }
   <input type="text" id="searchInput" placeholder="Search model name, item no, or description..." autofocus>
   <select id="brandFilter" class="filter-sel"><option value="">All Brands</option></select>
   <select id="spFilter" class="filter-sel" style="display:none"><option value="">All Salespersons</option></select>
+  <select id="qtyOp" class="filter-sel" style="min-width:60px;max-width:64px;text-align:center">
+    <option value="">Qty</option>
+    <option value="gte">≥</option>
+    <option value="lte">≤</option>
+    <option value="eq">=</option>
+    <option value="gt">&gt;</option>
+    <option value="lt">&lt;</option>
+  </select>
+  <input type="number" id="qtyVal" list="qty-presets" min="0" placeholder="e.g. 10" style="width:88px">
+  <datalist id="qty-presets"><option value="10"><option value="20"><option value="30"></datalist>
   <button class="btn-export" onclick="exportExcel()">⬇ Export Excel</button>
 </div>
 <div class="stats">
@@ -158,6 +168,17 @@ function switchTab(t) {
 
 function normalize(s) { return (s||'').toLowerCase(); }
 
+function qtyMatch(qty) {
+  const op = document.getElementById('qtyOp').value;
+  const v = parseFloat(document.getElementById('qtyVal').value);
+  if (!op || isNaN(v)) return true;
+  if (op === 'gte') return qty >= v;
+  if (op === 'lte') return qty <= v;
+  if (op === 'eq')  return qty === v;
+  if (op === 'gt')  return qty > v;
+  if (op === 'lt')  return qty < v;
+}
+
 function applyFilter() {
   const q = normalize(document.getElementById('searchInput').value.trim());
   const s = state[activeTab];
@@ -165,13 +186,15 @@ function applyFilter() {
     const brand = document.getElementById('brandFilter').value;
     s.filtered = DATA1.filter(d =>
       (!brand || d.brand === brand) &&
-      (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q))
+      (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q)) &&
+      qtyMatch(d.qty)
     );
   } else {
     const sp = document.getElementById('spFilter').value;
     s.filtered = DATA2.filter(d =>
       (!sp || d.sale_code === sp) &&
-      (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q) || normalize(d.sale_code).includes(q) || normalize(d.nickname).includes(q))
+      (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q) || normalize(d.sale_code).includes(q) || normalize(d.nickname).includes(q)) &&
+      qtyMatch(d.qty)
     );
   }
   if (s.sortCol >= 0) doSort(activeTab);
@@ -299,6 +322,8 @@ function exportExcel() {
 document.getElementById('searchInput').addEventListener('input', applyFilter);
 document.getElementById('brandFilter').addEventListener('change', applyFilter);
 document.getElementById('spFilter').addEventListener('change', applyFilter);
+document.getElementById('qtyOp').addEventListener('change', applyFilter);
+document.getElementById('qtyVal').addEventListener('input', applyFilter);
 init();
 </script>
 </body>

@@ -77,6 +77,15 @@ td { padding: 11px 16px; vertical-align: middle; }
   </select>
   <input type="number" id="qtyVal" list="qty-presets" min="0" placeholder="Qty" style="width:100px">
   <datalist id="qty-presets"><option value="10"><option value="20"><option value="30"><option value="40"><option value="50"><option value="60"><option value="70"><option value="80"><option value="90"><option value="100"></datalist>
+  <select id="priceOp" class="filter-sel" style="min-width:165px">
+    <option value="">— Price filter —</option>
+    <option value="gte">At least (≥)</option>
+    <option value="lte">At most (≤)</option>
+    <option value="eq">Exactly (=)</option>
+    <option value="gt">More than (&gt;)</option>
+    <option value="lt">Less than (&lt;)</option>
+  </select>
+  <input type="number" id="priceVal" min="0" placeholder="Price" style="width:100px">
   <button class="btn-export" onclick="exportExcel()">⬇ Export Excel</button>
 </div>
 <div class="stats">
@@ -168,6 +177,13 @@ function switchTab(t) {
 
 function normalize(s) { return (s||'').toLowerCase(); }
 
+function priceMatch(p) {
+  const op = document.getElementById('priceOp').value;
+  const v = parseFloat(document.getElementById('priceVal').value);
+  if (!op || isNaN(v)) return true;
+  return op==='gte'?p>=v:op==='lte'?p<=v:op==='eq'?p===v:op==='gt'?p>v:p<v;
+}
+
 function qtyMatch(qty) {
   const op = document.getElementById('qtyOp').value;
   const v = parseFloat(document.getElementById('qtyVal').value);
@@ -187,14 +203,14 @@ function applyFilter() {
     s.filtered = DATA1.filter(d =>
       (!brand || d.brand === brand) &&
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q)) &&
-      qtyMatch(d.qty)
+      qtyMatch(d.qty) && priceMatch(d.unit_price)
     );
   } else if (activeTab === 2) {
     const sp = document.getElementById('spFilter').value;
     s.filtered = DATA2.filter(d =>
       (!sp || d.sale_code === sp) &&
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q) || normalize(d.sale_code).includes(q) || normalize(d.nickname).includes(q)) &&
-      qtyMatch(d.qty)
+      qtyMatch(d.qty) && priceMatch(d.unit_price)
     );
   }
   if (s.sortCol >= 0) doSort(activeTab);
@@ -324,6 +340,8 @@ document.getElementById('brandFilter').addEventListener('change', applyFilter);
 document.getElementById('spFilter').addEventListener('change', applyFilter);
 document.getElementById('qtyOp').addEventListener('change', applyFilter);
 document.getElementById('qtyVal').addEventListener('input', applyFilter);
+document.getElementById('priceOp').addEventListener('change', applyFilter);
+document.getElementById('priceVal').addEventListener('input', applyFilter);
 init();
 </script>
 </body>

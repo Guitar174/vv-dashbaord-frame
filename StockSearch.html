@@ -16,9 +16,6 @@ body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; }
 .tab-btn[data-tab="1"]:hover, .tab-btn[data-tab="1"].active { background: #f0b429; color: #1a2744; border-bottom-color: #f0b429; }
 .tab-btn[data-tab="2"] { background: #065f46; color: #d1fae5; }
 .tab-btn[data-tab="2"]:hover, .tab-btn[data-tab="2"].active { background: #34d399; color: #1a2744; border-bottom-color: #34d399; }
-.tab-btn[data-tab="3"] { background: #1e3a5f; color: #bfdbfe; }
-.tab-btn[data-tab="3"]:hover, .tab-btn[data-tab="3"].active { background: #60a5fa; color: #1a2744; border-bottom-color: #60a5fa; }
-.price-filter-bar { background: #f8faff; border-bottom: 1px solid #e0e0e0; padding: 12px 32px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .search-bar { background: white; padding: 16px 32px; border-bottom: 1px solid #e0e0e0; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .search-bar input { flex: 1; min-width: 260px; padding: 10px 16px; font-size: 15px; border: 2px solid #d0d7e2; border-radius: 8px; outline: none; transition: border-color 0.2s; }
 .search-bar input:focus { border-color: #1a2744; }
@@ -65,7 +62,6 @@ td { padding: 11px 16px; vertical-align: middle; }
 <div class="tabs">
   <button class="tab-btn active" data-tab="1" onclick="switchTab(1)">Warehouse Stock</button>
   <button class="tab-btn" data-tab="2" onclick="switchTab(2)">By Salesperson</button>
-  <button class="tab-btn" data-tab="3" onclick="switchTab(3)">By Unit Price</button>
 </div>
 <div class="search-bar">
   <input type="text" id="searchInput" placeholder="Search model name, item no, or description..." autofocus>
@@ -122,34 +118,6 @@ td { padding: 11px 16px; vertical-align: middle; }
     </div>
     <div class="pagination" id="pag2"></div>
   </div>
-  <div class="tab-panel" id="panel3">
-    <div class="price-filter-bar">
-      <select id="priceOp" class="filter-sel" style="min-width:160px">
-        <option value="">— Clear —</option>
-        <option value="gte">At least (≥)</option>
-        <option value="lte">At most (≤)</option>
-        <option value="eq">Exactly (=)</option>
-        <option value="gt">More than (&gt;)</option>
-        <option value="lt">Less than (&lt;)</option>
-      </select>
-      <input type="number" id="priceVal" min="0" placeholder="Price" style="width:120px">
-      <select id="brandFilter3" class="filter-sel"><option value="">— Clear —</option></select>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th onclick="sortBy(3,0)" id="t3h0">Item No.</th>
-          <th onclick="sortBy(3,1)" id="t3h1">Description</th>
-          <th onclick="sortBy(3,2)" id="t3h2">Brand</th>
-          <th onclick="sortBy(3,3)" id="t3h3">Qty</th>
-          <th onclick="sortBy(3,4)" id="t3h4">Unit Price</th>
-        </tr></thead>
-        <tbody id="body3"></tbody>
-      </table>
-      <div class="no-results" id="noResults3" style="display:none">No items found.</div>
-    </div>
-    <div class="pagination" id="pag3"></div>
-  </div>
 </div>
 
 <script>
@@ -158,8 +126,7 @@ let DATA1 = [], DATA2 = [];
 let activeTab = 1;
 let state = {
   1: { filtered: [], page: 1, sortCol: -1, sortDir: 1 },
-  2: { filtered: [], page: 1, sortCol: -1, sortDir: 1 },
-  3: { filtered: [], page: 1, sortCol: 4, sortDir: -1 }
+  2: { filtered: [], page: 1, sortCol: -1, sortDir: 1 }
 };
 
 async function init() {
@@ -178,10 +145,8 @@ async function init() {
   document.getElementById('panels').style.display = '';
 
   const brands = [...new Set(DATA1.map(d => d.brand))].filter(Boolean).sort();
-  ['brandFilter','brandFilter3'].forEach(id => {
-    const sel = document.getElementById(id);
-    brands.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; sel.appendChild(o); });
-  });
+  const bSel = document.getElementById('brandFilter');
+  brands.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bSel.appendChild(o); });
 
   const spList = [...new Map(DATA2.map(d => [d.sale_code, d.nickname])).entries()].sort((a,b) => a[0].localeCompare(b[0]));
   const spSel = document.getElementById('spFilter');
@@ -193,7 +158,8 @@ async function init() {
 function switchTab(t) {
   activeTab = t;
   document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i+1===t));
-  [1,2,3].forEach(i => document.getElementById('panel'+i).classList.toggle('active', i===t));
+  document.getElementById('panel1').classList.toggle('active', t===1);
+  document.getElementById('panel2').classList.toggle('active', t===2);
   document.getElementById('brandFilter').style.display = t===1 ? '' : 'none';
   document.getElementById('spFilter').style.display = t===2 ? '' : 'none';
   document.getElementById('searchInput').value = '';
@@ -201,17 +167,6 @@ function switchTab(t) {
 }
 
 function normalize(s) { return (s||'').toLowerCase(); }
-
-function priceMatch(price) {
-  const op = document.getElementById('priceOp').value;
-  const v = parseFloat(document.getElementById('priceVal').value);
-  if (!op || isNaN(v)) return true;
-  if (op === 'gte') return price >= v;
-  if (op === 'lte') return price <= v;
-  if (op === 'eq')  return price === v;
-  if (op === 'gt')  return price > v;
-  if (op === 'lt')  return price < v;
-}
 
 function qtyMatch(qty) {
   const op = document.getElementById('qtyOp').value;
@@ -241,12 +196,6 @@ function applyFilter() {
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q) || normalize(d.sale_code).includes(q) || normalize(d.nickname).includes(q)) &&
       qtyMatch(d.qty)
     );
-  } else {
-    const brand = document.getElementById('brandFilter3').value;
-    s.filtered = DATA1.filter(d =>
-      (!brand || d.brand === brand) &&
-      priceMatch(d.unit_price)
-    );
   }
   if (s.sortCol >= 0) doSort(activeTab);
   s.page = 1;
@@ -255,23 +204,17 @@ function applyFilter() {
 
 const KEYS1 = ['item_no','description','brand','qty','unit_price'];
 const KEYS2 = ['sale_code','nickname','item_no','description','brand','qty','unit_price'];
-const TAB_IDS = {
-  1: ['t1h0','t1h1','t1h2','t1h3','t1h4'],
-  2: ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5','t2h6'],
-  3: ['t3h0','t3h1','t3h2','t3h3','t3h4']
-};
-const TAB_KEYS = { 1: KEYS1, 2: KEYS2, 3: KEYS1 };
-
 function sortBy(tab, col) {
   const s = state[tab];
   if (s.sortCol === col) s.sortDir *= -1; else { s.sortCol = col; s.sortDir = 1; }
-  TAB_IDS[tab].forEach((id,i) => { const el = document.getElementById(id); if(el) el.className = i===col ? (s.sortDir===1?'sorted-asc':'sorted-desc') : ''; });
+  const ids = tab===1 ? ['t1h0','t1h1','t1h2','t1h3','t1h4'] : ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5','t2h6'];
+  ids.forEach((id,i) => { const el = document.getElementById(id); if(el) el.className = i===col ? (s.sortDir===1?'sorted-asc':'sorted-desc') : ''; });
   doSort(tab); s.page = 1; render(tab);
 }
 
 function doSort(tab) {
   const s = state[tab];
-  const k = TAB_KEYS[tab][s.sortCol];
+  const k = (tab===1?KEYS1:KEYS2)[s.sortCol];
   s.filtered.sort((a,b) => {
     let va = a[k], vb = b[k];
     if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
@@ -381,9 +324,6 @@ document.getElementById('brandFilter').addEventListener('change', applyFilter);
 document.getElementById('spFilter').addEventListener('change', applyFilter);
 document.getElementById('qtyOp').addEventListener('change', applyFilter);
 document.getElementById('qtyVal').addEventListener('input', applyFilter);
-document.getElementById('priceOp').addEventListener('change', applyFilter);
-document.getElementById('priceVal').addEventListener('input', applyFilter);
-document.getElementById('brandFilter3').addEventListener('change', applyFilter);
 init();
 </script>
 </body>

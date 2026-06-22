@@ -29,7 +29,7 @@ select.filter-sel:focus { border-color: #1a2744; }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 .table-wrap { padding: 24px 32px; overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.08); font-size: 14px; }
+table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.08); font-size: 14px; table-layout: fixed; }
 thead tr { background: #1a2744; color: white; }
 thead th { padding: 13px 16px; text-align: left; font-weight: 600; cursor: pointer; user-select: none; white-space: nowrap; }
 thead th:hover { background: #253560; }
@@ -38,7 +38,7 @@ thead th.sorted-desc::after { content: " ▼"; font-size: 11px; }
 tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.1s; }
 tbody tr:hover { background: #f0f4ff; }
 tbody tr:last-child { border-bottom: none; }
-td { padding: 11px 16px; vertical-align: middle; }
+td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .td-item { font-family: monospace; font-size: 13px; color: #555; }
 .td-desc { font-weight: 500; }
 .td-brand { display: inline-block; background: #e8edf8; color: #1a2744; padding: 3px 9px; border-radius: 12px; font-size: 12px; font-weight: 600; white-space: nowrap; }
@@ -124,11 +124,11 @@ td { padding: 11px 16px; vertical-align: middle; }
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th onclick="sortBy(1,0)" id="t1h0">Item No.</th>
+          <th onclick="sortBy(1,0)" id="t1h0" style="width:160px">Item No.</th>
           <th onclick="sortBy(1,1)" id="t1h1">Description</th>
-          <th onclick="sortBy(1,2)" id="t1h2">Brand</th>
-          <th onclick="sortBy(1,3)" id="t1h3">Qty</th>
-          <th onclick="sortBy(1,4)" id="t1h4">Unit Price</th>
+          <th onclick="sortBy(1,2)" id="t1h2" style="width:130px">Brand</th>
+          <th onclick="sortBy(1,3)" id="t1h3" style="width:80px">Qty</th>
+          <th onclick="sortBy(1,4)" id="t1h4" style="width:120px">Unit Price</th>
         </tr></thead>
         <tbody id="body1"></tbody>
       </table>
@@ -140,13 +140,13 @@ td { padding: 11px 16px; vertical-align: middle; }
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th onclick="sortBy(2,0)" id="t2h0">Sale Code</th>
-          <th onclick="sortBy(2,1)" id="t2h1">Nickname</th>
-          <th onclick="sortBy(2,2)" id="t2h2">Item No.</th>
+          <th onclick="sortBy(2,0)" id="t2h0" style="width:90px">Sale Code</th>
+          <th onclick="sortBy(2,1)" id="t2h1" style="width:110px">Nickname</th>
+          <th onclick="sortBy(2,2)" id="t2h2" style="width:150px">Item No.</th>
           <th onclick="sortBy(2,3)" id="t2h3">Description</th>
-          <th onclick="sortBy(2,4)" id="t2h4">Brand</th>
-          <th onclick="sortBy(2,5)" id="t2h5">Qty</th>
-          <th onclick="sortBy(2,6)" id="t2h6">Unit Price</th>
+          <th onclick="sortBy(2,4)" id="t2h4" style="width:120px">Brand</th>
+          <th onclick="sortBy(2,5)" id="t2h5" style="width:70px">Qty</th>
+          <th onclick="sortBy(2,6)" id="t2h6" style="width:110px">Unit Price</th>
         </tr></thead>
         <tbody id="body2"></tbody>
       </table>

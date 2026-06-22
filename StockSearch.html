@@ -123,7 +123,7 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
   <div class="tab-panel active" id="panel1">
     <div class="table-wrap">
       <table>
-        <colgroup><col style="width:170px"><col><col style="width:140px"><col style="width:80px"><col style="width:130px"></colgroup>
+        <colgroup><col style="width:170px"><col style="width:480px"><col style="width:140px"><col style="width:80px"><col style="width:130px"></colgroup>
         <thead><tr>
           <th onclick="sortBy(1,0)" id="t1h0">Item No.</th>
           <th onclick="sortBy(1,1)" id="t1h1">Description</th>
@@ -368,9 +368,30 @@ document.getElementById('searchInput').addEventListener('input', applyFilter);
 document.getElementById('brandFilter').addEventListener('change', applyFilter);
 document.getElementById('spFilter').addEventListener('change', applyFilter);
 document.getElementById('qtyOp').addEventListener('change', applyFilter);
-document.getElementById('qtyVal').addEventListener('input', applyFilter);
 document.getElementById('priceOp').addEventListener('change', applyFilter);
-document.getElementById('priceVal').addEventListener('input', applyFilter);
+
+function invertedSpinner(id, step) {
+  const el = document.getElementById(id);
+  let last = '0';
+  el.addEventListener('mousedown', () => { last = el.value; });
+  el.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const v = parseFloat(el.value) || 0;
+      el.value = e.key === 'ArrowDown' ? v + step : Math.max(0, v - step);
+      last = el.value; applyFilter();
+    }
+  });
+  el.addEventListener('input', () => {
+    const cur = parseFloat(el.value), old = parseFloat(last);
+    if (!isNaN(cur) && !isNaN(old) && Math.abs(cur - old) === step) {
+      el.value = Math.max(0, old - (cur - old));
+    }
+    last = el.value; applyFilter();
+  });
+}
+invertedSpinner('qtyVal', 10);
+invertedSpinner('priceVal', 500);
 init();
 </script>
 </body>

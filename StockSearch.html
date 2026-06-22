@@ -372,22 +372,25 @@ document.getElementById('priceOp').addEventListener('change', applyFilter);
 
 function invertedSpinner(id, step) {
   const el = document.getElementById(id);
-  let last = '0';
-  el.addEventListener('mousedown', () => { last = el.value; });
+  let prevVal = 0;
   el.addEventListener('keydown', e => {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
       const v = parseFloat(el.value) || 0;
-      el.value = e.key === 'ArrowDown' ? v + step : Math.max(0, v - step);
-      last = el.value; applyFilter();
+      const nv = e.key === 'ArrowDown' ? v + step : Math.max(0, v - step);
+      el.value = nv; prevVal = nv; applyFilter();
     }
   });
   el.addEventListener('input', () => {
-    const cur = parseFloat(el.value), old = parseFloat(last);
-    if (!isNaN(cur) && !isNaN(old) && Math.abs(cur - old) === step) {
-      el.value = Math.max(0, old - (cur - old));
+    const cur = parseFloat(el.value) || 0;
+    const diff = cur - prevVal;
+    if (Math.abs(diff) === step) {
+      const nv = Math.max(0, prevVal - diff);
+      el.value = nv; prevVal = nv;
+    } else {
+      prevVal = cur;
     }
-    last = el.value; applyFilter();
+    applyFilter();
   });
 }
 invertedSpinner('qtyVal', 10);

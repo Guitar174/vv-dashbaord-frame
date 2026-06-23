@@ -54,17 +54,6 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
 .page-info { font-size: 13px; color: #666; }
 .btn-export { padding: 10px 18px; font-size: 14px; font-weight: 600; background: #1a2744; color: white; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; }
 .btn-export:hover { background: #253560; }
-.year-dropdown { position: relative; }
-.year-btn { padding: 10px 14px; font-size: 14px; border: 2px solid #d0d7e2; border-radius: 8px; background: white; cursor: pointer; min-width: 140px; text-align: left; }
-.year-panel { position: absolute; top: calc(100% + 4px); left: 0; z-index: 200; background: white; border: 2px solid #d0d7e2; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 170px; display: none; }
-.year-panel.open { display: block; }
-.year-panel-btns { display: flex; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #eee; }
-.year-panel-btn { flex: 1; padding: 5px; font-size: 12px; font-weight: 700; border: 1.5px solid #d0d7e2; border-radius: 5px; cursor: pointer; background: white; color: #1a2744; }
-.year-panel-btn:hover { background: #f0f4ff; }
-.year-list { max-height: 220px; overflow-y: auto; padding: 4px 0; }
-.year-item { display: flex; align-items: center; gap: 10px; padding: 7px 14px; cursor: pointer; font-size: 14px; }
-.year-item:hover { background: #f0f4ff; }
-.year-item input { accent-color: #1a2744; width: 16px; height: 16px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -88,17 +77,6 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
   <div class="filter-group" id="spGroup" style="display:none">
     <span class="filter-label">Salesperson</span>
     <select id="spFilter" class="filter-sel"><option value="">— Clear —</option></select>
-  </div>
-  <div class="filter-group year-dropdown" id="yearDropdown">
-    <span class="filter-label">Year</span>
-    <button class="year-btn" id="yearBtn" type="button" onclick="toggleYearPanel(event)">All Years ▾</button>
-    <div class="year-panel" id="yearPanel">
-      <div class="year-panel-btns">
-        <button type="button" class="year-panel-btn" onclick="yearSelectAll()">Select All</button>
-        <button type="button" class="year-panel-btn" onclick="yearClearAll()">Clear All</button>
-      </div>
-      <div class="year-list" id="yearList"></div>
-    </div>
   </div>
   <div class="filter-group">
     <span class="filter-label">Qty Filter</span>
@@ -184,7 +162,6 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
 const PAGE_SIZE = 50;
 let DATA1 = [], DATA2 = [];
 let activeTab = 1;
-let allYears = [], selectedYears = new Set();
 let state = {
   1: { filtered: [], page: 1, sortCol: -1, sortDir: 1 },
   2: { filtered: [], page: 1, sortCol: -1, sortDir: 1 }
@@ -213,31 +190,8 @@ async function init() {
   const spSel = document.getElementById('spFilter');
   spList.forEach(([code, nick]) => { const o = document.createElement('option'); o.value = code; o.textContent = nick ? code + ' — ' + nick : code; spSel.appendChild(o); });
 
-  buildYearFilter();
   applyFilter();
 }
-
-function buildYearFilter() {
-  const ySet = new Set();
-  DATA1.forEach(d => { if (d.year) ySet.add(d.year); });
-  DATA2.forEach(d => { if (d.year) ySet.add(d.year); });
-  allYears = [...ySet].sort((a,b) => b-a);
-  selectedYears = new Set(allYears);
-  document.getElementById('yearList').innerHTML = allYears.map(y =>
-    `<label class="year-item"><input type="checkbox" class="year-cb" value="${y}" checked onchange="updateYearFilter()"><span>${y}</span></label>`
-  ).join('');
-}
-
-function toggleYearPanel(e) {
-  e.stopPropagation();
-  document.getElementById('yearPanel').classList.toggle('open');
-}
-function yearSelectAll() { document.querySelectorAll('.year-cb').forEach(c => c.checked=true); selectedYears=new Set(allYears); updateYearBtn(); applyFilter(); }
-function yearClearAll() { document.querySelectorAll('.year-cb').forEach(c => c.checked=false); selectedYears=new Set(); updateYearBtn(); applyFilter(); }
-function updateYearFilter() { selectedYears=new Set(); document.querySelectorAll('.year-cb:checked').forEach(c => selectedYears.add(+c.value)); updateYearBtn(); applyFilter(); }
-function updateYearBtn() { const n=selectedYears.size; document.getElementById('yearBtn').textContent=(n===0||n===allYears.length)?'All Years ▾':n+' Year'+(n>1?'s':'')+' ▾'; }
-function yearOk(d) { return selectedYears.size===0||selectedYears.size===allYears.length||selectedYears.has(d.year); }
-document.addEventListener('click', () => document.getElementById('yearPanel').classList.remove('open'));
 
 function switchTab(t) {
   activeTab = t;
@@ -278,14 +232,14 @@ function applyFilter() {
     s.filtered = DATA1.filter(d =>
       (!brand || d.brand === brand) &&
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q)) &&
-      qtyMatch(d.qty) && priceMatch(d.unit_price) && yearOk(d)
+      qtyMatch(d.qty) && priceMatch(d.unit_price)
     );
   } else if (activeTab === 2) {
     const sp = document.getElementById('spFilter').value;
     s.filtered = DATA2.filter(d =>
       (!sp || d.sale_code === sp) &&
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q) || normalize(d.sale_code).includes(q) || normalize(d.nickname).includes(q)) &&
-      qtyMatch(d.qty) && priceMatch(d.unit_price) && yearOk(d)
+      qtyMatch(d.qty) && priceMatch(d.unit_price)
     );
   }
   if (s.sortCol >= 0) doSort(activeTab);

@@ -54,6 +54,19 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
 .page-info { font-size: 13px; color: #666; }
 .btn-export { padding: 10px 18px; font-size: 14px; font-weight: 600; background: #1a2744; color: white; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; }
 .btn-export:hover { background: #253560; }
+.ms-dropdown { position: relative; }
+.ms-btn { padding: 10px 14px; font-size: 14px; border: 2px solid #d0d7e2; border-radius: 8px; background: white; cursor: pointer; min-width: 160px; text-align: left; white-space: nowrap; }
+.ms-btn:focus { border-color: #1a2744; outline: none; }
+.ms-panel { position: absolute; top: calc(100% + 4px); left: 0; z-index: 200; background: white; border: 2px solid #d0d7e2; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 200px; display: none; }
+.ms-panel.open { display: block; }
+.ms-search { width: 100%; padding: 8px 12px; border: none; border-bottom: 1px solid #eee; font-size: 13px; outline: none; }
+.ms-panel-btns { display: flex; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #eee; }
+.ms-panel-btn { flex: 1; padding: 5px; font-size: 12px; font-weight: 700; border: 1.5px solid #d0d7e2; border-radius: 5px; cursor: pointer; background: white; color: #1a2744; }
+.ms-panel-btn:hover { background: #f0f4ff; }
+.ms-list { max-height: 240px; overflow-y: auto; padding: 4px 0; }
+.ms-item { display: flex; align-items: center; gap: 10px; padding: 7px 14px; cursor: pointer; font-size: 14px; }
+.ms-item:hover { background: #f0f4ff; }
+.ms-item input { accent-color: #1a2744; width: 16px; height: 16px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -70,9 +83,17 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
     <span class="filter-label">Search</span>
     <input type="text" id="searchInput" placeholder="Search model name, item no, or description..." autofocus>
   </div>
-  <div class="filter-group">
+  <div class="filter-group ms-dropdown" id="brandDropdown">
     <span class="filter-label">Brand</span>
-    <select id="brandFilter" class="filter-sel"><option value="">— Clear —</option></select>
+    <button class="ms-btn" id="brandBtn" type="button" onclick="toggleMs('brand',event)">All Brands ▾</button>
+    <div class="ms-panel" id="brandPanel">
+      <input class="ms-search" id="brandSearch" oninput="msSearch('brand',this.value)" placeholder="Search brand...">
+      <div class="ms-panel-btns">
+        <button type="button" class="ms-panel-btn" onclick="msSelectAll('brand')">Select All</button>
+        <button type="button" class="ms-panel-btn" onclick="msClearAll('brand')">Clear All</button>
+      </div>
+      <div class="ms-list" id="brandList"></div>
+    </div>
   </div>
   <div class="filter-group" id="spGroup" style="display:none">
     <span class="filter-label">Salesperson</span>
@@ -183,8 +204,7 @@ async function init() {
   document.getElementById('panels').style.display = '';
 
   const brands = [...new Set(DATA1.map(d => d.brand))].filter(Boolean).sort();
-  const bSel = document.getElementById('brandFilter');
-  brands.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bSel.appendChild(o); });
+  buildMs('brand', brands);
 
   const spList = [...new Map(DATA2.map(d => [d.sale_code, d.nickname])).entries()].sort((a,b) => a[0].localeCompare(b[0]));
   const spSel = document.getElementById('spFilter');
@@ -198,7 +218,7 @@ function switchTab(t) {
   document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i+1===t));
   document.getElementById('panel1').classList.toggle('active', t===1);
   document.getElementById('panel2').classList.toggle('active', t===2);
-  document.getElementById('brandFilter').closest('.filter-group').style.display = t===1 ? '' : 'none';
+  document.getElementById('brandDropdown').style.display = t===1 ? '' : 'none';
   document.getElementById('spGroup').style.display = t===2 ? '' : 'none';
   document.getElementById('searchInput').value = '';
   applyFilter();
@@ -228,9 +248,8 @@ function applyFilter() {
   const q = normalize(document.getElementById('searchInput').value.trim());
   const s = state[activeTab];
   if (activeTab === 1) {
-    const brand = document.getElementById('brandFilter').value;
     s.filtered = DATA1.filter(d =>
-      (!brand || d.brand === brand) &&
+      msOk('brand', d.brand) &&
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q)) &&
       qtyMatch(d.qty) && priceMatch(d.unit_price)
     );
@@ -365,8 +384,24 @@ function exportExcel() {
 }
 
 document.getElementById('searchInput').addEventListener('input', applyFilter);
-document.getElementById('brandFilter').addEventListener('change', applyFilter);
 document.getElementById('spFilter').addEventListener('change', applyFilter);
+
+const msState = {};
+function buildMs(id, items) {
+  msState[id] = { all: items, sel: new Set(items) };
+  document.getElementById(id+'List').innerHTML = items.map(v =>
+    `<label class="ms-item"><input type="checkbox" class="ms-cb" data-ms="${id}" value="${v}" checked onchange="msUpdate('${id}')"><span>${v}</span></label>`
+  ).join('');
+  msUpdateBtn(id);
+}
+function toggleMs(id, e) { e.stopPropagation(); document.getElementById(id+'Panel').classList.toggle('open'); }
+function msSelectAll(id) { document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>c.checked=true); msState[id].sel=new Set(msState[id].all); msUpdateBtn(id); applyFilter(); }
+function msClearAll(id) { document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>c.checked=false); msState[id].sel=new Set(); msUpdateBtn(id); applyFilter(); }
+function msUpdate(id) { const s=new Set(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]:checked`).forEach(c=>s.add(c.value)); msState[id].sel=s; msUpdateBtn(id); applyFilter(); }
+function msUpdateBtn(id) { const {all,sel}=msState[id]; const n=sel.size; document.getElementById(id+'Btn').textContent=(n===0||n===all.length)?'All Brands ▾':n+' Brand'+(n>1?'s':'')+' ▾'; }
+function msOk(id, val) { const {all,sel}=msState[id]||{all:[],sel:new Set()}; return sel.size===0||sel.size===all.length||sel.has(val); }
+function msSearch(id, q) { const norm=q.toLowerCase(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>{c.closest('.ms-item').style.display=c.value.toLowerCase().includes(norm)?'':'none';}); }
+document.addEventListener('click', ()=>document.querySelectorAll('.ms-panel.open').forEach(p=>p.classList.remove('open')));
 document.getElementById('qtyOp').addEventListener('change', applyFilter);
 document.getElementById('priceOp').addEventListener('change', applyFilter);
 

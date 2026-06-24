@@ -56,10 +56,10 @@
   .main { max-width: 1440px; margin: 0 auto; padding: 24px 28px; }
 
   /* ── Metrics ── */
-  .metrics { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; margin-bottom: 22px; }
+  .metrics { display: grid; grid-template-columns: repeat(6,1fr); gap: 10px; margin-bottom: 22px; }
   .metric {
     background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 16px 18px; box-shadow: var(--shadow-sm);
+    padding: 14px 14px; box-shadow: var(--shadow-sm);
     border-left: 4px solid var(--border); transition: box-shadow .2s;
   }
   .metric:hover { box-shadow: var(--shadow-md); }
@@ -68,6 +68,7 @@
   .metric:nth-child(3) { border-left-color: var(--amber); }
   .metric:nth-child(4) { border-left-color: var(--brand); }
   .metric:nth-child(5) { border-left-color: #94a3b8; }
+  .metric:nth-child(6) { border-left-color: #7c3aed; }
   .metric-label { font-size: 11px; color: var(--text-sub); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; display: flex; align-items: center; gap: 5px; }
   .metric-value { font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 1; }
   .mv-total   { color: var(--text); }

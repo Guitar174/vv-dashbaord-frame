@@ -405,8 +405,7 @@
         <colgroup>
           <col style="width:130px;">
           <col style="width:180px;">
-          <col style="width:90px;">
-          <col style="width:105px;">
+          <col style="width:120px;">
           <col style="width:110px;">
           <col style="width:95px;">
           <col style="width:95px;">
@@ -419,7 +418,6 @@
           <tr>
             <th onclick="sortBy('id')">No.</th>
             <th onclick="sortBy('customer')">Customer</th>
-            <th onclick="sortBy('sales')">Sales</th>
             <th onclick="sortBy('sales_code')">Sales Code</th>
             <th onclick="sortBy('amount')" style="text-align:right;">Amount (฿)</th>
             <th>Date</th>
@@ -598,7 +596,6 @@ function renderTable() {
     return `<tr>
       <td><span class="order-no">${o.id}</span></td>
       <td><span class="customer-name" title="${o.customer}">${o.customer}</span></td>
-      <td>${o.sales}</td>
       <td style="font-size:11px;color:var(--text-sub);">${o.sales_code||'—'}</td>
       <td style="text-align:right;"><span class="amount-cell">${fmt(o.amount)}</span></td>
       <td style="font-size:11px;color:#888;white-space:nowrap;">${o.date}</td>

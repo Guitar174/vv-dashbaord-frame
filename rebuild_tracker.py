@@ -85,7 +85,7 @@ html = re.sub(r"const ORDERS\s*=\s*\[[\s\S]*?\];", orders_js, html)
 sales_options_html = "\n".join(
     f'          <label class="ms-option"><span>{nick_to_code.get(code, "")} ({code})</span>'
     f'<input type="checkbox" value="{code}" onchange="onMsChange(\'ms-sales\')"></label>'
-    for code in sorted(sales_set)
+    for code in sorted(sales_set, key=lambda n: nick_to_code.get(n, n))
 )
 html = re.sub(
     r'(<div class="ms-options"[^>]*id="ms-sales-options"[^>]*>)'

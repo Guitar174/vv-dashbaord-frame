@@ -187,11 +187,11 @@
   .table-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
   thead th {
-    text-align: left; font-size: 10.5px; font-weight: 700; color: var(--text-sub);
-    padding: 10px 12px; background: var(--slate-light); border-bottom: 1px solid var(--border);
-    white-space: normal; letter-spacing: 0.5px; text-transform: uppercase;
-    line-height: 1.3; vertical-align: bottom; cursor: pointer; user-select: none;
-    transition: color .15s;
+    text-align: left; font-size: 10px; font-weight: 700; color: var(--text-sub);
+    padding: 10px 12px; background: var(--slate-light); border-bottom: 2px solid var(--border);
+    white-space: nowrap; letter-spacing: 0.6px; text-transform: uppercase;
+    line-height: 1; vertical-align: middle; cursor: pointer; user-select: none;
+    transition: color .15s; overflow: hidden; text-overflow: ellipsis;
   }
   thead th:hover { color: var(--text); }
   thead th.sorted { color: var(--brand); }
@@ -395,26 +395,26 @@
     <div class="table-wrap">
       <table style="table-layout:fixed;width:100%;">
         <colgroup>
-          <col style="width:140px;">  <!-- No. -->
-          <col style="width:180px;">  <!-- Sell-to Customer Name -->
-          <col style="width:100px;">  <!-- Salesperson Code -->
-          <col style="width:130px;">  <!-- Amount Including VAT -->
-          <col style="width:100px;">  <!-- Document Date -->
-          <col style="width:90px;">   <!-- Status -->
-          <col style="width:110px;">  <!-- จำนวนวันรอคอย -->
-          <col style="width:200px;">  <!-- First Comment -->
-          <col style="width:200px;">  <!-- Work Description -->
-          <col style="width:110px;">  <!-- Status Code -->
+          <col style="width:130px;">
+          <col style="width:180px;">
+          <col style="width:90px;">
+          <col style="width:110px;">
+          <col style="width:95px;">
+          <col style="width:95px;">
+          <col style="width:85px;">
+          <col style="width:200px;">
+          <col style="width:200px;">
+          <col style="width:110px;">
         </colgroup>
         <thead>
           <tr>
             <th onclick="sortBy('id')">No.</th>
-            <th onclick="sortBy('customer')">Sell-to Customer Name</th>
-            <th onclick="sortBy('sales')">Salesperson Code</th>
-            <th onclick="sortBy('amount')" style="text-align:right;">Amount Including VAT</th>
-            <th>Document Date</th>
+            <th onclick="sortBy('customer')">Customer</th>
+            <th onclick="sortBy('sales')">Sales</th>
+            <th onclick="sortBy('amount')" style="text-align:right;">Amount (฿)</th>
+            <th>Date</th>
             <th onclick="sortBy('status')">Status</th>
-            <th onclick="sortBy('days')" style="text-align:right;">จำนวนวันรอคอย</th>
+            <th onclick="sortBy('days')" style="text-align:right;">รอคอย (วัน)</th>
             <th>First Comment</th>
             <th>Work Description</th>
             <th>Status Code</th>

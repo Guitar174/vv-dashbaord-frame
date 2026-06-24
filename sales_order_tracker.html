@@ -554,12 +554,16 @@ function getFiltered() {
   });
 }
 
+const STATUS_ORDER = {'Open':0,'Pending Approval':1,'Released':2,'Closed':3,'Cancelled':4};
 function getSorted(arr) {
   return [...arr].sort((a,b) => {
     let va, vb;
     if (sortKey === 'days') {
       va = calcDays(a.date) ?? -1;
       vb = calcDays(b.date) ?? -1;
+    } else if (sortKey === 'status') {
+      va = STATUS_ORDER[a.status] ?? 99;
+      vb = STATUS_ORDER[b.status] ?? 99;
     } else {
       va = a[sortKey]; vb = b[sortKey];
     }

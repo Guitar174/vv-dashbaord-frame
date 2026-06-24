@@ -75,6 +75,7 @@
   .mv-pending { color: var(--amber); }
   .mv-done    { color: var(--brand); }
   .mv-cancel  { color: #94a3b8; }
+  .mv-approval { color: #7c3aed; }
   .mv-issue   { color: var(--red); }
   .metric-trend { font-size: 11.5px; color: var(--text-sub); margin-top: 6px; font-weight: 500; }
 
@@ -280,6 +281,11 @@
       <div class="metric-value mv-cancel" id="m-cancel">0</div>
       <div class="metric-trend">ยกเลิกแล้ว</div>
     </div>
+    <div class="metric">
+      <div class="metric-label"><i class="ti ti-hourglass" style="font-size:12px;"></i> Pending Approval</div>
+      <div class="metric-value mv-approval" id="m-approval">0</div>
+      <div class="metric-trend">รออนุมัติ</div>
+    </div>
   </div>
 
 
@@ -440,7 +446,8 @@ const statusMap = {
   'Open':      { label:'Open',      cls:'s-open',      icon:'ti-file-check' },
   'Released':  { label:'Released',  cls:'s-checking',  icon:'ti-clock' },
   'Closed':    { label:'Closed',    cls:'s-done',      icon:'ti-circle-check' },
-  'Cancelled': { label:'Cancelled', cls:'s-cancelled', icon:'ti-x' },
+  'Cancelled':        { label:'Cancelled',        cls:'s-cancelled', icon:'ti-x' },
+  'Pending Approval': { label:'Pending Approval', cls:'s-open',      icon:'ti-hourglass' },
 };
 
 let sortKey = 'status', sortAsc = true;
@@ -564,7 +571,8 @@ function renderMetrics(data) {
   document.getElementById('m-open').textContent    = data.filter(o=>o.status==='Open').length;
   document.getElementById('m-pending').textContent = data.filter(o=>o.status==='Released').length;
   document.getElementById('m-done').textContent    = data.filter(o=>o.status==='Closed').length;
-  document.getElementById('m-cancel').textContent  = data.filter(o=>o.status==='Cancelled').length;
+  document.getElementById('m-cancel').textContent    = data.filter(o=>o.status==='Cancelled').length;
+  document.getElementById('m-approval').textContent  = data.filter(o=>o.status==='Pending Approval').length;
 }
 
 

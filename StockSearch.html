@@ -67,20 +67,15 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
 .ms-item { display: flex; align-items: center; gap: 10px; padding: 7px 14px; cursor: pointer; font-size: 14px; }
 .ms-item:hover { background: #f0f4ff; }
 .ms-item input { accent-color: #1a2744; width: 16px; height: 16px; cursor: pointer; }
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 500; display: none; align-items: center; justify-content: center; }
-.modal-overlay.open { display: flex; }
-.modal { background: white; border-radius: 12px; padding: 24px 28px; min-width: 340px; max-width: 440px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.22); }
-.modal-title { font-size: 15px; font-weight: 700; color: #1a2744; margin-bottom: 3px; }
-.modal-sub { font-size: 12px; color: #888; font-family: monospace; margin-bottom: 14px; }
-.modal-header-row { display: flex; justify-content: space-between; padding: 6px 0 8px; border-bottom: 2px solid #1a2744; font-size: 12px; font-weight: 700; color: #1a2744; text-transform: uppercase; letter-spacing: 0.05em; }
-.modal-sp-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
-.modal-sp-name { font-weight: 600; color: #333; }
-.modal-sp-qty { font-weight: 700; color: #1a2744; background: #e8edf8; padding: 2px 10px; border-radius: 10px; font-size: 13px; }
-.modal-total-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 0; font-size: 14px; font-weight: 700; color: #1a2744; }
-.modal-empty { color: #aaa; font-size: 14px; text-align: center; padding: 20px 0; }
-.modal-footer { display: flex; justify-content: flex-end; margin-top: 18px; }
-.modal-close-btn { padding: 8px 22px; background: #1a2744; color: white; border: none; border-radius: 7px; cursor: pointer; font-size: 13px; font-weight: 600; }
-.modal-close-btn:hover { background: #253560; }
+tr.expanded { background: #eef1fb !important; }
+.expand-row td { padding: 0 !important; background: #f4f6ff; border-bottom: 2px solid #d0d7e2; }
+.expand-row > td > div { padding: 10px 16px 12px 56px; }
+.expand-sub { border-collapse: collapse; font-size: 13px; min-width: 260px; }
+.expand-sub th { padding: 4px 20px 6px 0; color: #888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; border-bottom: 1px solid #d0d7e2; }
+.expand-sub td { padding: 6px 20px 6px 0; border-bottom: 1px solid #f0f0f0; }
+.expand-sub tr:last-child td { border-bottom: none; font-weight: 700; color: #1a2744; padding-top: 8px; }
+.expand-sp-name { font-weight: 600; color: #1a2744; }
+.expand-sp-qty { font-weight: 700; text-align: right; }
 </style>
 </head>
 <body>
@@ -193,15 +188,6 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
   </div>
 </div>
 
-<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-title" id="modalTitle"></div>
-    <div class="modal-sub" id="modalSub"></div>
-    <div class="modal-header-row"><span>Salesperson</span><span>Qty</span></div>
-    <div id="modalBody"></div>
-    <div class="modal-footer"><button class="modal-close-btn" onclick="closeModal()">Close</button></div>
-  </div>
-</div>
 
 <script>
 const PAGE_SIZE = 50;
@@ -387,24 +373,30 @@ function goPage(tab, p) {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function showItemModal(tr) {
-  const item_no = tr.dataset.ino, description = tr.dataset.desc;
+let expandedIno = null;
+function toggleExpand(tr) {
+  const ino = tr.dataset.ino;
+  document.querySelectorAll('.expand-row').forEach(r => r.remove());
+  document.querySelectorAll('tr.expanded').forEach(r => r.classList.remove('expanded'));
+  if (expandedIno === ino) { expandedIno = null; return; }
+  expandedIno = ino;
+  tr.classList.add('expanded');
   const groups = {};
-  DATA2.filter(d => d.item_no === item_no).forEach(d => {
+  DATA2.filter(d => d.item_no === ino).forEach(d => {
     if (!groups[d.sale_code]) groups[d.sale_code] = { name: d.nickname || d.sale_code, qty: 0 };
     groups[d.sale_code].qty += d.qty;
   });
   const entries = Object.values(groups).sort((a,b) => b.qty - a.qty);
   const total = entries.reduce((s,e) => s + e.qty, 0);
-  document.getElementById('modalTitle').textContent = description;
-  document.getElementById('modalSub').textContent = item_no;
-  document.getElementById('modalBody').innerHTML = entries.length
-    ? entries.map(e => `<div class="modal-sp-row"><span class="modal-sp-name">${e.name}</span><span class="modal-sp-qty">${e.qty}</span></div>`).join('')
-      + `<div class="modal-total-row"><span>Total in bins</span><span>${total}</span></div>`
-    : '<div class="modal-empty">Not held by any salesperson</div>';
-  document.getElementById('modalOverlay').classList.add('open');
+  const rows = entries.length
+    ? entries.map(e => `<tr><td class="expand-sp-name">${e.name}</td><td class="expand-sp-qty">${e.qty}</td></tr>`).join('')
+      + `<tr><td>Total in bins</td><td class="expand-sp-qty">${total}</td></tr>`
+    : `<tr><td colspan="2" style="color:#aaa">Not held by any salesperson</td></tr>`;
+  const exp = document.createElement('tr');
+  exp.className = 'expand-row';
+  exp.innerHTML = `<td colspan="5"><div><table class="expand-sub"><tr><th>Salesperson</th><th>Qty</th></tr>${rows}</table></div></td>`;
+  tr.after(exp);
 }
-function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
 
 function exportExcel() {
   const s = state[activeTab];
@@ -475,7 +467,7 @@ invertedSpinner('qtyVal', 10);
 invertedSpinner('priceVal', 500);
 document.getElementById('body1').addEventListener('click', e => {
   const tr = e.target.closest('tr');
-  if (tr && tr.dataset.ino) showItemModal(tr);
+  if (tr && tr.dataset.ino && !tr.classList.contains('expand-row')) toggleExpand(tr);
 });
 init();
 </script>

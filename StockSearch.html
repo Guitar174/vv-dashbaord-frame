@@ -64,10 +64,10 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
 .ms-panel-btns { display: flex; gap: 12px; padding: 6px 8px; border-bottom: 1px solid #eee; }
 .ms-panel-btn { font-size: 12px; font-weight: 600; border: none; background: none; cursor: pointer; color: #1a2744; padding: 0; text-decoration: underline; }
 .ms-panel-btn:hover { color: #3b5bdb; }
-.ms-list { max-height: 240px; overflow-y: auto; padding: 4px 0; }
-.ms-item { display: block; padding: 4px 8px; cursor: pointer; font-size: 13px; white-space: nowrap; text-align: left; }
+.ms-list { max-height: 240px; overflow-y: auto; padding: 4px 0; direction: ltr; text-align: left; }
+.ms-item { display: flex; align-items: center; gap: 7px; padding: 4px 10px 4px 8px; cursor: pointer; font-size: 13px; white-space: nowrap; direction: ltr; text-align: left; }
 .ms-item:hover { background: #f0f4ff; }
-.ms-item input { accent-color: #1a2744; width: 14px; height: 14px; cursor: pointer; margin-right: 6px; vertical-align: middle; }
+.ms-item input { accent-color: #1a2744; width: 14px; height: 14px; cursor: pointer; flex-shrink: 0; margin: 0; }
 tr.expanded { background: #eef1fb !important; }
 .expand-row td { background: #e8f5e9; padding: 5px 16px; border-bottom: 1px solid #c8e6c9; font-size: 13px; }
 .expand-sp-name { font-weight: 600; color: #1a2744; }

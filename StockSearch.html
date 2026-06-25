@@ -32,6 +32,7 @@ select.filter-sel:focus { border-color: #1a2744; }
 table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.08); font-size: 14px; table-layout: fixed; }
 thead tr { background: #1a2744; color: white; }
 thead th { padding: 13px 16px; text-align: left; font-weight: 600; cursor: pointer; user-select: none; white-space: nowrap; }
+thead th.th-right { text-align: right; }
 thead th:hover { background: #253560; }
 thead th.sorted-asc::after { content: " ▲"; font-size: 11px; }
 thead th.sorted-desc::after { content: " ▼"; font-size: 11px; }
@@ -154,8 +155,8 @@ tr.expanded { background: #eef1fb !important; }
           <th onclick="sortBy(1,0)" id="t1h0">Item No.</th>
           <th onclick="sortBy(1,1)" id="t1h1">Description</th>
           <th onclick="sortBy(1,2)" id="t1h2">Brand</th>
-          <th onclick="sortBy(1,3)" id="t1h3">Qty</th>
-          <th onclick="sortBy(1,4)" id="t1h4">Unit Price</th>
+          <th onclick="sortBy(1,3)" id="t1h3" class="th-right">Qty</th>
+          <th onclick="sortBy(1,4)" id="t1h4" class="th-right">Unit Price</th>
         </tr></thead>
         <tbody id="body1"></tbody>
       </table>
@@ -173,8 +174,8 @@ tr.expanded { background: #eef1fb !important; }
           <th onclick="sortBy(2,2)" id="t2h2">Item No.</th>
           <th onclick="sortBy(2,3)" id="t2h3">Description</th>
           <th onclick="sortBy(2,4)" id="t2h4">Brand</th>
-          <th onclick="sortBy(2,5)" id="t2h5">Qty</th>
-          <th onclick="sortBy(2,6)" id="t2h6">Unit Price</th>
+          <th onclick="sortBy(2,5)" id="t2h5" class="th-right">Qty</th>
+          <th onclick="sortBy(2,6)" id="t2h6" class="th-right">Unit Price</th>
         </tr></thead>
         <tbody id="body2"></tbody>
       </table>
@@ -278,7 +279,7 @@ function sortBy(tab, col) {
   const s = state[tab];
   if (s.sortCol === col) s.sortDir *= -1; else { s.sortCol = col; s.sortDir = 1; }
   const ids = tab===1 ? ['t1h0','t1h1','t1h2','t1h3','t1h4'] : ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5','t2h6'];
-  ids.forEach((id,i) => { const el = document.getElementById(id); if(el) el.className = i===col ? (s.sortDir===1?'sorted-asc':'sorted-desc') : ''; });
+  ids.forEach((id,i) => { const el = document.getElementById(id); if(el) { const base = el.classList.contains('th-right') ? 'th-right ' : ''; el.className = base + (i===col ? (s.sortDir===1?'sorted-asc':'sorted-desc') : ''); } });
   doSort(tab); s.page = 1; render(tab);
 }
 

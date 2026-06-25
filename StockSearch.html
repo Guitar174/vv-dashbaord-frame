@@ -344,7 +344,7 @@ function render(tab) {
         <td class="td-qty">${fmt(d.unit_price)}</td>
       </tr>`).join('');
     } else {
-      tbody.innerHTML = page.map(d => `<tr style="cursor:pointer" onclick="showItemModal(${JSON.stringify(d.item_no)},${JSON.stringify(d.description)})">
+      tbody.innerHTML = page.map(d => `<tr style="cursor:pointer" data-ino="${d.item_no}" data-desc="${d.description.replace(/"/g,'&quot;')}" onclick="showItemModal(this)">
         <td class="td-item">${hl(d.item_no,q)}</td>
         <td class="td-desc">${hl(d.description,q)}</td>
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
@@ -387,7 +387,8 @@ function goPage(tab, p) {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function showItemModal(item_no, description) {
+function showItemModal(tr) {
+  const item_no = tr.dataset.ino, description = tr.dataset.desc;
   const groups = {};
   DATA2.filter(d => d.item_no === item_no).forEach(d => {
     if (!groups[d.sale_code]) groups[d.sale_code] = { name: d.nickname || d.sale_code, qty: 0 };

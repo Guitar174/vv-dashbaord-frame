@@ -68,14 +68,10 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
 .ms-item:hover { background: #f0f4ff; }
 .ms-item input { accent-color: #1a2744; width: 16px; height: 16px; cursor: pointer; }
 tr.expanded { background: #eef1fb !important; }
-.expand-row td { padding: 0 !important; background: #f4f6ff; border-bottom: 2px solid #d0d7e2; }
-.expand-row > td > div { padding: 10px 16px 12px 56px; }
-.expand-sub { border-collapse: collapse; font-size: 13px; min-width: 260px; }
-.expand-sub th { padding: 4px 20px 6px 0; color: #888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; border-bottom: 1px solid #d0d7e2; }
-.expand-sub td { padding: 6px 20px 6px 0; border-bottom: 1px solid #f0f0f0; }
-.expand-sub tr:last-child td { border-bottom: none; font-weight: 700; color: #1a2744; padding-top: 8px; }
+.expand-row td { background: #f4f6ff; padding: 5px 16px; border-bottom: 1px solid #eee; font-size: 13px; }
 .expand-sp-name { font-weight: 600; color: #1a2744; }
 .expand-sp-qty { font-weight: 700; text-align: right; }
+.expand-total td { border-top: 1px solid #d0d7e2 !important; border-bottom: 2px solid #d0d7e2 !important; font-weight: 700; color: #1a2744; }
 </style>
 </head>
 <body>
@@ -388,14 +384,11 @@ function toggleExpand(tr) {
   });
   const entries = Object.values(groups).sort((a,b) => b.qty - a.qty);
   const total = entries.reduce((s,e) => s + e.qty, 0);
-  const rows = entries.length
-    ? entries.map(e => `<tr><td class="expand-sp-name">${e.name}</td><td class="expand-sp-qty">${e.qty}</td></tr>`).join('')
-      + `<tr><td>Total in bins</td><td class="expand-sp-qty">${total}</td></tr>`
-    : `<tr><td colspan="2" style="color:#aaa">Not held by any salesperson</td></tr>`;
-  const exp = document.createElement('tr');
-  exp.className = 'expand-row';
-  exp.innerHTML = `<td colspan="5"><div><table class="expand-sub"><tr><th>Salesperson</th><th>Qty</th></tr>${rows}</table></div></td>`;
-  tr.after(exp);
+  const rowsHtml = entries.length
+    ? entries.map(e => `<tr class="expand-row"><td class="expand-sp-name">${e.name}</td><td></td><td></td><td class="expand-sp-qty">${e.qty}</td><td></td></tr>`).join('')
+      + `<tr class="expand-row expand-total"><td>Total in bins</td><td></td><td></td><td class="expand-sp-qty">${total}</td><td></td></tr>`
+    : `<tr class="expand-row"><td colspan="5" style="color:#aaa;padding:8px 16px">Not held by any salesperson</td></tr>`;
+  tr.insertAdjacentHTML('afterend', rowsHtml);
 }
 
 function exportExcel() {

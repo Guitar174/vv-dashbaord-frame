@@ -386,7 +386,7 @@ function toggleExpand(tr) {
   const total = entries.reduce((s,e) => s + e.qty, 0);
   const rowsHtml = entries.length
     ? entries.map(e => `<tr class="expand-row"><td class="expand-sp-name">${e.name}</td><td></td><td></td><td class="expand-sp-qty">${e.qty}</td><td></td></tr>`).join('')
-      + `<tr class="expand-row expand-total"><td>Total in bins</td><td></td><td></td><td class="expand-sp-qty">${total}</td><td></td></tr>`
+      + `<tr class="expand-row expand-total"><td>Total in Salesperson</td><td></td><td></td><td class="expand-sp-qty">${total}</td><td></td></tr>`
     : `<tr class="expand-row"><td colspan="5" style="color:#aaa;padding:8px 16px">Not held by any salesperson</td></tr>`;
   tr.insertAdjacentHTML('afterend', rowsHtml);
 }

@@ -8,13 +8,13 @@ from pathlib import Path
 SRC_DIR  = Path(__file__).parent / "Source"
 HTML_PATH = Path(__file__).parent / "sales_order_tracker.html"
 
-# ── 1. เลือกไฟล์ล่าสุด ──────────────────────────────────────────────────
+# ── 1. เลือกไฟล์ล่าสุด (ยกเว้น Sale list.xlsx) ──────────────────────────
 files = sorted(
-    [f for f in SRC_DIR.glob("Sales Orders*.xlsx")],
+    [f for f in SRC_DIR.glob("*.xlsx") if f.name != "Sale list.xlsx"],
     key=lambda f: f.stat().st_mtime
 )
 if not files:
-    raise FileNotFoundError("ไม่พบไฟล์ Sales Orders*.xlsx ใน Source/")
+    raise FileNotFoundError("ไม่พบไฟล์ .xlsx ใน Source/")
 
 xl = files[-1]
 print(f"Using: {xl.name}")
@@ -31,7 +31,7 @@ nick_to_code = {v: k for k, v in nick_map.items()}
 
 # ── 3. อ่านข้อมูล ────────────────────────────────────────────────────────
 wb = openpyxl.load_workbook(xl, data_only=True)
-ws = wb.active
+ws = wb["Sales Orders"]
 
 orders    = []
 sales_set = set()

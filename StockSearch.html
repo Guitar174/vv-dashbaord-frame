@@ -19,7 +19,8 @@ body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; }
 .search-bar { background: white; padding: 12px 32px 16px; border-bottom: 1px solid #e0e0e0; display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
 .filter-group { display: flex; flex-direction: column; gap: 4px; }
 .filter-label { font-size: 12px; font-weight: 700; color: #1a2744; text-transform: uppercase; letter-spacing: 0.05em; padding-left: 2px; }
-#searchInput { flex: 1; min-width: 220px; padding: 10px 16px; font-size: 15px; border: 2px solid #d0d7e2; border-radius: 8px; outline: none; transition: border-color 0.2s; }
+#searchInput { flex: 1; min-width: 220px; max-width: 340px; padding: 10px 16px; font-size: 15px; border: 2px solid #d0d7e2; border-radius: 8px; outline: none; transition: border-color 0.2s; }
+input.filter-num { padding: 10px 14px; font-size: 14px; border: 2px solid #d0d7e2; border-radius: 8px; outline: none; width: 100px; }
 .search-bar input:focus { border-color: #1a2744; }
 select.filter-sel { padding: 10px 14px; font-size: 14px; border: 2px solid #d0d7e2; border-radius: 8px; outline: none; background: white; cursor: pointer; min-width: 160px; }
 select.filter-sel:focus { border-color: #1a2744; }
@@ -118,7 +119,7 @@ tr.expanded { background: #eef1fb !important; }
   </div>
   <div class="filter-group">
     <span class="filter-label">Qty</span>
-    <input type="number" id="qtyVal" list="qty-presets" min="0" step="10" placeholder="Qty" style="width:90px">
+    <input type="number" id="qtyVal" class="filter-num" list="qty-presets" min="0" step="10" placeholder="Qty">
     <datalist id="qty-presets"><option value="10"><option value="20"><option value="30"><option value="40"><option value="50"><option value="60"><option value="70"><option value="80"><option value="90"><option value="100"></datalist>
   </div>
   <div class="filter-group">
@@ -134,7 +135,7 @@ tr.expanded { background: #eef1fb !important; }
   </div>
   <div class="filter-group">
     <span class="filter-label">Price</span>
-    <input type="number" id="priceVal" list="price-presets" min="0" step="500" placeholder="Price" style="width:90px">
+    <input type="number" id="priceVal" class="filter-num" list="price-presets" min="0" step="500" placeholder="Price">
     <datalist id="price-presets"><option value="1000"><option value="1500"><option value="2000"><option value="2500"><option value="3000"><option value="3500"><option value="4000"><option value="4500"><option value="5000"><option value="5500"><option value="6000"><option value="6500"><option value="7000"><option value="7500"><option value="8000"><option value="8500"><option value="9000"><option value="9500"><option value="10000"></datalist>
   </div>
   <div class="filter-group">

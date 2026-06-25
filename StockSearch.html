@@ -419,7 +419,7 @@ const msState = {};
 function buildMs(id, items) {
   msState[id] = { all: items, sel: new Set(items) };
   document.getElementById(id+'List').innerHTML = items.map(v =>
-    `<label class="ms-item"><input type="checkbox" class="ms-cb" data-ms="${id}" value="${v}" checked onchange="msUpdate('${id}')"><span>${v}</span></label>`
+    `<label style="display:block;padding:4px 10px 4px 6px;cursor:pointer;white-space:nowrap;text-align:left" class="ms-item"><input type="checkbox" style="margin:0 7px 0 0;vertical-align:middle;accent-color:#1a2744;width:14px;height:14px" class="ms-cb" data-ms="${id}" value="${v}" checked onchange="msUpdate('${id}')"><span style="vertical-align:middle">${v}</span></label>`
   ).join('');
   msUpdateBtn(id);
 }

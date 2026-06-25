@@ -58,7 +58,7 @@ td { padding: 11px 16px; vertical-align: middle; overflow: hidden; text-overflow
 .btn-export { padding: 10px 18px; font-size: 14px; font-weight: 600; background: #1a2744; color: white; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; }
 .btn-export:hover { background: #253560; }
 .ms-dropdown { position: relative; }
-.ms-btn { padding: 10px 14px; font-size: 14px; border: 2px solid #d0d7e2; border-radius: 8px; background: white; cursor: pointer; min-width: 160px; text-align: left; white-space: nowrap; }
+.ms-btn { padding: 10px 14px; font-size: 14px; border: 2px solid #d0d7e2; border-radius: 8px; background: white; cursor: pointer; min-width: 160px; text-align: center; white-space: nowrap; }
 .ms-btn:focus { border-color: #1a2744; outline: none; }
 .ms-panel { position: absolute; top: calc(100% + 4px); left: 0; z-index: 200; background: white; border: 2px solid #d0d7e2; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 200px; display: none; }
 .ms-panel.open { display: block; }
@@ -93,7 +93,7 @@ tr.expanded { background: #eef1fb !important; }
   </div>
   <div class="filter-group ms-dropdown" id="brandDropdown">
     <span class="filter-label">Brand</span>
-    <button class="ms-btn" id="brandBtn" type="button" onclick="toggleMs('brand',event)">All Brands ▾</button>
+    <button class="ms-btn" id="brandBtn" type="button" onclick="toggleMs('brand',event)">All Brands</button>
     <div class="ms-panel" id="brandPanel">
       <input class="ms-search" id="brandSearch" oninput="msSearch('brand',this.value)" placeholder="Search brand...">
       <div class="ms-panel-btns">
@@ -465,7 +465,7 @@ function toggleMs(id, e) { e.stopPropagation(); document.getElementById(id+'Pane
 function msSelectAll(id) { document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>c.checked=true); msState[id].sel=new Set(msState[id].all); msUpdateBtn(id); applyFilter(); }
 function msClearAll(id) { document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>c.checked=false); msState[id].sel=new Set(); msUpdateBtn(id); applyFilter(); }
 function msUpdate(id) { const s=new Set(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]:checked`).forEach(c=>s.add(c.value)); msState[id].sel=s; msUpdateBtn(id); applyFilter(); }
-function msUpdateBtn(id) { const {all,sel}=msState[id]; const n=sel.size; document.getElementById(id+'Btn').textContent=(n===0||n===all.length)?'All Brands ▾':n+' Brand'+(n>1?'s':'')+' ▾'; }
+function msUpdateBtn(id) { const {all,sel}=msState[id]; const n=sel.size; document.getElementById(id+'Btn').textContent=(n===0||n===all.length)?'All Brands':n+' Brand'+(n>1?'s':''); }
 function msOk(id, val) { const {all,sel}=msState[id]||{all:[],sel:new Set()}; return sel.size===0||sel.size===all.length||sel.has(val); }
 function msSearch(id, q) { const norm=q.toLowerCase(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>{c.closest('.ms-item').style.display=c.value.toLowerCase().includes(norm)?'':'none';}); }
 document.addEventListener('click', e=>{ if(!e.target.closest('.ms-panel')&&!e.target.closest('.ms-btn')) document.querySelectorAll('.ms-panel.open').forEach(p=>p.classList.remove('open')); });

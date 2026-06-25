@@ -344,7 +344,7 @@ function render(tab) {
         <td class="td-qty">${fmt(d.unit_price)}</td>
       </tr>`).join('');
     } else {
-      tbody.innerHTML = page.map(d => `<tr style="cursor:pointer" data-ino="${d.item_no}" data-desc="${d.description.replace(/"/g,'&quot;')}" onclick="showItemModal(this)">
+      tbody.innerHTML = page.map(d => `<tr style="cursor:pointer" data-ino="${d.item_no}" data-desc="${d.description.replace(/"/g,'&quot;')}">
         <td class="td-item">${hl(d.item_no,q)}</td>
         <td class="td-desc">${hl(d.description,q)}</td>
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
@@ -473,6 +473,10 @@ function invertedSpinner(id, step) {
 }
 invertedSpinner('qtyVal', 10);
 invertedSpinner('priceVal', 500);
+document.getElementById('body1').addEventListener('click', e => {
+  const tr = e.target.closest('tr');
+  if (tr && tr.dataset.ino) showItemModal(tr);
+});
 init();
 </script>
 </body>

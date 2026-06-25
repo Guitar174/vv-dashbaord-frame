@@ -103,9 +103,17 @@ tr.expanded { background: #eef1fb !important; }
       <div class="ms-list" id="brandList"></div>
     </div>
   </div>
-  <div class="filter-group" id="spGroup" style="display:none">
+  <div class="filter-group ms-dropdown" id="spGroup" style="display:none">
     <span class="filter-label">Salesperson</span>
-    <select id="spFilter" class="filter-sel"><option value="">— Clear —</option></select>
+    <button class="ms-btn" id="spBtn" type="button" onclick="toggleMs('sp',event)">All Salespersons</button>
+    <div class="ms-panel" id="spPanel">
+      <input class="ms-search" id="spSearch" oninput="msSearch('sp',this.value)" placeholder="Search salesperson...">
+      <div class="ms-panel-btns">
+        <button type="button" class="ms-panel-btn" onclick="msSelectAll('sp')">Select All</button>
+        <button type="button" class="ms-panel-btn" onclick="msClearAll('sp')">Clear All</button>
+      </div>
+      <div class="ms-list" id="spList"></div>
+    </div>
   </div>
   <div id="tabFilters1" style="display:contents">
     <div class="filter-group">
@@ -249,9 +257,8 @@ async function init() {
   const brands = [...new Set(DATA1.map(d => d.brand))].filter(Boolean).sort();
   buildMs('brand', brands);
 
-  const spList = [...new Map(DATA2.map(d => [d.sale_code, d.nickname])).entries()].sort((a,b) => a[0].localeCompare(b[0]));
-  const spSel = document.getElementById('spFilter');
-  spList.forEach(([code, nick]) => { const o = document.createElement('option'); o.value = code; o.textContent = nick ? code + ' — ' + nick : code; spSel.appendChild(o); });
+  const spEntries = [...new Map(DATA2.map(d => [d.sale_code, d.nickname])).entries()].sort((a,b) => a[0].localeCompare(b[0]));
+  buildMs('sp', spEntries.map(([code, nick]) => ({v: code, l: nick ? code + ' — ' + nick : code})));
 
   applyFilter();
 }
@@ -299,9 +306,8 @@ function applyFilter() {
       qtyMatch(d.qty) && priceMatch(d.unit_price)
     );
   } else if (activeTab === 2) {
-    const sp = document.getElementById('spFilter').value;
     s.filtered = DATA2.filter(d =>
-      (!sp || d.sale_code === sp) &&
+      msOk('sp', d.sale_code) &&
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q) || normalize(d.sale_code).includes(q) || normalize(d.nickname).includes(q)) &&
       qtyMatch(d.qty) && priceMatch(d.unit_price)
     );
@@ -451,13 +457,13 @@ function exportExcel() {
 }
 
 document.getElementById('searchInput').addEventListener('input', applyFilter);
-document.getElementById('spFilter').addEventListener('change', applyFilter);
 
 const msState = {};
 function buildMs(id, items) {
-  msState[id] = { all: items, sel: new Set(items) };
-  document.getElementById(id+'List').innerHTML = items.map(v =>
-    `<label class="ms-item"><input type="checkbox" class="ms-cb" data-ms="${id}" value="${v}" checked onchange="msUpdate('${id}')"><span>${v}</span></label>`
+  const pairs = items.map(i => typeof i==='string' ? {v:i,l:i} : i);
+  msState[id] = { all: pairs.map(p=>p.v), sel: new Set(pairs.map(p=>p.v)) };
+  document.getElementById(id+'List').innerHTML = pairs.map(({v,l}) =>
+    `<label class="ms-item"><input type="checkbox" class="ms-cb" data-ms="${id}" value="${v}" data-label="${l}" checked onchange="msUpdate('${id}')"><span>${l}</span></label>`
   ).join('');
   msUpdateBtn(id);
 }
@@ -465,9 +471,9 @@ function toggleMs(id, e) { e.stopPropagation(); document.getElementById(id+'Pane
 function msSelectAll(id) { document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>c.checked=true); msState[id].sel=new Set(msState[id].all); msUpdateBtn(id); applyFilter(); }
 function msClearAll(id) { document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>c.checked=false); msState[id].sel=new Set(); msUpdateBtn(id); applyFilter(); }
 function msUpdate(id) { const s=new Set(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]:checked`).forEach(c=>s.add(c.value)); msState[id].sel=s; msUpdateBtn(id); applyFilter(); }
-function msUpdateBtn(id) { const {all,sel}=msState[id]; const n=sel.size; document.getElementById(id+'Btn').textContent=(n===0||n===all.length)?'All Brands':n+' Brand'+(n>1?'s':''); }
+function msUpdateBtn(id) { const {all,sel}=msState[id]; const n=sel.size; const lbl=id==='sp'?'Salesperson':'Brand'; document.getElementById(id+'Btn').textContent=(n===0||n===all.length)?'All '+lbl+'s':n+' '+lbl+(n>1?'s':''); }
 function msOk(id, val) { const {all,sel}=msState[id]||{all:[],sel:new Set()}; return sel.size===0||sel.size===all.length||sel.has(val); }
-function msSearch(id, q) { const norm=q.toLowerCase(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>{c.closest('.ms-item').style.display=c.value.toLowerCase().includes(norm)?'':'none';}); }
+function msSearch(id, q) { const norm=q.toLowerCase(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>{c.closest('.ms-item').style.display=(c.dataset.label||c.value).toLowerCase().includes(norm)?'':'none';}); }
 document.addEventListener('click', e=>{ if(!e.target.closest('.ms-panel')&&!e.target.closest('.ms-btn')) document.querySelectorAll('.ms-panel.open').forEach(p=>p.classList.remove('open')); });
 ['1','2'].forEach(t => {
   document.getElementById('qtyOp'+t).addEventListener('change', e=>{ if(!e.target.value) document.getElementById('qtyVal'+t).value=''; applyFilter(); });

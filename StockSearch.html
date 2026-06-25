@@ -19,7 +19,7 @@ body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; }
 .search-bar { background: white; padding: 12px 32px 16px; border-bottom: 1px solid #e0e0e0; display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
 .filter-group { display: flex; flex-direction: column; gap: 4px; }
 .filter-label { font-size: 12px; font-weight: 700; color: #1a2744; text-transform: uppercase; letter-spacing: 0.05em; padding-left: 2px; }
-#searchInput { width: 260px; padding: 10px 16px; font-size: 15px; border: 2px solid #d0d7e2; border-radius: 8px; outline: none; transition: border-color 0.2s; }
+#searchInput { width: 100%; padding: 10px 16px; font-size: 15px; border: 2px solid #d0d7e2; border-radius: 8px; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
 input.filter-num { padding: 10px 14px; font-size: 14px; border: 2px solid #d0d7e2; border-radius: 8px; outline: none; width: 140px; -moz-appearance: textfield; }
 input.filter-num::-webkit-inner-spin-button, input.filter-num::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .search-bar input:focus { border-color: #1a2744; }
@@ -87,7 +87,7 @@ tr.expanded { background: #eef1fb !important; }
   <button class="tab-btn" data-tab="2" onclick="switchTab(2)">By Salesperson</button>
 </div>
 <div class="search-bar">
-  <div class="filter-group">
+  <div class="filter-group" style="flex:1">
     <span class="filter-label">Search</span>
     <input type="text" id="searchInput" placeholder="Search model name, item no, or description..." autofocus>
   </div>

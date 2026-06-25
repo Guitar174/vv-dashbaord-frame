@@ -107,38 +107,72 @@ tr.expanded { background: #eef1fb !important; }
     <span class="filter-label">Salesperson</span>
     <select id="spFilter" class="filter-sel"><option value="">— Clear —</option></select>
   </div>
-  <div class="filter-group">
-    <span class="filter-label">Qty Filter</span>
-    <select id="qtyOp" class="filter-sel" style="min-width:150px">
-      <option value="">— Clear —</option>
-      <option value="gte">At least (≥)</option>
-      <option value="lte">At most (≤)</option>
-      <option value="eq">Exactly (=)</option>
-      <option value="gt">More than (&gt;)</option>
-      <option value="lt">Less than (&lt;)</option>
-    </select>
+  <div id="tabFilters1" style="display:contents">
+    <div class="filter-group">
+      <span class="filter-label">Qty Filter</span>
+      <select id="qtyOp1" class="filter-sel" style="min-width:150px">
+        <option value="">— Clear —</option>
+        <option value="gte">At least (≥)</option>
+        <option value="lte">At most (≤)</option>
+        <option value="eq">Exactly (=)</option>
+        <option value="gt">More than (&gt;)</option>
+        <option value="lt">Less than (&lt;)</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Qty</span>
+      <input type="number" id="qtyVal1" class="filter-num" list="qty-presets" min="0" step="10">
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Price Filter</span>
+      <select id="priceOp1" class="filter-sel" style="min-width:155px">
+        <option value="">— Clear —</option>
+        <option value="gte">At least (≥)</option>
+        <option value="lte">At most (≤)</option>
+        <option value="eq">Exactly (=)</option>
+        <option value="gt">More than (&gt;)</option>
+        <option value="lt">Less than (&lt;)</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Price</span>
+      <input type="number" id="priceVal1" class="filter-num" list="qty-presets" min="0" step="500">
+    </div>
   </div>
-  <div class="filter-group">
-    <span class="filter-label">Qty</span>
-    <input type="number" id="qtyVal" class="filter-num" list="qty-presets" min="0" step="10">
-    <datalist id="qty-presets"><option value="10"><option value="20"><option value="30"><option value="40"><option value="50"><option value="60"><option value="70"><option value="80"><option value="90"><option value="100"></datalist>
+  <div id="tabFilters2" style="display:none">
+    <div class="filter-group">
+      <span class="filter-label">Qty Filter</span>
+      <select id="qtyOp2" class="filter-sel" style="min-width:150px">
+        <option value="">— Clear —</option>
+        <option value="gte">At least (≥)</option>
+        <option value="lte">At most (≤)</option>
+        <option value="eq">Exactly (=)</option>
+        <option value="gt">More than (&gt;)</option>
+        <option value="lt">Less than (&lt;)</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Qty</span>
+      <input type="number" id="qtyVal2" class="filter-num" list="qty-presets" min="0" step="10">
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Price Filter</span>
+      <select id="priceOp2" class="filter-sel" style="min-width:155px">
+        <option value="">— Clear —</option>
+        <option value="gte">At least (≥)</option>
+        <option value="lte">At most (≤)</option>
+        <option value="eq">Exactly (=)</option>
+        <option value="gt">More than (&gt;)</option>
+        <option value="lt">Less than (&lt;)</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Price</span>
+      <input type="number" id="priceVal2" class="filter-num" list="price-presets" min="0" step="500">
+    </div>
   </div>
-  <div class="filter-group">
-    <span class="filter-label">Price Filter</span>
-    <select id="priceOp" class="filter-sel" style="min-width:155px">
-      <option value="">— Clear —</option>
-      <option value="gte">At least (≥)</option>
-      <option value="lte">At most (≤)</option>
-      <option value="eq">Exactly (=)</option>
-      <option value="gt">More than (&gt;)</option>
-      <option value="lt">Less than (&lt;)</option>
-    </select>
-  </div>
-  <div class="filter-group">
-    <span class="filter-label">Price</span>
-    <input type="number" id="priceVal" class="filter-num" list="price-presets" min="0" step="500">
-    <datalist id="price-presets"><option value="1000"><option value="1500"><option value="2000"><option value="2500"><option value="3000"><option value="3500"><option value="4000"><option value="4500"><option value="5000"><option value="5500"><option value="6000"><option value="6500"><option value="7000"><option value="7500"><option value="8000"><option value="8500"><option value="9000"><option value="9500"><option value="10000"></datalist>
-  </div>
+  <datalist id="qty-presets"><option value="10"><option value="20"><option value="30"><option value="40"><option value="50"><option value="60"><option value="70"><option value="80"><option value="90"><option value="100"></datalist>
+  <datalist id="price-presets"><option value="1000"><option value="1500"><option value="2000"><option value="2500"><option value="3000"><option value="3500"><option value="4000"><option value="4500"><option value="5000"><option value="5500"><option value="6000"><option value="6500"><option value="7000"><option value="7500"><option value="8000"><option value="8500"><option value="9000"><option value="9500"><option value="10000"></datalist>
   <div class="filter-group">
     <span class="filter-label">Export</span>
     <button class="btn-export" onclick="exportExcel()">⬇ Export Excel</button>
@@ -229,6 +263,8 @@ function switchTab(t) {
   document.getElementById('panel2').classList.toggle('active', t===2);
   document.getElementById('brandDropdown').style.display = t===1 ? '' : 'none';
   document.getElementById('spGroup').style.display = t===2 ? '' : 'none';
+  document.getElementById('tabFilters1').style.display = t===1 ? 'contents' : 'none';
+  document.getElementById('tabFilters2').style.display = t===2 ? 'contents' : 'none';
   document.getElementById('searchInput').value = '';
   applyFilter();
 }
@@ -236,15 +272,15 @@ function switchTab(t) {
 function normalize(s) { return (s||'').toLowerCase(); }
 
 function priceMatch(p) {
-  const op = document.getElementById('priceOp').value;
-  const v = parseFloat(document.getElementById('priceVal').value);
+  const op = document.getElementById('priceOp'+activeTab).value;
+  const v = parseFloat(document.getElementById('priceVal'+activeTab).value);
   if (!op || isNaN(v)) return true;
   return op==='gte'?p>=v:op==='lte'?p<=v:op==='eq'?p===v:op==='gt'?p>v:p<v;
 }
 
 function qtyMatch(qty) {
-  const op = document.getElementById('qtyOp').value;
-  const v = parseFloat(document.getElementById('qtyVal').value);
+  const op = document.getElementById('qtyOp'+activeTab).value;
+  const v = parseFloat(document.getElementById('qtyVal'+activeTab).value);
   if (!op || isNaN(v)) return true;
   if (op === 'gte') return qty >= v;
   if (op === 'lte') return qty <= v;
@@ -433,10 +469,12 @@ function msUpdateBtn(id) { const {all,sel}=msState[id]; const n=sel.size; docume
 function msOk(id, val) { const {all,sel}=msState[id]||{all:[],sel:new Set()}; return sel.size===0||sel.size===all.length||sel.has(val); }
 function msSearch(id, q) { const norm=q.toLowerCase(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>{c.closest('.ms-item').style.display=c.value.toLowerCase().includes(norm)?'':'none';}); }
 document.addEventListener('click', e=>{ if(!e.target.closest('.ms-panel')&&!e.target.closest('.ms-btn')) document.querySelectorAll('.ms-panel.open').forEach(p=>p.classList.remove('open')); });
-document.getElementById('qtyOp').addEventListener('change', e=>{ if(!e.target.value){document.getElementById('qtyVal').value='';} applyFilter(); });
-document.getElementById('priceOp').addEventListener('change', e=>{ if(!e.target.value){document.getElementById('priceVal').value='';} applyFilter(); });
-document.getElementById('qtyVal').addEventListener('input', ()=>{ if(!document.getElementById('qtyOp').value) document.getElementById('qtyOp').value=''; });
-document.getElementById('priceVal').addEventListener('input', ()=>{ if(!document.getElementById('priceOp').value) document.getElementById('priceVal').value=''; });
+['1','2'].forEach(t => {
+  document.getElementById('qtyOp'+t).addEventListener('change', e=>{ if(!e.target.value) document.getElementById('qtyVal'+t).value=''; applyFilter(); });
+  document.getElementById('priceOp'+t).addEventListener('change', e=>{ if(!e.target.value) document.getElementById('priceVal'+t).value=''; applyFilter(); });
+  document.getElementById('qtyVal'+t).addEventListener('input', applyFilter);
+  document.getElementById('priceVal'+t).addEventListener('input', applyFilter);
+});
 
 function invertedSpinner(id, step) {
   const el = document.getElementById(id);
@@ -461,8 +499,7 @@ function invertedSpinner(id, step) {
     applyFilter();
   });
 }
-invertedSpinner('qtyVal', 10);
-invertedSpinner('priceVal', 500);
+['1','2'].forEach(t => { invertedSpinner('qtyVal'+t, 10); invertedSpinner('priceVal'+t, 500); });
 document.getElementById('body1').addEventListener('click', e => {
   const tr = e.target.closest('tr');
   if (tr && tr.dataset.ino && !tr.classList.contains('expand-row')) toggleExpand(tr);

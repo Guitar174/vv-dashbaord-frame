@@ -1,9 +1,9 @@
 """
-audit_tracker.py — Read-only data reconciliation audit.
-Compares ORDERS data in sales_order_tracker.html against source Excel.
+audit_tracker.py — Data reconciliation audit.
+Auto-rebuilds if source is newer than dashboard, then audits.
 Writes findings to audit_log.txt.
 """
-import openpyxl, json, re, datetime
+import openpyxl, json, re, datetime, subprocess, sys
 from pathlib import Path
 from collections import Counter
 
@@ -27,6 +27,9 @@ files = sorted(
     key=lambda f: f.stat().st_mtime
 )
 xl = files[-1]
+if xl.stat().st_mtime > HTML_PATH.stat().st_mtime:
+    log(f"Source newer than dashboard — rebuilding...")
+    subprocess.run([sys.executable, Path(__file__).parent / "rebuild_tracker.py"], check=True)
 log(f"Source file : {xl.name}")
 
 wb = openpyxl.load_workbook(xl, data_only=True)

@@ -420,7 +420,7 @@
             <th onclick="sortBy('customer')">Customer</th>
             <th onclick="sortBy('sales_code')">Sales Code</th>
             <th onclick="sortBy('amount')" style="text-align:right;">Amount (฿)</th>
-            <th>Date</th>
+            <th onclick="sortBy('date')">Date</th>
             <th onclick="sortBy('status')">Status</th>
             <th onclick="sortBy('days')" style="text-align:right;">รอคอย (วัน)</th>
             <th>First Comment</th>
@@ -555,6 +555,11 @@ function getFiltered() {
 }
 
 const STATUS_ORDER = {'Open':0,'Pending Approval':1,'Released':2,'Closed':3,'Cancelled':4};
+function parseDate(s) {
+  if (!s || s.length !== 10) return 0;
+  const [d,m,y] = s.split('/');
+  return new Date(+y, +m-1, +d).getTime();
+}
 function getSorted(arr) {
   return [...arr].sort((a,b) => {
     let va, vb;
@@ -564,6 +569,9 @@ function getSorted(arr) {
     } else if (sortKey === 'status') {
       va = STATUS_ORDER[a.status] ?? 99;
       vb = STATUS_ORDER[b.status] ?? 99;
+    } else if (sortKey === 'date') {
+      va = parseDate(a.date);
+      vb = parseDate(b.date);
     } else {
       va = a[sortKey]; vb = b[sortKey];
     }

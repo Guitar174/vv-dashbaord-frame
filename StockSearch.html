@@ -254,7 +254,7 @@ const PAGE_SIZE = 50;
 let DATA1 = [], DATA2 = [];
 let activeTab = 1;
 let state = {
-  1: { filtered: [], page: 1, sortCol: -1, sortDir: 1 },
+  1: { filtered: [], page: 1, sortCol: 2, sortDir: 1 },
   2: { filtered: [], page: 1, sortCol: -1, sortDir: 1 }
 };
 
@@ -284,6 +284,7 @@ async function init() {
   buildMs('sp', spEntries.map(([code, nick]) => ({v: code, l: nick ? code + ' — ' + nick : code})));
 
   applyFilter();
+  document.getElementById('t1h2').className = 'sorted-asc';
 }
 
 function switchTab(t) {

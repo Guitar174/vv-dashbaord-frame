@@ -262,8 +262,8 @@ let state = {
 async function init() {
   try {
     const [r1, r2] = await Promise.all([
-      fetch('stock_data1.json?v=202607021057'),
-      fetch('stock_data2.json?v=202607021057')
+      fetch('stock_data1.json?v=202607021105'),
+      fetch('stock_data2.json?v=202607021105')
     ]);
     DATA1 = await r1.json();
     DATA2 = await r2.json();
@@ -402,7 +402,7 @@ function render(tab) {
       tbody.innerHTML = page.map(d => `<tr style="cursor:pointer" data-ino="${d.item_no}" data-desc="${d.description.replace(/"/g,'&quot;')}">
         <td class="td-item">${hl(d.item_no,q)}</td>
         <td class="td-desc">${hl(d.description,q)}</td>
-        <td><span style="font-family:monospace;font-size:12px;color:#555;background:#f4f6f9;padding:2px 5px;border-radius:4px;border:1px solid #e0e0e0">${d.model||''}</span></td>
+        <td>${d.model||''}</td>
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
         <td class="td-qty">${d.brand_share.toFixed(2)}%</td>
         <td class="td-qty">${d.qty.toLocaleString()}</td>

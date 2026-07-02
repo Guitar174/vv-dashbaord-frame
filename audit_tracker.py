@@ -27,8 +27,10 @@ files = sorted(
     key=lambda f: f.stat().st_mtime
 )
 xl = files[-1]
-if xl.stat().st_mtime > HTML_PATH.stat().st_mtime:
-    log(f"Source newer than dashboard — rebuilding...")
+# Check if source file name is not already embedded in dashboard
+html_check = HTML_PATH.read_text(encoding="utf-8")
+if xl.name not in html_check:
+    log(f"Source file not in dashboard — rebuilding...")
     subprocess.run([sys.executable, Path(__file__).parent / "rebuild_tracker.py"], check=True)
 log(f"Source file : {xl.name}")
 

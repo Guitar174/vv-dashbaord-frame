@@ -389,7 +389,6 @@ function render(tab) {
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
         <td class="td-qty">${d.qty.toLocaleString()}</td>
         <td class="td-qty">${fmt(d.unit_price)}</td>
-        <td>${stockBadge(d.qty)}</td>
       </tr>`).join('');
     } else {
       tbody.innerHTML = page.map(d => `<tr style="cursor:pointer" data-ino="${d.item_no}" data-desc="${d.description.replace(/"/g,'&quot;')}">

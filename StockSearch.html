@@ -402,7 +402,7 @@ function render(tab) {
         <td class="td-item">${hl(d.item_no,q)}</td>
         <td class="td-desc">${hl(d.description,q)}</td>
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
-        <td class="td-qty">${d.brand_share.toFixed(1)}%</td>
+        <td class="td-qty">${d.brand_share.toFixed(2)}%</td>
         <td class="td-qty">${d.qty.toLocaleString()}</td>
         <td class="td-qty">${fmt(d.unit_price)}</td>
         <td>${stockBadge(d.qty)}</td>

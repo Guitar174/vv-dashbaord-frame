@@ -151,15 +151,16 @@ tr.expanded { background: #eef1fb !important; }
       <span class="filter-label">Price</span>
       <input type="number" id="priceVal1" class="filter-num" list="qty-presets" min="0" step="500">
     </div>
-    <div class="filter-group">
+    <div class="filter-group ms-dropdown">
       <span class="filter-label">Stock Level</span>
-      <select id="stockLevelFilter" class="filter-sel" style="min-width:190px">
-        <option value="">— All —</option>
-        <option value="out">หมดสต็อก (qty=0)</option>
-        <option value="critical">ใกล้หมด (qty 1-5)</option>
-        <option value="low">เหลือน้อย (qty 6-20)</option>
-        <option value="ok">เพียงพอ (qty>20)</option>
-      </select>
+      <button class="ms-btn" id="slBtn" type="button" onclick="toggleMs('sl',event)">All Stock Levels</button>
+      <div class="ms-panel" id="slPanel">
+        <div class="ms-panel-btns">
+          <button type="button" class="ms-panel-btn" onclick="msSelectAll('sl')">Select All</button>
+          <button type="button" class="ms-panel-btn" onclick="msClearAll('sl')">Clear All</button>
+        </div>
+        <div class="ms-list" id="slList"></div>
+      </div>
     </div>
   </div>
   <div id="tabFilters2" style="display:none">
@@ -272,6 +273,7 @@ async function init() {
 
   const brands = [...new Set(DATA1.map(d => d.brand))].filter(Boolean).sort();
   buildMs('brand', brands);
+  buildMs('sl', [{v:'out',l:'หมดสต็อก (qty=0)'},{v:'critical',l:'ใกล้หมด (qty 1-5)'},{v:'low',l:'เหลือน้อย (qty 6-20)'},{v:'ok',l:'เพียงพอ (qty>20)'}]);
 
   const spEntries = [...new Map(DATA2.map(d => [d.sale_code, d.nickname])).entries()].sort((a,b) => a[0].localeCompare(b[0]));
   buildMs('sp', spEntries.map(([code, nick]) => ({v: code, l: nick ? code + ' — ' + nick : code})));
@@ -316,12 +318,11 @@ function applyFilter() {
   const q = normalize(document.getElementById('searchInput').value.trim());
   const s = state[activeTab];
   if (activeTab === 1) {
-    const sl = document.getElementById('stockLevelFilter').value;
     s.filtered = DATA1.filter(d =>
       msOk('brand', d.brand) &&
+      msOk('sl', d.qty<=0?'out':d.qty<=5?'critical':d.qty<=20?'low':'ok') &&
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q)) &&
-      qtyMatch(d.qty) && priceMatch(d.unit_price) &&
-      (!sl || (sl==='out'?d.qty<=0:sl==='critical'?d.qty>=1&&d.qty<=5:sl==='low'?d.qty>=6&&d.qty<=20:d.qty>20))
+      qtyMatch(d.qty) && priceMatch(d.unit_price)
     );
   } else if (activeTab === 2) {
     s.filtered = DATA2.filter(d =>
@@ -478,7 +479,6 @@ function exportExcel() {
 }
 
 document.getElementById('searchInput').addEventListener('input', applyFilter);
-document.getElementById('stockLevelFilter').addEventListener('change', applyFilter);
 
 const msState = {};
 function buildMs(id, items) {
@@ -493,7 +493,7 @@ function toggleMs(id, e) { e.stopPropagation(); document.getElementById(id+'Pane
 function msSelectAll(id) { document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>c.checked=true); msState[id].sel=new Set(msState[id].all); msUpdateBtn(id); applyFilter(); }
 function msClearAll(id) { document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>c.checked=false); msState[id].sel=new Set(); msUpdateBtn(id); applyFilter(); }
 function msUpdate(id) { const s=new Set(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]:checked`).forEach(c=>s.add(c.value)); msState[id].sel=s; msUpdateBtn(id); applyFilter(); }
-function msUpdateBtn(id) { const {all,sel}=msState[id]; const n=sel.size; const lbl=id==='sp'?'Salesperson':'Brand'; document.getElementById(id+'Btn').textContent=(n===0||n===all.length)?'All '+lbl+'s':n+' '+lbl+(n>1?'s':''); }
+function msUpdateBtn(id) { const {all,sel}=msState[id]; const n=sel.size; const lbl=id==='sp'?'Salesperson':id==='sl'?'Stock Level':'Brand'; const plural=id==='sl'?'Stock Levels':lbl+'s'; document.getElementById(id+'Btn').textContent=(n===0||n===all.length)?'All '+plural:n+' '+lbl+(n>1?'s':''); }
 function msOk(id, val) { const {all,sel}=msState[id]||{all:[],sel:new Set()}; return sel.size===0||sel.size===all.length||sel.has(val); }
 function msSearch(id, q) { const norm=q.toLowerCase(); document.querySelectorAll(`.ms-cb[data-ms="${id}"]`).forEach(c=>{c.closest('.ms-item').style.display=(c.dataset.label||c.value).toLowerCase().includes(norm)?'':'none';}); }
 document.addEventListener('click', e=>{ if(!e.target.closest('.ms-panel')&&!e.target.closest('.ms-btn')) document.querySelectorAll('.ms-panel.open').forEach(p=>p.classList.remove('open')); });

@@ -151,6 +151,16 @@ tr.expanded { background: #eef1fb !important; }
       <span class="filter-label">Price</span>
       <input type="number" id="priceVal1" class="filter-num" list="qty-presets" min="0" step="500">
     </div>
+    <div class="filter-group">
+      <span class="filter-label">Stock Level</span>
+      <select id="stockLevelFilter" class="filter-sel" style="min-width:190px">
+        <option value="">— All —</option>
+        <option value="out">หมดสต็อก (qty=0)</option>
+        <option value="critical">ใกล้หมด (qty 1-5)</option>
+        <option value="low">เหลือน้อย (qty 6-20)</option>
+        <option value="ok">เพียงพอ (qty>20)</option>
+      </select>
+    </div>
   </div>
   <div id="tabFilters2" style="display:none">
     <div class="filter-group">
@@ -306,10 +316,12 @@ function applyFilter() {
   const q = normalize(document.getElementById('searchInput').value.trim());
   const s = state[activeTab];
   if (activeTab === 1) {
+    const sl = document.getElementById('stockLevelFilter').value;
     s.filtered = DATA1.filter(d =>
       msOk('brand', d.brand) &&
       (!q || normalize(d.item_no).includes(q) || normalize(d.description).includes(q) || normalize(d.brand).includes(q)) &&
-      qtyMatch(d.qty) && priceMatch(d.unit_price)
+      qtyMatch(d.qty) && priceMatch(d.unit_price) &&
+      (!sl || (sl==='out'?d.qty<=0:sl==='critical'?d.qty>=1&&d.qty<=5:sl==='low'?d.qty>=6&&d.qty<=20:d.qty>20))
     );
   } else if (activeTab === 2) {
     s.filtered = DATA2.filter(d =>
@@ -467,6 +479,7 @@ function exportExcel() {
 }
 
 document.getElementById('searchInput').addEventListener('input', applyFilter);
+document.getElementById('stockLevelFilter').addEventListener('change', applyFilter);
 
 const msState = {};
 function buildMs(id, items) {

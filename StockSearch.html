@@ -80,7 +80,7 @@ tr.expanded { background: #eef1fb !important; }
 <body>
 <div class="header">
   <h1>Stock Card Search</h1>
-  <small id="asof">Vision Ventures &nbsp;|&nbsp; As of 01 July 2026 &nbsp;|&nbsp; Location: H1-F</small>
+  <small id="asof">Vision Ventures &nbsp;|&nbsp; As of 02 July 2026 &nbsp;|&nbsp; Location: H1-F</small>
 </div>
 <div class="tabs">
   <button class="tab-btn active" data-tab="1" onclick="switchTab(1)">Warehouse Stock</button>
@@ -242,8 +242,8 @@ let state = {
 async function init() {
   try {
     const [r1, r2] = await Promise.all([
-      fetch('stock_data1.json?v=20260701'),
-      fetch('stock_data2.json?v=20260701')
+      fetch('stock_data1.json?v=20260702'),
+      fetch('stock_data2.json?v=20260702')
     ]);
     DATA1 = await r1.json();
     DATA2 = await r2.json();

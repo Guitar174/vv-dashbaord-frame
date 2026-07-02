@@ -211,14 +211,15 @@ tr.expanded { background: #eef1fb !important; }
   <div class="tab-panel active" id="panel1">
     <div class="table-wrap">
       <table>
-        <colgroup><col style="width:170px"><col style="width:280px"><col style="width:130px"><col style="width:75px"><col style="width:120px"><col style="width:160px"></colgroup>
+        <colgroup><col style="width:170px"><col style="width:250px"><col style="width:110px"><col style="width:90px"><col style="width:70px"><col style="width:110px"><col style="width:155px"></colgroup>
         <thead><tr>
           <th onclick="sortBy(1,0)" id="t1h0">Item No.</th>
           <th onclick="sortBy(1,1)" id="t1h1">Description</th>
           <th onclick="sortBy(1,2)" id="t1h2">Brand</th>
-          <th onclick="sortBy(1,3)" id="t1h3" class="th-right">Qty</th>
-          <th onclick="sortBy(1,4)" id="t1h4" class="th-right">Unit Price</th>
-          <th onclick="sortBy(1,5)" id="t1h5">Stock Level</th>
+          <th onclick="sortBy(1,3)" id="t1h3" class="th-right">Brand Share</th>
+          <th onclick="sortBy(1,4)" id="t1h4" class="th-right">Qty</th>
+          <th onclick="sortBy(1,5)" id="t1h5" class="th-right">Unit Price</th>
+          <th onclick="sortBy(1,6)" id="t1h6">Stock Level</th>
         </tr></thead>
         <tbody id="body1"></tbody>
       </table>
@@ -272,6 +273,9 @@ async function init() {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('panels').style.display = '';
 
+  const brandTotals = {};
+  DATA1.forEach(d => { brandTotals[d.brand] = (brandTotals[d.brand]||0) + d.qty; });
+  DATA1.forEach(d => { d.brand_share = brandTotals[d.brand] > 0 ? d.qty / brandTotals[d.brand] * 100 : 0; });
   const brands = [...new Set(DATA1.map(d => d.brand))].filter(Boolean).sort();
   buildMs('brand', brands);
   buildMs('sl', [{v:'out',l:'หมดสต็อก (qty=0)'},{v:'critical',l:'ใกล้หมด (qty 1-5)'},{v:'low',l:'เหลือน้อย (qty 6-20)'},{v:'ok',l:'เพียงพอ (qty>20)'}]);
@@ -337,14 +341,14 @@ function applyFilter() {
   render(activeTab);
 }
 
-const KEYS1 = ['item_no','description','brand','qty','unit_price','stock_level'];
+const KEYS1 = ['item_no','description','brand','brand_share','qty','unit_price','stock_level'];
 function stockOrder(q){return q<=0?0:q<=5?1:q<=20?2:3;}
 function stockBadge(q){const[l,c]=q<=0?['หมดสต็อก (qty=0)','sl-out']:q<=5?['ใกล้หมด (qty 1-5)','sl-critical']:q<=20?['เหลือน้อย (qty 6-20)','sl-low']:['เพียงพอ (qty>20)','sl-ok'];return`<span class="sl-badge ${c}">${l}</span>`;}
 const KEYS2 = ['sale_code','nickname','item_no','description','brand','qty','unit_price'];
 function sortBy(tab, col) {
   const s = state[tab];
   if (s.sortCol === col) s.sortDir *= -1; else { s.sortCol = col; s.sortDir = 1; }
-  const ids = tab===1 ? ['t1h0','t1h1','t1h2','t1h3','t1h4','t1h5'] : ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5','t2h6'];
+  const ids = tab===1 ? ['t1h0','t1h1','t1h2','t1h3','t1h4','t1h5','t1h6'] : ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5','t2h6'];
   ids.forEach((id,i) => { const el = document.getElementById(id); if(el) { const base = el.classList.contains('th-right') ? 'th-right ' : ''; el.className = base + (i===col ? (s.sortDir===1?'sorted-asc':'sorted-desc') : ''); } });
   doSort(tab); s.page = 1; render(tab);
 }
@@ -397,6 +401,7 @@ function render(tab) {
         <td class="td-item">${hl(d.item_no,q)}</td>
         <td class="td-desc">${hl(d.description,q)}</td>
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
+        <td class="td-qty">${d.brand_share.toFixed(1)}%</td>
         <td class="td-qty">${d.qty.toLocaleString()}</td>
         <td class="td-qty">${fmt(d.unit_price)}</td>
         <td>${stockBadge(d.qty)}</td>
@@ -453,8 +458,8 @@ function toggleExpand(tr) {
   const entries = Object.values(groups).sort((a,b) => b.qty - a.qty);
   const total = entries.reduce((s,e) => s + e.qty, 0);
   const rowsHtml = entries.length
-    ? entries.map(e => `<tr class="expand-row"><td class="expand-sp-name">${e.name}</td><td></td><td></td><td class="expand-sp-qty">${e.qty}</td><td></td><td></td></tr>`).join('')
-      + `<tr class="expand-row expand-total"><td>Total in Salesperson</td><td></td><td></td><td class="expand-sp-qty">${total}</td><td></td><td></td></tr>`
+    ? entries.map(e => `<tr class="expand-row"><td class="expand-sp-name">${e.name}</td><td></td><td></td><td></td><td class="expand-sp-qty">${e.qty}</td><td></td><td></td></tr>`).join('')
+      + `<tr class="expand-row expand-total"><td>Total in Salesperson</td><td></td><td></td><td></td><td class="expand-sp-qty">${total}</td><td></td><td></td></tr>`
     : `<tr class="expand-row"><td colspan="5" style="color:#aaa;padding:8px 16px">Not held by any salesperson</td></tr>`;
   tr.insertAdjacentHTML('afterend', rowsHtml);
 }

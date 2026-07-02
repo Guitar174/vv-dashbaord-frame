@@ -211,15 +211,16 @@ tr.expanded { background: #eef1fb !important; }
   <div class="tab-panel active" id="panel1">
     <div class="table-wrap">
       <table>
-        <colgroup><col style="width:170px"><col style="width:250px"><col style="width:110px"><col style="width:90px"><col style="width:70px"><col style="width:110px"><col style="width:155px"></colgroup>
+        <colgroup><col style="width:155px"><col style="width:215px"><col style="width:95px"><col style="width:100px"><col style="width:90px"><col style="width:70px"><col style="width:110px"><col style="width:155px"></colgroup>
         <thead><tr>
           <th onclick="sortBy(1,0)" id="t1h0">Item No.</th>
           <th onclick="sortBy(1,1)" id="t1h1">Description</th>
-          <th onclick="sortBy(1,2)" id="t1h2">Brand</th>
-          <th onclick="sortBy(1,3)" id="t1h3" class="th-right">Brand Share</th>
-          <th onclick="sortBy(1,4)" id="t1h4" class="th-right">Qty</th>
-          <th onclick="sortBy(1,5)" id="t1h5" class="th-right">Unit Price</th>
-          <th onclick="sortBy(1,6)" id="t1h6">Stock Level</th>
+          <th onclick="sortBy(1,2)" id="t1h2">Model</th>
+          <th onclick="sortBy(1,3)" id="t1h3">Brand</th>
+          <th onclick="sortBy(1,4)" id="t1h4" class="th-right">Brand Share</th>
+          <th onclick="sortBy(1,5)" id="t1h5" class="th-right">Qty</th>
+          <th onclick="sortBy(1,6)" id="t1h6" class="th-right">Unit Price</th>
+          <th onclick="sortBy(1,7)" id="t1h7">Stock Level</th>
         </tr></thead>
         <tbody id="body1"></tbody>
       </table>
@@ -254,15 +255,15 @@ const PAGE_SIZE = 50;
 let DATA1 = [], DATA2 = [];
 let activeTab = 1;
 let state = {
-  1: { filtered: [], page: 1, sortCol: 2, sortDir: 1 },
+  1: { filtered: [], page: 1, sortCol: 3, sortDir: 1 },
   2: { filtered: [], page: 1, sortCol: -1, sortDir: 1 }
 };
 
 async function init() {
   try {
     const [r1, r2] = await Promise.all([
-      fetch('stock_data1.json?v=202607021044'),
-      fetch('stock_data2.json?v=202607021044')
+      fetch('stock_data1.json?v=202607021057'),
+      fetch('stock_data2.json?v=202607021057')
     ]);
     DATA1 = await r1.json();
     DATA2 = await r2.json();
@@ -284,7 +285,7 @@ async function init() {
   buildMs('sp', spEntries.map(([code, nick]) => ({v: code, l: nick ? code + ' — ' + nick : code})));
 
   applyFilter();
-  document.getElementById('t1h2').className = 'sorted-asc';
+  document.getElementById('t1h3').className = 'sorted-asc';
 }
 
 function switchTab(t) {
@@ -342,14 +343,14 @@ function applyFilter() {
   render(activeTab);
 }
 
-const KEYS1 = ['item_no','description','brand','brand_share','qty','unit_price','stock_level'];
+const KEYS1 = ['item_no','description','model','brand','brand_share','qty','unit_price','stock_level'];
 function stockOrder(q){return q<=0?0:q<=5?1:q<=20?2:3;}
 function stockBadge(q){const[l,c]=q<=0?['หมดสต็อก (qty=0)','sl-out']:q<=5?['ใกล้หมด (qty 1-5)','sl-critical']:q<=20?['เหลือน้อย (qty 6-20)','sl-low']:['เพียงพอ (qty>20)','sl-ok'];return`<span class="sl-badge ${c}">${l}</span>`;}
 const KEYS2 = ['sale_code','nickname','item_no','description','brand','qty','unit_price'];
 function sortBy(tab, col) {
   const s = state[tab];
   if (s.sortCol === col) s.sortDir *= -1; else { s.sortCol = col; s.sortDir = 1; }
-  const ids = tab===1 ? ['t1h0','t1h1','t1h2','t1h3','t1h4','t1h5','t1h6'] : ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5','t2h6'];
+  const ids = tab===1 ? ['t1h0','t1h1','t1h2','t1h3','t1h4','t1h5','t1h6','t1h7'] : ['t2h0','t2h1','t2h2','t2h3','t2h4','t2h5','t2h6'];
   ids.forEach((id,i) => { const el = document.getElementById(id); if(el) { const base = el.classList.contains('th-right') ? 'th-right ' : ''; el.className = base + (i===col ? (s.sortDir===1?'sorted-asc':'sorted-desc') : ''); } });
   doSort(tab); s.page = 1; render(tab);
 }
@@ -401,6 +402,7 @@ function render(tab) {
       tbody.innerHTML = page.map(d => `<tr style="cursor:pointer" data-ino="${d.item_no}" data-desc="${d.description.replace(/"/g,'&quot;')}">
         <td class="td-item">${hl(d.item_no,q)}</td>
         <td class="td-desc">${hl(d.description,q)}</td>
+        <td><span style="font-family:monospace;font-size:12px;color:#555;background:#f4f6f9;padding:2px 5px;border-radius:4px;border:1px solid #e0e0e0">${d.model||''}</span></td>
         <td><span class="td-brand">${hl(d.brand,q)}</span></td>
         <td class="td-qty">${d.brand_share.toFixed(2)}%</td>
         <td class="td-qty">${d.qty.toLocaleString()}</td>
@@ -459,9 +461,9 @@ function toggleExpand(tr) {
   const entries = Object.values(groups).sort((a,b) => b.qty - a.qty);
   const total = entries.reduce((s,e) => s + e.qty, 0);
   const rowsHtml = entries.length
-    ? entries.map(e => `<tr class="expand-row"><td class="expand-sp-name">${e.name}</td><td></td><td></td><td></td><td class="expand-sp-qty">${e.qty}</td><td></td><td></td></tr>`).join('')
-      + `<tr class="expand-row expand-total"><td>Total in Salesperson</td><td></td><td></td><td></td><td class="expand-sp-qty">${total}</td><td></td><td></td></tr>`
-    : `<tr class="expand-row"><td colspan="5" style="color:#aaa;padding:8px 16px">Not held by any salesperson</td></tr>`;
+    ? entries.map(e => `<tr class="expand-row"><td class="expand-sp-name">${e.name}</td><td></td><td></td><td></td><td></td><td class="expand-sp-qty">${e.qty}</td><td></td><td></td></tr>`).join('')
+      + `<tr class="expand-row expand-total"><td>Total in Salesperson</td><td></td><td></td><td></td><td></td><td class="expand-sp-qty">${total}</td><td></td><td></td></tr>`
+    : `<tr class="expand-row"><td colspan="8" style="color:#aaa;padding:8px 16px">Not held by any salesperson</td></tr>`;
   tr.insertAdjacentHTML('afterend', rowsHtml);
 }
 
@@ -469,7 +471,7 @@ function exportExcel() {
   const s = state[activeTab];
   const headers = activeTab === 2
     ? ['Sale Code','Nickname','Item No.','Description','Brand','Qty','Unit Price']
-    : ['Item No.','Description','Brand','Qty','Unit Price'];
+    : ['Item No.','Description','Model','Brand','Brand Share%','Qty','Unit Price','Stock Level'];
   const keys = activeTab === 2 ? KEYS2 : KEYS1;
   const rows = s.filtered.map(d => keys.map(k => d[k]));
   const doExport = () => {

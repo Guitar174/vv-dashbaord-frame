@@ -86,7 +86,7 @@ tr.expanded { background: #eef1fb !important; }
 <body>
 <div class="header">
   <h1>Stock Card Search</h1>
-  <small id="asof">Vision Ventures &nbsp;|&nbsp; As of 02 July 2026 &nbsp;|&nbsp; Location: H1-F</small>
+  <small id="asof">Vision Ventures &nbsp;|&nbsp; As of 03 July 2026 &nbsp;|&nbsp; Location: H1-F</small>
 </div>
 <div class="tabs">
   <button class="tab-btn active" data-tab="1" onclick="switchTab(1)">Warehouse Stock</button>
@@ -262,8 +262,8 @@ let state = {
 async function init() {
   try {
     const [r1, r2] = await Promise.all([
-      fetch('stock_data1.json?v=202607021449'),
-      fetch('stock_data2.json?v=202607021449')
+      fetch('stock_data1.json?v=202607031151'),
+      fetch('stock_data2.json?v=202607031151')
     ]);
     DATA1 = await r1.json();
     DATA2 = await r2.json();
@@ -473,7 +473,7 @@ function exportExcel() {
     ? ['Sale Code','Nickname','Item No.','Description','Brand','Qty','Unit Price']
     : ['Item No.','Description','Model','Brand','Brand Share%','Qty','Unit Price','Stock Level'];
   const keys = activeTab === 2 ? KEYS2 : KEYS1;
-  const rows = s.filtered.map(d => keys.map(k => d[k]));
+  const rows = s.filtered.map(d => keys.map(k => k==='brand_share' ? parseFloat(d[k].toFixed(2)) : d[k]));
   const doExport = () => {
     const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
     const wb2 = XLSX.utils.book_new();

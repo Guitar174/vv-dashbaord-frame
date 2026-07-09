@@ -29,27 +29,37 @@ if sale_list.exists():
             nick_map[str(row[0]).strip()] = str(row[1]).strip()
 nick_to_code = {v: k for k, v in nick_map.items()}
 
-# ── 3. อ่านข้อมูล ────────────────────────────────────────────────────────
+# ── 3. อ่านข้อมูล (หา column จากชื่อ header — กัน layout เปลี่ยน) ────────
 wb = openpyxl.load_workbook(xl, data_only=True)
 ws = wb["Sales Orders"]
+
+header = [str(c or "").strip() for c in next(ws.iter_rows(min_row=1, max_row=1, values_only=True))]
+def col(name):
+    if name not in header:
+        raise ValueError(f"Column '{name}' not found in {xl.name}. Headers: {header}")
+    return header.index(name)
+
+C_NO, C_STATUS_CODE, C_STATUS = col("No."), col("Status Code"), col("Status")
+C_CUST, C_AMOUNT, C_DATE      = col("Sell-to Customer Name"), col("Amount Including VAT"), col("Document Date")
+C_SALES, C_COMMENT, C_WORK    = col("Salesperson Code"), col("First Comment"), col("Work Description")
 
 orders    = []
 sales_set = set()
 
 for row in ws.iter_rows(min_row=2, values_only=True):
-    inv_no = row[0]          # Col 0: No.
+    inv_no = row[C_NO]
     if not inv_no:
         continue
 
-    customer      = str(row[5]  or "").strip()    # Sell-to Customer Name
-    raw_code      = str(row[12] or "").strip()    # Salesperson Code
+    customer      = str(row[C_CUST] or "").strip()
+    raw_code      = str(row[C_SALES] or "").strip()
     sales_code    = nick_map.get(raw_code, raw_code)       # map to nickname
-    amount        = float(row[6]) if row[6] is not None else 0.0  # Amount Including VAT
-    doc_date      = row[7]                        # Document Date
-    status        = str(row[3]  or "").strip()    # Status
-    status_code   = str(row[2]  or "").strip()    # Status Code
-    first_comment = re.sub(r"[\r\n\t]+", " ", str(row[26] or "")).strip()  # First Comment
-    work_desc     = re.sub(r"[\r\n\t]+", " ", str(row[27] or "")).strip()  # Work Description
+    amount        = float(row[C_AMOUNT]) if row[C_AMOUNT] is not None else 0.0
+    doc_date      = row[C_DATE]
+    status        = str(row[C_STATUS] or "").strip()
+    status_code   = str(row[C_STATUS_CODE] or "").strip()
+    first_comment = re.sub(r"[\r\n\t]+", " ", str(row[C_COMMENT] or "")).strip()
+    work_desc     = re.sub(r"[\r\n\t]+", " ", str(row[C_WORK] or "")).strip()
 
     # Format date DD/MM/YYYY
     if isinstance(doc_date, (datetime.datetime, datetime.date)):

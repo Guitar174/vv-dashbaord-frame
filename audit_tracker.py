@@ -45,17 +45,22 @@ if sale_list.exists():
         if row[0] and row[1]:
             nick_map[str(row[0]).strip()] = str(row[1]).strip()
 
+header = [str(c or "").strip() for c in next(ws.iter_rows(min_row=1, max_row=1, values_only=True))]
+def col(name): return header.index(name)
+C_NO, C_SALES, C_AMOUNT = col("No."), col("Salesperson Code"), col("Amount Including VAT")
+C_DATE, C_STATUS, C_SCODE = col("Document Date"), col("Status"), col("Status Code")
+
 src_rows = {}
 for row in ws.iter_rows(min_row=2, values_only=True):
-    if not row[0]:
+    if not row[C_NO]:
         continue
-    oid       = str(row[0]).strip()
-    raw_code  = str(row[12] or "").strip()
+    oid       = str(row[C_NO]).strip()
+    raw_code  = str(row[C_SALES] or "").strip()
     nickname  = nick_map.get(raw_code, raw_code)
-    amt       = float(row[6]) if row[6] is not None else 0.0
-    doc_date  = row[7]
-    status    = str(row[3] or "").strip()
-    s_code    = str(row[2] or "").strip()
+    amt       = float(row[C_AMOUNT]) if row[C_AMOUNT] is not None else 0.0
+    doc_date  = row[C_DATE]
+    status    = str(row[C_STATUS] or "").strip()
+    s_code    = str(row[C_SCODE] or "").strip()
     if isinstance(doc_date, (datetime.datetime, datetime.date)):
         date_str = doc_date.strftime("%d/%m/%Y")
     else:

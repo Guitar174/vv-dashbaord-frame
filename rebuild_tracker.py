@@ -16,7 +16,21 @@ files = sorted(
 if not files:
     raise FileNotFoundError("ไม่พบไฟล์ .xlsx ใน Source/")
 
-xl = files[-1]
+# หาไฟล์ใหม่สุดที่มี sheet "Sales Orders" (บางไฟล์ export มาไม่ครบ)
+xl = None
+for f in reversed(files):
+    try:
+        _wb = openpyxl.load_workbook(f, read_only=True)
+        has_sheet = "Sales Orders" in _wb.sheetnames
+        _wb.close()
+        if has_sheet:
+            xl = f
+            break
+        print(f"Skip {f.name}: no 'Sales Orders' sheet")
+    except Exception as e:
+        print(f"Skip {f.name}: {e}")
+if xl is None:
+    raise FileNotFoundError("ไม่พบไฟล์ที่มี sheet 'Sales Orders' ใน Source/")
 print(f"Using: {xl.name}")
 
 # ── 2. โหลด nickname map จาก Sale list.xlsx ─────────────────────────────

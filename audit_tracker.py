@@ -26,7 +26,21 @@ files = sorted(
     [f for f in SRC_DIR.glob("*.xlsx") if f.name != "Sale list.xlsx"],
     key=lambda f: f.stat().st_mtime
 )
-xl = files[-1]
+# Newest file that actually has the "Sales Orders" sheet
+xl = None
+for f in reversed(files):
+    try:
+        _wb = openpyxl.load_workbook(f, read_only=True)
+        has_sheet = "Sales Orders" in _wb.sheetnames
+        _wb.close()
+        if has_sheet:
+            xl = f
+            break
+        log(f"Skip {f.name}: no 'Sales Orders' sheet")
+    except Exception as e:
+        log(f"Skip {f.name}: {e}")
+if xl is None:
+    raise FileNotFoundError("No file with 'Sales Orders' sheet in Source/")
 # Check if source file name is not already embedded in dashboard
 html_check = HTML_PATH.read_text(encoding="utf-8")
 if xl.name not in html_check:

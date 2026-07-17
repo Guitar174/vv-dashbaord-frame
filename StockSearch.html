@@ -262,8 +262,8 @@ let state = {
 async function init() {
   try {
     const [r1, r2] = await Promise.all([
-      fetch('stock_data1.json?v=202607171135'),
-      fetch('stock_data2.json?v=202607171135')
+      fetch('stock_data1.json?v=202607171139'),
+      fetch('stock_data2.json?v=202607171139')
     ]);
     DATA1 = await r1.json();
     DATA2 = await r2.json();

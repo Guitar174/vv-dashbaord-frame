@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Vocabulary — July to December 2026</title>
+<style>
+  :root {
+    --navy: #1a2b4a;
+    --blue: #2563eb;   --light-blue: #eff6ff;
+    --green: #059669;  --light-green: #ecfdf5;
+    --amber: #d97706;  --light-amber: #fffbeb;
+    --teal: #0d9488;   --light-teal: #f0fdfa;
+    --purple: #7c3aed; --light-purple: #f5f3ff;
+    --rose: #e11d48;   --light-rose: #fff1f2;
+    --gray: #6b7280;   --light-gray: #f9fafb;
+    --border: #e5e7eb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--light-gray);
+    color: #111827;
+    line-height: 1.55;
+    padding: 32px 16px 80px;
+  }
+  .container { max-width: 880px; margin: 0 auto; }
+
+  header {
+    background: var(--navy);
+    color: white;
+    border-radius: 16px;
+    padding: 30px 36px;
+    margin-bottom: 20px;
+  }
+  header h1 { font-size: 1.6rem; margin-bottom: 6px; }
+  header p { color: #cbd5e1; font-size: 0.92rem; }
+
+  .month-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    background: var(--light-gray);
+    padding: 12px 0;
+    z-index: 10;
+    margin-bottom: 10px;
+  }
+  .tab {
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 9px 16px;
+    border-radius: 999px;
+    opacity: 0.55;
+    transition: opacity 0.15s;
+  }
+  .tab.active { opacity: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+  .tab.jul { background: var(--blue); }
+  .tab.aug { background: var(--green); }
+  .tab.sep { background: var(--amber); }
+  .tab.oct { background: var(--teal); }
+  .tab.nov { background: var(--purple); }
+  .tab.dec { background: var(--rose); }
+
+  .day-search {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+
+  .month-panel { display: none; }
+  .month-panel.visible { display: block; }
+
+  .day-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .day-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    cursor: pointer;
+  }
+  .day-badge {
+    min-width: 44px; height: 44px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .jul .day-badge { background: var(--blue); }
+  .aug .day-badge { background: var(--green); }
+  .sep .day-badge { background: var(--amber); }
+  .oct .day-badge { background: var(--teal); }
+  .nov .day-badge { background: var(--purple); }
+  .dec .day-badge { background: var(--rose); }
+
+  .day-title { font-weight: 700; color: var(--navy); font-size: 0.98rem; flex: 1; }
+  .day-sub { font-size: 0.78rem; color: var(--gray); }
+  .chevron { color: var(--gray); font-size: 0.8rem; transition: transform 0.15s; }
+  .day-card.open .chevron { transform: rotate(180deg); }
+
+  .day-check {
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--green);
+  }
+  .day-card.done { background: var(--light-green); }
+  .day-card.done .day-title { color: var(--green); text-decoration: line-through; text-decoration-color: #a7d9c4; }
+  .day-card.done .day-badge { opacity: 0.5; }
+
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .progress-bar-track {
+    flex: 1;
+    height: 10px;
+    background: var(--light-gray);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 999px;
+    transition: width 0.2s;
+  }
+  .progress-label { font-size: 0.85rem; font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .tab-count {
+    font-size: 0.7rem;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-left: 4px;
+  }
+
+  .day-body { display: none; padding: 4px 20px 18px; }
+  .day-card.open .day-body { display: block; }
+
+  .word-row {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+  }
+  .word-row:first-child { border-top: none; }
+  .w-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    color: var(--gray);
+    font-size: 0.72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .w-word { font-weight: 700; color: var(--navy); font-size: 0.92rem; }
+  .w-pos { font-size: 0.68rem; color: var(--gray); font-weight: 600; text-transform: uppercase; margin-left: 6px; }
+  .w-meaning { font-size: 0.86rem; color: #374151; margin: 2px 0 4px; }
+  .w-example { font-size: 0.84rem; color: #1e3a5f; font-style: italic; background: var(--light-blue); border-radius: 6px; padding: 6px 10px; display: inline-block; }
+
+  .review-body {
+    padding: 10px 20px 16px;
+    font-size: 0.87rem;
+    color: #374151;
+  }
+  .review-body .tag {
+    display: inline-block;
+    background: var(--light-amber);
+    color: var(--amber);
+    font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+
+  .prompt-line {
+    font-size: 0.82rem;
+    color: var(--gray);
+    padding: 8px 20px 14px;
+    border-top: 1px dashed var(--border);
+    margin-top: 6px;
+  }
+  .prompt-line b { color: var(--navy); }
+
+  .kbd {
+    background: var(--navy); color: white; border-radius: 5px;
+    padding: 2px 8px; font-family: Consolas, monospace; font-size: 0.85em;
+  }
+
+  footer {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 26px;
+    margin-top: 24px;
+    font-size: 0.88rem;
+    color: #374151;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Daily Vocabulary &middot; July&ndash;December 2026</h1>
+  <p>5 new words or idioms every day, with meaning + example, matched to your speaking roadmap. Click any day to expand it.</p>
+</header>
+
+<div class="month-tabs" id="tabs"></div>
+<div class="progress-wrap">
+  <span class="progress-label" id="progress-label">0 / 0 days done</span>
+  <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+</div>
+<input class="day-search" id="search" placeholder="Search a word, idiom, or day topic...">
+<div id="panels"></div>
+
+<footer>
+  <b>How to use this each day:</b> open today's day, read the 5 words once, then do your 2&ndash;3 minute speaking prompt from the roadmap and force yourself to use at least 2 of the words. Review days recycle that week's strongest words instead of adding new ones &mdash; repetition is what moves a word from "recognized" to "spoken automatically." Press <span class="kbd">Win + H</span> to dictate your practice to Claude for live correction.
+</footer>
+
+</div>
+
+<script>
+const W = (word,pos,meaning,example) => ({word,pos,meaning,example});
+
+const DATA = {
+jul: { label: "July", theme: "Foundations", days: [
+ {d:1, topic:"Introduce Yourself", words:[
+   W("to go by","phrase","the name people usually call you","My full name is Attaporn, but I go by Att."),
+   W("background","noun","your education and work history","My background is in business analytics."),
+   W("currently","adverb","at this time, right now","I'm currently working as a data analyst."),
+   W("passionate about","idiom","really interested in and enthusiastic about something","I'm passionate about turning data into decisions."),
+   W("outside of work","phrase","in your personal or free time","Outside of work, I enjoy reading and gaming.")]},
+ {d:2, topic:"A Typical Workday", words:[
+   W("to kick off","phrasal verb","to start something, like a day or meeting","I kick off my day by checking emails."),
+   W("back-to-back","idiom","happening one after another with no break","I have back-to-back meetings until lunch."),
+   W("to juggle","verb","to manage several tasks at the same time","I juggle requests from three different teams."),
+   W("deep work","term","focused, uninterrupted time for hard tasks","I block two hours for deep work each morning."),
+   W("to wrap up","phrasal verb","to finish or complete something","I wrap up my day with a to-do list for tomorrow.")]},
+ {d:3, topic:"Your Hometown", words:[
+   W("laid-back","idiom","relaxed, calm, not stressful","My hometown has a laid-back atmosphere."),
+   W("up-and-coming","idiom","developing quickly, becoming popular","It's an up-and-coming area with new cafes."),
+   W("to grow up","phrasal verb","to spend your childhood in a place","I grew up near the old part of town."),
+   W("unlike","preposition","different from","Unlike the city, it's very quiet at night."),
+   W("hidden gem","idiom","a good place not many people know about","There's a hidden gem restaurant near my school.")]},
+ {d:4, topic:"Free Time & Hobbies", words:[
+   W("to unwind","verb","to relax after a stressful day","I unwind by watching a movie after work."),
+   W("to pick up a hobby","idiom","to start learning a new activity","I picked up photography last year."),
+   W("a bit of a... person","idiom","describing yourself informally as a type","I'm a bit of a homebody on weekends."),
+   W("to get around to","idiom","to finally find time to do something","I never get around to learning guitar."),
+   W("downtime","noun","free time with no obligations","I need some downtime after a busy week.")]},
+ {d:5, topic:"Food & Recommendations", words:[
+   W("to die for","idiom","extremely delicious","The mango sticky rice here is to die for."),
+   W("an acquired taste","idiom","something you need time to like","Durian is an acquired taste for foreigners."),
+   W("to whip up","phrasal verb","to prepare food quickly","My mom can whip up a curry in 20 minutes."),
+   W("mouth-watering","adjective","looking or smelling very appetizing","The street food photos looked mouth-watering."),
+   W("to steer clear of","idiom","to avoid something","I steer clear of overly spicy dishes.")]},
+ {d:6, topic:"A Memorable Trip", words:[
+   W("off the beaten path","idiom","not a popular tourist area","We found a beach off the beaten path."),
+   W("a hassle","noun","something annoying or inconvenient","Getting a visa was a real hassle."),
+   W("to make the most of","idiom","to use time or opportunity fully","We made the most of our short trip."),
+   W("breathtaking","adjective","extremely beautiful","The view from the mountain was breathtaking."),
+   W("in hindsight","idiom","looking back, now that you know more","In hindsight, we should have booked earlier.")]},
+ {d:7, topic:"Review — Retell It All", review:true, note:"No new words today. Reuse your favorite 5 from this week and try to fit all of them into your 3-minute retelling."},
+ {d:8, topic:"Your Role & Responsibilities", words:[
+   W("to oversee","verb","to be in charge of, supervise","I oversee the monthly reporting process."),
+   W("cross-functional","adjective","involving different teams or departments","I collaborate with cross-functional teams."),
+   W("day-to-day","adjective","routine, happening every day","My day-to-day tasks include cleaning data."),
+   W("to report to","phrase","who your manager is","I report directly to the head of analytics."),
+   W("scope of work","noun phrase","the tasks included in a role","Design work is outside my scope of work.")]},
+ {d:9, topic:"A Project You're Proud Of", words:[
+   W("from scratch","idiom","starting with nothing, building from zero","I built the dashboard from scratch."),
+   W("to streamline","verb","to make a process simpler or faster","The new system streamlined our reporting."),
+   W("a game-changer","idiom","something that changes everything significantly","That automation was a game-changer."),
+   W("to fall behind schedule","idiom","to be late or behind on a plan","We fell behind schedule due to data issues."),
+   W("to pay off","phrasal verb","to give good results eventually","All the extra hours paid off in the end.")]},
+ {d:10, topic:"Explaining Data to Non-Technical People", words:[
+   W("in layman's terms","idiom","explained simply, without jargon","In layman's terms, sales are dropping."),
+   W("the bottom line","idiom","the most important conclusion","The bottom line is we need more customers."),
+   W("to break it down","phrasal verb","to explain step by step","Let me break it down into three parts."),
+   W("at a glance","idiom","quickly, with one look","You can see the trend at a glance."),
+   W("to lose someone","idiom","to confuse someone while explaining","I don't want to lose you with jargon.")]},
+ {d:11, topic:"Tools & Skills", words:[
+   W("well-versed in","idiom","to know a lot about something","I'm well-versed in Excel and SQL."),
+   W("hands-on experience","noun phrase","practical, real experience doing something","I have hands-on experience with Power BI."),
+   W("a steep learning curve","idiom","something difficult to learn quickly","Python had a steep learning curve at first."),
+   W("to brush up on","idiom","to review and improve a skill","I need to brush up on my statistics."),
+   W("proficient in","adjective","skilled and competent at something","I'm proficient in data visualization tools.")]},
+ {d:12, topic:"Working With Difficult Stakeholders", words:[
+   W("to see eye to eye","idiom","to agree with someone","We didn't see eye to eye on the deadline."),
+   W("to push back","phrasal verb","to resist or disagree with a request","I pushed back on the unrealistic timeline."),
+   W("to find common ground","idiom","to find something both sides agree on","We found common ground on the budget."),
+   W("a moving target","idiom","something that keeps changing","The requirements were a moving target."),
+   W("to manage expectations","idiom","to keep people's expectations realistic","I managed expectations early in the project.")]},
+ {d:13, topic:"Meetings & Updates", words:[
+   W("to touch base","idiom","to check in briefly with someone","Let's touch base tomorrow morning."),
+   W("on track","idiom","progressing as planned","The project is on track for next week."),
+   W("a quick heads-up","idiom","a short warning or notice","Just a heads-up, the meeting moved to 3pm."),
+   W("to circle back","idiom","to return to a topic later","Let's circle back to that point later."),
+   W("action item","noun","a task assigned after a meeting","My action item is updating the report.")]},
+ {d:14, topic:"Review — The 2-Minute Pitch", review:true, note:"Combine Days 8–11 vocabulary into your 2-minute professional introduction. This becomes your interview 'Tell me about yourself' answer."},
+ {d:15, topic:"Remote Work vs Office Work", words:[
+   W("flexibility","noun","the ability to change or adapt easily","Remote work gives me more flexibility."),
+   W("to collaborate","verb","to work together with others","It's harder to collaborate spontaneously online."),
+   W("a trade-off","noun","giving up one thing to get another","It's a trade-off between comfort and connection."),
+   W("face-to-face","adjective","in person, not online","Some conversations are easier face-to-face."),
+   W("work-life balance","noun phrase","the balance between job and personal life","Remote work improves my work-life balance.")]},
+ {d:16, topic:"AI and the Future of Your Job", words:[
+   W("to automate","verb","to make a process run without humans","AI can automate repetitive reporting tasks."),
+   W("to stay relevant","idiom","to keep your skills valuable over time","I'm learning new tools to stay relevant."),
+   W("a double-edged sword","idiom","something with both good and bad effects","AI is a double-edged sword for analysts."),
+   W("to adapt to","verb phrase","to change to fit new conditions","We need to adapt to new technology."),
+   W("irreplaceable","adjective","impossible to replace","Human judgment is still irreplaceable.")]},
+ {d:17, topic:"Money & Financial Goals", words:[
+   W("financial freedom","noun phrase","having enough money to live without stress","My goal is financial freedom by 35."),
+   W("to set aside","phrasal verb","to save money for later","I set aside 20% of my income."),
+   W("a safety net","idiom","savings kept for emergencies","I built a safety net of six months' expenses."),
+   W("to live within your means","idiom","to not spend more than you earn","I try to live within my means."),
+   W("passive income","noun phrase","money earned without active daily work","I'd like to build a passive income stream.")]},
+ {d:18, topic:"Debate: Job Hopping", words:[
+   W("to job-hop","verb","to change jobs frequently","Some people job-hop for faster salary growth."),
+   W("loyalty","noun","staying committed to one employer","Loyalty used to matter more to employers."),
+   W("to weigh the pros and cons","idiom","to consider advantages and disadvantages","I weighed the pros and cons before switching."),
+   W("stagnant","adjective","not growing or changing","Staying too long can feel stagnant."),
+   W("to make a case for","idiom","to argue in favor of something","I can make a case for both sides.")]},
+ {d:19, topic:"Explain a Process", words:[
+   W("step by step","idiom","one stage at a time, in order","Let me explain it step by step."),
+   W("a prerequisite","noun","something needed before starting","Clean data is a prerequisite for analysis."),
+   W("to double-check","verb","to check again for accuracy","Always double-check your formulas."),
+   W("a common pitfall","idiom","a frequent mistake people make","A common pitfall is skipping validation."),
+   W("to wrap it up","phrasal verb","to finish explaining or doing something","To wrap it up, save and share the file.")]},
+ {d:20, topic:"Compare Two Options", words:[
+   W("as opposed to","phrase","in contrast to","This tool is fast, as opposed to the old one."),
+   W("a slight edge","idiom","a small advantage","Option A has a slight edge in price."),
+   W("it boils down to","idiom","the main deciding factor is","It boils down to your budget."),
+   W("on the flip side","idiom","looking at the opposite view","On the flip side, B is more flexible."),
+   W("a no-brainer","idiom","an obvious, easy decision","For beginners, this tool is a no-brainer.")]},
+ {d:21, topic:"Review — Impromptu Speaking", review:true, note:"No new words. Pick any object near you and use five words from this week while describing it for 2 minutes."},
+ {d:22, topic:"Tell Me About Yourself (Interview)", words:[
+   W("to stand out","phrasal verb","to be noticeably different or better","My storytelling skills help me stand out."),
+   W("a strong track record","idiom","a history of good performance","I have a strong track record in reporting."),
+   W("what sets me apart","idiom","what makes you different or unique","What sets me apart is my attention to detail."),
+   W("a natural fit","idiom","someone well suited for a role","This role feels like a natural fit."),
+   W("to bring to the table","idiom","the value or skills you offer","I bring strong analytical skills to the table.")]},
+ {d:23, topic:"Strengths & Weaknesses", words:[
+   W("a work in progress","idiom","something still improving, not perfect yet","My public speaking is a work in progress."),
+   W("to leverage","verb","to use something to your advantage","I leverage my attention to detail in QA."),
+   W("self-aware","adjective","understanding your own strengths and weaknesses","I try to stay self-aware about my blind spots."),
+   W("to fall short","idiom","to not meet a standard","I sometimes fall short on delegating tasks."),
+   W("actively working on","phrase","currently improving something","I'm actively working on my time management.")]},
+ {d:24, topic:"Behavioral Questions (STAR)", words:[
+   W("under pressure","idiom","in a stressful, high-demand situation","I stayed calm under pressure during the outage."),
+   W("to take ownership","idiom","to accept responsibility for something","I took ownership of the mistake immediately."),
+   W("a turning point","idiom","a moment that changes the direction of events","That project was a turning point for me."),
+   W("to go above and beyond","idiom","to do more than expected","She went above and beyond to fix it."),
+   W("in the end","phrase","finally, as a result","In the end, we delivered on time.")]},
+ {d:25, topic:"Why This Company? Why You?", words:[
+   W("aligned with","adjective phrase","matching or in agreement with","Your mission is aligned with my values."),
+   W("to bring value","idiom","to contribute something useful","I can bring value from day one."),
+   W("a mutual fit","idiom","good for both sides","This role feels like a mutual fit."),
+   W("to hit the ground running","idiom","to start working effectively right away","I can hit the ground running with SQL."),
+   W("to resonate with","verb","to feel meaningful or true to you","Your company values really resonate with me.")]},
+ {d:26, topic:"Salary & Negotiation", words:[
+   W("market rate","noun phrase","the typical pay for a role","I researched the market rate for this role."),
+   W("to be flexible on","phrase","open to negotiation on something","I'm flexible on the exact number."),
+   W("a fair offer","noun phrase","a reasonable, just proposal","I'm looking for a fair offer for my experience."),
+   W("to meet in the middle","idiom","to compromise between two positions","Can we meet in the middle on this?"),
+   W("non-negotiable","adjective","something that cannot be changed","Remote flexibility is non-negotiable for me.")]},
+ {d:27, topic:"Asking Smart Questions", words:[
+   W("to get a sense of","idiom","to get a general understanding","I'd like to get a sense of the team culture."),
+   W("growth opportunities","noun phrase","chances to develop and advance","What growth opportunities exist in this role?"),
+   W("to clarify","verb","to make something clearer","Could you clarify how success is measured?"),
+   W("onboarding","noun","the process of joining a new company","What does onboarding typically look like?"),
+   W("a red flag","idiom","a warning sign of a problem","Is there anything that could be a red flag?")]},
+ {d:28, topic:"Recovery Phrases", words:[
+   W("could you rephrase that","phrase","asking someone to say it differently","Could you rephrase that question, please?"),
+   W("let me gather my thoughts","idiom","asking for a moment to think","Let me gather my thoughts for a second."),
+   W("to the best of my knowledge","idiom","based on what you currently know","To the best of my knowledge, that's correct."),
+   W("I'd love to follow up on that","phrase","offering to answer more later","I'd love to follow up on that after checking."),
+   W("fair point","idiom","acknowledging someone made a good argument","That's a fair point, let me think about it.")]},
+ {d:29, topic:"Full Mock Interview", review:true, note:"No new words. This is a live-fire day — reuse your strongest phrases from all of July in one full mock interview."},
+ {d:30, topic:"Final Review", review:true, note:"No new words. Re-record your Day 1 introduction using your best phrases from the whole month."}
+]},
+
+aug: { label: "August", theme: "Storytelling & Fluency", days: [
+ {d:1, topic:"A Childhood Memory", words:[
+   W("to reminisce","verb","to think fondly about the past","I love reminiscing about summers at my grandmother's house."),
+   W("formative","adjective","shaping who you become","That was a formative experience for me."),
+   W("vivid","adjective","clear and detailed in memory","I have a vivid memory of my first day of school."),
+   W("to shape","verb","to influence strongly","That event shaped my personality."),
+   W("nostalgic","adjective","feeling sentimental about the past","This song makes me nostalgic.")]},
+ {d:2, topic:"Your First Job", words:[
+   W("a stepping stone","idiom","something that helps you progress","My first job was a stepping stone to this career."),
+   W("to learn the ropes","idiom","to learn how to do a new job","It took a month to learn the ropes."),
+   W("entry-level","adjective","a beginner position","It was an entry-level role in customer service."),
+   W("to gain exposure to","idiom","to experience something new","I gained exposure to real client data."),
+   W("a baptism by fire","idiom","learning quickly through a difficult experience","My first week was a real baptism by fire.")]},
+ {d:3, topic:"A Failure That Taught You Something", words:[
+   W("to bounce back","idiom","to recover quickly","I bounced back after a failed presentation."),
+   W("a wake-up call","idiom","an event that makes you realize something","That mistake was a wake-up call for me."),
+   W("to own up to","idiom","to admit responsibility","I owned up to the error immediately."),
+   W("a valuable lesson","noun phrase","something important learned from experience","It taught me a valuable lesson about accuracy."),
+   W("in retrospect","idiom","looking back with current knowledge","In retrospect, I should have asked for help sooner.")]},
+ {d:4, topic:"Your Proudest Moment", words:[
+   W("a milestone","noun","an important stage or event","Graduating was a huge milestone for me."),
+   W("to accomplish","verb","to achieve successfully","I accomplished my goal ahead of schedule."),
+   W("hard-earned","adjective","achieved through effort","That was a hard-earned promotion."),
+   W("to take pride in","idiom","to feel satisfaction about something","I take pride in my attention to detail."),
+   W("a defining moment","idiom","a moment that shapes your identity","That was a defining moment in my career.")]},
+ {d:5, topic:"A Person Who Influenced You", words:[
+   W("a role model","noun","someone you look up to","My manager was a great role model."),
+   W("to look up to","idiom","to admire and respect","I look up to my older sister."),
+   W("to instill","verb","to gradually teach a value","She instilled a strong work ethic in me."),
+   W("guidance","noun","helpful advice or direction","I appreciated his guidance early on."),
+   W("to leave a lasting impression","idiom","to be remembered for a long time","That teacher left a lasting impression on me.")]},
+ {d:6, topic:"A Decision That Changed Your Direction", words:[
+   W("a crossroads","idiom","a point where an important choice must be made","I was at a crossroads in my career."),
+   W("a leap of faith","idiom","trying something risky without certainty","I took a leap of faith and changed careers."),
+   W("a pivotal decision","noun phrase","a very important, deciding choice","It was a pivotal decision for my future."),
+   W("to weigh options","idiom","to consider choices carefully","I weighed my options carefully."),
+   W("no regrets","idiom","feeling okay about a past decision","I have no regrets about that choice.")]},
+ {d:7, topic:"Review — Retell Your Best Story", review:true, note:"No new words. Retell your best story from this week using at least 5 words from earlier days, told more smoothly this time."},
+ {d:8, topic:"How Thailand Has Changed", words:[
+   W("rapid growth","noun phrase","fast development","Bangkok has seen rapid growth in tech jobs."),
+   W("to modernize","verb","to become more up to date","The transit system has modernized a lot."),
+   W("a shift towards","idiom","a change in direction","There's a shift towards digital payments."),
+   W("unrecognizable","adjective","changed so much it's hard to recognize","Some areas are almost unrecognizable now."),
+   W("to keep pace with","idiom","to move at the same speed as change","Education needs to keep pace with technology.")]},
+ {d:9, topic:"A Trend in Your Industry", words:[
+   W("on the rise","idiom","increasing, becoming more common","Demand for data analysts is on the rise."),
+   W("to gain traction","idiom","to become more popular or accepted","AI tools are gaining traction in analytics."),
+   W("a game-changer","idiom","something that changes everything significantly","This tool was a game-changer for our team."),
+   W("to keep up with","idiom","to stay updated with something","I try to keep up with new BI tools."),
+   W("cutting-edge","adjective","the newest and most advanced","We use cutting-edge visualization software.")]},
+ {d:10, topic:"Describe a Chart: Sales Up, Then Down", words:[
+   W("to peak","verb","to reach the highest point","Sales peaked in December."),
+   W("to plummet","verb","to drop suddenly and sharply","Revenue plummeted after the holiday season."),
+   W("a steady increase","noun phrase","a consistent, gradual rise","There was a steady increase through Q1."),
+   W("to level off","idiom","to stop rising or falling","Growth leveled off by March."),
+   W("a downward trend","noun phrase","a pattern of decreasing values","We noticed a downward trend in engagement.")]},
+ {d:11, topic:"A Habit You Changed", words:[
+   W("to kick a habit","idiom","to stop doing something","I finally kicked the habit of procrastinating."),
+   W("a routine","noun","a regular sequence of actions","I built a new morning routine."),
+   W("consistency","noun","doing something the same way regularly","Consistency was key to changing my habit."),
+   W("to fall back into old patterns","idiom","to return to previous bad habits","I sometimes fall back into old patterns."),
+   W("a noticeable difference","noun phrase","a clear, visible change","There's a noticeable difference in my energy now.")]},
+ {d:12, topic:"How Technology Changed Daily Life", words:[
+   W("to revolutionize","verb","to completely change something","Smartphones revolutionized how we communicate."),
+   W("to be glued to","idiom","to constantly look at or use something","People are glued to their phones."),
+   W("convenience","noun","the quality of being easy and useful","Online banking added a lot of convenience."),
+   W("a double-edged sword","idiom","something with both good and bad effects","Social media is a double-edged sword."),
+   W("to rely on","verb phrase","to depend on","We rely heavily on GPS now.")]},
+ {d:13, topic:"Predict Three Changes in 5 Years", words:[
+   W("to anticipate","verb","to expect something in the future","I anticipate more automation in reporting."),
+   W("likely","adjective","probable","It's likely that AI will handle basic analysis."),
+   W("to reshape","verb","to change the form or nature of something","AI will reshape how analysts work."),
+   W("an emerging trend","noun phrase","a trend that is just starting","Data privacy is an emerging trend."),
+   W("to speculate","verb","to guess based on incomplete information","I can only speculate about the timeline.")]},
+ {d:14, topic:"Review — Describe Any Graph", review:true, note:"No new words. Find any chart online and describe it out loud using 5 words from Week 2 of this month."},
+ {d:15, topic:"Your 5-Year Career Vision", words:[
+   W("to aspire to","verb","to hope to achieve something","I aspire to become a senior analyst."),
+   W("a long-term goal","noun phrase","an objective set far into the future","Leading a team is my long-term goal."),
+   W("to climb the ladder","idiom","to be promoted, to advance","I want to climb the ladder into management."),
+   W("a clear trajectory","noun phrase","a defined path forward","I have a clear trajectory in mind."),
+   W("to envision","verb","to imagine a future possibility","I envision leading a small analytics team.")]},
+ {d:16, topic:"Your Ideal Work-From-Home Life", words:[
+   W("a flexible schedule","noun phrase","hours that can be adjusted","I want a flexible schedule that fits my energy."),
+   W("to strike a balance","idiom","to find a good middle ground","I try to strike a balance between work and rest."),
+   W("a dedicated workspace","noun phrase","a specific area just for work","I set up a dedicated workspace at home."),
+   W("distraction-free","adjective","without interruptions","Mornings are my distraction-free work time."),
+   W("autonomy","noun","independence, control over your own work","Remote work gives me more autonomy.")]},
+ {d:17, topic:"Plan a Project Out Loud", words:[
+   W("a roadmap","noun","a plan showing steps to a goal","Here's the roadmap for this project."),
+   W("a deliverable","noun","something produced as a result of a project","The first deliverable is a data audit."),
+   W("a timeline","noun","a schedule of when things happen","I set a two-week timeline."),
+   W("to allocate","verb","to assign resources or time to something","I allocated extra time for testing."),
+   W("a dependency","noun","something that must happen before another step","Data cleaning is a dependency for analysis.")]},
+ {d:18, topic:"An Income Stream You'd Like to Build", words:[
+   W("to diversify","verb","to have multiple sources or types","I want to diversify my income streams."),
+   W("a side hustle","idiom","extra work done alongside a main job","Freelance analytics is my side hustle."),
+   W("to generate income","idiom","to produce money","This could generate passive income."),
+   W("scalable","adjective","able to grow without much extra effort","A scalable income stream doesn't need constant time."),
+   W("upfront investment","noun phrase","money or effort spent at the beginning","It requires some upfront investment of time.")]},
+ {d:19, topic:"What \"Retire Early\" Means to You", words:[
+   W("financial independence","noun phrase","having enough money to live without working","Financial independence is my long-term aim."),
+   W("to live below your means","idiom","to spend less than you earn","Living below my means helps me save faster."),
+   W("a nest egg","idiom","savings for the future","I'm building a nest egg for retirement."),
+   W("freedom of choice","noun phrase","having options rather than obligations","Retiring early is really about freedom of choice."),
+   W("to sustain","verb","to keep something going long-term","I need enough savings to sustain my lifestyle.")]},
+ {d:20, topic:"Your Goals for Next Month", words:[
+   W("to prioritize","verb","to decide what's most important","I'll prioritize finishing my SQL course."),
+   W("a stretch goal","idiom","an ambitious, challenging goal","Getting a certification is my stretch goal."),
+   W("to stay accountable","idiom","to make sure you follow through","I stay accountable by tracking progress weekly."),
+   W("measurable","adjective","able to be tracked with numbers","My goals need to be measurable."),
+   W("a checkpoint","noun","a point to review progress","I'll set a checkpoint every Friday.")]},
+ {d:21, topic:"Review — Your Future in 3 Minutes", review:true, note:"No new words. Combine Week 3's vocabulary into a single 3-minute talk about your future."},
+ {d:22, topic:"Summarize a YouTube Video", words:[
+   W("to sum up","phrase","to give a brief summary","To sum up, the video was about SQL tips."),
+   W("the gist","idiom","the main point of something","The gist was about optimizing queries."),
+   W("to elaborate on","verb","to explain in more detail","Let me elaborate on that point."),
+   W("a key takeaway","noun phrase","the most important lesson from something","The key takeaway was to index your tables."),
+   W("in a nutshell","idiom","in a very brief summary","In a nutshell, indexing speeds up queries.")]},
+ {d:23, topic:"Retell a News Story", words:[
+   W("breaking news","noun phrase","a story just reported","This was breaking news this morning."),
+   W("to report on","verb phrase","to give information about an event","The article reported on new AI regulations."),
+   W("allegedly","adverb","said to be true, but not confirmed","The company allegedly delayed the announcement."),
+   W("a controversial topic","noun phrase","something people disagree strongly about","It's a controversial topic in tech circles."),
+   W("to spark debate","idiom","to cause discussion or disagreement","The policy sparked a lot of debate.")]},
+ {d:24, topic:"Explain the Plot of a Movie", words:[
+   W("a plot twist","idiom","an unexpected turn in a story","There's a big plot twist halfway through."),
+   W("to unfold","verb","to develop or happen gradually","The story unfolds over three timelines."),
+   W("a subplot","noun","a secondary storyline","There's a subplot about the main character's family."),
+   W("to give away spoilers","idiom","to reveal important story details","I won't give away any spoilers."),
+   W("gripping","adjective","very exciting and engaging","The ending was absolutely gripping.")]},
+ {d:25, topic:"Summarize a Real Meeting", words:[
+   W("minutes","noun","the written record of a meeting","I'll send the meeting minutes by email."),
+   W("to recap","verb","to summarize what happened","Let me recap the main decisions."),
+   W("consensus","noun","general agreement among a group","We reached consensus on the new deadline."),
+   W("a follow-up","noun","a subsequent action or meeting","We scheduled a follow-up for next week."),
+   W("to table a discussion","idiom","to postpone discussing something","We tabled that topic for later.")]},
+ {d:26, topic:"Teach Something You Learned", words:[
+   W("to walk someone through","idiom","to explain something step by step","Let me walk you through this new tool."),
+   W("hands-on","adjective","involving direct, practical experience","This is a hands-on demonstration."),
+   W("to demonstrate","verb","to show how something works","I'll demonstrate the pivot table feature."),
+   W("to grasp","verb","to understand something","It took a while to grasp this concept."),
+   W("intuitive","adjective","easy to understand naturally","The interface is pretty intuitive once you try it.")]},
+ {d:27, topic:"Summarize an English Article", words:[
+   W("to paraphrase","verb","to restate in your own words","Let me paraphrase the main argument."),
+   W("a credible source","noun phrase","a trustworthy source of information","This article comes from a credible source."),
+   W("to draw a conclusion","idiom","to form a judgment based on evidence","The author draws a clear conclusion at the end."),
+   W("noteworthy","adjective","worth paying attention to","One noteworthy point was about productivity."),
+   W("to back up with evidence","idiom","to support a claim with proof","The claim is backed up with solid data.")]},
+ {d:28, topic:"Monthly Checkpoint (1/4)", review:true, note:"No new words. Pick your 5 favorite words from August and use them describing your month."},
+ {d:29, topic:"Monthly Checkpoint (2/4)", review:true, note:"No new words. Re-tell your proudest moment (Day 4) using words from Week 4."},
+ {d:30, topic:"Monthly Checkpoint (3/4)", review:true, note:"No new words. Describe how your English improved this month, using 5 words from anywhere in August."},
+ {d:31, topic:"Monthly Checkpoint (4/4)", review:true, note:"No new words. Full August recap — speak for 3 minutes summarizing the month, unscripted."}
+]},
+
+sep: { label: "September", theme: "Professional Communication", days: [
+ {d:1, topic:"Open a Meeting & Set the Agenda", words:[
+   W("to convene","verb","to call people together for a meeting","Let's convene at 9am to discuss the report."),
+   W("an agenda","noun","a list of topics to discuss","I'll share the agenda beforehand."),
+   W("to set the tone","idiom","to establish the mood or attitude","A good opener sets the tone for the meeting."),
+   W("to kick off","phrasal verb","to start something","Let's kick off with a quick recap."),
+   W("housekeeping","noun","small administrative items at the start","Just a bit of housekeeping before we start.")]},
+ {d:2, topic:"Give a Status Update", words:[
+   W("on schedule","idiom","progressing as planned","We're on schedule for the launch."),
+   W("a bottleneck","noun","something slowing down progress","Data access was a bottleneck this week."),
+   W("to flag","verb","to point out an issue","I want to flag a risk with the timeline."),
+   W("progress","noun","forward movement toward a goal","We've made good progress this sprint."),
+   W("next steps","noun phrase","actions to be taken next","Our next steps are testing and review.")]},
+ {d:3, topic:"Ask Clarifying Questions", words:[
+   W("to clarify","verb","to make something clearer","Could you clarify the exact requirement?"),
+   W("just to confirm","phrase","used before restating your understanding","Just to confirm, the deadline is Friday?"),
+   W("to elaborate","verb","to explain in more detail","Could you elaborate on that requirement?"),
+   W("correct me if I'm wrong","idiom","a polite way to check your understanding","Correct me if I'm wrong, is this the final version?"),
+   W("to double-check","verb","to check again for accuracy","Let me double-check that with the team.")]},
+ {d:4, topic:"Disagree Without Being Rude", words:[
+   W("I see your point, but...","phrase","acknowledging then disagreeing","I see your point, but the data suggests otherwise."),
+   W("to respectfully disagree","idiom","to disagree politely","I'd have to respectfully disagree on this one."),
+   W("a counterpoint","noun","an opposing argument","Let me offer a counterpoint."),
+   W("to reconsider","verb","to think again about a decision","Could we reconsider this approach?"),
+   W("common ground","idiom","something both sides agree on","Let's find common ground here.")]},
+ {d:5, topic:"Interrupt Politely", words:[
+   W("if I may","phrase","a polite way to interrupt","If I may, I'd like to add something."),
+   W("sorry to jump in","idiom","a polite interruption","Sorry to jump in, but I have a quick point."),
+   W("to build on","idiom","to add to someone's idea","I'd like to build on that idea."),
+   W("a quick add","phrase","a short additional point","Just a quick add to that point."),
+   W("to hold that thought","idiom","asking someone to wait before speaking","Can you hold that thought for a second?")]},
+ {d:6, topic:"Close a Meeting With Action Items", words:[
+   W("to wrap up","phrasal verb","to finish something","Let's wrap up with next steps."),
+   W("action item","noun","a task assigned after a meeting","My action item is the updated report."),
+   W("to assign","verb","to give a task to someone","I'll assign the report to Somchai."),
+   W("a deadline","noun","the time by which something must be done","The deadline for this is next Monday."),
+   W("to recap","verb","to summarize what happened","Let me recap our decisions today.")]},
+ {d:7, topic:"Review — Full Fake Meeting", review:true, note:"No new words. Run a 5-minute fake meeting alone, using 5 words from this week in order: open, question, disagree, interrupt, close."},
+ {d:8, topic:"Present a Dashboard", words:[
+   W("an overview","noun","a general summary","Let's start with an overview of the metrics."),
+   W("significance","noun","importance or meaning","The significance of this drop is concerning."),
+   W("actionable insight","noun phrase","useful information you can act on","Here's an actionable insight from the data."),
+   W("to highlight","verb","to draw attention to something","I want to highlight this spike in traffic."),
+   W("so what","phrase (informal)","why something matters","The so-what here is we need more budget.")]},
+ {d:9, topic:"Explain One Insight", words:[
+   W("to stand out","phrasal verb","to be noticeably different","This number really stands out."),
+   W("a correlation","noun","a relationship between two things","There's a correlation between ad spend and signups."),
+   W("noteworthy","adjective","worth paying attention to","One noteworthy point is retention improved."),
+   W("implication","noun","what something means for the future","The implication is we should increase budget."),
+   W("to substantiate","verb","to support with evidence","I substantiated this with three months of data.")]},
+ {d:10, topic:"Deliver Bad News Numbers", words:[
+   W("to soften the blow","idiom","to make bad news less harsh","Let me soften the blow with context first."),
+   W("a decline","noun","a decrease in value or amount","We saw a decline in Q3 revenue."),
+   W("underperforming","adjective","not meeting expectations","This product line is underperforming."),
+   W("to address","verb","to deal with a problem directly","We need to address this immediately."),
+   W("a silver lining","idiom","a positive aspect of a bad situation","The silver lining is retention stayed high.")]},
+ {d:11, topic:"Make a Recommendation With Evidence", words:[
+   W("to advocate for","verb","to publicly support something","I advocate for a data-driven approach."),
+   W("data-driven","adjective","based on data rather than opinion","This is a data-driven recommendation."),
+   W("to justify","verb","to give good reasons for something","I can justify this choice with the numbers."),
+   W("a compelling case","noun phrase","a strong, convincing argument","The data makes a compelling case."),
+   W("to substantiate","verb","to support with evidence","Every claim here is substantiated by data.")]},
+ {d:12, topic:"Handle Tough Questions", words:[
+   W("to think on your feet","idiom","to respond quickly without preparation","You have to think on your feet in Q&A."),
+   W("to acknowledge","verb","to admit or recognize something","I acknowledge that's a valid concern."),
+   W("a follow-up question","noun phrase","a question asked after the first answer","That's a great follow-up question."),
+   W("to defer","verb","to postpone answering, or pass to someone else","I'll defer that to the product team."),
+   W("composure","noun","staying calm under pressure","Keeping your composure matters most in Q&A.")]},
+ {d:13, topic:"5-Minute Mini Presentation", words:[
+   W("to engage the audience","idiom","to keep listeners interested","Ask questions to engage the audience."),
+   W("pacing","noun","the speed and rhythm of speech","Watch your pacing so you don't rush."),
+   W("a strong opener","noun phrase","an effective way to start a talk","I need a strong opener for this presentation."),
+   W("to land a point","idiom","to make a point clearly understood","That example really landed the point."),
+   W("body language","noun phrase","physical gestures and posture while speaking","Confident body language matters as much as words.")]},
+ {d:14, topic:"Review — Present Again", review:true, note:"No new words. Watch your Day 13 recording, then present again using 5 words from this week."},
+ {d:15, topic:"Make a Request to Your Manager", words:[
+   W("to request","verb","to formally ask for something","I'd like to request a schedule change."),
+   W("would it be possible to","phrase","a polite way to ask","Would it be possible to adjust my hours?"),
+   W("a reasonable ask","noun phrase","a fair, sensible request","I think this is a reasonable ask."),
+   W("to advocate for yourself","idiom","to speak up for your own needs","It's important to advocate for yourself."),
+   W("flexibility","noun","the ability to adapt or change","I'm asking for a bit more flexibility.")]},
+ {d:16, topic:"Negotiate a Deadline", words:[
+   W("to renegotiate","verb","to discuss and change an agreement","I'd like to renegotiate the deadline."),
+   W("realistic","adjective","achievable, sensible","I want to propose a more realistic timeline."),
+   W("a buffer","noun","extra time added for safety","Let's add a two-day buffer."),
+   W("to compromise","verb","to accept less than you wanted to reach agreement","We compromised on a new date."),
+   W("to communicate proactively","idiom","to inform people before problems arise","I communicated proactively about the delay.")]},
+ {d:17, topic:"Say No to Extra Work, Politely", words:[
+   W("I appreciate the offer, but...","phrase","a polite way to decline","I appreciate the offer, but I can't take this on now."),
+   W("to overcommit","verb","to promise more than you can do","I don't want to overcommit this month."),
+   W("bandwidth","noun (informal)","capacity or time to do something","I don't have the bandwidth for another project."),
+   W("to prioritize","verb","to decide what's most important","I need to prioritize my current tasks."),
+   W("a polite decline","noun phrase","a respectful refusal","That was a polite decline, not a rejection.")]},
+ {d:18, topic:"Give Constructive Feedback", words:[
+   W("constructive","adjective","helpful, aimed at improvement","I want to give constructive feedback."),
+   W("to phrase it as","idiom","to word something a certain way","I'll phrase it as a suggestion, not criticism."),
+   W("room for improvement","idiom","areas that could be better","There's room for improvement in the formatting."),
+   W("to sandwich feedback","idiom","positive-negative-positive feedback structure","I like to sandwich feedback with positives."),
+   W("actionable","adjective","specific enough to act on","Make sure your feedback is actionable.")]},
+ {d:19, topic:"Respond to Criticism", words:[
+   W("to take feedback on board","idiom","to accept and consider feedback","I'll take that feedback on board."),
+   W("defensive","adjective","reacting protectively to criticism","I try not to get defensive when criticized."),
+   W("to reflect on","verb","to think carefully about something","I'll reflect on what you said."),
+   W("growth mindset","noun phrase","the belief that skills can improve","I try to have a growth mindset about feedback."),
+   W("gracefully","adverb","in a calm, composed manner","I try to handle criticism gracefully.")]},
+ {d:20, topic:"Apologize Professionally", words:[
+   W("to take responsibility","idiom","to accept accountability for something","I take responsibility for the delay."),
+   W("a genuine apology","noun phrase","a sincere, honest apology","I want to offer a genuine apology."),
+   W("to rectify","verb","to fix or correct a mistake","I'll rectify the error by tomorrow."),
+   W("an oversight","noun","a mistake made by not noticing something","That was an oversight on my part."),
+   W("moving forward","idiom","from now on, in the future","Moving forward, I'll double-check every report.")]},
+ {d:21, topic:"Review — Role-Play Your Hardest Situation", review:true, note:"No new words. Pick the hardest real workplace conversation you've had. Role-play it using 5 words from this week."},
+ {d:22, topic:"Explain Technical Ideas to Business People", words:[
+   W("jargon","noun","specialized, technical vocabulary","I try to avoid jargon with non-technical teams."),
+   W("in plain English","idiom","explained simply and clearly","Let me explain that in plain English."),
+   W("the big picture","idiom","the overall situation, not the details","Let's focus on the big picture first."),
+   W("to translate","verb (figurative)","to convert technical info into simple terms","Let me translate that into business terms."),
+   W("relatable","adjective","easy to relate to or understand","I try to use relatable examples.")]},
+ {d:23, topic:"Gather Requirements", words:[
+   W("to gather requirements","idiom","to collect what's needed for a project","Gathering requirements is the first step."),
+   W("a stakeholder","noun","someone with interest in a project's outcome","Every stakeholder needs to sign off first."),
+   W("to probe","verb","to ask questions to get more information","I probed further to understand the real need."),
+   W("ambiguous","adjective","unclear, open to interpretation","The initial request was ambiguous."),
+   W("to nail down","idiom","to define clearly and precisely","We nailed down the exact metrics needed.")]},
+ {d:24, topic:"Push Back on Growing Scope", words:[
+   W("scope creep","idiom","when a project's requirements keep growing","We're dealing with scope creep on this project."),
+   W("to draw the line","idiom","to set a clear limit","I need to draw the line somewhere."),
+   W("out of scope","adjective phrase","not part of the agreed work","That request is out of scope for now."),
+   W("to renegotiate","verb","to discuss and change an agreement","We may need to renegotiate the deliverables."),
+   W("firm but fair","idiom","clear and strict, yet reasonable","I try to be firm but fair when pushing back.")]},
+ {d:25, topic:"Discuss Priorities", words:[
+   W("to triage","verb","to sort tasks by urgency or importance","Let's triage these requests first."),
+   W("low-hanging fruit","idiom","easy tasks with quick results","Let's tackle the low-hanging fruit first."),
+   W("high-impact","adjective","producing significant results","This is a high-impact, low-effort task."),
+   W("to rank","verb","to order by importance","Let's rank these by urgency."),
+   W("urgency","noun","the quality of needing immediate attention","This has real urgency behind it.")]},
+ {d:26, topic:"Align Two Stakeholders Who Disagree", words:[
+   W("to get buy-in","idiom","to get people's agreement or support","I need to get buy-in from both teams."),
+   W("to mediate","verb","to help two sides reach agreement","I mediated between marketing and sales."),
+   W("a compromise","noun","an agreement where both sides give up something","We reached a compromise on the timeline."),
+   W("to bridge the gap","idiom","to reduce the difference between two sides","This proposal bridges the gap between both teams."),
+   W("consensus","noun","general agreement among a group","We finally reached consensus.")]},
+ {d:27, topic:"Explain a Delay & Propose a Plan", words:[
+   W("unforeseen circumstances","idiom","unexpected events","Due to unforeseen circumstances, we need more time."),
+   W("a revised timeline","noun phrase","an updated schedule","Here's a revised timeline for the project."),
+   W("transparency","noun","being open and honest","I value transparency when explaining delays."),
+   W("a contingency plan","noun phrase","a backup plan","Here's our contingency plan."),
+   W("to reassure","verb","to make someone feel less worried","I want to reassure you it's still on track.")]},
+ {d:28, topic:"Monthly Checkpoint (1/3)", review:true, note:"No new words. Recap your favorite meeting phrase from each week of September."},
+ {d:29, topic:"Monthly Checkpoint (2/3)", review:true, note:"No new words. Re-deliver your Day 13 mini presentation using vocabulary from Weeks 3–4."},
+ {d:30, topic:"Monthly Checkpoint (3/3)", review:true, note:"No new words. Speak for 3 minutes: what workplace English skill improved most this month?"}
+]},
+
+oct: { label: "October", theme: "Real Conversations", days: [
+ {d:1, topic:"Small Talk", words:[
+   W("how's it going","phrase","a casual greeting","Hey, how's it going?"),
+   W("nice weather we're having","phrase","a common small-talk opener","Nice weather we're having today, isn't it?"),
+   W("small talk","noun","light, casual conversation","I'm getting better at small talk."),
+   W("so, what do you do","phrase","asking about someone's job casually","So, what do you do for work?"),
+   W("likewise","adverb","used to return a greeting or wish","Nice to meet you. — Likewise!")]},
+ {d:2, topic:"Keep a Conversation Alive", words:[
+   W("a follow-up question","noun phrase","a question that continues the topic","I always ask a follow-up question."),
+   W("tell me more about that","phrase","inviting someone to continue talking","That sounds interesting, tell me more about that."),
+   W("to show genuine interest","idiom","to be truly curious about something","I try to show genuine interest by asking questions."),
+   W("active listening","noun phrase","fully focusing on what someone says","Active listening keeps conversations flowing."),
+   W("that's interesting, why is that","phrase","a natural way to dig deeper","That's interesting, why is that?")]},
+ {d:3, topic:"React Naturally", words:[
+   W("no way!","interjection","expressing surprise","No way! That actually happened?"),
+   W("that makes sense","phrase","showing you understand something","Oh, that makes sense now."),
+   W("I hear you","idiom","showing understanding or empathy","I hear you, that sounds tough."),
+   W("totally","adverb (informal)","completely, used to agree","Totally agree with that."),
+   W("wow, really?","phrase","expressing mild surprise or interest","Wow, really? Tell me more.")]},
+ {d:4, topic:"End a Conversation Politely", words:[
+   W("it was great catching up","idiom","a polite way to close a conversation","It was great catching up with you."),
+   W("I should get going","phrase","politely saying you need to leave","I should get going, but let's talk soon."),
+   W("let's keep in touch","idiom","suggesting staying connected","Let's keep in touch!"),
+   W("I don't want to keep you","idiom","politely ending without seeming rude","I don't want to keep you, take care."),
+   W("take care","phrase","a friendly goodbye","Take care, see you soon!")]},
+ {d:5, topic:"Tell a Funny Story", words:[
+   W("you won't believe this","phrase","building anticipation before a story","You won't believe this, but..."),
+   W("long story short","idiom","summarizing quickly","Long story short, I missed the bus."),
+   W("I couldn't stop laughing","phrase","describing intense laughter","I couldn't stop laughing the whole time."),
+   W("hilarious","adjective","extremely funny","The whole situation was hilarious."),
+   W("to crack up","idiom","to laugh a lot","Everyone cracked up when it happened.")]},
+ {d:6, topic:"First Real Conversation This Week", review:true, note:"No new words. Have your first real conversation this week with a tutor or partner, using words from Days 1–5."},
+ {d:7, topic:"Review — Steal Three Phrases", review:true, note:"No new words. What natural phrases did your conversation partner use? Write down and practice three of them."},
+ {d:8, topic:"Debate: Does Money Buy Happiness?", words:[
+   W("to a certain extent","idiom","partially true","To a certain extent, money does help."),
+   W("beyond a certain point","idiom","after a certain level","Beyond a certain point, more money doesn't help much."),
+   W("a correlation","noun","a relationship between two things","There's a correlation, but it's not everything."),
+   W("it's not that simple","phrase","showing the topic is complex","It's not that simple, honestly."),
+   W("priorities","noun","the things that matter most to you","It comes down to your priorities.")]},
+ {d:9, topic:"Debate: Should Everyone Learn to Code?", words:[
+   W("not necessarily","phrase","disagreeing gently","Not necessarily, it depends on the job."),
+   W("it depends on","phrase","the answer varies by situation","It depends on your career path."),
+   W("a valuable skill","noun phrase","a useful ability to have","Coding is a valuable skill either way."),
+   W("to future-proof","verb","to prepare for future changes","Coding can help future-proof your career."),
+   W("a fair point","idiom","acknowledging a good argument","That's a fair point, actually.")]},
+ {d:10, topic:"Startup vs Big Company", words:[
+   W("job security","noun phrase","stability of employment","Big companies offer more job security."),
+   W("to wear many hats","idiom","to do many different jobs or roles","At a startup, you wear many hats."),
+   W("red tape","idiom","excessive bureaucracy","Big companies often have more red tape."),
+   W("fast-paced","adjective","moving quickly, high energy","Startups tend to be fast-paced."),
+   W("growth potential","noun phrase","the possibility of future success","A startup has more growth potential.")]},
+ {d:11, topic:"Defend an Unpopular Opinion", words:[
+   W("hear me out","idiom","asking someone to listen before judging","Hear me out on this one."),
+   W("controversial as it sounds","idiom","acknowledging your view is unusual","Controversial as it sounds, I disagree."),
+   W("I might be in the minority, but","phrase","acknowledging you hold a rare view","I might be in the minority, but I think..."),
+   W("devil's advocate","idiom","arguing an opposing side for debate","Let me play devil's advocate here."),
+   W("at the end of the day","idiom","ultimately, when everything is considered","At the end of the day, it's a personal choice.")]},
+ {d:12, topic:"Change Your Mind Out Loud", words:[
+   W("I used to think... but now","phrase","showing a change of opinion","I used to think that, but now I disagree."),
+   W("I stand corrected","idiom","admitting you were wrong","I stand corrected on that."),
+   W("my perspective shifted","phrase","your view changed","My perspective shifted after reading more about it."),
+   W("in light of","idiom","considering new information","In light of the new data, I changed my mind."),
+   W("open-minded","adjective","willing to consider new ideas","I try to stay open-minded.")]},
+ {d:13, topic:"React to News", words:[
+   W("apparently","adverb","according to what is said or reported","Apparently, the policy changed overnight."),
+   W("it's concerning that","phrase","expressing worry about something","It's concerning that prices keep rising."),
+   W("on the bright side","idiom","looking at the positive aspect","On the bright side, things could improve."),
+   W("time will tell","idiom","the future will reveal the outcome","Time will tell how this plays out."),
+   W("to keep an eye on","idiom","to watch closely","I'll keep an eye on this story.")]},
+ {d:14, topic:"Review — Debate With a Partner", review:true, note:"No new words. Debate any topic from this week with Claude or a partner, using 5 words from Days 8–13."},
+ {d:15, topic:"Random Object Challenge", words:[
+   W("at first glance","idiom","when first looking at something","At first glance, it looks simple."),
+   W("to come in handy","idiom","to be useful","This comes in handy when I travel."),
+   W("worn out","adjective","old from use","This bag is a bit worn out now."),
+   W("a good conversation starter","idiom","something that easily begins a talk","This object is a good conversation starter."),
+   W("sentimental value","noun phrase","emotional, not financial, importance","It has a lot of sentimental value.")]},
+ {d:16, topic:"One-Minute Random Topics", words:[
+   W("off the top of my head","idiom","without preparing or thinking long","Off the top of my head, I'd say..."),
+   W("let me think for a second","phrase","asking for a brief pause","Let me think for a second."),
+   W("to ramble","verb","to talk without a clear structure","Sorry, I tend to ramble sometimes."),
+   W("to stay on topic","idiom","to keep speaking about the main subject","Let me stay on topic here."),
+   W("wrapping my head around","idiom","trying to understand something","I'm still wrapping my head around this.")]},
+ {d:17, topic:"What Would You Do With 10M Baht?", words:[
+   W("hypothetically speaking","idiom","imagining a situation that isn't real","Hypothetically speaking, I'd invest most of it."),
+   W("I'd probably","phrase","showing some uncertainty about a plan","I'd probably save half of it."),
+   W("a rainy day","idiom","a future time of hardship","I'd save some for a rainy day."),
+   W("to splurge on","verb","to spend generously on something","I'd splurge on a trip."),
+   W("wisely","adverb","in a sensible, careful way","I'd try to spend it wisely.")]},
+ {d:18, topic:"Describe a Photo", words:[
+   W("in the foreground/background","phrase","describing position in an image","There's a mountain in the background."),
+   W("at first glance","idiom","when first looking at something","At first glance, it looks like a festival."),
+   W("it looks like","phrase","describing an impression","It looks like they're celebrating something."),
+   W("candid","adjective","natural, unposed","It's a candid shot, not posed."),
+   W("to capture a moment","idiom","to record a meaningful instant","This photo captures a special moment.")]},
+ {d:19, topic:"Explain a Thai Custom", words:[
+   W("it's customary to","phrase","it's traditional or expected to","It's customary to remove your shoes indoors."),
+   W("a sign of respect","idiom","an action showing politeness or honor","Bowing is a sign of respect."),
+   W("deeply rooted in","idiom","strongly based in tradition","This custom is deeply rooted in Buddhist culture."),
+   W("to pass down","phrasal verb","to give to the next generation","This tradition is passed down through families."),
+   W("unique to","adjective phrase","found only in a specific place","This custom is unique to our region.")]},
+ {d:20, topic:"Narrate While Doing Something", words:[
+   W("first, I...","phrase","beginning a sequence of steps","First, I chop the onions."),
+   W("next up","phrase","introducing the next step","Next up, I add the garlic."),
+   W("meanwhile","adverb","at the same time","Meanwhile, I heat the pan."),
+   W("the trick is to","idiom","the key technique for success","The trick is to stir constantly."),
+   W("and that's basically it","phrase","closing a description or explanation","And that's basically it, quite simple.")]},
+ {d:21, topic:"Review — Hardest Impromptu Topic", review:true, note:"No new words. Redo your hardest random topic from this week, using 5 words from Days 15–20."},
+ {d:22, topic:"What Motivates You?", words:[
+   W("driven by","adjective phrase","strongly motivated by something","I'm driven by a desire to improve."),
+   W("a sense of purpose","noun phrase","feeling that your work matters","I'm motivated by a sense of purpose."),
+   W("to strive for","verb","to work hard toward a goal","I strive for constant improvement."),
+   W("fulfillment","noun","a feeling of satisfaction","Fulfillment matters more to me than just money."),
+   W("what keeps me going","idiom","the source of your motivation","Progress is what keeps me going.")]},
+ {d:23, topic:"Work-Life Balance Belief", words:[
+   W("burnout","noun","exhaustion from overwork","I want to avoid burnout."),
+   W("to recharge","verb","to rest and restore energy","I recharge on weekends."),
+   W("boundaries","noun","limits you set for yourself","I try to set boundaries after work hours."),
+   W("sustainable","adjective","able to continue long-term without harm","I want a sustainable pace, not a sprint."),
+   W("quality over quantity","idiom","value matters more than amount","It's quality over quantity when it comes to rest.")]},
+ {d:24, topic:"What Makes a Good Leader?", words:[
+   W("to lead by example","idiom","to show the right behavior yourself","A good leader leads by example."),
+   W("approachable","adjective","easy to talk to","A good leader is approachable."),
+   W("to empower","verb","to give someone confidence or ability","Good leaders empower their team."),
+   W("accountability","noun","taking responsibility for outcomes","Accountability matters at every level."),
+   W("to inspire","verb","to motivate someone through example","A great leader inspires the whole team.")]},
+ {d:25, topic:"The Best Advice You Ever Received", words:[
+   W("the best advice I ever got was","phrase","introducing a memorable piece of advice","The best advice I ever got was to ask more questions."),
+   W("stuck with me","idiom","remained memorable over time","That advice really stuck with me."),
+   W("to take to heart","idiom","to consider something seriously","I took that advice to heart."),
+   W("words of wisdom","idiom","meaningful, insightful advice","Those were real words of wisdom."),
+   W("profound","adjective","deeply meaningful","It sounds simple, but it's profound.")]},
+ {d:26, topic:"What You'd Tell Your 20-Year-Old Self", words:[
+   W("looking back","idiom","reflecting on the past","Looking back, I'd tell myself to relax more."),
+   W("don't sweat the small stuff","idiom","don't worry about minor things","Don't sweat the small stuff."),
+   W("everything happens for a reason","idiom","a belief that events have purpose","Everything happens for a reason, I've realized."),
+   W("trust the process","idiom","believe things will work out with effort","Trust the process, even when it's slow."),
+   W("it'll all work out","phrase","reassurance that things will be fine","It'll all work out in the end.")]},
+ {d:27, topic:"Where Do You See Yourself at 35?", words:[
+   W("settled","adjective","stable, secure in life","I hope to feel settled by then."),
+   W("on solid footing","idiom","financially or emotionally secure","Financially on solid footing, hopefully."),
+   W("fulfilled","adjective","satisfied and content","I want to feel fulfilled in my career."),
+   W("a work in progress","idiom","something still developing","Life at 35 will still be a work in progress."),
+   W("to come full circle","idiom","to return to where you started, having grown","I hope my career comes full circle by then.")]},
+ {d:28, topic:"Monthly Checkpoint (1/4)", review:true, note:"No new words. Recap a highlight from your real conversations this month."},
+ {d:29, topic:"Monthly Checkpoint (2/4)", review:true, note:"No new words. Re-debate a Week 2 topic, but argue the opposite side this time."},
+ {d:30, topic:"Monthly Checkpoint (3/4)", review:true, note:"No new words. Speak for 3 minutes on what conversational English skill improved most."},
+ {d:31, topic:"Monthly Checkpoint (4/4)", review:true, note:"No new words. Full October recap using your 10 favorite words from the month."}
+]},
+
+nov: { label: "November", theme: "Interview Mastery", days: [
+ {d:1, topic:"\"Tell Me About Yourself\" v3", words:[
+   W("concise","adjective","short and clear","I want to keep my answer concise."),
+   W("elevator pitch","idiom","a very short summary of yourself","This is basically my elevator pitch."),
+   W("polished","adjective","refined, well-prepared","My answer feels more polished now."),
+   W("to tailor","verb","to customize for a specific audience","I tailor my pitch to each company."),
+   W("compelling","adjective","interesting and convincing","I want my story to be compelling.")]},
+ {d:2, topic:"Why Are You Leaving Your Job?", words:[
+   W("seeking new challenges","idiom","looking for growth opportunities","I'm seeking new challenges at this stage."),
+   W("to outgrow a role","idiom","to become too advanced for a position","I've outgrown my current role."),
+   W("on good terms","idiom","leaving without conflict","I'm leaving on good terms."),
+   W("a natural next step","idiom","a logical progression","This role feels like a natural next step."),
+   W("diplomatically","adverb","tactfully, without causing offense","I try to answer that diplomatically.")]},
+ {d:3, topic:"Walk Through Your Resume", words:[
+   W("chronologically","adverb","in time order","Let me walk you through it chronologically."),
+   W("a common thread","idiom","a connecting theme","There's a common thread of data work throughout."),
+   W("to transition into","verb phrase","to move gradually into a new role","I transitioned into analytics from support."),
+   W("progressively","adverb","gradually, over time","My responsibilities grew progressively."),
+   W("a career highlight","noun phrase","a standout achievement","That project was a career highlight.")]},
+ {d:4, topic:"Your Greatest Achievement (With Numbers)", words:[
+   W("quantifiable","adjective","able to be measured with numbers","I always give quantifiable results."),
+   W("a 20% increase","pattern","stating measurable growth","I improved efficiency by a 20% increase."),
+   W("measurable impact","noun phrase","an effect that can be tracked with data","I had a measurable impact on turnaround time."),
+   W("to exceed targets","idiom","to do better than the goal set","I exceeded my targets by 20%."),
+   W("tangible results","noun phrase","results that are clear and real","I delivered tangible results within a month.")]},
+ {d:5, topic:"Why Should We Hire You?", words:[
+   W("a proven ability to","phrase","a demonstrated skill or talent","I have a proven ability to simplify data."),
+   W("value-add","noun (informal)","the extra value someone brings","My value-add is combining data and communication."),
+   W("readily","adverb","willingly and without delay","I can readily apply this experience here."),
+   W("immediate impact","noun phrase","an effect felt right away","I can make an immediate impact."),
+   W("what sets me apart","idiom","what makes you different or unique","What sets me apart is my communication skill.")]},
+ {d:6, topic:"Salary Expectations & Negotiation", words:[
+   W("total compensation","noun phrase","salary plus benefits combined","I'm considering total compensation, not just base salary."),
+   W("benchmark","noun","a standard used for comparison","I used industry benchmarks for this range."),
+   W("room to negotiate","idiom","flexibility to discuss terms","Is there room to negotiate on this offer?"),
+   W("a win-win","idiom","good for both sides","I'm hoping we can find a win-win."),
+   W("non-negotiable","adjective","something that cannot be changed","Flexible hours are non-negotiable for me.")]},
+ {d:7, topic:"Review — Record All Six Answers", review:true, note:"No new words. Record your six polished interview answers back to back, using vocabulary from this week."},
+ {d:8, topic:"A Time You Solved a Difficult Problem", words:[
+   W("root cause","noun phrase","the real, underlying reason for a problem","I identified the root cause of the error."),
+   W("to troubleshoot","verb","to identify and fix a problem","I troubleshot the issue methodically."),
+   W("systematically","adverb","in an organized, step-by-step way","I approached it systematically."),
+   W("a workaround","noun","a temporary solution","I found a workaround while we fixed it properly."),
+   W("resolved","adjective","fixed, no longer a problem","The issue was fully resolved within a day.")]},
+ {d:9, topic:"A Time You Worked With a Difficult Person", words:[
+   W("clashing personalities","idiom","strong disagreement between people's styles","We had clashing personalities at first."),
+   W("to de-escalate","verb","to reduce tension in a conflict","I tried to de-escalate the situation."),
+   W("professionalism","noun","behaving appropriately in a work context","I kept my professionalism throughout."),
+   W("to empathize with","verb","to understand another's feelings","I tried to empathize with their perspective."),
+   W("common ground","idiom","something both sides agree on","We eventually found common ground.")]},
+ {d:10, topic:"A Time You Missed a Deadline", words:[
+   W("to fall short","idiom","to not meet a standard","I fell short of the original deadline."),
+   W("proactive communication","noun phrase","informing people before problems escalate","I used proactive communication to manage it."),
+   W("to make up for it","idiom","to compensate for a mistake","I worked overtime to make up for it."),
+   W("accountability","noun","taking responsibility for outcomes","I took full accountability for the delay."),
+   W("a lesson learned","idiom","something valuable understood from an experience","That was a real lesson learned.")]},
+ {d:11, topic:"A Time You Convinced Someone With Data", words:[
+   W("a data-backed argument","noun phrase","an argument supported by data","I made a data-backed argument for the change."),
+   W("persuasive","adjective","convincing","I built a persuasive case with charts."),
+   W("to sway someone's opinion","idiom","to change what someone believes","The numbers swayed their opinion."),
+   W("credibility","noun","the quality of being trusted and believed","Data gave my argument credibility."),
+   W("evidence-based","adjective","based on proof rather than opinion","It was a fully evidence-based recommendation.")]},
+ {d:12, topic:"A Time You Learned Something Fast", words:[
+   W("a fast learner","idiom","someone who picks up skills quickly","I consider myself a fast learner."),
+   W("to get up to speed","idiom","to quickly reach the needed level of knowledge","I got up to speed within a week."),
+   W("self-taught","adjective","learned by yourself, without formal teaching","I'm mostly self-taught in SQL."),
+   W("trial and error","idiom","learning by testing and making mistakes","I learned it through trial and error."),
+   W("to hit the ground running","idiom","to start working effectively right away","I hit the ground running on day one.")]},
+ {d:13, topic:"A Time You Took Initiative", words:[
+   W("proactively","adverb","acting in advance, without being told","I proactively flagged the issue."),
+   W("without being asked","phrase","doing something on your own initiative","I fixed it without being asked."),
+   W("to spot an opportunity","idiom","to notice a chance for improvement","I spotted an opportunity to automate a report."),
+   W("self-starter","idiom","someone who works independently","I consider myself a self-starter."),
+   W("to take the lead","idiom","to take charge of a task or project","I took the lead on that initiative.")]},
+ {d:14, topic:"Review — Six STAR Stories", review:true, note:"No new words. Deliver your six STAR stories, 90 seconds each, using this week's vocabulary."},
+ {d:15, topic:"Explain SQL Joins", words:[
+   W("in simple terms","idiom","explained plainly, without jargon","In simple terms, a join combines two tables."),
+   W("to combine","verb","to bring things together","A join combines rows from two tables."),
+   W("a relationship between","phrase","a connection or link between things","There's a relationship between these two tables."),
+   W("an analogy","noun","a comparison used to explain something","Think of it like an analogy: two puzzle pieces fitting."),
+   W("to visualize","verb","to picture something mentally","It helps to visualize the tables side by side.")]},
+ {d:16, topic:"Investigate a Sudden Drop in Sales", words:[
+   W("to dig into","idiom","to examine something deeply","I dug into the data to find the cause."),
+   W("a hypothesis","noun","an idea to be tested","My hypothesis is a pricing change caused it."),
+   W("to isolate a variable","idiom","to examine one factor at a time","I isolated one variable at a time."),
+   W("root cause","noun phrase","the real, underlying reason for a problem","We traced it back to the root cause."),
+   W("to validate","verb","to confirm something is true or accurate","I validated the hypothesis with more data.")]},
+ {d:17, topic:"Build a Dashboard From Zero", words:[
+   W("requirements gathering","noun phrase","collecting what stakeholders need","Requirements gathering was the first stage."),
+   W("a wireframe","noun","a simple draft layout","I started with a rough wireframe."),
+   W("to iterate","verb","to improve something repeatedly","I iterated on the design after feedback."),
+   W("user-friendly","adjective","easy for people to use","I focused on making it user-friendly."),
+   W("end-to-end","idiom","covering the whole process","I built it end-to-end.")]},
+ {d:18, topic:"Ensure Data Quality", words:[
+   W("data integrity","noun phrase","accuracy and consistency of data","Data integrity is critical for good decisions."),
+   W("to validate","verb","to confirm something is true or accurate","I always validate before reporting numbers."),
+   W("an outlier","noun","a value very different from the rest","I checked this outlier before finalizing the report."),
+   W("a sanity check","idiom","a quick check that something makes sense","I always do a sanity check before sharing results."),
+   W("duplicate entries","noun phrase","repeated records in a dataset","I removed all duplicate entries first.")]},
+ {d:19, topic:"Explain a Business Metric", words:[
+   W("churn","noun","the rate customers stop using a service","Our churn rate dropped this quarter."),
+   W("conversion rate","noun phrase","percentage of people completing an action","Our conversion rate improved by 5%."),
+   W("retention","noun","the rate customers continue to stay","Retention improved after the new feature."),
+   W("a leading indicator","noun phrase","a metric that predicts future results","This is a leading indicator of churn."),
+   W("to correlate with","verb","to have a relationship with something else","Engagement correlates with retention.")]},
+ {d:20, topic:"Estimate: How Many Coffee Shops in Bangkok?", words:[
+   W("a ballpark figure","idiom","an approximate number","My ballpark figure is around 5,000."),
+   W("to break it down","phrasal verb","to divide into smaller, simpler parts","Let me break it down by district."),
+   W("assumptions","noun","things taken to be true without proof","I'll state my assumptions clearly first."),
+   W("roughly","adverb","approximately","Roughly one shop per few thousand people."),
+   W("a reasonable estimate","noun phrase","a sensible approximate answer","That gives us a reasonable estimate.")]},
+ {d:21, topic:"Review — Two Case Questions Cold", review:true, note:"No new words. Answer two unseen case questions using 5 words from Days 15–20."},
+ {d:22, topic:"Mock Interview #1 With Claude", review:true, note:"No new words. Full 20-minute mock interview — reuse your strongest vocabulary from this month."},
+ {d:23, topic:"Review Feedback & Redo Weak Answers", review:true, note:"No new words. Rework your weakest answers from Day 22 using better vocabulary from this month."},
+ {d:24, topic:"Mock Interview #2 — Different Role", review:true, note:"No new words. Try a different company and role level, reusing strong phrases from the month."},
+ {d:25, topic:"Phone-Screen Practice", words:[
+   W("over the phone","phrase","using a telephone call, not video","This part of the process is over the phone."),
+   W("could you repeat that","phrase","politely asking someone to say it again","Sorry, could you repeat that?"),
+   W("to enunciate","verb","to pronounce clearly","I try to enunciate clearly on calls."),
+   W("a brief pause","noun phrase","a short moment of silence","I take a brief pause before answering."),
+   W("audible","adjective","able to be heard clearly","Make sure you sound audible and confident.")]},
+ {d:26, topic:"Curveball Day", words:[
+   W("an unexpected question","noun phrase","a question you didn't prepare for","That was an unexpected question."),
+   W("to stay composed","idiom","to remain calm","I stayed composed despite the tricky question."),
+   W("to buy time","idiom","to gain a moment to think","I bought some time by asking a clarifying question."),
+   W("to think out loud","idiom","to say your thoughts as you form them","I thought out loud to work through it."),
+   W("graceful under pressure","idiom","calm and composed in a stressful moment","I try to stay graceful under pressure.")]},
+ {d:27, topic:"Mock Interview #3 — Full Length", review:true, note:"No new words. Full recorded mock interview using your best November vocabulary."},
+ {d:28, topic:"Monthly Checkpoint (1/3)", review:true, note:"No new words. Recap your strongest STAR story using this month's vocabulary."},
+ {d:29, topic:"Monthly Checkpoint (2/3)", review:true, note:"No new words. Speak for 3 minutes: which interview question still feels hardest, and why?"},
+ {d:30, topic:"Monthly Checkpoint (3/3)", review:true, note:"No new words. Full November recap — your 10 favorite interview phrases from the month."}
+]},
+
+dec: { label: "December", theme: "Performance & Proof", days: [
+ {d:1, topic:"A Full English Conversation With a Real Person", review:true, note:"No new words. Reuse your strongest conversational vocabulary from October in a real conversation today."},
+ {d:2, topic:"Call or Chat With an English-Speaking Service", words:[
+   W("to place an order","idiom","to make a purchase or request","I'd like to place an order, please."),
+   W("could you repeat that","phrase","politely asking someone to say it again","Could you repeat that, please?"),
+   W("for confirmation purposes","phrase","in order to verify something","Just for confirmation purposes, can I get your name?"),
+   W("a reference number","noun phrase","a code identifying your request","Do I need a reference number for this?"),
+   W("much appreciated","phrase","a polite way to say thank you","Much appreciated, thank you for your help.")]},
+ {d:3, topic:"Record a 3-Minute LinkedIn Introduction", words:[
+   W("a personal brand","noun phrase","how you present yourself professionally","I'm building my personal brand online."),
+   W("to showcase","verb","to display something in the best way","I want to showcase my analytical skills."),
+   W("authentic","adjective","genuine, real","I want to sound authentic, not scripted."),
+   W("a call to action","idiom","a request for the viewer to do something","I'll end with a clear call to action."),
+   W("concise","adjective","short and clear","I want my video to be concise.")]},
+ {d:4, topic:"Explain Your Job Search Plan", words:[
+   W("a target list","noun phrase","a list of specific goals, like companies","I have a target list of ten companies."),
+   W("networking","noun","building professional relationships","Networking has opened a few doors already."),
+   W("to cast a wide net","idiom","to apply broadly across many options","I'm casting a wide net across industries."),
+   W("a tailored application","noun phrase","an application customized for a specific role","Every application I send is tailored."),
+   W("momentum","noun","forward progress that builds on itself","I want to keep the momentum going.")]},
+ {d:5, topic:"Comment on LinkedIn Posts", words:[
+   W("to weigh in","idiom","to give your opinion on a topic","I wanted to weigh in on this post."),
+   W("insightful","adjective","showing clear understanding","That was a really insightful post."),
+   W("to add value to the discussion","idiom","to contribute something useful","I try to add value to the discussion."),
+   W("thought-provoking","adjective","causing careful thought","That's a thought-provoking point."),
+   W("well put","idiom","expressed clearly and effectively","Well put — I agree completely.")]},
+ {d:6, topic:"Teach Someone Something in English", review:true, note:"No new words. Reuse teaching vocabulary from August Day 26 to teach a real skill today."},
+ {d:7, topic:"Review — What Felt Easy This Week?", review:true, note:"No new words. Reflect for 3 minutes on which December topics felt easier than expected."},
+ {d:8, topic:"Prepare a 10-Minute Presentation", words:[
+   W("a narrative arc","noun phrase","the overall structure of a story or talk","My presentation needs a clear narrative arc."),
+   W("a hook","noun","something that grabs attention at the start","I need a strong hook to open with."),
+   W("structure","noun","the organized framework of a talk","Good structure keeps the audience following along."),
+   W("to rehearse","verb","to practice before the real performance","I'll rehearse this a few times."),
+   W("timing","noun","the pacing and length of a talk","I need to watch my timing carefully.")]},
+ {d:9, topic:"Rehearse Your Opening", words:[
+   W("to grab attention","idiom","to immediately interest the audience","My opening line needs to grab attention."),
+   W("an icebreaker","noun","something used to start a talk warmly","I'll start with a quick icebreaker."),
+   W("confidently","adverb","in a self-assured manner","I want to open confidently."),
+   W("to set expectations","idiom","to tell the audience what's coming","I'll set expectations early in the talk."),
+   W("a strong start","noun phrase","an effective, confident beginning","A strong start builds trust with the audience.")]},
+ {d:10, topic:"Rehearse the Middle: Three Findings", words:[
+   W("supporting evidence","noun phrase","proof backing up a claim","Each finding needs supporting evidence."),
+   W("to transition smoothly","idiom","to move between points naturally","I want to transition smoothly between findings."),
+   W("a logical flow","noun phrase","an order that makes clear sense","The presentation needs a logical flow."),
+   W("to reinforce","verb","to strengthen a point already made","I'll reinforce this point with a chart."),
+   W("credible","adjective","believable, trustworthy","My data needs to look credible.")]},
+ {d:11, topic:"Rehearse the Ending: Recommendation", words:[
+   W("to drive home a point","idiom","to make sure a point is fully understood","I'll drive home this point at the end."),
+   W("a memorable closing","noun phrase","an ending the audience will remember","I want a memorable closing line."),
+   W("to leave a lasting impression","idiom","to be remembered well after the talk","I want to leave a lasting impression."),
+   W("a clear call to action","idiom","a specific request for what happens next","I'll end with a clear call to action."),
+   W("to wrap up","phrasal verb","to bring a talk to a close","Let me wrap up with a summary.")]},
+ {d:12, topic:"Deliver It Fully, Recorded", words:[
+   W("stage presence","noun phrase","confidence and command while presenting","I'm working on my stage presence."),
+   W("eye contact","noun phrase","looking directly at your audience","I try to keep steady eye contact."),
+   W("vocal variety","noun phrase","changing tone and pace while speaking","Vocal variety keeps the audience engaged."),
+   W("poised","adjective","calm and confident","I want to appear poised, not nervous."),
+   W("polished","adjective","refined, well-prepared","This version feels much more polished.")]},
+ {d:13, topic:"Watch Back & Deliver Again", words:[
+   W("self-critique","noun","evaluating your own performance","A little self-critique helps me improve."),
+   W("filler words","noun phrase","words like 'um' and 'like' used unnecessarily","I noticed a lot of filler words."),
+   W("to refine","verb","to improve something in small ways","I'll refine my delivery based on this."),
+   W("noticeable improvement","noun phrase","a visible, clear improvement","There's a noticeable improvement already."),
+   W("constructive self-feedback","noun phrase","helpful criticism you give yourself","I try to give myself constructive self-feedback.")]},
+ {d:14, topic:"Review — 90-Second Summary", review:true, note:"No new words. Deliver just the summary of your presentation in 90 seconds, using this week's vocabulary."},
+ {d:15, topic:"Apply for a Real Job Posting", words:[
+   W("a job description","noun phrase","the official summary of a role's duties","I read the job description carefully."),
+   W("to tailor","verb","to customize for a specific purpose","I tailor my resume to each posting."),
+   W("key requirements","noun phrase","the essential qualifications needed","I match most of the key requirements."),
+   W("a strong match","noun phrase","a good fit between candidate and role","I think I'm a strong match for this."),
+   W("to stand out from other candidates","idiom","to be more noticeable than competitors","I want to stand out from other candidates.")]},
+ {d:16, topic:"Mock Interview for That Exact Role", review:true, note:"No new words. Full mock interview tailored to your Day 15 job posting, using vocabulary from all of November."},
+ {d:17, topic:"Follow-Up: Thank-You & Salary", words:[
+   W("a follow-up email","noun phrase","a message sent after an interview or meeting","I'll send a follow-up email today."),
+   W("to express gratitude","idiom","to formally say thank you","I want to express gratitude for their time."),
+   W("to reiterate interest","idiom","to say again that you're interested","I'll reiterate my interest in the role."),
+   W("an offer","noun","a formal job proposal","I received an offer this morning."),
+   W("to finalize terms","idiom","to agree on the final details","We're finalizing terms this week.")]},
+ {d:18, topic:"Rapid-Fire: 10 Interview Questions", review:true, note:"No new words. Answer 10 questions in 60 seconds each, drawing from the whole year's vocabulary."},
+ {d:19, topic:"Hardest Questions Revisited", review:true, note:"No new words. Go back to the questions that scared you most in July, and answer them now."},
+ {d:20, topic:"Full Final Mock Interview", review:true, note:"No new words. 30-minute full mock interview, recorded, using your best vocabulary from the year."},
+ {d:21, topic:"Review — Compare With November Mock", review:true, note:"No new words. Compare this recording with your November 22 mock. What's different?"},
+ {d:22, topic:"Re-Record Your July Day 1 Introduction", review:true, note:"No new words. Reuse July Day 1 vocabulary, but notice how much more naturally it comes out now."},
+ {d:23, topic:"Listen: July vs December", words:[
+   W("noticeable growth","noun phrase","clear, visible improvement over time","There's noticeable growth in my fluency."),
+   W("fluency","noun","the ability to speak smoothly and naturally","My fluency has really improved."),
+   W("hesitation","noun","pausing or uncertainty while speaking","There's much less hesitation now."),
+   W("natural-sounding","adjective","sounding like a fluent, native-like speaker","My answers sound more natural-sounding."),
+   W("confidence","noun","self-assurance while speaking","My confidence has grown a lot.")]},
+ {d:24, topic:"How My English Changed This Year", words:[
+   W("a journey","idiom","a long process of change or growth","This has been quite a journey."),
+   W("to come a long way","idiom","to have improved a great deal","I've come a long way since July."),
+   W("consistent effort","noun phrase","steady, ongoing work over time","Consistent effort made the difference."),
+   W("to pay off","phrasal verb","to give good results eventually","All that practice paid off."),
+   W("proud of the progress","phrase","satisfied with the improvement made","I'm proud of the progress I've made.")]},
+ {d:25, topic:"Holiday Small Talk", words:[
+   W("season's greetings","phrase","a holiday greeting","Season's greetings to you and your family!"),
+   W("how are you spending the holidays","phrase","asking about holiday plans","How are you spending the holidays this year?"),
+   W("quality time","noun phrase","meaningful time spent with others","I'm spending quality time with family."),
+   W("festive","adjective","related to celebration and holiday spirit","The city feels really festive right now."),
+   W("wishing you all the best","phrase","a warm, polite closing wish","Wishing you all the best for the new year.")]},
+ {d:26, topic:"Speak Your 2027 Goals Out Loud", words:[
+   W("a fresh start","idiom","a new beginning","The new year feels like a fresh start."),
+   W("to set intentions","idiom","to decide on a clear purpose or goal","I'm setting intentions for next year."),
+   W("ambitious","adjective","having strong, high goals","My goals for next year are pretty ambitious."),
+   W("a game plan","noun phrase","a strategy for achieving something","I have a game plan for 2027."),
+   W("to build on this year's progress","idiom","to continue growing from what you achieved","I want to build on this year's progress.")]},
+ {d:27, topic:"Plan Your Maintenance Routine", words:[
+   W("to maintain momentum","idiom","to keep up the pace of progress","I want to maintain momentum into next year."),
+   W("a sustainable habit","noun phrase","a routine you can keep up long-term","Daily practice needs to be a sustainable habit."),
+   W("to stay sharp","idiom","to keep skills strong through practice","I'll keep practicing to stay sharp."),
+   W("consistency","noun","doing something the same way, regularly","Consistency mattered more than intensity this year."),
+   W("a long-term commitment","noun phrase","dedication over an extended period","English is a long-term commitment for me.")]},
+ {d:28, topic:"Final Milestone (1/4)", review:true, note:"No new words. Full job interview simulation — part 1: introduction and background."},
+ {d:29, topic:"Final Milestone (2/4)", review:true, note:"No new words. Full job interview simulation — part 2: behavioral and case questions."},
+ {d:30, topic:"Final Milestone (3/4)", review:true, note:"No new words. Full job interview simulation — part 3: salary discussion and your questions."},
+ {d:31, topic:"Final Milestone (4/4) — Year in Review", review:true, note:"No new words. Speak for 5 minutes, unscripted: your English journey from July 4 to December 31, 2026."}
+]}
+};
+
+const MONTH_KEYS = ["jul","aug","sep","oct","nov","dec"];
+const STORAGE_KEY = "englishVocabProgress2026";
+
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch (e) { return {}; }
+}
+function saveProgress(progress) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+}
+let progress = loadProgress();
+
+function totalDayCount() {
+  return MONTH_KEYS.reduce((sum,k) => sum + DATA[k].days.length, 0);
+}
+function doneDayCount() {
+  return Object.values(progress).filter(Boolean).length;
+}
+function updateProgressBar() {
+  const total = totalDayCount();
+  const done = doneDayCount();
+  const pct = total ? Math.round((done/total)*100) : 0;
+  document.getElementById("progress-label").textContent = `${done} / ${total} days done`;
+  document.getElementById("progress-fill").style.width = pct + "%";
+  MONTH_KEYS.forEach(k => {
+    const doneInMonth = DATA[k].days.filter(day => progress[key(k,day.d)]).length;
+    const el = document.querySelector(`.tab-count[data-m="${k}"]`);
+    if (el) el.textContent = `${doneInMonth}/${DATA[k].days.length}`;
+  });
+}
+function key(k, d) { return k + "-" + d; }
+
+function render() {
+  const tabsEl = document.getElementById("tabs");
+  const panelsEl = document.getElementById("panels");
+  tabsEl.innerHTML = MONTH_KEYS.map((k,i) =>
+    `<button class="tab ${k} ${i===0?'active':''}" data-m="${k}">${DATA[k].label}<span class="tab-count" data-m="${k}"></span></button>`
+  ).join("");
+
+  panelsEl.innerHTML = MONTH_KEYS.map((k,i) => {
+    const m = DATA[k];
+    const days = m.days.map(day => {
+      const badge = day.review ? "R" : "D"+day.d;
+      const dayKey = key(k, day.d);
+      const isDone = !!progress[dayKey];
+      const checkbox = `<input type="checkbox" class="day-check" data-key="${dayKey}" ${isDone?'checked':''} onclick="event.stopPropagation(); toggleDone('${dayKey}', this.parentElement.parentElement, this.checked)">`;
+      if (day.review) {
+        return `<div class="day-card ${k} ${isDone?'done':''}" data-key="${dayKey}">
+          <div class="day-head" onclick="this.parentElement.classList.toggle('open')">
+            ${checkbox}
+            <div class="day-badge">${badge}</div>
+            <div style="flex:1">
+              <div class="day-title">Day ${day.d} — ${day.topic}</div>
+              <div class="day-sub">Review day</div>
+            </div>
+            <div class="chevron">▾</div>
+          </div>
+          <div class="day-body">
+            <div class="review-body"><span class="tag">Review Day</span><div>${day.note}</div></div>
+          </div>
+        </div>`;
+      }
+      const words = day.words.map((w,idx) => `
+        <div class="word-row">
+          <div class="w-num">${idx+1}</div>
+          <div>
+            <span class="w-word">${w.word}</span><span class="w-pos">${w.pos}</span>
+            <div class="w-meaning">${w.meaning}</div>
+            <div class="w-example">"${w.example}"</div>
+          </div>
+        </div>`).join("");
+      return `<div class="day-card ${k} ${isDone?'done':''}" data-key="${dayKey}">
+        <div class="day-head" onclick="this.parentElement.classList.toggle('open')">
+          ${checkbox}
+          <div class="day-badge">${badge}</div>
+          <div style="flex:1">
+            <div class="day-title">Day ${day.d} — ${day.topic}</div>
+            <div class="day-sub">5 words &amp; idioms</div>
+          </div>
+          <div class="chevron">▾</div>
+        </div>
+        <div class="day-body">${words}</div>
+      </div>`;
+    }).join("");
+    return `<div class="month-panel ${i===0?'visible':''}" data-panel="${k}">${days}</div>`;
+  }).join("");
+
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+      tab.classList.add("active");
+      const m = tab.dataset.m;
+      document.querySelectorAll(".month-panel").forEach(p=>{
+        p.classList.toggle("visible", p.dataset.panel === m);
+      });
+    });
+  });
+
+  document.getElementById("search").addEventListener("input", (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll(".day-card").forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = (q === "" || text.includes(q)) ? "" : "none";
+      if (q !== "" && text.includes(q)) card.classList.add("open");
+    });
+  });
+
+  updateProgressBar();
+}
+
+function toggleDone(dayKey, cardEl, isChecked) {
+  progress[dayKey] = isChecked;
+  saveProgress(progress);
+  cardEl.classList.toggle("done", isChecked);
+  updateProgressBar();
+}
+
+render();
+</script>
+</body>
+</html>

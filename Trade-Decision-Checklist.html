@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Decision Checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --buy:      #1a4bb5;
+    --sell:     #5b21b6;
+    --after:    #15803d;
+    --critical: #c1121f;
+    --page:     #eceff3;
+    --ink:      #14181f;
+    --muted:    #5b6472;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: Barlow, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 40px 24px 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    min-height: 100vh;
+  }
+
+  .wrap { width: 100%; max-width: 1000px; }
+
+  /* ---------- page header ---------- */
+  header.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .eyebrow {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  #reset {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+    background: #fff;
+    border: 1.5px solid #d3d8e0;
+    border-radius: 999px;
+    padding: 12px 22px;
+    cursor: pointer;
+  }
+  #reset:hover { background: #f3f4f6; border-color: #9aa3af; }
+
+  /* ---------- card ---------- */
+  section.card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(15,23,42,.08), 0 12px 32px rgba(15,23,42,.06);
+  }
+  .card-head {
+    color: #fff;
+    padding: 20px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 20px;
+  }
+  .card-head h2 { font-size: 26px; font-weight: 800; letter-spacing: .01em; }
+  .head-right { display: flex; align-items: center; gap: 16px; }
+  .rule { font-size: 16px; font-weight: 600; opacity: .85; }
+  .tally {
+    font-size: 17px;
+    font-weight: 800;
+    background: rgba(255,255,255,.18);
+    border-radius: 999px;
+    padding: 6px 16px;
+    min-width: 62px;
+    text-align: center;
+  }
+
+  .card.buy   .card-head, .card.buy   .num { background: var(--buy); }
+  .card.sell  .card-head, .card.sell  .num { background: var(--sell); }
+  .card.after .card-head, .card.after .num { background: var(--after); }
+
+  /* ---------- rows ---------- */
+  .row {
+    display: grid;
+    grid-template-columns: 62px 76px 1fr;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #edeff3;
+    text-align: left;
+    width: 100%;
+    background: none;
+    border-left: 0; border-right: 0; border-top: 0;
+    font: inherit;
+    color: inherit;
+  }
+  .row:last-child { border-bottom: 0; }
+  .card.buy   .row:hover { background: #f7f9fc; }
+  .card.sell  .row:hover { background: #f9f7fd; }
+  .card.after .row:hover { background: #f5faf6; }
+  .row:focus-visible { outline: 3px solid #1a4bb5; outline-offset: -3px; }
+
+  .row.critical { background: #fdf6f6; }
+  .row.critical:hover { background: #fdf1f1 !important; }
+  .row.critical .num { background: var(--critical); }
+  .row.critical .box { border-color: #c98c92; }
+
+  .num {
+    align-self: stretch;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .box-cell { display: flex; justify-content: center; }
+  .box {
+    width: 38px; height: 38px;
+    border: 2.5px solid #b8c0cc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--after);
+    line-height: 1;
+  }
+  .row[aria-checked="true"] .box { border-color: var(--after); background: #f0fdf4; }
+  .row[aria-checked="true"] .box::after { content: "\2713"; }
+
+  .body { padding: 18px 26px 18px 4px; display: flex; flex-direction: column; gap: 6px; }
+  .label { font-size: 22px; font-weight: 700; line-height: 1.25; }
+  .note  { font-size: 17px; color: var(--muted); line-height: 1.4; }
+  .row.critical .note { color: #7f1d1d; font-weight: 500; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    background: #eef2f8;
+    border-radius: 6px;
+    padding: 5px 11px;
+  }
+  .chip.danger { color: #7f1d1d; background: #fbe3e4; }
+
+  /* ---------- gate banner ---------- */
+  .gate {
+    padding: 16px 28px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    background: #fef3c7;
+    color: #78350f;
+  }
+  .gate.open { background: #dcfce7; color: #14532d; }
+
+  .footnote { font-size: 16px; color: #6b7280; line-height: 1.5; }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 640px) {
+    body { padding: 24px 12px 64px; }
+    h1 { font-size: 30px; }
+    .row { grid-template-columns: 44px 58px 1fr; }
+    .num { font-size: 20px; }
+    .box { width: 32px; height: 32px; font-size: 21px; }
+    .label { font-size: 19px; }
+    .note, .chip { font-size: 15px; }
+    .body { padding: 14px 16px 14px 2px; }
+    .card-head { padding: 16px 18px; }
+    .card-head h2 { font-size: 21px; }
+  }
+
+  /* ---------- print ---------- */
+  @media print {
+    body { background: #fff; padding: 0; gap: 16px; }
+    #reset { display: none; }
+    section.card { box-shadow: none; border: 1px solid #d3d8e0; break-inside: avoid; }
+    .row { cursor: default; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div>
+    <p class="eyebrow">Read before making a decision</p>
+    <h1>Trade Decision Checklist</h1>
+  </div>
+  <button id="reset" type="button">Reset all</button>
+</header>
+
+<!-- ============ BEFORE BUYING ============ -->
+<section class="card buy wrap" data-group="b">
+  <div class="card-head">
+    <h2>BEFORE BUYING</h2>
+    <div class="head-right">
+      <span class="rule">All 5 must be YES</span>
+      <span class="tally"><span class="count">0</span> / 5</span>
+    </div>
+  </div>
+
+  <div role="group" aria-label="Before buying checklist">
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="b1">
+      <div class="num">1</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">Market is crashing, or price is at an EMA support level</div>
+        <div class="note">No clear technical level = no valid entry. Wait.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="b2">
+      <div class="num">2</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">Portfolio has fewer than 5 stocks open</div>
+        <div class="note">Already at 5? Sell a loser first before opening anything new.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="b3">
+      <div class="num">3</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">Cash stays above 25% after this buy</div>
+        <div class="note">Each tranche = 50,000 THB max. Never oversize one entry.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="b4">
+      <div class="num">4</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">Position size is within its risk tier limit</div>
+        <div class="chips">
+          <span class="chip">Quality (PLTR / AVGO) — max 15%</span>
+          <span class="chip">Medium (RKLB) — max 8%</span>
+          <span class="chip">Speculative (ONDS) — max 3%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row critical" role="checkbox" tabindex="0" aria-checked="false" data-k="b5">
+      <div class="num">5</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">Stop-loss price is written down right now</div>
+        <div class="chips">
+          <span class="chip danger">Review at −15%</span>
+          <span class="chip danger">Cut at least half at −20%</span>
+          <span class="chip danger">Never move the stop lower</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" data-ok="All 5 confirmed — the buy is allowed." data-wait="still unchecked — do not buy yet."></div>
+</section>
+
+<!-- ============ BEFORE SELLING ============ -->
+<section class="card sell wrap" data-group="s">
+  <div class="card-head">
+    <h2>BEFORE SELLING</h2>
+    <div class="head-right">
+      <span class="rule">All 5 must be YES</span>
+      <span class="tally"><span class="count">0</span> / 5</span>
+    </div>
+  </div>
+
+  <div role="group" aria-label="Before selling checklist">
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="s1">
+      <div class="num">1</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">Price is at a resistance or target level</div>
+        <div class="note">Selling early cuts winners short. Wait for a real technical reason.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="s2">
+      <div class="num">2</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">I am NOT selling out of fear or impatience</div>
+        <div class="note">Ask: is the thesis broken — or am I just uncomfortable? If uncomfortable, hold.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="s3">
+      <div class="num">3</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">This stock has no remaining upside potential</div>
+        <div class="note">Check catalysts, earnings, news. If it can still run — do NOT sell.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="s4">
+      <div class="num">4</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">The overall market is NOT in a broad bullish trend</div>
+        <div class="note">In a bull run, selling into market strength = leaving money on the table.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="s5">
+      <div class="num">5</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">I have asked AI before making the final decision</div>
+        <div class="note">Talk through the trade. If AI confirms the exit, then sell. Never decide alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" data-ok="All 5 confirmed — the sell is allowed." data-wait="still unchecked — do not sell yet."></div>
+</section>
+
+<!-- ============ AFTER BUYING ============ -->
+<section class="card after wrap" data-group="a">
+  <div class="card-head">
+    <h2>AFTER BUYING</h2>
+    <div class="head-right">
+      <span class="rule">Review these every day</span>
+      <span class="tally"><span class="count">0</span> / 5</span>
+    </div>
+  </div>
+
+  <div role="group" aria-label="After buying checklist">
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="a1">
+      <div class="num">1</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">Stop-loss is set and has NOT been moved lower</div>
+        <div class="note">Moving the stop down = breaking the rule. Don't do it.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="a2">
+      <div class="num">2</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">If down −15%, I have reviewed the thesis</div>
+        <div class="note">Still valid? Hold. Thesis broken? Cut at least half now.</div>
+      </div>
+    </div>
+
+    <div class="row critical" role="checkbox" tabindex="0" aria-checked="false" data-k="a3">
+      <div class="num">3</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">If down −20%, I have cut at least half</div>
+        <div class="note">A −50% loss needs a +100% gain to break even. Cut early, preserve capital.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="a4">
+      <div class="num">4</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">If at a peak, I have taken partial profits</div>
+        <div class="note">Sell half first, then restore up. Ask AI before deciding on the rest.</div>
+      </div>
+    </div>
+
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="a5">
+      <div class="num">5</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">I did NOT sell just because the price rose a little</div>
+        <div class="note">Fear-based selling cuts winners short. Let quality run.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p class="wrap footnote">One unchecked box means no trade. Tap a row (or press Space / Enter) to check it; the page remembers your state.</p>
+
+<script>
+(function () {
+  'use strict';
+
+  var STORE = 'trade-checklist-v1';
+  var rows  = Array.prototype.slice.call(document.querySelectorAll('.row'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(STORE)) || {}; }
+    catch (e) { return {}; }
+  }
+  function save(state) {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {}
+  }
+
+  var checked = load();
+
+  function render() {
+    rows.forEach(function (row) {
+      row.setAttribute('aria-checked', checked[row.dataset.k] ? 'true' : 'false');
+    });
+
+    cards.forEach(function (card) {
+      var groupRows = card.querySelectorAll('.row');
+      var n = 0;
+      Array.prototype.forEach.call(groupRows, function (r) {
+        if (checked[r.dataset.k]) n++;
+      });
+
+      card.querySelector('.count').textContent = n;
+
+      var gate = card.querySelector('.gate');
+      if (!gate) return;
+      if (n === 5) {
+        gate.textContent = gate.dataset.ok;
+        gate.classList.add('open');
+      } else {
+        gate.textContent = (5 - n) + ' ' + gate.dataset.wait;
+        gate.classList.remove('open');
+      }
+    });
+  }
+
+  function toggle(row) {
+    var k = row.dataset.k;
+    checked[k] = !checked[k];
+    save(checked);
+    render();
+  }
+
+  rows.forEach(function (row) {
+    row.addEventListener('click', function () { toggle(row); });
+    row.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        toggle(row);
+      }
+    });
+  });
+
+  document.getElementById('reset').addEventListener('click', function () {
+    checked = {};
+    save(checked);
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

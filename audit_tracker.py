@@ -48,7 +48,7 @@ if xl.name not in html_check:
     subprocess.run([sys.executable, Path(__file__).parent / "rebuild_tracker.py"], check=True)
 log(f"Source file : {xl.name}")
 
-wb = openpyxl.load_workbook(xl, data_only=True)
+wb = openpyxl.load_workbook(xl, data_only=True, read_only=True)
 ws = wb["Sales Orders"]
 
 nick_map = {}

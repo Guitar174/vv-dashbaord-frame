@@ -219,8 +219,8 @@
   <div class="card-head">
     <h2>BEFORE BUYING</h2>
     <div class="head-right">
-      <span class="rule">All 5 must be YES</span>
-      <span class="tally"><span class="count">0</span> / 5</span>
+      <span class="rule">All 6 must be YES</span>
+      <span class="tally"><span class="count">0</span> / <span class="total">5</span></span>
     </div>
   </div>
 
@@ -265,8 +265,17 @@
       </div>
     </div>
 
-    <div class="row critical" role="checkbox" tabindex="0" aria-checked="false" data-k="b5">
+    <div class="row" role="checkbox" tabindex="0" aria-checked="false" data-k="b6">
       <div class="num">5</div>
+      <div class="box-cell"><div class="box"></div></div>
+      <div class="body">
+        <div class="label">This stock is NOT in the same category as one I already hold</div>
+        <div class="note">Two names in the same theme = one bet, not two. Same category? Add to the existing position instead, or skip.</div>
+      </div>
+    </div>
+
+    <div class="row critical" role="checkbox" tabindex="0" aria-checked="false" data-k="b5">
+      <div class="num">6</div>
       <div class="box-cell"><div class="box"></div></div>
       <div class="body">
         <div class="label">Stop-loss price is written down right now</div>
@@ -279,7 +288,7 @@
     </div>
   </div>
 
-  <div class="gate" data-ok="All 5 confirmed — the buy is allowed." data-wait="still unchecked — do not buy yet."></div>
+  <div class="gate" data-ok="All 6 confirmed — the buy is allowed." data-wait="still unchecked — do not buy yet."></div>
 </section>
 
 <!-- ============ BEFORE SELLING ============ -->
@@ -288,7 +297,7 @@
     <h2>BEFORE SELLING</h2>
     <div class="head-right">
       <span class="rule">All 5 must be YES</span>
-      <span class="tally"><span class="count">0</span> / 5</span>
+      <span class="tally"><span class="count">0</span> / <span class="total">5</span></span>
     </div>
   </div>
 
@@ -348,7 +357,7 @@
     <h2>AFTER BUYING</h2>
     <div class="head-right">
       <span class="rule">Review these every day</span>
-      <span class="tally"><span class="count">0</span> / 5</span>
+      <span class="tally"><span class="count">0</span> / <span class="total">5</span></span>
     </div>
   </div>
 
@@ -427,20 +436,22 @@
 
     cards.forEach(function (card) {
       var groupRows = card.querySelectorAll('.row');
+      var total = groupRows.length;
       var n = 0;
       Array.prototype.forEach.call(groupRows, function (r) {
         if (checked[r.dataset.k]) n++;
       });
 
       card.querySelector('.count').textContent = n;
+      card.querySelector('.total').textContent = total;
 
       var gate = card.querySelector('.gate');
       if (!gate) return;
-      if (n === 5) {
+      if (n === total) {
         gate.textContent = gate.dataset.ok;
         gate.classList.add('open');
       } else {
-        gate.textContent = (5 - n) + ' ' + gate.dataset.wait;
+        gate.textContent = (total - n) + ' ' + gate.dataset.wait;
         gate.classList.remove('open');
       }
     });

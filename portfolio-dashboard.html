@@ -272,7 +272,7 @@
 </div>
 
 <script>
-const KEY='dime-portfolio-v3';
+const KEY='dime-portfolio-v4';
 const fmt=(n,d=0)=>n==null||isNaN(n)?'—':Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const signCls=n=>n>0?'up':n<0?'down':'muted';
 const arrow=n=>n>0?'▲':n<0?'▼':'';
@@ -281,8 +281,9 @@ const pct=(n,d=2)=>n==null||isNaN(n)?'—':(n>0?'+':'')+fmt(n,d)+'%';
 // ---- seed from screenshots (25 Jul 2026) ----
 function seed(){
   const rate=33.620;
-  // exact figures transcribed from the Dime! app (25 Jul 2026) — thb/plUsd/w stored, not derived
-  const holdings=[
+  // exact figures transcribed from the Dime! app — thb/plUsd/w stored, not derived
+  // --- 25 Jul 2026 ---
+  const h0725=[
     {t:'PLTR',usd:2581.32,pl:-13.88,thb:86732.35,plUsd:-415.88,w:29.53},
     {t:'ASTS',usd:1461.20,pl:-27.97,thb:49096.32,plUsd:-567.30,w:16.72},
     {t:'IAUI',usd:1358.00,pl:-14.91,thb:45628.80,plUsd:-238.00,w:15.54},
@@ -290,9 +291,25 @@ function seed(){
     {t:'AAOI',usd:1201.80,pl:-32.92,thb:40380.48,plUsd:-589.70,w:13.75},
     {t:'NVTS',usd:862.68,pl:-13.33,thb:28986.05,plUsd:-132.72,w:9.86},
   ];
-  return [{date:'2026-07-25',rate,day:-3.16,cash:262549.10,mf:0,
-    gold:951.79,goldpl:-25.09,goldThb:31999.18,goldPlUsd:-318.84,
-    stkThb:293884.52,holdings}];
+  // --- 4 Aug 2026 (sold GOOG; added QQQI, META, DOCN) ---
+  const h0804=[
+    {t:'QQQI',usd:2422.80,pl:2.36,thb:80558.10,plUsd:55.80,w:21.29},
+    {t:'ASTS',usd:1651.52,pl:-18.58,thb:54913.04,plUsd:-376.98,w:14.51},
+    {t:'PLTR',usd:1382.15,pl:-11.96,thb:45956.49,plUsd:-187.81,w:12.15},
+    {t:'IAUI',usd:1364.72,pl:-14.49,thb:45376.94,plUsd:-231.28,w:11.99},
+    {t:'AAOI',usd:1322.52,pl:-26.18,thb:43973.79,plUsd:-468.98,w:11.62},
+    {t:'META',usd:1180.48,pl:7.32,thb:39250.96,plUsd:80.48,w:10.37},
+    {t:'DOCN',usd:1144.53,pl:11.55,thb:38055.62,plUsd:118.53,w:10.06},
+    {t:'NVTS',usd:910.08,pl:-8.57,thb:30260.16,plUsd:-85.32,w:7.99},
+  ];
+  return [
+    {date:'2026-07-25',rate,day:-3.16,cash:262549.10,mf:0,
+      gold:951.79,goldpl:-25.09,goldThb:31999.18,goldPlUsd:-318.84,
+      stkThb:293884.52,holdings:h0725},
+    {date:'2026-08-04',rate:33.305,day:4.98,cash:204805.68,mf:0,
+      gold:954.04,goldpl:-24.92,goldThb:31769.53,goldPlUsd:-316.60,
+      stkThb:378914.04,holdings:h0804},
+  ];
 }
 function load(){
   try{const d=JSON.parse(localStorage.getItem(KEY));if(d&&d.length)return d;}catch(e){}
@@ -616,14 +633,15 @@ const WATCH=[
 // ticker -> theme map, with aliases for tickers held under a slightly different symbol
 const THEME_MAP={};
 WATCH.forEach(s=>s.items.forEach(([t])=>THEME_MAP[t]=s.name));
-const THEME_ALIAS={GOOG:'GOOGL'};      // I hold GOOG; watchlist lists GOOGL
-const THEME_EXTRA={IAUI:'Gold ETF'};   // gold sleeve, not a growth theme
+const THEME_ALIAS={GOOG:'GOOGL'};      // watchlist lists GOOGL
+const THEME_EXTRA={IAUI:'Gold ETF', QQQI:'Income ETF', META:'Big Tech', DOCN:'Cloud Infra'}; // not in the growth-theme watchlist
 function themeOf(t){t=t.toUpperCase();return THEME_EXTRA[t]||THEME_MAP[t]||THEME_MAP[THEME_ALIAS[t]]||'—';}
 // one distinct hue per theme (spread around the wheel), tuned live for light/dark
 const THEME_HUE={
   'Space':210,'Quantum':265,'Drones':18,'Nuclear':150,'Photonics':190,
   'CPU Bottleneck':0,'Physical AI':322,'AI Utilities':42,'AI Power':132,
-  'AI Hardware':286,'AI Applications':235,'AI Connectivity':172,'Gold ETF':40
+  'AI Hardware':286,'AI Applications':235,'AI Connectivity':172,'Gold ETF':40,
+  'Income ETF':75,'Big Tech':300,'Cloud Infra':255
 };
 function isDarkMode(){
   const t=document.documentElement.getAttribute('data-theme');

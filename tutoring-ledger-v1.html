@@ -159,6 +159,7 @@ input.time-input{width:6.4rem;}
 .add-row{
   display:flex;
   justify-content:center;
+  gap:0.6rem;
   padding:0.8rem 0 0.2rem;
 }
 .add-btn{
@@ -172,6 +173,12 @@ input.time-input{width:6.4rem;}
   cursor:pointer;
 }
 .add-btn:hover{background:var(--gold);color:#fff;}
+.save-note{
+  text-align:center;
+  font-size:0.72rem;
+  color:var(--ink-soft);
+  margin:0.4rem 0 0;
+}
 .weekly-total{
   display:flex;
   justify-content:space-between;
@@ -271,7 +278,11 @@ footer{
         <tbody id="schedule-body"></tbody>
       </table>
     </div>
-    <div class="add-row"><button class="add-btn" id="add-btn" type="button">+ Add student / session</button></div>
+    <div class="add-row">
+      <button class="add-btn" id="add-btn" type="button">+ Add student / session</button>
+      <button class="add-btn" id="reset-btn" type="button">↺ Reset to original</button>
+    </div>
+    <p class="save-note">Changes save automatically to this browser — they won't appear on other devices.</p>
     <div class="weekly-total">
       <span class="label">Total per week</span>
       <span class="amount" id="weekly-total-amount">฿0</span>
@@ -291,7 +302,7 @@ footer{
 </div>
 
 <script>
-const schedule = [
+const DEFAULT_SCHEDULE = [
   {day:"Monday",    time:"18.00–19.00", name:"Kop",     subject:"Eng",      hr:1,   rate:250},
   {day:"Monday",    time:"20.05–21.05", name:"Tonchok", subject:"Sat Math", hr:1,   rate:325},
   {day:"Tuesday",   time:"18.00–20.00", name:"Ganta",   subject:"Math",     hr:2,   rate:350},
@@ -306,6 +317,22 @@ const schedule = [
   {day:"Sunday",    time:"9.00–11.00",  name:"Tien",    subject:"Math",     hr:2,   rate:325},
   {day:"Sunday",    time:"14.00–16.00", name:"Claire",  subject:"Math",     hr:2,   rate:375},
 ];
+
+const STORAGE_KEY = "tutoring-schedule-v1";
+
+function loadSchedule(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e){}
+  return DEFAULT_SCHEDULE.map(r => ({...r}));
+}
+
+function saveSchedule(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(schedule)); } catch(e){}
+}
+
+let schedule = loadSchedule();
 
 const fmt = n => "฿" + n.toLocaleString("en-US", {maximumFractionDigits:2, minimumFractionDigits: (n % 1 !== 0 ? 2 : 0)});
 const DAY_ORDER = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -368,6 +395,12 @@ document.getElementById("add-btn").addEventListener("click", () => {
   recalc(true);
 });
 
+document.getElementById("reset-btn").addEventListener("click", () => {
+  if (!confirm("Reset to the original schedule? This discards your saved edits on this device.")) return;
+  schedule = DEFAULT_SCHEDULE.map(r => ({...r}));
+  recalc(true);
+});
+
 const weekdayIndex = {Sunday:0, Monday:1, Tuesday:2, Wednesday:3, Thursday:4, Friday:5, Saturday:6};
 
 function countWeekdayInMonth(year, monthIndex0, targetDow){
@@ -390,6 +423,7 @@ const monthsList = [
 
 function recalc(rerender){
   if (rerender) renderRows();
+  saveSchedule();
 
   let weeklyTotal = 0;
   schedule.forEach((row, i) => {

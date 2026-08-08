@@ -1,0 +1,438 @@
+<title>Tutoring Ledger — Aug–Dec '26</title>
+<style>
+:root{
+  --paper:#f6f4ef;
+  --paper-raised:#ffffff;
+  --ink:#22221f;
+  --ink-soft:#5c584f;
+  --rule:#dcd6c8;
+  --gold:#a9762f;
+  --gold-deep:#7d5720;
+  --teal:#3c6e63;
+  --shadow:0 1px 2px rgba(34,34,31,0.06);
+}
+:root[data-theme="dark"]{
+  --paper:#1b1a16;
+  --paper-raised:#242320;
+  --ink:#ece7db;
+  --ink-soft:#a89f8d;
+  --rule:#3a372e;
+  --gold:#d9a44f;
+  --gold-deep:#f0c179;
+  --teal:#7fb3a3;
+  --shadow:0 1px 3px rgba(0,0,0,0.4);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1b1a16;
+    --paper-raised:#242320;
+    --ink:#ece7db;
+    --ink-soft:#a89f8d;
+    --rule:#3a372e;
+    --gold:#d9a44f;
+    --gold-deep:#f0c179;
+    --teal:#7fb3a3;
+    --shadow:0 1px 3px rgba(0,0,0,0.4);
+  }
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  margin:0;
+  padding:2.5rem 1.5rem 5rem;
+}
+.wrap{max-width:920px;margin:0 auto;}
+
+header{margin-bottom:2.25rem;}
+.eyebrow{
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin:0 0 0.5rem;
+}
+h1{
+  font-size:clamp(1.7rem,4vw,2.3rem);
+  margin:0 0 0.4rem;
+  font-weight:400;
+  letter-spacing:0.01em;
+  text-wrap:balance;
+}
+.sub{
+  color:var(--ink-soft);
+  font-size:0.95rem;
+  max-width:52ch;
+  line-height:1.5;
+  margin:0;
+}
+
+/* ---- weekly rate table ---- */
+.card{
+  background:var(--paper-raised);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  box-shadow:var(--shadow);
+  padding:1.5rem;
+  margin-bottom:1.75rem;
+}
+.card h2{
+  font-size:1.05rem;
+  font-weight:400;
+  margin:0 0 0.2rem;
+  letter-spacing:0.01em;
+}
+.card .hint{
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:0.75rem;
+  color:var(--ink-soft);
+  margin:0 0 1rem;
+}
+.tbl-scroll{overflow-x:auto;}
+table{border-collapse:collapse;width:100%;font-size:0.88rem;}
+thead th{
+  text-align:left;
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:0.68rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  font-weight:400;
+  padding:0 0.6rem 0.5rem;
+  border-bottom:1px solid var(--rule);
+  white-space:nowrap;
+}
+tbody td{
+  padding:0.45rem 0.6rem;
+  border-bottom:1px solid var(--rule);
+  vertical-align:middle;
+  white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none;}
+.day-group td:first-child{font-weight:600;color:var(--teal);}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+input.rate,input.hr{
+  width:5.5rem;
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:0.85rem;
+  text-align:right;
+  background:transparent;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  color:var(--ink);
+  padding:0.25rem 0.4rem;
+  font-variant-numeric:tabular-nums;
+}
+input.hr{width:3.6rem;}
+input.rate:focus,input.hr:focus{
+  outline:2px solid var(--gold);
+  outline-offset:1px;
+}
+.row-total{font-variant-numeric:tabular-nums;color:var(--ink-soft);}
+select.day-select,input.name-input,input.subject-input,input.time-input{
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:0.82rem;
+  background:transparent;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  color:var(--ink);
+  padding:0.25rem 0.4rem;
+}
+select.day-select{width:6rem;}
+input.name-input,input.subject-input{width:5.4rem;}
+input.time-input{width:6.4rem;}
+.remove-btn{
+  background:transparent;
+  border:1px solid var(--rule);
+  color:var(--ink-soft);
+  border-radius:4px;
+  width:1.6rem;
+  height:1.6rem;
+  font-size:0.85rem;
+  line-height:1;
+  cursor:pointer;
+}
+.remove-btn:hover{color:#b3435a;border-color:#b3435a;}
+.add-row{
+  display:flex;
+  justify-content:center;
+  padding:0.8rem 0 0.2rem;
+}
+.add-btn{
+  background:transparent;
+  border:1px dashed var(--gold);
+  color:var(--gold-deep);
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:0.78rem;
+  border-radius:5px;
+  padding:0.5rem 1rem;
+  cursor:pointer;
+}
+.add-btn:hover{background:var(--gold);color:#fff;}
+.weekly-total{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-top:1.1rem;
+  padding-top:0.9rem;
+  border-top:1px solid var(--rule);
+}
+.weekly-total .label{font-size:0.85rem;color:var(--ink-soft);}
+.weekly-total .amount{
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:1.15rem;
+  color:var(--gold-deep);
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---- month cards ---- */
+.months{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:0.9rem;
+  margin-bottom:1.75rem;
+}
+.month{
+  background:var(--paper-raised);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  box-shadow:var(--shadow);
+  padding:1.1rem 1.1rem 1.2rem;
+}
+.month .m-name{
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:0 0 0.55rem;
+}
+.month .m-amount{
+  font-size:1.5rem;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+  margin:0 0 0.15rem;
+}
+.month .m-note{
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:0.7rem;
+  color:var(--teal);
+}
+
+.grand{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:var(--ink);
+  color:var(--paper);
+  border-radius:6px;
+  padding:1.3rem 1.5rem;
+  margin-bottom:2rem;
+}
+:root[data-theme="dark"] .grand{background:var(--gold);color:#1b1a16;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .grand{background:var(--gold);color:#1b1a16;}}
+.grand .g-label{font-size:0.9rem;opacity:0.75;}
+.grand .g-amount{
+  font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  font-size:1.9rem;
+  font-variant-numeric:tabular-nums;
+}
+
+footer{
+  color:var(--ink-soft);
+  font-size:0.78rem;
+  line-height:1.6;
+  border-top:1px solid var(--rule);
+  padding-top:1rem;
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Earnings ledger</p>
+    <h1>What this schedule pays out, month by month</h1>
+    <p class="sub">Built from your weekly recurring students. Edit any rate or hour below and every month recalculates — the count of each weekday in Aug–Dec '26 comes from the real calendar, not an average week.</p>
+  </header>
+
+  <div class="card">
+    <h2>Weekly schedule</h2>
+    <p class="hint">Rate and hours are editable — totals update live.</p>
+    <div class="tbl-scroll">
+      <table id="schedule-table">
+        <thead>
+          <tr>
+            <th>Day</th><th>Time</th><th>Student</th><th>Subject</th>
+            <th class="num">Hr</th><th class="num">Cost/hr</th><th class="num">Total</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
+    <div class="add-row"><button class="add-btn" id="add-btn" type="button">+ Add student / session</button></div>
+    <div class="weekly-total">
+      <span class="label">Total per week</span>
+      <span class="amount" id="weekly-total-amount">฿0</span>
+    </div>
+  </div>
+
+  <div class="months" id="months"></div>
+
+  <div class="grand">
+    <span class="g-label">Aug – Dec 2026 total</span>
+    <span class="g-amount" id="grand-total">฿0</span>
+  </div>
+
+  <footer>
+    Rows with no time-of-day (Thursday) are excluded. Weekday counts are pulled from the actual 2026 calendar for each month, so months with five Saturdays or five Wednesdays earn more than months with four.
+  </footer>
+</div>
+
+<script>
+const schedule = [
+  {day:"Monday",    time:"18.00–19.00", name:"Kop",     subject:"Eng",      hr:1,   rate:250},
+  {day:"Monday",    time:"20.05–21.05", name:"Tonchok", subject:"Sat Math", hr:1,   rate:325},
+  {day:"Tuesday",   time:"18.00–20.00", name:"Ganta",   subject:"Math",     hr:2,   rate:350},
+  {day:"Wednesday", time:"18.00–19.00", name:"Kop",     subject:"Eng",      hr:1,   rate:250},
+  {day:"Wednesday", time:"20.05–21.05", name:"Tonchok", subject:"Sat Math", hr:1,   rate:325},
+  {day:"Wednesday", time:"19.00–21.00", name:"Yeera",   subject:"Math",     hr:2,   rate:500},
+  {day:"Friday",    time:"20.05–21.05", name:"Tonchok", subject:"Sat Math", hr:1,   rate:325},
+  {day:"Saturday",  time:"8.00–10.00",  name:"Namo",    subject:"Math",     hr:2,   rate:250},
+  {day:"Saturday",  time:"10.00–12.00", name:"Cho",     subject:"Math",     hr:2,   rate:325},
+  {day:"Saturday",  time:"16.00–17.30", name:"Cooper",  subject:"Math",     hr:1.5, rate:275},
+  {day:"Saturday",  time:"17.30–19.00", name:"Cooper",  subject:"Eng",      hr:1.5, rate:275},
+  {day:"Saturday",  time:"21.00–22.30", name:"Vicky",   subject:"Math",     hr:1.5, rate:300},
+  {day:"Sunday",    time:"9.00–11.00",  name:"Tien",    subject:"Math",     hr:2,   rate:325},
+  {day:"Sunday",    time:"14.00–16.00", name:"Claire",  subject:"Math",     hr:2,   rate:375},
+];
+
+const fmt = n => "฿" + n.toLocaleString("en-US", {maximumFractionDigits:2, minimumFractionDigits: (n % 1 !== 0 ? 2 : 0)});
+const DAY_ORDER = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+
+const body = document.getElementById("schedule-body");
+
+function renderRows(){
+  body.innerHTML = "";
+  let lastDay = null;
+  schedule.forEach((row, i) => {
+    const tr = document.createElement("tr");
+    const showDay = row.day !== lastDay;
+    lastDay = row.day;
+    if (showDay) tr.classList.add("day-group");
+    const dayOptions = DAY_ORDER.map(d => `<option value="${d}" ${d===row.day?"selected":""}>${d}</option>`).join("");
+    tr.innerHTML = `
+      <td><select class="day-select" data-i="${i}" data-field="day">${dayOptions}</select></td>
+      <td><input class="time-input" type="text" value="${row.time}" data-i="${i}" data-field="time" placeholder="18.00-19.00"></td>
+      <td><input class="name-input" type="text" value="${row.name}" data-i="${i}" data-field="name" placeholder="Name"></td>
+      <td><input class="subject-input" type="text" value="${row.subject}" data-i="${i}" data-field="subject" placeholder="Subject"></td>
+      <td class="num"><input class="hr" type="number" step="0.5" min="0" value="${row.hr}" data-i="${i}" data-field="hr"></td>
+      <td class="num"><input class="rate" type="number" step="5" min="0" value="${row.rate}" data-i="${i}" data-field="rate"></td>
+      <td class="num row-total" id="row-total-${i}"></td>
+      <td><button class="remove-btn" type="button" data-i="${i}" title="Remove session">×</button></td>
+    `;
+    body.appendChild(tr);
+  });
+}
+renderRows();
+
+body.addEventListener("input", e => {
+  const i = e.target.dataset.i;
+  const field = e.target.dataset.field;
+  if (i === undefined) return;
+  if (field === "hr" || field === "rate"){
+    const v = parseFloat(e.target.value);
+    schedule[i][field] = isNaN(v) ? 0 : v;
+  } else {
+    schedule[i][field] = e.target.value;
+  }
+  recalc(field === "day");
+});
+
+body.addEventListener("change", e => {
+  if (e.target.classList.contains("day-select")){
+    schedule[e.target.dataset.i]["day"] = e.target.value;
+    recalc(true);
+  }
+});
+
+body.addEventListener("click", e => {
+  if (e.target.classList.contains("remove-btn")){
+    schedule.splice(parseInt(e.target.dataset.i, 10), 1);
+    recalc(true);
+  }
+});
+
+document.getElementById("add-btn").addEventListener("click", () => {
+  schedule.push({day:"Monday", time:"18.00–19.00", name:"New student", subject:"Subject", hr:1, rate:300});
+  recalc(true);
+});
+
+const weekdayIndex = {Sunday:0, Monday:1, Tuesday:2, Wednesday:3, Thursday:4, Friday:5, Saturday:6};
+
+function countWeekdayInMonth(year, monthIndex0, targetDow){
+  const d = new Date(year, monthIndex0, 1);
+  let count = 0;
+  while (d.getMonth() === monthIndex0){
+    if (d.getDay() === targetDow) count++;
+    d.setDate(d.getDate() + 1);
+  }
+  return count;
+}
+
+const monthsList = [
+  {label:"Aug '26", year:2026, m:7},
+  {label:"Sep '26", year:2026, m:8},
+  {label:"Oct '26", year:2026, m:9},
+  {label:"Nov '26", year:2026, m:10},
+  {label:"Dec '26", year:2026, m:11},
+];
+
+function recalc(rerender){
+  if (rerender) renderRows();
+
+  let weeklyTotal = 0;
+  schedule.forEach((row, i) => {
+    const total = row.hr * row.rate;
+    const cell = document.getElementById(`row-total-${i}`);
+    if (cell) cell.textContent = fmt(total);
+    weeklyTotal += total;
+  });
+  document.getElementById("weekly-total-amount").textContent = fmt(weeklyTotal);
+
+  const dayTotals = {};
+  schedule.forEach(row => {
+    dayTotals[row.day] = (dayTotals[row.day] || 0) + row.hr * row.rate;
+  });
+
+  const monthsEl = document.getElementById("months");
+  monthsEl.innerHTML = "";
+  let grand = 0;
+
+  monthsList.forEach(mo => {
+    let monthTotal = 0;
+    let sessionCount = 0;
+    Object.keys(dayTotals).forEach(dayName => {
+      const dow = weekdayIndex[dayName];
+      const occurrences = countWeekdayInMonth(mo.year, mo.m, dow);
+      monthTotal += dayTotals[dayName] * occurrences;
+      sessionCount += occurrences * schedule.filter(r => r.day === dayName).length;
+    });
+    grand += monthTotal;
+
+    const div = document.createElement("div");
+    div.className = "month";
+    div.innerHTML = `
+      <p class="m-name">${mo.label}</p>
+      <p class="m-amount">${fmt(monthTotal)}</p>
+      <p class="m-note">${sessionCount} sessions</p>
+    `;
+    monthsEl.appendChild(div);
+  });
+
+  document.getElementById("grand-total").textContent = fmt(grand);
+}
+
+recalc();
+</script>

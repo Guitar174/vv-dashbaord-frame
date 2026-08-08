@@ -1,0 +1,588 @@
+<title>Tutoring Income Calculator</title>
+<style>
+:root{
+  --bg:#e8eef7;
+  --card:#ffffff;
+  --border:#e2e7f0;
+  --ink:#151a30;
+  --ink-soft:#6b7488;
+  --blue:#2a5cf0;
+  --blue-deep:#173da8;
+  --blue-tint:#eef2fd;
+  --green:#12925a;
+  --green-bg:#e9f9f0;
+  --green-border:#c9eeda;
+  --amber:#c98a12;
+  --amber-bg:#fdf3e3;
+  --amber-border:#f3ddab;
+  --shadow:0 10px 24px -12px rgba(21,26,48,0.14);
+}
+:root[data-theme="dark"]{
+  --bg:#0f1420;
+  --card:#161c2c;
+  --border:#262f45;
+  --ink:#eef1fa;
+  --ink-soft:#8b93ab;
+  --blue:#5b84ff;
+  --blue-deep:#8fabff;
+  --blue-tint:#1a2340;
+  --green:#3fd08a;
+  --green-bg:#0f2b20;
+  --green-border:#1f4a35;
+  --amber:#e6b355;
+  --amber-bg:#2e2410;
+  --amber-border:#4d3c17;
+  --shadow:0 10px 24px -12px rgba(0,0,0,0.5);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1420;
+    --card:#161c2c;
+    --border:#262f45;
+    --ink:#eef1fa;
+    --ink-soft:#8b93ab;
+    --blue:#5b84ff;
+    --blue-deep:#8fabff;
+    --blue-tint:#1a2340;
+    --green:#3fd08a;
+    --green-bg:#0f2b20;
+    --green-border:#1f4a35;
+    --amber:#e6b355;
+    --amber-bg:#2e2410;
+    --amber-border:#4d3c17;
+    --shadow:0 10px 24px -12px rgba(0,0,0,0.5);
+  }
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  margin:0;
+  padding:0 1.25rem 4rem;
+}
+.wrap{max-width:800px;margin:0 auto;}
+
+.crumb{
+  display:flex;
+  align-items:center;
+  gap:0.4rem;
+  font-size:0.8rem;
+  color:var(--ink-soft);
+  padding:1.5rem 0 1.75rem;
+}
+.crumb a{color:var(--ink-soft);text-decoration:none;}
+.crumb .sep{opacity:0.5;}
+.crumb .current{color:var(--blue);}
+
+h1{
+  font-size:clamp(1.7rem,4.5vw,2.15rem);
+  font-weight:800;
+  line-height:1.15;
+  margin:0 0 2rem;
+  letter-spacing:-0.01em;
+  text-wrap:balance;
+}
+h1 .accent{color:var(--blue);display:block;}
+
+/* ---- input card ---- */
+.input-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:1.4rem 1.4rem 0.4rem;
+  margin-bottom:2rem;
+}
+.field-row{
+  display:flex;
+  align-items:center;
+  gap:0.7rem;
+  padding:0.85rem 0.1rem;
+  border-bottom:1px solid var(--border);
+}
+.field-row:last-child{border-bottom:none;}
+.field-icon{
+  width:2rem;
+  height:2rem;
+  border-radius:8px;
+  background:var(--blue-tint);
+  color:var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  flex-shrink:0;
+}
+.field-body{flex:1;min-width:0;}
+.field-label{
+  font-size:0.78rem;
+  color:var(--ink-soft);
+  margin:0 0 0.15rem;
+}
+.field-value{
+  font-size:1.02rem;
+  font-weight:600;
+  font-variant-numeric:tabular-nums;
+}
+.field-value .unit{font-weight:400;color:var(--ink-soft);font-size:0.85rem;margin-left:0.3rem;}
+
+.detail-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.35rem;
+  width:100%;
+  background:transparent;
+  border:none;
+  border-top:1px solid var(--border);
+  color:var(--blue);
+  font-size:0.82rem;
+  font-weight:600;
+  font-family:inherit;
+  padding:0.75rem 0;
+  margin-top:0.4rem;
+  cursor:pointer;
+}
+.detail-toggle:hover{color:var(--blue-deep);}
+.detail-toggle .chev{transition:transform 0.15s ease;}
+.detail-toggle.open .chev{transform:rotate(180deg);}
+
+.schedule-detail{
+  overflow-x:auto;
+  max-height:0;
+  overflow-y:hidden;
+  transition:max-height 0.2s ease;
+}
+.schedule-detail.open{max-height:900px;overflow-y:visible;padding-bottom:1rem;}
+table{border-collapse:collapse;width:100%;font-size:0.83rem;min-width:560px;}
+thead th{
+  text-align:left;
+  font-size:0.68rem;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  font-weight:700;
+  padding:0.5rem 0.5rem;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+tbody td{
+  padding:0.4rem 0.5rem;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+.day-group td:first-child{font-weight:700;color:var(--blue);}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+input.rate,input.hr{
+  width:5rem;
+  font-family:inherit;
+  font-size:0.83rem;
+  text-align:right;
+  background:var(--blue-tint);
+  border:1px solid var(--border);
+  border-radius:6px;
+  color:var(--ink);
+  padding:0.3rem 0.45rem;
+  font-variant-numeric:tabular-nums;
+}
+input.hr{width:3.4rem;}
+input.rate:focus,input.hr:focus{outline:2px solid var(--blue);outline-offset:1px;}
+.row-total{font-variant-numeric:tabular-nums;color:var(--ink-soft);font-weight:600;}
+select.day-select,input.name-input,input.subject-input,input.time-input{
+  font-family:inherit;
+  font-size:0.83rem;
+  background:var(--blue-tint);
+  border:1px solid var(--border);
+  border-radius:6px;
+  color:var(--ink);
+  padding:0.3rem 0.4rem;
+}
+select.day-select{width:6rem;}
+input.name-input,input.subject-input{width:5.2rem;}
+input.time-input{width:6.2rem;}
+.remove-btn{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--ink-soft);
+  border-radius:6px;
+  width:1.6rem;
+  height:1.6rem;
+  font-size:0.85rem;
+  line-height:1;
+  cursor:pointer;
+}
+.remove-btn:hover{color:#d1435a;border-color:#d1435a;}
+.add-row{
+  display:flex;
+  justify-content:center;
+  padding:0.7rem 0;
+}
+.add-btn{
+  background:var(--blue-tint);
+  border:1px dashed var(--blue);
+  color:var(--blue);
+  font-family:inherit;
+  font-size:0.8rem;
+  font-weight:600;
+  border-radius:8px;
+  padding:0.5rem 1rem;
+  cursor:pointer;
+}
+.add-btn:hover{background:var(--blue);color:#fff;}
+.verify-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:0.35rem;
+  font-size:0.75rem;
+  font-weight:700;
+  color:var(--green);
+  background:var(--green-bg);
+  border:1px solid var(--green-border);
+  border-radius:999px;
+  padding:0.25rem 0.7rem;
+  margin-bottom:1.2rem;
+}
+
+/* ---- stat rows (period totals) ---- */
+.stat-row{
+  display:grid;
+  grid-template-columns:1.15fr 1fr 1fr 1fr;
+  align-items:center;
+  gap:0.5rem;
+  border-radius:12px;
+  border:1px solid var(--green-border);
+  background:var(--green-bg);
+  padding:1rem 1.2rem;
+  margin-bottom:0.7rem;
+}
+.stat-row.week{border-color:var(--amber-border);background:var(--amber-bg);}
+.stat{min-width:0;}
+.stat .num{
+  font-size:1.15rem;
+  font-weight:800;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.stat-row.week .stat:first-child .num{color:var(--amber);}
+.stat-row:not(.week) .stat:first-child .num{color:var(--green);}
+.stat .cap{font-size:0.72rem;color:var(--ink-soft);margin-top:0.15rem;}
+
+/* ---- month grid ---- */
+.section-label{
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:2rem 0 0.8rem;
+}
+.months{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:0.7rem;
+  margin-bottom:0.5rem;
+}
+.month{
+  background:var(--green-bg);
+  border:1px solid var(--green-border);
+  border-radius:12px;
+  padding:0.9rem 1rem 1rem;
+}
+.month .m-name{
+  font-size:0.7rem;
+  font-weight:700;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:0 0 0.4rem;
+}
+.month .m-amount{
+  font-size:1.35rem;
+  font-weight:800;
+  color:var(--green);
+  font-variant-numeric:tabular-nums;
+  margin:0 0 0.15rem;
+}
+.month .m-note{font-size:0.72rem;color:var(--ink-soft);}
+
+.grand{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:var(--blue);
+  color:#fff;
+  border-radius:12px;
+  padding:1.2rem 1.4rem;
+  margin:1.4rem 0 2rem;
+  box-shadow:var(--shadow);
+}
+.grand .g-label{font-size:0.85rem;opacity:0.85;}
+.grand .g-amount{font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums;}
+
+.why{
+  border-top:1px solid var(--border);
+  padding-top:1.4rem;
+}
+.why h2{font-size:1.05rem;font-weight:800;margin:0 0 0.5rem;}
+.why p{color:var(--ink-soft);font-size:0.88rem;line-height:1.65;margin:0;max-width:60ch;}
+</style>
+
+<div class="wrap">
+  <nav class="crumb">
+    <a href="#">Home</a><span class="sep">›</span>
+    <a href="#">Schedule</a><span class="sep">›</span>
+    <span class="current">Income Calculator</span>
+  </nav>
+
+  <h1>Tutoring Income<span class="accent">Calculator</span></h1>
+
+  <span class="verify-badge">✓ Cross-checked against calendar day counts</span>
+
+  <div class="input-card">
+    <div class="field-row">
+      <div class="field-icon">📆</div>
+      <div class="field-body">
+        <p class="field-label">Weekly sessions</p>
+        <p class="field-value" id="weekly-sessions">0 <span class="unit">across 0 days</span></p>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-icon">⏱</div>
+      <div class="field-body">
+        <p class="field-label">Hours taught / week</p>
+        <p class="field-value" id="weekly-hours">0 <span class="unit">hr</span></p>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-icon">฿</div>
+      <div class="field-body">
+        <p class="field-label">Blended rate</p>
+        <p class="field-value" id="blended-rate">฿0 <span class="unit">/ hr avg</span></p>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-icon">📈</div>
+      <div class="field-body">
+        <p class="field-label">Total per week</p>
+        <p class="field-value" id="weekly-total-amount">฿0</p>
+      </div>
+    </div>
+    <button class="detail-toggle" id="toggle-btn">Edit rates &amp; hours <span class="chev">▾</span></button>
+    <div class="schedule-detail" id="detail-panel">
+      <table>
+        <thead>
+          <tr><th>Day</th><th>Time</th><th>Student</th><th>Subject</th><th class="num">Hr</th><th class="num">Cost/hr</th><th class="num">Total</th><th></th></tr>
+        </thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+      <div class="add-row"><button class="add-btn" id="add-btn" type="button">+ Add student / session</button></div>
+    </div>
+  </div>
+
+  <div class="stat-row week">
+    <div class="stat"><p class="num" id="s-week-total">฿0</p><p class="cap">Income / week</p></div>
+    <div class="stat"><p class="num" id="s-week-hours">0h</p><p class="cap">Hours / week</p></div>
+    <div class="stat"><p class="num" id="s-week-sessions">0</p><p class="cap">Sessions / week</p></div>
+    <div class="stat"><p class="num" id="s-week-rate">฿0</p><p class="cap">Effective rate / hr</p></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><p class="num" id="s-mo-total">฿0</p><p class="cap">Income / month avg</p></div>
+    <div class="stat"><p class="num" id="s-mo-hours">0h</p><p class="cap">Hours / month avg</p></div>
+    <div class="stat"><p class="num" id="s-mo-sessions">0</p><p class="cap">Sessions / month avg</p></div>
+    <div class="stat"><p class="num" id="s-mo-rate">฿0</p><p class="cap">Effective rate / hr</p></div>
+  </div>
+
+  <p class="section-label">Aug – Dec 2026, by month</p>
+  <div class="months" id="months"></div>
+
+  <div class="grand">
+    <span class="g-label">Total, Aug – Dec 2026</span>
+    <span class="g-amount" id="grand-total">฿0</span>
+  </div>
+
+  <div class="why">
+    <h2>Why this is accurate to the day</h2>
+    <p>A "5-week month" is an approximation — this calculator isn't. It counts exactly how many Mondays, Wednesdays, and Saturdays actually land in each calendar month from August through December 2026, so a month with a fifth Saturday shows up worth more than one with only four. Edit any rate or hour above and every figure recalculates instantly.</p>
+  </div>
+</div>
+
+<script>
+const schedule = [
+  {day:"Monday",    time:"18.00–19.00", name:"Kop",     subject:"Eng",      hr:1,   rate:250},
+  {day:"Monday",    time:"20.05–21.05", name:"Tonchok", subject:"Sat Math", hr:1,   rate:325},
+  {day:"Tuesday",   time:"18.00–20.00", name:"Ganta",   subject:"Math",     hr:2,   rate:350},
+  {day:"Wednesday", time:"18.00–19.00", name:"Kop",     subject:"Eng",      hr:1,   rate:250},
+  {day:"Wednesday", time:"20.05–21.05", name:"Tonchok", subject:"Sat Math", hr:1,   rate:325},
+  {day:"Wednesday", time:"19.00–21.00", name:"Yeera",   subject:"Math",     hr:2,   rate:500},
+  {day:"Friday",    time:"20.05–21.05", name:"Tonchok", subject:"Sat Math", hr:1,   rate:325},
+  {day:"Saturday",  time:"8.00–10.00",  name:"Namo",    subject:"Math",     hr:2,   rate:250},
+  {day:"Saturday",  time:"10.00–12.00", name:"Cho",     subject:"Math",     hr:2,   rate:325},
+  {day:"Saturday",  time:"16.00–17.30", name:"Cooper",  subject:"Math",     hr:1.5, rate:275},
+  {day:"Saturday",  time:"17.30–19.00", name:"Cooper",  subject:"Eng",      hr:1.5, rate:275},
+  {day:"Saturday",  time:"21.00–22.30", name:"Vicky",   subject:"Math",     hr:1.5, rate:300},
+  {day:"Sunday",    time:"9.00–11.00",  name:"Tien",    subject:"Math",     hr:2,   rate:325},
+  {day:"Sunday",    time:"14.00–16.00", name:"Claire",  subject:"Math",     hr:2,   rate:375},
+];
+
+const fmt = n => "฿" + n.toLocaleString("en-US", {maximumFractionDigits:2, minimumFractionDigits:(n % 1 !== 0 ? 2 : 0)});
+const DAY_ORDER = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+
+const body = document.getElementById("schedule-body");
+
+function renderRows(){
+  body.innerHTML = "";
+  let lastDay = null;
+  schedule.forEach((row, i) => {
+    const tr = document.createElement("tr");
+    const showDay = row.day !== lastDay;
+    lastDay = row.day;
+    if (showDay) tr.classList.add("day-group");
+    const dayOptions = DAY_ORDER.map(d => `<option value="${d}" ${d===row.day?"selected":""}>${d}</option>`).join("");
+    tr.innerHTML = `
+      <td><select class="day-select" data-i="${i}" data-field="day">${dayOptions}</select></td>
+      <td><input class="time-input" type="text" value="${row.time}" data-i="${i}" data-field="time" placeholder="18.00-19.00"></td>
+      <td><input class="name-input" type="text" value="${row.name}" data-i="${i}" data-field="name" placeholder="Name"></td>
+      <td><input class="subject-input" type="text" value="${row.subject}" data-i="${i}" data-field="subject" placeholder="Subject"></td>
+      <td class="num"><input class="hr" type="number" step="0.5" min="0" value="${row.hr}" data-i="${i}" data-field="hr"></td>
+      <td class="num"><input class="rate" type="number" step="5" min="0" value="${row.rate}" data-i="${i}" data-field="rate"></td>
+      <td class="num row-total" id="row-total-${i}"></td>
+      <td><button class="remove-btn" type="button" data-i="${i}" title="Remove session">×</button></td>
+    `;
+    body.appendChild(tr);
+  });
+}
+renderRows();
+
+body.addEventListener("input", e => {
+  const i = e.target.dataset.i;
+  const field = e.target.dataset.field;
+  if (i === undefined) return;
+  if (field === "hr" || field === "rate"){
+    const v = parseFloat(e.target.value);
+    schedule[i][field] = isNaN(v) ? 0 : v;
+  } else {
+    schedule[i][field] = e.target.value;
+  }
+  recalc(field === "day");
+});
+
+body.addEventListener("change", e => {
+  if (e.target.classList.contains("day-select")){
+    schedule[e.target.dataset.i]["day"] = e.target.value;
+    recalc(true);
+  }
+});
+
+body.addEventListener("click", e => {
+  if (e.target.classList.contains("remove-btn")){
+    schedule.splice(parseInt(e.target.dataset.i, 10), 1);
+    recalc(true);
+  }
+});
+
+document.getElementById("add-btn").addEventListener("click", () => {
+  schedule.push({day:"Monday", time:"18.00–19.00", name:"New student", subject:"Subject", hr:1, rate:300});
+  recalc(true);
+  detailPanel.classList.add("open");
+  toggleBtn.classList.add("open");
+  toggleBtn.innerHTML = 'Hide rates &amp; hours <span class="chev">▾</span>';
+});
+
+const toggleBtn = document.getElementById("toggle-btn");
+const detailPanel = document.getElementById("detail-panel");
+toggleBtn.addEventListener("click", () => {
+  const open = detailPanel.classList.toggle("open");
+  toggleBtn.classList.toggle("open", open);
+  toggleBtn.innerHTML = (open ? "Hide rates &amp; hours " : "Edit rates &amp; hours ") + '<span class="chev">▾</span>';
+});
+
+const weekdayIndex = {Sunday:0, Monday:1, Tuesday:2, Wednesday:3, Thursday:4, Friday:5, Saturday:6};
+
+function countWeekdayInMonth(year, monthIndex0, targetDow){
+  const d = new Date(year, monthIndex0, 1);
+  let count = 0;
+  while (d.getMonth() === monthIndex0){
+    if (d.getDay() === targetDow) count++;
+    d.setDate(d.getDate() + 1);
+  }
+  return count;
+}
+
+const monthsList = [
+  {label:"Aug '26", year:2026, m:7},
+  {label:"Sep '26", year:2026, m:8},
+  {label:"Oct '26", year:2026, m:9},
+  {label:"Nov '26", year:2026, m:10},
+  {label:"Dec '26", year:2026, m:11},
+];
+
+function recalc(rerender){
+  if (rerender) renderRows();
+
+  let weeklyTotal = 0, weeklyHours = 0;
+  const daysUsed = new Set();
+  schedule.forEach((row, i) => {
+    const total = row.hr * row.rate;
+    const cell = document.getElementById(`row-total-${i}`);
+    if (cell) cell.textContent = fmt(total);
+    weeklyTotal += total;
+    weeklyHours += row.hr;
+    daysUsed.add(row.day);
+  });
+
+  document.getElementById("weekly-sessions").innerHTML = schedule.length + ` <span class="unit">across ${daysUsed.size} days</span>`;
+  document.getElementById("weekly-hours").innerHTML = weeklyHours + ' <span class="unit">hr</span>';
+  document.getElementById("blended-rate").innerHTML = fmt(weeklyHours ? weeklyTotal / weeklyHours : 0) + ' <span class="unit">/ hr avg</span>';
+  document.getElementById("weekly-total-amount").textContent = fmt(weeklyTotal);
+
+  document.getElementById("s-week-total").textContent = fmt(weeklyTotal);
+  document.getElementById("s-week-hours").textContent = weeklyHours + "h";
+  document.getElementById("s-week-sessions").textContent = schedule.length;
+  document.getElementById("s-week-rate").textContent = fmt(weeklyHours ? weeklyTotal / weeklyHours : 0);
+
+  const dayTotals = {}, dayHours = {}, daySessions = {};
+  schedule.forEach(row => {
+    dayTotals[row.day] = (dayTotals[row.day] || 0) + row.hr * row.rate;
+    dayHours[row.day] = (dayHours[row.day] || 0) + row.hr;
+    daySessions[row.day] = (daySessions[row.day] || 0) + 1;
+  });
+
+  const monthsEl = document.getElementById("months");
+  monthsEl.innerHTML = "";
+  let grand = 0, grandHours = 0, grandSessions = 0;
+
+  monthsList.forEach(mo => {
+    let monthTotal = 0, monthHours = 0, monthSessions = 0;
+    Object.keys(dayTotals).forEach(dayName => {
+      const dow = weekdayIndex[dayName];
+      const occurrences = countWeekdayInMonth(mo.year, mo.m, dow);
+      monthTotal += dayTotals[dayName] * occurrences;
+      monthHours += dayHours[dayName] * occurrences;
+      monthSessions += daySessions[dayName] * occurrences;
+    });
+    grand += monthTotal;
+    grandHours += monthHours;
+    grandSessions += monthSessions;
+
+    const div = document.createElement("div");
+    div.className = "month";
+    div.innerHTML = `
+      <p class="m-name">${mo.label}</p>
+      <p class="m-amount">${fmt(monthTotal)}</p>
+      <p class="m-note">${monthSessions} sessions · ${monthHours}h</p>
+    `;
+    monthsEl.appendChild(div);
+  });
+
+  document.getElementById("grand-total").textContent = fmt(grand);
+
+  document.getElementById("s-mo-total").textContent = fmt(grand / 5);
+  document.getElementById("s-mo-hours").textContent = Math.round((grandHours / 5) * 10) / 10 + "h";
+  document.getElementById("s-mo-sessions").textContent = Math.round(grandSessions / 5);
+  document.getElementById("s-mo-rate").textContent = fmt(grandHours ? grand / grandHours : 0);
+}
+
+recalc();
+</script>

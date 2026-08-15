@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statics — Pages 1–100 — Study Guide</title>
+<style>
+  :root{
+    --paper:#faf7f0; --ink:#2b2b2b; --rule:#d8d0bd;
+    --idea:#3d6b57; --idea-bg:#e9f1ec;
+    --problem:#a8471f; --problem-bg:#fbeee5;
+    --solve:#1f5f8b; --solve-bg:#e7f1f8;
+    --tag:#8a7a4f;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:"Georgia","Iowan Old Style",serif; line-height:1.55;}
+  .wrap{max-width:820px; margin:0 auto; padding:2.5rem 1.3rem 6rem;}
+  header.top{text-align:center; margin-bottom:2.5rem; padding-bottom:1.5rem; border-bottom:3px solid var(--ink);}
+  header.top .eyebrow{font-family:"Helvetica Neue",Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; font-size:.75rem; color:var(--tag); margin-bottom:.6rem;}
+  header.top h1{font-size:2.1rem; margin:.2rem 0 .4rem;}
+  header.top p{font-family:"Helvetica Neue",Arial,sans-serif; font-size:.95rem; color:#5a5a5a; margin:0;}
+  nav.toc{background:#fff; border:1px solid var(--rule); border-radius:6px; padding:1rem 1.3rem; margin-bottom:1rem; font-family:"Helvetica Neue",Arial,sans-serif; font-size:.85rem;}
+  nav.toc a{color:var(--solve); text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+  nav.toc ul{margin:.4rem 0 0; padding-left:1.1rem;}
+  .chapter-band{
+    margin-top:3.6rem;
+    padding:1.1rem 1.4rem;
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:6px;
+    text-align:center;
+  }
+  .chapter-band .num{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:.72rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:#cfc7ac;
+    margin-bottom:.3rem;
+  }
+  .chapter-band h2{margin:0; font-size:1.5rem;}
+  .chapter-band .pages{
+    display:block;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:.78rem;
+    color:#cfc7ac;
+    margin-top:.3rem;
+    letter-spacing:.05em;
+  }
+  .part{margin-top:2.4rem;}
+  .part-head{display:flex; align-items:baseline; gap:.7rem; border-bottom:2px solid var(--ink); padding-bottom:.4rem; margin-bottom:1.4rem;}
+  .part-head h3.parttitle{font-size:1.25rem; margin:0; font-weight:700;}
+  .part-head .pages{font-family:"Helvetica Neue",Arial,sans-serif; font-size:.78rem; color:var(--tag); letter-spacing:.05em;}
+  .page-card{position:relative; margin:0 0 1.6rem; padding:1.1rem 1.3rem 1.2rem 3.6rem; background:#fff; border:1px solid var(--rule); border-radius:4px;}
+  .page-num{position:absolute; left:-1px; top:-1px; background:var(--ink); color:var(--paper); font-family:"Helvetica Neue",Arial,sans-serif; font-size:.72rem; letter-spacing:.03em; padding:.32rem .55rem; border-radius:4px 0 6px 0;}
+  .page-card h4{margin:.1rem 0 .6rem; font-size:1.08rem;}
+  .block{margin:.7rem 0; padding:.65rem .85rem; border-radius:4px; border-left:4px solid transparent; font-size:.97rem;}
+  .block .label{display:block; font-family:"Helvetica Neue",Arial,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.3rem;}
+  .idea{background:var(--idea-bg); border-left-color:var(--idea);} .idea .label{color:var(--idea);}
+  .problem{background:var(--problem-bg); border-left-color:var(--problem);} .problem .label{color:var(--problem);}
+  .solve{background:var(--solve-bg); border-left-color:var(--solve);} .solve .label{color:var(--solve);}
+  table.mini{border-collapse:collapse; margin:0; font-size:.92rem; font-family:"Helvetica Neue",Arial,sans-serif; width:100%;}
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:.6rem 0; border-radius:4px;}
+  table.mini th, table.mini td{border:1px solid var(--rule); padding:.35rem .6rem; text-align:center;}
+  table.mini th{background:#f1ece0;}
+  ul.simple, ol.simple{margin:.3rem 0; padding-left:1.2rem;}
+  .answer-flag{font-weight:700; color:var(--solve);}
+  .final-idea{margin-top:2.2rem; padding:1.5rem; background:#1f2a24; color:#f4f1e8; border-radius:6px;}
+  .final-idea h3{margin-top:0; font-size:1.2rem; color:#f4f1e8;}
+  .final-idea table{width:100%; border-collapse:collapse; margin:1rem 0; font-family:"Helvetica Neue",Arial,sans-serif; font-size:.85rem;}
+  .final-idea th, .final-idea td{border:1px solid #43524a; padding:.6rem .7rem;}
+  .final-idea th{background:#2c3830;}
+  .final-idea .rule{font-family:"Helvetica Neue",Arial,sans-serif; background:#33413a; padding:.8rem 1rem; border-radius:4px; margin-top:1rem;}
+  .stop-marker{margin-top:3rem; padding:1.2rem 1.4rem; background:#3d3320; color:#f4ecd8; border-radius:6px; text-align:center; font-family:"Helvetica Neue",Arial,sans-serif;}
+  @media(max-width:520px){
+    .page-card{padding:1rem 1rem 1.1rem 2.6rem;}
+    .page-num{font-size:.65rem; padding:.26rem .4rem;}
+    table.mini{font-size:.8rem; min-width:460px;}
+    table.mini th, table.mini td{padding:.3rem .45rem;}
+    .final-idea table{font-size:.75rem;}
+    .final-idea{padding:1.1rem;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">MES350 Engineering Statics</div>
+    <h1>Pages 1–100, Explained From the Very Beginning</h1>
+    <p>One continuous guide, page by page, in plain English — starting right here at page 1.</p>
+  </header>
+
+  <nav class="toc">
+    <strong>Jump to a chapter:</strong>
+    <ul>
+      <li><a href="#ch1">Chapter 1 — General Principles &amp; Units (pages 1–29)</a></li>
+      <li><a href="#ch2">Chapter 2 — Force Vectors (pages 30–69)</a></li>
+      <li><a href="#ch3">Chapter 3 — Force System Resultants: Moments &amp; Couples (pages 70–97)</a></li>
+      <li><a href="#ch4start">Chapter 4 (first 3 pages) — Equilibrium of a Rigid Body (pages 98–100)</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= CHAPTER 1 ================= -->
+  <div class="chapter-band" id="ch1">
+    <div class="num">Chapter 1</div>
+    <h2>General Principles &amp; Units</h2>
+    <span class="pages">pages 1&ndash;29</span>
+  </div>
+
+<!-- PART 0 -->
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 0 — Before the Real Lesson Starts</h3>
+      <span class="pages">pages 1–9</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 1–9</span>
+      <h4>Just the "class rules" pages — you do NOT need to study these</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        Before every professor starts teaching, they show a few slides that are just "housekeeping" — not actual physics. Think of it like the first five minutes of a new school year, when the teacher hands out the syllabus and tells you the classroom rules. You don't need to memorize any of this. Here's simply what's on these 9 pages, so you know you're not missing anything important:
+        <ul class="simple">
+          <li><strong>Pages 1–2:</strong> The title of the class ("MES350: Engineering Statics") and the teacher's name.</li>
+          <li><strong>Page 2:</strong> The names of the two textbooks the course is based on.</li>
+          <li><strong>Pages 3–4:</strong> A list of every topic that will be taught the whole semester — like a table of contents for the entire course. We will walk through every single one of these topics ourselves, slowly, in this guide.</li>
+          <li><strong>Pages 4–5:</strong> How your final grade is calculated (attendance, assignments, midterm, final exam) and the classroom attendance rules.</li>
+          <li><strong>Page 6:</strong> A results table of grades from a previous semester — just statistics about past students, not something you need to know.</li>
+        </ul>
+        <strong>Bottom line for Kitar:</strong> nothing on pages 1–9 is a concept you'll be tested on understanding. It's just "welcome to class" information. The real lesson — the stuff we actually need to learn together — starts on page 10. That's where we'll begin.
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 1 -->
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 1 — What Is "Statics," and Why Should You Care?</h3>
+      <span class="pages">pages 10–15</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 10</span>
+      <h4>Two slides here: the chapter's roadmap, and "What is Mechanics?"</h4>
+      <div class="block idea">
+        <span class="label">Above — the chapter's own table of contents</span>
+        The very first slide on this page is just a short list of the 6 topics this chapter will cover, in order: <em>What is Mechanics?, Fundamental Concepts, Fundamental Principles, Systems of Units, Method of Problem Solution, Numerical Accuracy.</em> It's the professor's roadmap for the chapter — like a chapter title page in a textbook. You don't need to memorize this list; it's just telling you what's coming. (Handy fact: this matches almost exactly how we've organized Parts 1–4 of this guide!)
+      </div>
+      <div class="block idea">
+        <span class="label">Below — What is "Mechanics"?, in the simplest words possible</span>
+        Imagine you push a toy car. It rolls forward. <strong>Mechanics</strong> is just the grown-up name for "the study of what happens to a thing when you push or pull on it."
+        <br><br>
+        In this class, we don't say "thing" — we say <strong>body</strong>. A "body" can be absolutely anything: a tiny paperclip, a book on your desk, a whole bridge, or a giant crane lifting a shipping container. It doesn't matter how big or small.
+        <br><br>
+        And instead of "push or pull," we say <strong>force</strong>. So the whole definition becomes: <em>Mechanics studies what happens to a body when a force acts on it.</em> That's really all it means. Nothing scarier than that.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 11</span>
+      <h4>Splitting "Mechanics" into smaller boxes</h4>
+      <div class="block idea">
+        <span class="label">The idea — why we sort things into boxes at all</span>
+        Mechanics is a huge subject — way too big to study all at once. So before doing any math, scientists first sort every possible situation into smaller, clearly labeled boxes, the same way a doctor first asks "is this a heart problem, a bone problem, or a skin problem?" before deciding how to treat you. There are 3 splits, one inside the other, like Russian nesting dolls. Let's go through them one at a time, slowly.
+      </div>
+      <div class="block idea">
+        <span class="label">Split 1 of 3 — Solid vs. Fluid</span>
+        Look at any object. Does it hold its own shape when nothing is touching it — like a rock, a chair, a phone? That's <strong>solid mechanics</strong>. Does it flow and just take the shape of whatever container it's poured into — like water, air, honey? That's <strong>fluid mechanics</strong>.
+        <br><br>
+        <strong>This course only deals with solids.</strong> We will never study liquids or gases in this class — that's a completely different course.
+      </div>
+      <div class="block idea">
+        <span class="label">Split 2 of 3 — Rigid vs. Deformable (this split only happens INSIDE "solid")</span>
+        Now zoom in further, just on solids. Some solid objects bend or stretch pretty noticeably when you push on them — a rubber band, a diving board, a fishing rod. We call these <strong>deformable bodies</strong>. Other solid objects seem to stay exactly the same shape no matter how hard you push — a steel beam, a brick, a bolt. We call these <strong>rigid bodies</strong>.
+        <br><br>
+        <strong>Here's an honest confession:</strong> nothing is EVER perfectly rigid in real life. Even a thick steel beam bends a microscopic amount when you lean on it — you just can't see it with your eyes. But that tiny bit of bending is usually so small it doesn't change our answer in any way that matters. So "rigid body" isn't really a claim about how the universe works — it's a <em>simplifying promise we choose to make</em>: "for this problem, I'll pretend this object can't bend at all, because the real bending is too tiny to care about." Every single problem in this entire course accepts that promise.
+      </div>
+      <div class="block idea">
+        <span class="label">Split 3 of 3 — Statics vs. Dynamics (this split only happens INSIDE "rigid")</span>
+        Finally, zoom in one more time, just on rigid bodies. Some rigid objects are just sitting there, not going anywhere — a parked car, a bridge, a book on a table. Others are actually moving in a CHANGING way — a car speeding up at a green light, a ball you just threw, a rocket launching.
+        <ul class="simple">
+          <li><strong>Statics</strong> = the object is either completely still, OR it's moving in a straight line at one constant speed that never changes (like a boat drifting at a perfectly steady speed). Either way, nothing about its motion is changing.</li>
+          <li><strong>Dynamics</strong> = the object IS speeding up, slowing down, turning, or otherwise changing how it's moving.</li>
+        </ul>
+      </div>
+      <div class="block idea">
+        <span class="label">Putting all 3 splits together — the one sentence to remember</span>
+        Here's the full nested path, written out as one line: Mechanics → Solid (not fluid) → Rigid (not deformable) → Statics (not dynamics). <strong>This whole class lives inside that smallest, most specific box.</strong> That means every single object we study this semester is: (1) something solid you could physically hold, (2) something we're allowed to pretend never bends at all, and (3) something that is either completely still, or moving at one unchanging speed.
+        <br><br>
+        If you ever get lost mid-problem, come back to this one sentence: <span class="answer-flag">"This object isn't going anywhere, and it isn't bending — I just need to figure out what forces are keeping it that way."</span> That sentence is true for every problem, in every chapter, all semester long.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 12</span>
+      <h4>Two slides here: Statics vs. Dynamics vs. "Mechanics of Materials," and why things break</h4>
+      <div class="block idea">
+        <span class="label">Above — Statics, Dynamics, and a NEW third name: "Mechanics of Materials"</span>
+        This slide re-states the Statics/Dynamics split from the last page (statics = at rest or moving at a constant, unchanging speed; dynamics = allowed to accelerate) — but then it introduces one more important idea: inside "static equilibrium," there are actually <strong>two different branches</strong> of study, which ask two very different questions about the SAME still object:
+        <ul class="simple">
+          <li><strong>Statics</strong> (this course) asks: "is the WHOLE object balanced?" It treats the object as one solid rigid chunk and only uses the equilibrium equations (ΣF=0, ΣM=0) to find outside/support forces. It never asks what's happening INSIDE the material.</li>
+          <li><strong>Mechanics of Materials</strong> (a different, later course) asks: "given the forces we just found with Statics, how much does the INSIDE of the material stretch, squeeze, or bend? Is the material itself strong enough not to snap?"</li>
+        </ul>
+        Think of it like a two-step process for checking if a rope in a swing is safe: <strong>Step 1 (Statics)</strong> finds out how much total force is pulling on the rope. <strong>Step 2 (Mechanics of Materials)</strong> takes that force and checks whether the rope's actual material (its thickness, what it's made of) can handle that much pulling without snapping. This whole course only does Step 1 — Step 2 is a separate class you'd take afterward.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — "Statics" — let's go bullet by bullet, matching the actual slide</span>
+        This slide has 5 separate bullet points. Let's take each one on its own, in order, so nothing gets glossed over.
+        <br><br>
+        <strong>Bullet 1 — "Why do things break? To reliably predict what's going on inside a structure, we need to know the forces that act on it."</strong> The slide poses this as a question and gives one direct answer: if we want to reliably predict what's happening INSIDE a structure (whether a beam is straining, whether a bolt is about to give way), the very first thing we need is to know the forces acting on it. In other words — you can't predict what a structure will do until you know what's pushing and pulling on it. That's the whole reason this course exists.
+        <br><br>
+        <strong>Bullet 2 — "It's Newton's law that helps us to determine these forces. Basically, this course is all about Newton's law, force equilibrium, and its application to civil engineering problems."</strong> The slide states directly that this ENTIRE course is built on 3 things: <strong>Newton's Law</strong> (we'll meet it properly in a few pages), <strong>force equilibrium</strong> (the idea that "everything is balanced, so nothing is moving"), and applying both of those to real <strong>civil engineering problems</strong> — actual bridges, buildings, and structures.
+        <br><br>
+        <strong>Bullet 3 — "We explore it for particles first, then 2D, then 3D."</strong> This previews the exact ORDER this course is taught in: first with a single dot (a <strong>particle</strong>, ignoring size and shape completely — the easiest case), then flat 2D problems (things drawn on a flat sheet of paper), and finally full 3D problems (things with real depth, like a real building). Each stage builds on the one before it — so if particle problems feel easy later on, that's the point, they're the foundation.
+        <br><br>
+        <strong>Bullet 4 — "First from the outside, then from the inside."</strong> For any structure, we'll first treat it as ONE single rigid chunk and find the forces acting on its outer boundary (like the reactions at its supports) — that's "from the outside." Only after that do we open the structure up and look at the forces inside individual connected pieces (like each bar in a truss) — that's "from the inside." You always have to finish the outside step before the inside step makes sense.
+        <br><br>
+        <strong>Bullet 5 — "We learn to identify, formulate, and solve engineering problems."</strong> This describes the actual skill you're building, in 3 stages: <strong>identify</strong> (figure out what kind of problem you're looking at and what's actually being asked), <strong>formulate</strong> (turn the real-world picture into a mathematical equation), and <strong>solve</strong> (do the algebra to get a number). The slide is upfront that to do this well, you need to be comfortable with — and "not afraid of" — <strong>math, vectors, and basic physics</strong>. If vectors feel unfamiliar right now, that's completely normal; Chapter 2 teaches them from scratch, slowly.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 13</span>
+      <h4>Two slides here: a real handwritten example, and "what can you DO with this?"</h4>
+      <div class="block idea">
+        <span class="label">Above — "your work..." (a real handwritten solution)</span>
+        This slide is just a photo of a professor's own handwritten notes, solving a real beam/force problem with pencil and paper — full of little symbols, sums, and boxed answers. It looks completely overwhelming right now, and that is 100% expected and okay. The whole point of showing it this early is a promise: <strong>every single symbol on that messy page will make sense to you by the end of this semester.</strong> This is literally the kind of work — messy scratch paper and all — that you'll be doing yourself soon.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — What Can You Do With Statics Knowledge?</span>
+        By the end of this semester, you'll be able to look at a picture of something like a bridge made of steel bars (called a <strong>truss</strong>) and calculate the exact push or pull force inside each individual bar — strong enough to know whether that bar needs to be thicker, or whether it's safe as it is.
+        <br><br>
+        This isn't just a school exercise — real bridges, buildings, and cranes are designed using exactly this kind of math, especially in architectural and structural engineering. The slide also mentions that <strong>"strength of materials"</strong> (the same "Mechanics of Materials" course we mentioned on the last page) relies heavily on the static equilibrium results THIS course teaches you to find — so what you're about to learn is the required first step before that later course even becomes possible.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 14–15</span>
+      <h4>A true, scary story: the day a hotel walkway collapsed</h4>
+      <div class="block idea">
+        <span class="label">The idea — let's slow down and really understand this story</span>
+        This is the best example of why Statics matters, so let's go through it carefully, like a story.
+        <br><br>
+        On July 17, 1981, in a hotel called the Hyatt Regency in Kansas City, there was a beautiful lobby with three walkways (like indoor balconies/bridges) hanging above it, one on top of another, held up by long metal rods from the ceiling — kind of like three shelves hanging from strings.
+        <br><br>
+        <strong>The original plan (the safe one):</strong> Each walkway was supposed to have its own separate rod running all the way from the ceiling down to it. Picture three different ropes, each one holding up its own single bucket. Each rope only has to hold the weight of ONE bucket.
+        <br><br>
+        <strong>What actually got built (the dangerous change):</strong> During construction, someone changed the design. Instead of each walkway having its own separate rod, they made the upper walkway's rod continue down and ALSO hold up the lower walkway. Picture ONE rope holding up two buckets stacked on top of each other, connected by that same rope. Now, look closely at where the top bucket connects to the rope — that connection point has to hold the weight of BOTH buckets, not just one!
+        <br><br>
+        This small-looking change <strong>doubled</strong> the force pulling on that one connection point on the upper walkway. Nobody re-checked whether that connection was strong enough for double the force. On the day of the accident, that connection point finally gave way under all that extra pulling force. The upper walkway crashed down onto the lower one, and both crashed down onto the crowded lobby below.
+      </div>
+      <div class="block problem">
+        <span class="label">Why this story matters for YOU, right now</span>
+        114 people died, and 216 more were hurt — making it (at the time) the deadliest building collapse in U.S. history. The engineers who approved that small-looking construction change lost their engineering licenses, and the courts made them pay over $140 million to victims and families.
+      </div>
+      <div class="block solve">
+        <span class="label">The one lesson to remember forever</span>
+        A "small" change to how forces travel through a structure can secretly <strong>double</strong> (or worse) the force at the weakest point — and nobody notices unless someone actually sits down and calculates it. <span class="answer-flag">That calculating is exactly what this entire Statics course teaches you how to do.</span> It's not just abstract math for a test — it's literally the skill that could stop a building from falling down.
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 2 -->
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 2 — The Basic Building Blocks: Newton's 3 Rules</h3>
+      <span class="pages">pages 16–20</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 16</span>
+      <h4>Two slides here, both called "Basic Quantities Used in Mechanics"</h4>
+      <div class="block idea">
+        <span class="label">Above — the 4 basic ingredients, with ALL of their properties</span>
+        Every single problem in this class, no matter how complicated it looks, is built from just <strong>4 basic ingredients</strong>. Think of these like the 4 basic ingredients of cooking (heat, food, water, time) — everything else is just a combination of these. Let's list every property the slide actually gives for each one:
+        <ul class="simple">
+          <li><strong>Length</strong> — (1) locates the position of a point in space, and (2) describes the size of a physical system. Example: "the beam is 3 meters long" uses length both ways — 3 meters is its SIZE, and where it starts/ends locates its POSITION.</li>
+          <li><strong>Time</strong> — a succession of events (one thing happening after another). Important: <strong>statics problems are time-independent</strong> — meaning time doesn't even appear in our equations this semester, because nothing is changing from one moment to the next.</li>
+          <li><strong>Mass</strong> — a property of matter that gives a quantitative measure of an object's <strong>resistance to a change in velocity</strong>. In plain words: mass measures how "stubborn" an object is about speeding up or slowing down (this stubbornness is called <em>inertia</em>). A bowling ball resists being sped up much more than a balloon of the same size, because it has more mass.</li>
+          <li><strong>Force</strong> — a push or pull exerted by one body on another, characterized by 4 things: <strong>magnitude</strong> (how strong, with a unit like Newtons), <strong>direction</strong> (which way), <strong>sense</strong> (which of the two ways ALONG that direction — e.g. "along this line, but pushing vs. pulling"), and <strong>point of application</strong> (exactly where on the object it touches).</li>
+        </ul>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — the SAME 4 ingredients again, but described more precisely. Let's go bullet by bullet, slowly.</span>
+        This slide is titled the same as slide 1 ("Basic Quantities Used in Mechanics"), but it gives sharper, more careful definitions of the same 4 ingredients. Don't skim past it — each bullet adds something slide 1 didn't fully spell out.
+        <br><br>
+        <strong>Bullet 1 — "Space - associated with the notion of the position of a point P given in terms of three coordinates measured from a reference point or origin."</strong> This is really just a more careful version of "Length." To say WHERE a point is in space, we need 3 numbers (called coordinates) — one for each direction (like left-right, up-down, forward-back). But those 3 numbers only mean something once you pick a starting point to measure FROM — that starting point is called the <strong>origin</strong>. Without an origin, "5 meters" is meaningless — 5 meters from WHERE? Think of GPS coordinates: your phone's location is 2 numbers (latitude, longitude) measured from a fixed reference point on Earth. Space in mechanics works the same way, just with 3 numbers instead of 2, and we'll build this idea properly with x, y, z axes on page 31.
+        <br><br>
+        <strong>Bullet 2 — "Time - conceived as a succession of events. Definition of an event requires specification of the time AND position at which it occurred. Concepts of STATICS are time-independent."</strong> Here's the careful part: to fully describe something happening (an "event"), you need to say BOTH when it happened AND where it happened — just saying "3 o'clock" isn't a complete event; you also need to say WHERE at 3 o'clock. This matters a lot in the Dynamics course (where objects move to different positions at different times). But this slide makes a really important promise specifically for OUR course: <strong>"Concepts of STATICS are time-independent."</strong> That means in every single problem we solve this semester, time simply never appears in our equations — because nothing is changing from one moment to the next, there's no "when" to track. This is one of the biggest reasons Statics is easier than Dynamics.
+        <br><br>
+        <strong>Bullet 3 — "Mass – used to characterize bodies. A property of matter by which we can compare the action of one body to another. This property provides a qualitative measure that does not change from one location to another."</strong> Let's unpack "compare the action of one body to another": imagine pushing two different objects with the exact same force — mass is the property that tells you WHY they respond differently. The heavier one (more mass) barely moves; the lighter one (less mass) shoots off quickly. So mass isn't just "how much stuff" in an abstract sense — it's specifically the property that lets us COMPARE and PREDICT how two different bodies will react to the same push. And crucially: this measure "does not change from one location to another" — take that same object to the Moon, to space, anywhere — its mass stays exactly the same number.
+        <br><br>
+        <strong>Bullet 4 — "Force – represents the action of one body on another. A force is characterized by its point of application, magnitude (unit), and direction, i.e., a force is a vector quantity. Interaction occurs when there is direct contact between the bodies. Gravitational, electrical, and magnetic forces do not require direct contact."</strong> This bullet does two important jobs. First, it officially tells us <strong>a force is a vector quantity</strong> — meaning (as we'll properly learn in Chapter 2) it has both a size AND a direction, and needs special math rules to add up correctly, unlike plain numbers. Second, it draws a genuinely important line: MOST forces need <strong>direct contact</strong> between the two bodies to happen at all (like your hand pushing a door — they have to be touching). But <strong>gravitational, electrical, and magnetic forces are the exception</strong> — they can reach across empty space and act on an object with nothing touching it at all.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 17</span>
+      <h4>Two slides here: how the 4 ingredients relate, and 3 "pretend" idealizations</h4>
+      <div class="block idea">
+        <span class="label">Above — Length, Time, and Mass are independent... but Force is NOT</span>
+        In Newtonian Mechanics, length, time, and mass don't depend on each other at all — you can change one without automatically changing another. But <strong>Force is different: it depends on both the mass of the body AND how quickly its velocity is changing over time.</strong> (This is a preview of Newton's Second Law, F=ma, which we'll meet properly in 2 pages.)
+        <br><br>
+        This slide also gives the OFFICIAL definitions of our two idealizations from before: <strong>Particle</strong> = an object that has mass, but whose size is neglected — the geometry (shape) of the body is not involved in the analysis at all. <strong>Rigid Body</strong> = a combination of a huge number of particles that stay in a FIXED position relative to each other, both before AND after a force is applied (i.e., it truly cannot change shape).
+      </div>
+      <div class="block idea">
+        <span class="label">Below — a THIRD idealization we haven't met yet: "Concentrated Force"</span>
+        Alongside Particle and Rigid Body, there's a third simplifying trick: a <strong>Concentrated Force</strong> is when we assume a force acts at a single exact POINT on a body, even though in real life every force is actually spread out over some small area of contact. This is justified whenever that contact area is small compared to the overall size of the body — like a train wheel resting on a rail: the contact patch is tiny compared to the whole wheel, so we just draw the force as one arrow at one point.
+      </div>
+      <div class="examples">
+        <span class="label">The example actually shown on this slide</span>
+        The slide illustrates "Concentrated Force" with a real photograph: a <strong>train wheel resting on a steel rail</strong>. The wheel is large, but it only touches the rail along a tiny contact patch — small enough, compared to the size of the wheel, that we're justified in treating the whole contact force as if it acted at one single point.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 18</span>
+      <h4>Two slides here: meet Isaac Newton, then his First Law precisely</h4>
+      <div class="block idea">
+        <span class="label">Above — Sir Isaac Newton (1642–1729) and his book, "Principia"</span>
+        In the year <strong>1687</strong>, Isaac Newton published a book called <em>Principia</em> in which he formulated <strong>three laws</strong> — and the slide states plainly that ALL conventional motion is based on these three laws. That's not an exaggeration: literally everything in this entire course (and the follow-up Dynamics course) rests on just these three rules Newton wrote down over 300 years ago.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Newton's First Law, stated precisely</span>
+        The slide calls this the <strong>"basis of rigid body mechanics"</strong> — meaning everything else in the course builds on it. Here's the official statement: <em>"If the resultant force on a particle is zero, the particle will remain at rest or continue to move in a straight line."</em> In everyday words: an object at rest stays at rest, and an object in motion stays in motion at a constant velocity, UNLESS an unbalanced force acts on it.
+        <br><br>
+        Written as a formula: <span class="answer-flag">if ΣF = 0, then v = constant</span> ("v" stands for velocity). The slide also introduces the exact term we'll use constantly: <strong>State of Equilibrium</strong> — equilibrium exists when all the forces on a particle are "in balance." When a particle is in equilibrium, its velocity does not change at all.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 19</span>
+      <h4>Two slides here: unpacking the First Law fully, then the Second Law</h4>
+      <div class="block idea">
+        <span class="label">Above — "Interpretation of First Law" — 5 things this slide wants you to really understand</span>
+        <ol class="simple">
+          <li>In other words: objects keep doing what they're already doing, unless a force acts on them.</li>
+          <li>A body is in equilibrium if it moves with a <strong>constant</strong> velocity. Being completely at rest is just a SPECIAL CASE of constant velocity, where that constant happens to be zero (v = 0 = constant).</li>
+          <li>An object at rest AND an object moving at constant velocity both have <strong>zero acceleration</strong> — neither one is speeding up or slowing down.</li>
+          <li>For a body to be in equilibrium, the <strong>resultant (net) force</strong> — meaning the full vector addition of every force acting on it — must be zero.</li>
+          <li><strong>Net force</strong> = the sum of ALL forces acting on the body, added together as vectors (we'll learn exactly how to add forces like this in Chapter 2).</li>
+        </ol>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Newton's Second Law: the "how hard do I have to push" rule</span>
+        This law only matters when something is NOT in equilibrium — meaning it's actually speeding up or slowing down. Official statement: <em>"A particle acted upon by an unbalanced force F experiences an acceleration that has the same direction as the force, and a magnitude that is directly proportional to the force."</em> The formula is the most famous equation in all of physics:
+        <br><br>
+        <strong>F = m × a</strong>
+        <ul class="simple">
+          <li><strong>F</strong> = the force (the push or pull)</li>
+          <li><strong>m</strong> = the mass (how much "stuff" the object is made of)</li>
+          <li><strong>a</strong> = the acceleration (how quickly its speed is changing)</li>
+        </ul>
+        The slide highlights two specific relationships: acceleration is <strong>directly proportional</strong> to the force (push 3 times harder → 3 times the acceleration), and acceleration is <strong>inversely proportional</strong> to the mass (if one object has 5 times more mass than another, and you push both equally, the heavier one accelerates at only 1/5th the rate).
+        <br><br>
+        <strong>Good news for this whole course:</strong> since Statics only deals with things that are NOT accelerating, "a" is always zero for us. This Second Law mostly stays in the background this semester — but it's the reason the First Law (equilibrium) works the way it does.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 20</span>
+      <h4>Two slides here: Newton's Third Law stated formally, then a hands-on example</h4>
+      <div class="block idea">
+        <span class="label">Above — Newton's Third Law (the official statement)</span>
+        The official statement: <em>"The forces of action and reaction between two particles have the same magnitude and line of action (collinear), with opposite sense. For every action there is an equal and opposite reaction."</em> Written as a formula: <span class="answer-flag">F<sub>AB</sub> = −F<sub>BA</sub></span>. In plain words: <strong>Newton's Third Law</strong> says "whenever one thing pushes on another thing, the second thing pushes back just as hard, in the opposite direction." Suppose body A exerts a force on body B — experiments show that body B always exerts an equal and oppositely-directed force back on body A. The slide flags something important in red: <strong>these two forces act on DIFFERENT objects, so they do NOT cancel each other out.</strong>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Example of Newton's 3rd Law (pressing on a desk)</span>
+        Try this right now: press your hand flat on a desk. Your hand exerts a force ON the desk, and the desk exerts a force back ON your hand. These are exactly the "action" and "reaction" forces the slide names. They will always have the <strong>same magnitude</strong> and act along the <strong>same line</strong>, but point in <strong>opposite senses</strong> (directions). If the desk didn't push back, your hand would simply sink through it.
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 3 -->
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 3 — Units: How We Measure Things Fairly</h3>
+      <span class="pages">pages 21–26</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 21</span>
+      <h4>Two slides here: Newton's Law of Gravitation (with the real formula), and the two "systems of units"</h4>
+      <div class="block idea">
+        <span class="label">Above — Newton's Law of Gravitation, done properly with the actual formula</span>
+        A fun historical correction first: <strong>Newton did NOT "discover" gravity</strong> (people already knew things fell down!). What he actually did was propose that gravity is <strong>universal</strong> — that literally ALL objects in the universe attract every other object, not just "big things pulling on us."
+        <br><br>
+        Two particles are attracted to each other with equal and opposite forces. That attraction is <strong>directly dependent on the masses of both objects</strong> (bigger masses = stronger pull) and <strong>inversely proportional to the SQUARE of the distance between their centers</strong> (double the distance = only 1/4 the pull, not 1/2 — this is called an "inverse square law"). The actual formula is:
+        <br><br>
+        <strong>F = G·M·m / r²</strong>
+        <ul class="simple">
+          <li><strong>M and m</strong> = the masses of the two particles</li>
+          <li><strong>G</strong> = the universal gravitational constant (a fixed number: 6.673 × 10⁻¹¹ m³/kg·s²) — its precise value was measured experimentally by a scientist named Henry Cavendish, in the century AFTER Newton had already died</li>
+          <li><strong>r</strong> = the distance between the two particles' centers</li>
+          <li><strong>F</strong> comes out in Newtons</li>
+        </ul>
+        The slide also reminds us of two formulas we'll use constantly: <span class="answer-flag">F = mg</span> (weight, a special simplified case of gravity just for objects near Earth's surface) and <span class="answer-flag">g = 9.81 m/s²</span> (Earth's gravitational acceleration).
+      </div>
+      <div class="block idea">
+        <span class="label">Below — System of Units/Dimensions: SI vs. FPS, and which quantity is "basic" in each</span>
+        A "unit" is just the name we give to a physical quantity, so everyone measures the same way. There are two systems used in engineering:
+        <ol class="simple">
+          <li><strong>International System of Units (SI)</strong> — the basic quantities are length, time, and mass, measured in meter (m), second (s), and kilogram (kg). Force is a DERIVED quantity (built from the other three), measured in a unit called the Newton, using F = ma.</li>
+          <li><strong>U.S. Customary Units (FPS)</strong> — the basic quantities are length, time, and FORCE, measured in foot (ft), second (s), and pound (lb). Here, mass is the one that's derived instead.</li>
+        </ol>
+        This is the single most important difference between the two systems: SI treats mass as fundamental and calculates force from it; FPS treats force as fundamental and calculates mass from it.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 22</span>
+      <h4>Two slides here: the actual SI/FPS units table, and Mass &amp; Weight explained visually</h4>
+      <div class="block idea">
+        <span class="label">Above — Systems of Units: the actual reference table (Table 1–1)</span>
+        This slide shows a table you'll come back to often. It lists, for each system, the actual UNIT NAME for each basic quantity:
+        <div class="table-scroll">
+        <table class="mini">
+          <tr><th>System</th><th>Length</th><th>Time</th><th>Mass</th><th>Force</th></tr>
+          <tr><td>SI</td><td>meter (m)</td><td>second (s)</td><td>kilogram (kg)</td><td>newton* (N = kg·m/s²)</td></tr>
+          <tr><td>FPS</td><td>foot (ft)</td><td>second (s)</td><td>slug* (lb·s²/ft)</td><td>pound (lb)</td></tr>
+        </table>
+        </div>
+        <span style="font-family:'Helvetica Neue',Arial,sans-serif; font-size:.78rem; color:var(--tag);">*marked as "derived unit" in each system — Newton is derived in SI, slug is derived in FPS.</span>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Mass &amp; Weight, visually</span>
+        <ul class="simple">
+          <li>Mass is the amount of matter an object possesses. Mass does NOT change with location.</li>
+          <li>Weight is the gravitational force that a large body (such as the planet Earth) exerts on another object.</li>
+          <li><strong>Weight IS a force!</strong> It's measured in Newtons, just like any other force.</li>
+          <li>Weight = Mass × Acceleration due to Gravity (this is literally Newton's Second Law, F=ma, applied specifically to gravity's pull).</li>
+          <li>Weight DOES change with location, because "g" changes with location.</li>
+        </ul>
+        The slide's own diagram makes this vivid: a block with <strong>1 kg</strong> of mass weighs <strong>9.81 N</strong> on Earth. A block with <strong>1 slug</strong> of mass weighs <strong>32.2 lb</strong> on Earth (using the FPS system's own units, where g = 32.2 ft/s²).
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 23</span>
+      <h4>Two slides here: the Mass/Weight formulas for each system, and the first Conversion Table</h4>
+      <div class="block idea">
+        <span class="label">Above — Mass and Weight, written as formulas for BOTH systems</span>
+        <strong>In the SI system:</strong> W = m·g, where W = weight (a derived quantity), m = mass (the basic quantity), and g = 9.81 m/s².
+        <br><br>
+        <strong>In the FPS system, it's flipped:</strong> m = W/g, where m = mass (now the DERIVED quantity), W = weight (now the BASIC quantity), and g = 32.2 ft/s². The slide even shows an astronaut floating in space here — a nice visual reminder that this astronaut's mass never changed, even though in microgravity their "weight" (the force pulling them toward something) is essentially zero.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Conversion of Units (Table 1.2) — a table you'll use in almost every problem</span>
+        <div class="table-scroll">
+        <table class="mini">
+          <tr><th>Quantity</th><th>FPS unit</th><th>Equals (SI)</th></tr>
+          <tr><td>Force</td><td>1 lb</td><td>4.448 N</td></tr>
+          <tr><td>Mass</td><td>1 slug</td><td>14.59 kg</td></tr>
+          <tr><td>Length</td><td>1 ft</td><td>0.3048 m</td></tr>
+        </table>
+        </div>
+        The slide adds two rules that matter for the whole rest of the course: <strong>"The units are a part of the measurement, as important as the number. They must always be kept together."</strong> And: <strong>"Work problems in the units given, unless otherwise instructed."</strong> — meaning don't randomly convert units unless the problem actually needs you to; if everything is already given in kN and meters, just work in kN and meters.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 24</span>
+      <h4>Two slides here: the big SI reference table, and how Force-related units are built</h4>
+      <div class="block idea">
+        <span class="label">Above — Systems of Units (Table 1.2): a big reference table — you look things up here, you don't memorize it</span>
+        This slide is a reference table listing many quantities used throughout the whole course (Acceleration, Angle, Area, Density, Energy, Force, Frequency, Impulse, Length, Mass, Moment of a force, Power, Pressure, Stress, Time, Velocity, Volume, Work) along with their SI unit name, symbol, and formula. You are not expected to memorize this whole table right now — think of it like a dictionary you flip back to whenever you forget what unit something should be in. A few of the most useful rows to know already: <strong>Force → Newton (N) → kg·m/s²</strong>, <strong>Moment of a force → Newton-meter (N·m)</strong>, <strong>Pressure/Stress → Pascal (Pa) → N/m²</strong>.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Force Derived Units: 4 units all BUILT from the Newton</span>
+        <ul class="simple">
+          <li><strong>Force (F):</strong> a Newton (N) is defined as the amount of force required to accelerate 1 kg of mass at a rate of 1 m/s².</li>
+          <li><strong>Stress (F/A):</strong> Newton per square meter (N/m²), also called a Pascal. 1 Pa = 1 N/m².</li>
+          <li><strong>Pressure:</strong> also N/m², or sometimes "bar." 1 bar = 1×10⁵ N/m².</li>
+          <li><strong>Moment, Torque, Couple (F·d):</strong> Newton·meter (N·m) — this is the exact unit we used in the 47 in·lb example a few pages ago, and it's the unit for the "twisting effect" of a force that we'll study properly in Chapter 3.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 25</span>
+      <h4>Two slides here: a big US-to-SI conversion table, and the full list of SI prefixes</h4>
+      <div class="block idea">
+        <span class="label">Above — Conversion of Units (Table 1.3): a bigger reference table of US Customary → SI equivalents</span>
+        This is a longer version of the small table from page 23 — it covers many more quantities (Acceleration, Area, Energy, Force, Impulse, Length, Mass, Moment of force, Moment of inertia, Momentum, Power, Pressure/stress, Velocity, Volume, Work), each with its US Customary unit and the matching SI equivalent. Just like the table on page 24, this is a reference you look up as needed — the goal isn't to memorize all of it, but to know it exists and know how to read a row when you need one.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — SI Unit Prefixes (Table 1.1): the FULL list, not just kilo/milli/mega</span>
+        Writing out really big or really tiny numbers with lots of zeros is annoying and easy to make mistakes with. So SI uses "prefix" words for multiplying/dividing by powers of 10:
+        <div class="table-scroll">
+        <table class="mini">
+          <tr><th>Prefix</th><th>Symbol</th><th>Multiply by</th></tr>
+          <tr><td>tera</td><td>T</td><td>10¹² (1,000,000,000,000)</td></tr>
+          <tr><td>giga</td><td>G</td><td>10⁹</td></tr>
+          <tr><td>mega</td><td>M</td><td>10⁶</td></tr>
+          <tr><td>kilo</td><td>k</td><td>10³</td></tr>
+          <tr><td>centi</td><td>c</td><td>10⁻²</td></tr>
+          <tr><td>milli</td><td>m</td><td>10⁻³</td></tr>
+          <tr><td>micro</td><td>μ</td><td>10⁻⁶</td></tr>
+          <tr><td>nano</td><td>n</td><td>10⁻⁹</td></tr>
+          <tr><td>pico</td><td>p</td><td>10⁻¹²</td></tr>
+        </table>
+        </div>
+        Two rules the slide specifically flags: prefixes are used to denote large or small numerical quantities of a unit, and <strong>capital vs. lowercase letters matter</strong> — for example, "M" (mega, ×10⁶) and "m" (milli, ×10⁻³) look almost identical but mean things a trillion times apart! Mixing these up is a very easy, very costly mistake.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 26</span>
+      <h4>Two slides here: the exact grammar rules for writing units, and our first full worked example</h4>
+      <div class="block idea">
+        <span class="label">Above — Rules For Use of Units &amp; Prefixes</span>
+        <ul class="simple">
+          <li>Unit names are always written in LOWERCASE letters, except for M, G, T, and units named after a person (like Newton, N — capitalized because it honors Isaac Newton).</li>
+          <li>When a quantity is defined by several units multiplied together, separate them with a dot: "m·s" means meter-seconds, which is completely different from "ms," which means milliseconds! (These slides use a dash instead of a dot for this, but the idea is the same — don't let "m-s" and "ms" look interchangeable.)</li>
+          <li>When performing calculations, begin by writing every number out in terms of BASE units. Worked example from the slide: (50 kN)(60 nm) = (50)(10³)(N) × (60)(10⁻⁹)(m) = 3000×10⁻⁶ N·m = 3 N·mm.</li>
+          <li>Compound prefixes should NOT be used — for example, never write "kμs" (kilo-micro-seconds); just convert to a single proper prefix instead.</li>
+          <li>Avoid using prefixes in the DENOMINATOR (bottom) of a combined unit, except for kg (kilogram is special because it's the SI base unit for mass, even though "kilo" is technically a prefix).</li>
+        </ul>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Let's actually DO a unit conversion together, step by step</span>
+        Here's a secret that makes unit conversion easy: <strong>you're allowed to multiply anything by 1 without changing its actual value.</strong> Since "1 inch = 25.4 mm" is a true fact, that means the fraction (25.4 mm ÷ 1 inch) is secretly just another way of writing the number "1" — it's a fraction that equals exactly one, just written with different units on the top and bottom. Multiplying by it doesn't change the real amount, only how we write it — kind of like how "1 dollar" and "100 cents" are the exact same amount of money, just written differently. The slide also notes: whichever unit you WANT goes on top of your conversion fraction, and whichever unit you're trying to CANCEL goes on the bottom.
+      </div>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Convert a torque (twisting force) measurement of <strong>47 in·lb</strong> (inch-pounds, an American unit) into SI units (Newton-meters).
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it — nice and slow</span>
+        We know: 1 inch = 25.4 mm, and 1 pound (lb) = 4.448 Newtons (N).
+        <br><br>
+        <strong>Step 1 — swap out the "inch" part:</strong> We multiply our 47 in·lb by the fraction (25.4 mm / 1 in). The word "in" (inch) appears on the top of our starting number and on the bottom of our fraction, so they cancel each other out — just like how in the fraction (2×3)/2, the 2's cancel.
+        <br>
+        47 in·lb × (25.4 mm / 1 in) = <strong>1193.8 mm·lb</strong>
+        <br><br>
+        <strong>Step 2 — swap out the "lb" (pound) part:</strong> Now we multiply by (4.448 N / 1 lb). The "lb" cancels out the same way.
+        <br>
+        1193.8 mm·lb × (4.448 N / 1 lb) = <strong>5310.0 mm·N</strong>
+        <br><br>
+        <strong>Step 3 — turn millimeters into meters:</strong> Since 1000 mm = 1 m, we multiply by (1 m / 1000 mm).
+        <br>
+        5310.0 mm·N × (1 m / 1000 mm) = <span class="answer-flag">5.31 N·m</span>
+      </div>
+      <div class="block idea">
+        <span class="label">Let's double-check our own work (always a good habit!)</span>
+        47 × 25.4 = 1193.8. Then 1193.8 × 4.448 = 5310.0. Then divide by 1000 to get 5.310. So our final answer, <strong>5.31 N·m</strong>, matches. <strong>Common beginner mistake:</strong> converting only ONE of the two units (only the inches, or only the pounds) and forgetting the other one — always check that you've swapped out every single unit before you're done.
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 4 -->
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 4 — How to Actually Solve a Problem (the Grown-Up Way)</h3>
+      <span class="pages">pages 27–29</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 27</span>
+      <h4>Two slides here: a true disaster story, and the first third of the official problem-solving strategy</h4>
+      <div class="block idea">
+        <span class="label">Above — a true story: how mixing up units destroyed a $327 million spacecraft</span>
+        In 1998, NASA launched a spacecraft called the <strong>Mars Climate Orbiter</strong>. Someone at NASA forgot to convert English units (pounds) into metric units (Newtons) when calculating the rocket thrust needed to put the spacecraft into orbit around Mars. The root cause was a measurement mismatch between two different software systems: NASA used metric units, while the spacecraft's builder, <strong>Lockheed Martin</strong>, used Imperial ("English") units. When both sets of numbers were combined without converting them to match, the spacecraft's engines fired with completely the wrong amount of force, and it was destroyed. <span class="answer-flag">A $327 million mistake, caused entirely by mixing up units.</span>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Problem-Solving Strategy (1) of 3 — Newton's Laws Problem Solving Strategies</span>
+        This is the FIRST of three strategy slides (parts 1, 2, and 3, spread across this page and the next). Here's part 1's full checklist, in order:
+        <ol class="simple">
+          <li>Draw a sketch, and decide what is IN the system you're analyzing and what is OUT of it.</li>
+          <li>Draw a Free-Body Diagram (FBD).</li>
+          <li>Show and label ALL external forces acting on the object.</li>
+          <li>Indicate the locations of all the forces.</li>
+          <li>Establish a convenient coordinate system.</li>
+          <li>Find the components of the forces along the two axes.</li>
+          <li>Apply the <strong>FIRST condition for equilibrium</strong> — this is a term worth remembering: it specifically means <span class="answer-flag">ΣF = 0</span> (no net force, no sliding).</li>
+          <li>Be careful of signs.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 28</span>
+      <h4>Two slides here: Problem-Solving Strategy, parts 2 and 3 — don't skip these, they finish the recipe</h4>
+      <div class="block idea">
+        <span class="label">Above — Problem-Solving Strategy (2) of 3 — now about TORQUE (rotation), not just force</span>
+        <ul class="simple">
+          <li>Choose a convenient axis for calculating the net torque on the object. <strong>The choice of axis is arbitrary</strong> — you're allowed to pick whichever point makes the math easiest.</li>
+          <li>Choose an origin that simplifies the calculations as much as possible. Here's a genuinely useful trick: <strong>a force that acts along a line passing through the origin produces ZERO torque</strong> about that origin — so picking your axis smartly can make some unknown forces disappear from the equation entirely.</li>
+          <li>Be careful of signs with respect to the rotational axis: <strong>positive if the force tends to rotate the object counter-clockwise (CCW)</strong>, <strong>negative if clockwise (CW)</strong>, and <strong>zero if the force acts directly ON the rotational axis</strong> (since it has no leverage to twist anything from there).</li>
+          <li>Apply the <strong>SECOND condition for equilibrium</strong> — this means <span class="answer-flag">ΣM = 0</span> (no net twisting/rotation).</li>
+        </ul>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Problem-Solving Strategy (3) of 3 — finishing the math and checking your work</span>
+        <ul class="simple">
+          <li>The two conditions of equilibrium (ΣF=0 and ΣM=0) together give you a SYSTEM of equations.</li>
+          <li>Solve the equations simultaneously (together, not one at a time in isolation, if they share unknowns).</li>
+          <li>Make sure your results are consistent with your free-body diagram.</li>
+          <li>If the solution gives a NEGATIVE value for a force, it simply means that force is in the OPPOSITE direction to what you originally drew in your free-body diagram — not a mistake, just useful information.</li>
+          <li>Check your results to confirm they make sense.</li>
+          <li>Test for errors in reasoning by verifying that the UNITS of your computed results are correct, and be sure to use a consistent set of units throughout.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 29</span>
+      <h4>Two slides here: the "no mixing apples and oranges" rule, and the chapter's closing summary</h4>
+      <div class="block idea">
+        <span class="label">Above — Dimensional Homogeneity</span>
+        Here's a simple but powerful rule called <strong>dimensional homogeneity</strong>: every single term you're adding together in an equation MUST have the same units. The slide proves this with a real formula from physics, <span class="answer-flag">s = vt + &frac12;at²</span>, where s is position (in meters), v is velocity (in m/s), a is acceleration (in m/s²), and t is time (in seconds). If you check the units of every term: m = (m/s)(s) + (m/s²)(s²) = m + m = m — every single piece works out to plain meters, matching the left side exactly. That's what "dimensionally homogeneous" looks like when it's done correctly. You cannot add "5 meters" + "3 seconds" — that's just as meaningless as adding "5 apples + 3 oranges = 8 what?" If your units don't match up on both sides of the equals sign, that's a big warning sign you made a mistake — go back and check!
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Method of Problem Solution (Summary): the chapter's closing checklist</span>
+        <ul class="simple">
+          <li><strong>Problem Statement:</strong> read the problem carefully and correlate the actual physical situation with the theory studied. This includes the given data, a specification of what is to be determined, and a figure showing all quantities involved.</li>
+          <li><strong>Free-Body Diagrams:</strong> draw the necessary diagrams and tables. Create a separate diagram for each of the bodies involved, with a clear indication of all forces acting on each body.</li>
+          <li><strong>Fundamental Principles:</strong> apply the relevant principles, generally in mathematical form. The six fundamental principles are applied to express the conditions of rest or motion of each body. The rules of algebra are then applied to solve the equations for the unknown quantities.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL IDEA -->
+  <div class="final-idea">
+    <h3>Chapter 1 Recap &mdash; 5 Things to Remember</h3>
+    <div class="table-scroll">
+    <table>
+      <tr><th>#</th><th>The idea</th><th>Why it matters</th></tr>
+      <tr><td>1</td><td>Statics = things that are NOT speeding up or slowing down.</td><td>This is the one rule that applies to literally every problem all semester.</td></tr>
+      <tr><td>2</td><td>Equilibrium means ΣF = 0 — all forces cancel out to zero.</td><td>This is the main tool we use to solve almost everything.</td></tr>
+      <tr><td>3</td><td>Mass ≠ Weight. Weight = mass × g, and weight can change; mass never does.</td><td>Mixing these up is the #1 beginner mistake in this topic.</td></tr>
+      <tr><td>4</td><td>Always keep your units matching (don't mix meters with feet, or Newtons with pounds).</td><td>Real disasters (Mars Orbiter!) have happened from skipping this.</td></tr>
+      <tr><td>5</td><td>Every problem gets solved the same way: sketch → Free Body Diagram → label forces → write equations → solve → check.</td><td>This recipe works for every single chapter coming up.</td></tr>
+    </table>
+    </div>
+    <div class="rule">
+      <strong>One sentence to remember forever:</strong><br>
+      Statics is simply the skill of figuring out all the pushes and pulls on something that isn't moving, so we can make sure it never breaks or falls down — a skill that has saved lives, and one accidental mistake in it (like at the Hyatt Regency) has cost lives too.
+    </div>
+  </div>
+
+
+  <!-- ================= CHAPTER 2 ================= -->
+  <div class="chapter-band" id="ch2">
+    <div class="num">Chapter 2</div>
+    <h2>Force Vectors</h2>
+    <span class="pages">pages 30–69</span>
+  </div>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 1 — Forces and "Free Body Diagrams" (the Basics)</h3>
+      <span class="pages">pages 30–37</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 30</span>
+      <h4>Two slides here: the "Scalars &amp; Vectors" chapter banner, and Introduction</h4>
+      <div class="block idea">
+        <span class="label">Above — chapter title banner: "Scalars &amp; Vectors"</span>
+        Just a divider slide marking the start of a new chapter (like the "Force System Resultants" and "Equilibrium of Rigid Bodies" banners we've already seen end other chapters). Nothing to learn here — just a signpost.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Introduction</span>
+        Treating a body as a single particle isn't always possible — the SIZE of the body and exactly WHERE forces are applied on it now matters. Most bodies in this course are assumed <strong>rigid</strong> (deformations are small and don't affect equilibrium/motion). A rigid body can move in 3 ways: <strong>Translation</strong> (sliding along a straight line), <strong>Rotation</strong> (spinning about an axis), or a <strong>Combination</strong> of both. This chapter's whole goal: describe forces on a rigid body, and learn how to replace a system of forces with a simpler EQUIVALENT one — using the moment of a force about a point, the moment of a force about an axis, and the moment due to a couple. The big payoff (stated right here): <strong>any system of forces acting on a rigid body can be replaced by one equivalent force plus one moment (couple).</strong>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 31</span>
+      <h4>Two slides here: Coordinate Systems in 2D, then in 3D</h4>
+      <div class="block idea">
+        <span class="label">Above — Coordinate Systems (2D)</span>
+        We measure locations in space relative to a <strong>coordinate system</strong>: first you pick the <strong>origin</strong> (starting point), then the directions of orthogonal (perpendicular) axes. Because the axes are mutually perpendicular, components along different axes are completely <strong>independent</strong> of each other (changing one doesn't affect the others). The two commonly used 2D systems are <strong>Cartesian</strong> (x,y coordinates, like "(5,4)") and <strong>plane polar</strong> (distance + angle, like "(6.4, 35°)").
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Coordinate Systems (3D)</span>
+        The 3D Cartesian coordinate system uses 3 mutually perpendicular, straight axes, commonly labeled <strong>x, y, z</strong> (or i, j, k). Any point in space can be uniquely specified by listing 3 numerical coordinates, like an address: "go this far in x, this far in y, this far in z."
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 32</span>
+      <h4>Two slides here: What is a Force?, and Force System Terminology</h4>
+      <div class="block idea">
+        <span class="label">Above — What is A Force?</span>
+        A force is an effect that tends to change the state of rest or uniform motion of a body. It cannot be seen — only the EFFECT of a force on a body may be seen. Force units: Newton (N) or kilonewton (kN) in SI. A force is a <strong>vector</strong> quantity — it has both magnitude and direction. <strong>Coplanar (2D)</strong>: all forces lie in the same plane (e.g. only the x-y plane, nothing sticking out in z); otherwise the system is three-dimensional. <strong>Concurrent</strong>: all forces act through (pass through) the same single point.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Force System Terminology</span>
+        <strong>Line of Action</strong> of a force is the straight line that's collinear with (lies along) the force vector. <strong>Collinear</strong>: a system of forces that all share the same line of action. Two forces are <strong>equivalent</strong> if they have the same effect on a rigid body — meaning the forces must be equal AND have the same moment about any point. A <strong>push</strong> on a body is called a <strong>compressive force</strong>; a <strong>pull</strong> is called a <strong>tensile force</strong>. According to the <strong>principle of transmissibility</strong>, all forces are "sliding vectors" — they're equivalent forces even though their point of application can be transmitted (slid) anywhere along their own line of action.
+      </div>
+      <div class="examples">
+        <span class="label">The example actually shown on this slide</span>
+        The "What is A Force?" slide shows a concurrent force system at a point A with 4 real forces drawn to scale: <strong>F₁ = 300 N</strong> (pointing right), <strong>F₂ = 173.2 N</strong> (down-right at 30° below F₁), <strong>F₃ = 200 N</strong> (pointing down-left), and <strong>F₄ = 400 N</strong> (pointing up, 30° from vertical). This is a picture-only illustration of what "concurrent" means (all four lines of action pass through the same point A) — no calculation is asked for on this slide.
+        <br><br>
+        The Force System Terminology slide illustrates transmissibility with two bars: a 10 N force applied at 30° along a fixed axis, shown applied at two different points along that same line — both drawings represent the same equivalent force. A third picture shows a single bar with 100 N pulling from each end (a simple tension example).
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 33</span>
+      <h4>Two slides here: External Forces on a Rigid Body, and Internal Forces on a Rigid Body</h4>
+      <div class="block idea">
+        <span class="label">Above — External Forces on Rigid Body</span>
+        These forces are external to the rigid body and represent the action of OTHER bodies on it. They're responsible for the body's external behavior (rigid body motion, or preventing motion), and they're exactly the forces considered when analyzing equilibrium. Two sub-types worth knowing: <strong>Support Reactions</strong> — the forces responsible for keeping a rigid body at rest, caused by the loads applied to it (a consequence of equilibrium). <strong>Body Force</strong> — one that acts on the entire VOLUME of an object, like gravitational force (weight) or other distant forces like electromagnetism. <strong>Surface Force</strong> — one that acts on the SURFACE of a body, e.g. most contact forces (normal force and friction).
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Internal Forces on Rigid Body</span>
+        These give rise to <strong>stresses and strains</strong>, and are responsible for the deformation of bodies. They represent the resistance of the body's own particles to the external forces acting on it, and they transmit the externally applied forces through to the support reactions. Important subtlety: <strong>an internal force can BECOME an external force</strong> if you cut a structure and consider only a section/part of it — what was "inside" the whole structure is now on the "outside" boundary of your smaller piece.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 34</span>
+      <h4>Two slides here: where Internal Forces are studied further, and the Principle of Transmissibility's fine print</h4>
+      <div class="block idea">
+        <span class="label">Above — Internal Forces on Rigid Body (continued): two future courses</span>
+        This slide simply points to two follow-up courses where internal forces get studied in full depth: <strong>CES 370 Mechanics of Materials</strong> (forces, stresses, equilibrium, strains, stress-strain relationships, elastic/plastic behavior, bending of beams, torsion) and <strong>CES 371 Mechanics of Solids I</strong> (forces and stresses, stress-strain relationships, stresses in beams, shear and bending moment diagrams, deflection). This confirms what we learned on page 12: THIS course (Statics) only finds the outside forces — these two later courses take over from there.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Principle of Transmissibility: the important fine print</span>
+        From the principle of transmissibility, the rigid body's overall MOVEMENT is the same whether a force is applied at one point along its line of action or another. <strong>However</strong> — and this is the part page 34's earlier summary already hinted at — the INTERNAL forces are different in each case: in one case the bar is in tension, in the other it's in compression. If the bar isn't perfectly rigid, it will actually stretch slightly in the tension case and shorten slightly in the compression case. <strong>Bottom line: transmissibility only describes external behavior — it does NOT guarantee equivalent internal forces.</strong>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 35</span>
+      <h4>Two slides here: the FBD procedure spelled out, and a simple worked visual example</h4>
+      <div class="block idea">
+        <span class="label">Above — Free Body Diagram (FBD) &amp; Procedure</span>
+        An FBD is an essential step in solving ANY problem involving forces on bodies. It's a diagram of the external surface of the body — we are NOT interested in internal forces here. Every other body touching the one we care about gets replaced by a vector (arrow). The FBD procedure:
+        <ol class="simple">
+          <li>Draw/sketch the particle or body, isolated from its surroundings.</li>
+          <li>Include coordinate axes.</li>
+          <li>Indicate ALL forces that act on the particle/body.</li>
+          <li><strong>Active/applied forces</strong> — i.e., loads and weights, etc.</li>
+          <li><strong>Reactive forces</strong> — constraints, supports.</li>
+          <li>Known forces are labeled with their magnitudes and directions.</li>
+          <li>Unknown forces are represented by letters and arrows (an assumed direction).</li>
+          <li>In the solution, if a "negative" force is obtained, the minus sign indicates that the force is in the OPPOSITE direction from what was originally assumed.</li>
+        </ol>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Free Body Diagram (a worked visual example)</span>
+        A Free Body Diagram is used to describe the system of forces acting on a body when considered in isolation. The slide shows two examples side by side: (a) a truck being pulled, isolated to show its weight W, the pulling force F, and the two ground reactions R₁, R₂; and (b) a ball hanging from a cable — first a plain sketch, then its FBD showing tension T pulling up and weight "mg" pulling down.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 36</span>
+      <h4>Two slides here: FBD practice for a ladder, then Trigonometry begins</h4>
+      <div class="block problem">
+        <span class="label">Above — Which FBD is Correct?</span>
+        A uniform ladder of length l rests against a smooth, vertical wall. The ladder's mass is m, and the coefficient of static friction between the ladder and the ground is μ<sub>s</sub> = 0.40. Four candidate Free Body Diagrams are shown (A, B, C, D), each drawing a different combination of gravity (blue), friction (orange), and normal forces (green).
+      </div>
+      <div class="block solve">
+        <span class="label">How to think about it</span>
+        Ask: "what forces could physically be touching the ladder?" (1) <strong>Gravity</strong> pulls the ladder's own weight straight down, always. (2) The <strong>wall</strong> is smooth (frictionless), so it can only push STRAIGHT OUT from itself (perpendicular to the wall) — it cannot grip/rub the ladder sideways. (3) The <strong>ground</strong> is rough (μ<sub>s</sub>=0.40), so it can push straight up (normal force) AND also push sideways (friction, stopping the ladder's bottom from sliding out). The correct diagram is the one showing exactly these forces, in these directions, and nothing extra or missing.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Trigonometry (Right Angle) begins</span>
+        A right triangle has one angle equal to exactly 90°, which means two of its sides are perpendicular to each other. The <strong>Pythagorean theorem</strong> gives the relationship between the lengths of the sides: <span class="answer-flag">A² = B² + C²</span> (where A is the longest side, the hypotenuse). One more basic fact: the internal angles of ANY triangle always add up to <strong>180°</strong>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 37</span>
+      <h4>Two slides here: the sin/cos/tan formulas precisely, then trig for ANY triangle</h4>
+      <div class="block idea">
+        <span class="label">Above — Trigonometry (Right Angle): Sine, Cosine, Tangent</span>
+        Using a triangle with hypotenuse A, opposite side B, and adjacent side C, relative to angle θ: <strong>sin(θ) = B/A</strong> (opposite over hypotenuse), <strong>cos(θ) = C/A</strong> (adjacent over hypotenuse), <strong>tan(θ) = B/C</strong> (opposite over adjacent). The slide also gives 3 handy identities: <span class="answer-flag">cos(θ) = sin(90°−θ)</span>, <span class="answer-flag">tan(θ) = sin(θ)/cos(θ)</span>, and <span class="answer-flag">sin²(θ) + cos²(θ) = 1</span>. It's also useful to define the INVERSE functions — arcsine, arccosine, arctangent (written sin⁻¹, cos⁻¹, tan⁻¹) — which let us go backwards from a ratio to find the actual angle.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Trigonometry (Any Triangle)</span>
+        <strong>Law of Sines:</strong> sinA/a = sinB/b = sinC/c (each angle paired with the side directly across from it). <strong>Law of Cosines:</strong> a²=b²+c²−2bc·cosA (and the same pattern for b² and c²). The slide also derives a small extra identity: h=c·sinA=a·sinC, so c·sinA=a·sinC. Finally, the <strong>Area of a Right Triangle</strong> = ½ × Base × Height.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 2 — What Exactly Is a "Vector"?</h3>
+      <span class="pages">pages 38–45</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 38</span>
+      <h4>Two slides here: Scalar vs. Vector defined, then the comparison table begins</h4>
+      <div class="block idea">
+        <span class="label">Above — Scalar and Vector Quantities</span>
+        There are two kinds of quantities. <strong>Scalar</strong>: a physical quantity completely described by a real number — it has magnitude but NO directional properties. Scalars use ordinary math (e.g. c=a+b, so c=8 if a=3, b=5, as long as the units match). Examples: time, mass, speed, energy. <strong>Important note the slide flags in a different color: weight and velocity are VECTOR quantities</strong> — even though it's tempting to think of them as "just a number," they need a direction too.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Scalar and Vector Quantities Comparison (table, part 1 of 2)</span>
+        <div class="table-scroll">
+        <table class="mini">
+          <tr><th>Basis</th><th>Scalar</th><th>Vector</th></tr>
+          <tr><td>Definition</td><td>Needs only magnitude</td><td>Needs magnitude AND direction</td></tr>
+          <tr><td>Change</td><td>Only its magnitude can change</td><td>Its magnitude OR direction (or both) can change</td></tr>
+          <tr><td>Math procedures</td><td>Multiplied/subtracted/added with ordinary algebra</td><td>Cannot use simple algebra rules — needs vector algebra</td></tr>
+          <tr><td>Expression</td><td>Simple letters, e.g. V</td><td>Boldface letters or an arrowhead, e.g. <b>V</b></td></tr>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 39</span>
+      <h4>Two slides here: the comparison table finishes, then the full definition of a "vector"</h4>
+      <div class="block idea">
+        <span class="label">Above — Scalar and Vector Quantities Comparison (table, part 2 of 2)</span>
+        <div class="table-scroll">
+        <table class="mini">
+          <tr><th>Basis</th><th>Scalar</th><th>Vector</th></tr>
+          <tr><td>Division</td><td>Two scalars CAN divide each other</td><td>Two vectors CANNOT divide each other</td></tr>
+          <tr><td>Product</td><td>Product of two scalars is always a scalar</td><td>Product of two vectors may be a scalar OR a vector</td></tr>
+          <tr><td>Resolution</td><td>Cannot be resolved into parts</td><td>CAN be resolved into parts (this is exactly what we'll do in a few pages!)</td></tr>
+          <tr><td>Unit scalar/vector</td><td>"Unit scalars" aren't used in physics</td><td>Unit vectors ARE used, to indicate pure direction</td></tr>
+          <tr><td>Example</td><td>"A car moves at a speed of 30 km/h" (scalar)</td><td>"A car moves with a velocity of 30 km/h East" (vector)</td></tr>
+        </table>
+        </div>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Vectors: the full official definition</span>
+        A <strong>Vector</strong> is a quantity described by Magnitude, Direction, Point of application, AND Sense (which way the arrowhead points). Example: the position of one point in space relative to another, or a force. Vectors are represented by boldface letters: <b>U, V, W</b>, ... The magnitude of vector U is written |U| (using absolute-value bars). Graphically, a vector is drawn as an arrow: the arrow's <strong>direction</strong> = the angle between a reference axis and the arrow's line of action; the arrow's <strong>length</strong> = its magnitude. Worked example: <b>r</b><sub>AB</sub> = the position vector of point B relative to point A; its direction goes from A to B; and |<b>r</b><sub>AB</sub>| = the straight-line distance between the two points.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 40</span>
+      <h4>Two slides here: classifying vectors into types, then multiplying a vector by a number</h4>
+      <div class="block idea">
+        <span class="label">Above — Vectors classification</span>
+        <ul class="simple">
+          <li><strong>Fixed (bound) vectors</strong> — have a well-defined point of application that CANNOT be changed without affecting the analysis. (Example: a Position Vector.)</li>
+          <li><strong>Free vectors</strong> — may be freely moved in space without changing their effect on the analysis. (Example: a Moment Vector — we'll meet these in Chapter 3.)</li>
+          <li><strong>Sliding vectors</strong> — may be applied anywhere along their line of action without affecting the analysis. (Example: a Force Vector.)</li>
+          <li><strong>Equal vectors</strong> have the same magnitude AND direction.</li>
+          <li>The <strong>negative</strong> of a vector has the same magnitude but the OPPOSITE direction.</li>
+        </ul>
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Product (Multiply) a Vector</span>
+        The product of a scalar (real number) <i>a</i> and a vector <b>U</b> is the vector <i>a</i><b>U</b>. Its magnitude is <span class="answer-flag">|a||U|</span>, where |a| is the absolute value of the scalar. The direction of <i>a</i><b>U</b> is the SAME as <b>U</b> when <i>a</i> is positive, and OPPOSITE to <b>U</b> when <i>a</i> is negative.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 41</span>
+      <h4>Two slides here: the Unit Vector formula, then the specific i, j, k unit vectors</h4>
+      <div class="block idea">
+        <span class="label">Above — Unit Vector (Specify Direction)</span>
+        The direction of a vector <b>A</b> can be specified using a <strong>unit vector</strong>, which has a magnitude of exactly <strong>1 (no units)</strong>. If <b>A</b> is a vector with magnitude A≠0, the unit vector with the SAME direction as <b>A</b> is: <span class="answer-flag">u<sub>A</sub> = A/A</span>, so that <b>A</b> = A·u<sub>A</sub>. Since magnitude A has the same units as vector A, the unit vector itself ends up dimensionless (no units at all) — u<sub>A</sub> only defines the direction and sense of A. If a unit vector <b>e</b> and a vector <b>U</b> point the same way: <b>U</b> = |U|<b>e</b>.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Cartesian Unit Vectors</span>
+        <b>i, j, k</b> are used to designate the directions of the x, y, and z axes respectively. Their sense (arrowhead direction) is usually described by a plus sign pointing toward the positive axes, where x, y, z are written.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 42</span>
+      <h4>Two slides here: the 2D position vector formula precisely, then why we add vectors at all</h4>
+      <div class="block idea">
+        <span class="label">Above — Position Vector in Two Dimensions</span>
+        Consider point A with coordinates (x<sub>A</sub>, y<sub>A</sub>) and point B with coordinates (x<sub>B</sub>, y<sub>B</sub>). Let <b>r</b><sub>AB</sub> be the vector that specifies the position of B relative to A: <span class="answer-flag">r<sub>AB</sub> = (x<sub>B</sub>−x<sub>A</sub>)i + (y<sub>B</sub>−y<sub>A</sub>)j</span>. The rule is always <strong>Tip/Head MINUS Tail</strong> — and the first letter in the subscript (here, A) is always the starting point.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Vector Addition (why we need it)</span>
+        If an object is subjected to several forces with different magnitudes, acting in different directions, how do we determine the magnitude and direction of the resulting TOTAL force? Answer: <strong>vector addition</strong>. Concretely: when an object undergoes a <strong>displacement</strong> (moves from one location to another), we call that displacement vector <b>U</b>. The direction of U is the direction of the displacement (pointing toward the vector's tip); the magnitude |U| is the distance the object (e.g. a book on a table) actually moved.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 43</span>
+      <h4>Two slides here: the Parallelogram Law of addition, then the Triangle Law begins</h4>
+      <div class="block idea">
+        <span class="label">Above — Vector Addition (Parallelogram Law)</span>
+        Imagine a book given a 2nd displacement V (after the first, U). The book's FINAL position is the same whether you give it displacement U then V, or V then U — U and V together are equivalent to one single displacement <b>W</b>: <span class="answer-flag">U + V = W</span>. In the Parallelogram Law, the two vectors are always drawn <strong>concurrent at the Tail</strong> (starting from the same point). A <strong>parallelogram</strong> is a 4-sided figure with opposite sides parallel; the <strong>diagonal</strong> is the straight line joining two opposite corners — and that diagonal IS the resultant W.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Vector Addition (Triangle Law) begins</span>
+        The Parallelogram Law says the addition of two vectors A and B gives a resultant vector R. That same resultant R can ALSO be found by <strong>Triangle construction</strong> (connecting them Tip-to-Tail instead). Vector addition is <strong>Commutative</strong>: R = A + B = B + A — you get the same answer regardless of which vector you draw first.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 44</span>
+      <h4>Two slides here: the Triangle Law's exact rule, then a real chaining example</h4>
+      <div class="block idea">
+        <span class="label">Above — Vector Addition (Triangle Law), the exact construction rule</span>
+        <strong>Triangle construction:</strong> draw a vector from the tail of U to the head of V, by always connecting the Tip (Head) of the first vector to the Tail of the next vector. The Resultant is then drawn from the very first vector's tail (the starting point) to the very last vector's tip (the end point). The sum is independent of the ORDER you place the vectors head-to-tail — this is just vector addition being commutative again: U+V = V+U.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Vector Addition Example</span>
+        The vector <b>r</b><sub>AC</sub> (from point A to point C) is the SUM of <b>r</b><sub>AB</sub> and <b>r</b><sub>BC</sub> — shown on a real 3D machine part picture, where you travel from A to B, then B to C, and the direct "as the crow flies" path from A to C is exactly the vector sum of those two legs.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 45</span>
+      <h4>Two slides here: adding 3+ vectors at once, and subtracting vectors</h4>
+      <div class="block idea">
+        <span class="label">Above — Parallelogram Law (N Vectors)</span>
+        When two or more vectors are added, we simply carry out SUCCESSIVE applications of the parallelogram law to find the resultant. Worked example: vectors F₁, F₂, F₃ act at a point O. First find the resultant of F₁+F₂, then add F₃ to that result: <span class="answer-flag">F<sub>R</sub> = (F₁+F₂)+F₃</span>. Vector addition is <strong>Associative</strong>: (P+Q)+S = P+(Q+S) — it doesn't matter which pair you add together first, the final resultant is the same.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Vector Subtraction or Magnification</span>
+        <strong>Vector Subtraction</strong> is just a special case of addition: <span class="answer-flag">A − B = A + (−B)</span>. So all the normal rules of vector addition still apply — you're just adding the NEGATIVE of B. The product is also <strong>distributive</strong> with respect to vector addition: <i>a</i>(U+V) = <i>a</i>U + <i>a</i>V.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 3 — Adding Forces With Real Numbers</h3>
+      <span class="pages">pages 46–55</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 46</span>
+      <h4>Two slides here: Example 1 (graphical), then the drawing tools used</h4>
+      <div class="block problem">
+        <span class="label">Above — Example 1: Vector Operations (Graphical Calculation)</span>
+        |<strong>U</strong>| = 8, |<strong>V</strong>| = 3, and V is vertical. Graphically determine the magnitude of the vector U + 2V.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it, step by step</span>
+        By drawing the vectors to scale and applying the triangle rule for addition (placing them head to tail), we can measure the magnitude directly. <strong>Step 1:</strong> Draw U as an 8-unit-long arrow at 45°. <strong>Step 2:</strong> "2V" means V stretched to double length (6 units), still pointing straight up; starting from the TIP of U, draw this 6-unit arrow. <strong>Step 3:</strong> Draw the resultant from start to end and measure its length.
+        <br><br>
+        Answer: <span class="answer-flag">|U + 2V| ≈ 13.0 units</span>. (Double-check with math we'll learn soon: U=(8cos45°,8sin45°)=(5.66,5.66); 2V=(0,6); sum=(5.66,11.66); √(5.66²+11.66²)≈13.0 — matches!)
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Graphical Solution (Tools)</span>
+        The tools shown: a <strong>protractor</strong> (measures angles) and a <strong>ruler</strong> (measures length, marked in mm). The slide also shows quick angle-relationship sketches: two rays crossing that "look like" they might be equal (a=b) or supplementary (a+b=180°) — a reminder that in old-fashioned graphical solving, you measure with these tools directly, rather than compute. It's still a great way to sanity-check a math answer: "does this even look right?"
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 47</span>
+      <h4>Two slides here: the general "resultant of two forces" idea, then Example 2 begins</h4>
+      <div class="block idea">
+        <span class="label">Above — Addition of Vectors: Resultant of Two Forces</span>
+        Force is a vector quantity: the action of one body on another, characterized by its <strong>point of application, magnitude, line of action, and sense</strong>. Experimental evidence shows the combined effect of two forces may be represented by a single <strong>resultant force</strong> (this IS vector addition). The resultant is equivalent to the DIAGONAL of a parallelogram that contains the two original forces as its adjacent legs.
+      </div>
+      <div class="block problem">
+        <span class="label">Below — Example 2: Vector Operations (Problem 2.1)</span>
+        Two forces act on a bolt at A: P = 40 N, Q = 60 N, 25° apart. Determine their resultant. <strong>Strategy given on the slide:</strong> (1) Graphical solution — construct a parallelogram with sides in the direction of P and Q, lengths in proportion; evaluate the resultant as the diagonal. (2) Trigonometric solution — use the triangle rule for vector addition together with the Law of Cosines and Law of Sines.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 48</span>
+      <h4>Two slides here: Example 2's graphical answer, then angle vocabulary</h4>
+      <div class="block solve">
+        <span class="label">Above — Example 2: Graphical Solution</span>
+        Method 1 — Parallelogram: a parallelogram with sides P and Q is drawn to scale; the magnitude and direction of the diagonal are measured: <span class="answer-flag">R = 98 N, α = 35°</span>. Method 2 — Triangle: P and Q are drawn head-to-tail, to scale; the magnitude/direction of the third side are measured: same result, <span class="answer-flag">R = 98 N, α = 35°</span>. Both graphical methods agree with each other.
+      </div>
+      <div class="block idea">
+        <span class="label">Below — Angles in Mathematics</span>
+        Imagine an analog clock (not digital): the two hands are <em>rays</em> that form an area called an <strong>angle</strong>; the center point where the hands meet is the <strong>vertex</strong>. Angles can be measured in radians or degrees. <strong>Adjacent angles</strong> are two angles side-by-side sharing a common ray. <strong>Complementary angles</strong> add up to 90°. <strong>Supplementary angles</strong> add up to 180°. When two rays (lines) intersect, they form 4 angles; the pair that directly oppose each other are called <strong>vertical angles</strong> (always equal).
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 49</span>
+      <h4>Two slides here: Example 2 solved precisely, then Example 3 begins</h4>
+      <div class="block solve">
+        <span class="label">Above — Example 2: Analytical Solution (Trigonometry)</span>
+        Applying the triangle rule: from the Law of Cosines, R²=P²+Q²−2PQcosB = (40)²+(60)²−2(40)(60)cos155° → <span class="answer-flag">R = 97.73 N</span>. From the Law of Sines: sinA/Q = sinB/R → sinA = sinB·(Q/R) = sin155°·(60/97.73) → A=15.04°, and α=20°+A=<span class="answer-flag">35.04°</span>. <strong>Reflect and Think (from the slide):</strong> an analytical (trig) solution gives greater accuracy, but a graphical solution is still helpful as a check.
+      </div>
+      <div class="block problem">
+        <span class="label">Below — Example 3: Vector Operations (Problem 2.2)</span>
+        A barge is pulled by two tugboats. If the resultant of the forces exerted by the tugboats is a 5 kN force directed along the axis of the barge, determine the tension in each rope, for α=45°. <strong>Strategy:</strong> (1) graphical solution using the Parallelogram Rule — sides in the direction of the two ropes, diagonal along the barge axis, proportional to 5kN. (2) trigonometric solution using the Triangle Rule and the Law of Sines, since the resultant's magnitude/direction are known and the other two sides' directions (parallel to the ropes) are given.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 50</span>
+      <h4>Two slides here: Example 3 solved both ways, then the follow-up minimum-tension question</h4>
+      <div class="block solve">
+        <span class="label">Above — Example 3: Modeling and Analysis</span>
+        Graphical solution (Parallelogram Rule, known resultant direction/magnitude, known side directions): <span class="answer-flag">T₁ = 3.7 kN, T₂ = 2.6 kN</span>. Trigonometric solution (Triangle Rule + Law of Sines): T₁/sin45° = T₂/sin30° = 5kN/sin105° → <span class="answer-flag">T₁ = 3.66 kN, T₂ = 2.59 kN</span>. The slide notes: this part is a straightforward application of <strong>resolving a vector into components</strong>.
+      </div>
+      <div class="block problem">
+        <span class="label">Below — Example 3 (continued): the minimum-tension question</span>
+        At what value of α would the tension in rope 2 be a minimum? (Hint: use the triangle rule and think about how changing α changes the magnitude of T₂.)
+        <br><br>
+        <strong>How to solve it:</strong> the minimum tension in rope 2 occurs when T₁ and T₂ are PERPENDICULAR (found by trial &amp; error, or by recognizing the shortest side of a right triangle with fixed hypotenuse is the one perpendicular to the other leg): T₂=(5kN)sin30°=<span class="answer-flag">2.5 kN</span>, T₁=(5kN)cos30°=<span class="answer-flag">4.33 kN</span>, α=90°−30°=<span class="answer-flag">60°</span>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 51</span>
+      <h4>Breaking one force into two "component" forces (a game-changing idea)</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        So far we've been combining several forces INTO one. Now we do the opposite: taking ONE force and splitting it into two easier pieces. It's usually most useful to split a force into a horizontal piece and a vertical piece, because those two pieces don't interfere with each other at all — you can deal with "sideways" and "up-down" completely separately, which makes the math MUCH simpler.
+        <br><br>
+        We write this as: <strong>F</strong> = <strong>F</strong><sub>x</sub> + <strong>F</strong><sub>y</sub>, where F<sub>x</sub> = the horizontal piece, and F<sub>y</sub> = the vertical piece. Using the i and j unit vectors: <strong>F</strong> = F<sub>x</sub><strong>i</strong> + F<sub>y</sub><strong>j</strong>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 52</span>
+      <h4>The exact formulas for splitting a force, and re-combining several forces</h4>
+      <div class="block idea">
+        <span class="label">The idea — splitting formulas</span>
+        If a force F points at angle θ above the horizontal:
+        <ul class="simple">
+          <li><strong>F<sub>x</sub> = F·cos(θ)</strong> (the horizontal piece)</li>
+          <li><strong>F<sub>y</sub> = F·sin(θ)</strong> (the vertical piece)</li>
+        </ul>
+        And to go backwards (find the angle if you only know the pieces): <strong>θ = tan⁻¹(F<sub>y</sub>/F<sub>x</sub>)</strong>.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — why this makes adding forces so much easier</span>
+        Since x-pieces and y-pieces never mix, we can add up ALL the x-pieces of every force separately (ordinary addition, no angles needed!), and separately add up ALL the y-pieces. This turns a hard geometry problem into simple arithmetic.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 53</span>
+      <h4>The general recipe for adding any number of forces</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        For ANY number of forces P, Q, S, and so on, the resultant's pieces are found by simple addition:
+        <br><br>
+        <strong>R<sub>x</sub> = ΣF<sub>x</sub></strong> (add up every force's x-piece) &nbsp; and &nbsp; <strong>R<sub>y</sub> = ΣF<sub>y</sub></strong> (add up every force's y-piece)
+        <br><br>
+        Then, to turn those two pieces back into one single resultant force: <strong>R = √(R<sub>x</sub>² + R<sub>y</sub>²)</strong> (this is just the Pythagorean theorem!), and its angle is <strong>θ = tan⁻¹(R<sub>y</sub>/R<sub>x</sub>)</strong>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 54</span>
+      <h4>A mini worked example, plus Example 4 begins</h4>
+      <div class="block idea">
+        <span class="label">A quick warm-up calculation</span>
+        A 500 N force points at 30° above horizontal. Its pieces are: F<sub>x</sub> = 500·cos30° = <strong>433 N</strong>, and F<sub>y</sub> = 500·sin30° = <strong>250 N</strong>. That's it — that's the whole trick, every single time.
+      </div>
+      <div class="block problem">
+        <span class="label">Example 4 — the problem</span>
+        Four forces act on bolt A: F₁=150N at 30°, F₂=80N at 20° (upper-left area), F₃=110N straight down, F₄=100N at 15° below horizontal. Find the resultant force on the bolt.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 55</span>
+      <h4>Example 4: solved, step by step</h4>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        <strong>Step 1 — break each force into x and y pieces</strong> (using cos for horizontal, sin for vertical, being careful with each force's own direction):
+        <div class="table-scroll">
+        <table class="mini">
+          <tr><th>Force</th><th>x-piece</th><th>y-piece</th></tr>
+          <tr><td>F₁ = 150 N</td><td>+129.9</td><td>+75.0</td></tr>
+          <tr><td>F₂ = 80 N</td><td>−27.4</td><td>+75.2</td></tr>
+          <tr><td>F₃ = 110 N</td><td>0</td><td>−110.0</td></tr>
+          <tr><td>F₄ = 100 N</td><td>+96.6</td><td>−25.9</td></tr>
+        </table>
+        </div>
+        <strong>Step 2 — add each column:</strong> R<sub>x</sub> = 129.9−27.4+0+96.6 = 199.1 N. &nbsp; R<sub>y</sub> = 75.0+75.2−110.0−25.9 = 14.3 N.
+        <br><br>
+        <strong>Step 3 — combine back into one force:</strong> R = √(199.1²+14.3²) = <strong>199.6 N</strong>, at θ = tan⁻¹(14.3/199.1) = <strong>4.1°</strong> above horizontal.
+        <br><br>
+        <span class="answer-flag">Final answer: R = 199.6 N at 4.1°.</span> Notice R<sub>y</sub> is tiny compared to R<sub>x</sub> — that's exactly why the final angle (4.1°) is so small; the resultant points almost straight along the x-axis.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 4 — When Forces Balance Perfectly (Equilibrium)</h3>
+      <span class="pages">pages 56–62</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 56</span>
+      <h4>Equilibrium of a particle, and "net force" vocabulary</h4>
+      <div class="block idea">
+        <span class="label">The idea — equilibrium</span>
+        Remember from Chapter 1: when ALL the forces on an object add up to exactly zero, the object is in <strong>equilibrium</strong> — it stays still, or keeps moving at a perfectly steady speed. With just 2 forces, equilibrium means they must be exactly equal size, same line, but opposite direction (like a tug-of-war that's perfectly tied). With 3 or more forces, if you draw them tip-to-tail (Triangle Law, extended), a body in equilibrium will form a <strong>closed shape</strong> (a polygon) that comes right back to where it started — no gap left over.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — net force vocabulary</span>
+        <ul class="simple">
+          <li><strong>Net force</strong> (also called "resultant force") = what's left over after adding up ALL the forces on an object.</li>
+          <li><strong>Balanced forces</strong> — forces that cancel out completely (net force = zero).</li>
+          <li><strong>Unbalanced forces</strong> — forces that do NOT fully cancel; they cause the object to speed up, slow down, or change direction (this is Chapter 1's Second Law territory, not this course's main focus).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 57</span>
+      <h4>Drawing an FBD for a hanging weight, and understanding "Tension"</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        A <strong>Space Diagram</strong> is just a normal sketch of the real-life setup (like two poles with ropes holding up a heavy truck-like weight in between). The <strong>Free Body Diagram</strong> then isolates just the single connection point, showing only the forces pulling on it (the rope tensions and the weight).
+        <br><br>
+        <strong>Ropes and cables can ONLY pull — never push.</strong> This is a super important physical fact: you can pull a dog on a leash, but you can't PUSH a dog by shoving on a floppy leash — it would just go limp. This means every rope/cable force in an FBD must point AWAY from the object, along the rope, toward wherever the rope is anchored. This kind of pulling force is called <strong>Tension</strong>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 58</span>
+      <h4>Compression, and how a pulley works</h4>
+      <div class="block idea">
+        <span class="label">The idea — compression</span>
+        Unlike a rope, a solid rigid bar (like a wooden beam) CAN push as well as pull — this pushing is called <strong>Compression</strong>. Think of stacking bricks: each brick below is being squeezed (compressed) by the weight of all the bricks above it.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — pulleys</span>
+        A pulley is just a wheel that a rope wraps around — its whole job is to CHANGE THE DIRECTION of a pulling force, without changing its size. If you pull down on a rope with 50 N of force, and that rope goes over a pulley and connects to a bucket, the bucket feels 50 N of upward pull too — same size, just redirected. This is how old wells worked: pulling down was easier than lifting straight up, even though the physical amount of force needed was the same.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 59</span>
+      <h4>1D and 2D Free Body Diagrams, side by side</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        A <strong>1D (one-dimensional) FBD</strong> only has forces along a single straight line — like a gymnast hanging straight down from a rope: just tension pulling up, and weight pulling down, both along the same vertical line.
+        <br><br>
+        A <strong>2D (two-dimensional) FBD</strong> has forces spread across a flat plane — like a car resting on a sloped ramp: gravity pulls straight down, but the ramp's push (normal force) is perpendicular to the RAMP's surface, not straight up — so we have to break the weight into components (using the tilt angle) to line everything up properly with the ramp's own tilted x-y axes.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 60</span>
+      <h4>Example 5: finding a rope's tension in a ship-unloading operation</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        A 3.5 kN automobile hangs from a cable at point A. A rope pulls sideways on the same point to center the car over its spot. Cable AB is 2° off vertical; rope AC is at 30° from horizontal. Find the tension in the rope, T<sub>AC</sub>.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        Three forces meet at point A (weight down, T<sub>AB</sub>, T<sub>AC</sub>), and for equilibrium they must form a closed triangle. The triangle's interior angles work out to 120°, 2°, and 58° (they always add to 180°). Using the Law of Sines:
+        <br><br>
+        T<sub>AC</sub> = 3.5 × sin2° / sin58° = <span class="answer-flag">144 N</span>.
+        <br><br>
+        Does this make sense? The angle opposite T<sub>AC</sub> (just 2°) is tiny, so T<sub>AC</sub> should be a small force compared to the 3.5 kN weight — and 144 N is indeed much smaller. That matches our intuition: the rope is only doing gentle "centering," not holding up the whole car.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 61</span>
+      <h4>Example 6 begins: a sailboat model being tested for drag</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        A toy sailboat hull is held in place by three cables in a water test channel, to measure drag force (the water's resistance). Cable AB has tension 200 N, cable AE has tension 300 N. Given the geometry (horizontal distances 7m and 1.5m, both over a 4m drop), find the drag force F<sub>D</sub> and the tension in cable AC.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 62</span>
+      <h4>Example 6: solved, step by step</h4>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        <strong>Step 1 — find the cable angles using right-triangle trig</strong> (tan = opposite/adjacent, from the given distances): the AB angle works out to 60.25°, and the AC angle works out to 20.56°.
+        <br><br>
+        <strong>Step 2 — write out every force's x and y pieces</strong>, and require that both the x-pieces and the y-pieces separately add up to zero (equilibrium in both directions at once).
+        <br><br>
+        <strong>Step 3 — solve for the y-direction first</strong> (since only T<sub>AC</sub> and T<sub>AE</sub> and part of T<sub>AB</sub> appear there): this gives T<sub>AC</sub> = <strong>214.5 N</strong>.
+        <br><br>
+        <strong>Step 4 — plug that into the x-direction equation</strong> to find the drag: F<sub>D</sub> = <span class="answer-flag">98.4 N</span>.
+        <br><br>
+        Quick check: plugging both answers back into BOTH original equations should give (approximately) zero on each side — and it does, confirming we solved it correctly.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 5 — Taking Vectors Into 3D (Real Space)</h3>
+      <span class="pages">pages 63–69</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 63</span>
+      <h4>Adding a third direction: z (depth)</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        Everything we did with x and y (2D) extends naturally into 3D by adding a third direction, z. A vector <strong>A</strong> in 3D is written: <strong>A</strong> = A<sub>x</sub><strong>i</strong> + A<sub>y</sub><strong>j</strong> + A<sub>z</sub><strong>k</strong>. Its total length (magnitude) is found with a 3D version of the Pythagorean theorem: <strong>A = √(A<sub>x</sub>² + A<sub>y</sub>² + A<sub>z</sub>²)</strong>. It's the exact same idea as 2D — just one more number to keep track of.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 64</span>
+      <h4>Adding 3D vectors, and 3D position vectors</h4>
+      <div class="block idea">
+        <span class="label">The idea — adding 3D vectors</span>
+        Exactly like 2D: add matching pieces together. If <strong>A</strong> = A<sub>x</sub>i+A<sub>y</sub>j+A<sub>z</sub>k and <strong>B</strong> = B<sub>x</sub>i+B<sub>y</sub>j+B<sub>z</sub>k, then <strong>A</strong>+<strong>B</strong> = (A<sub>x</sub>+B<sub>x</sub>)i + (A<sub>y</sub>+B<sub>y</sub>)j + (A<sub>z</sub>+B<sub>z</sub>)k.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — 3D position vectors</span>
+        Same rule as 2D, just with a z-part added: <strong>r</strong><sub>AB</sub> = (x<sub>B</sub>−x<sub>A</sub>)<strong>i</strong> + (y<sub>B</sub>−y<sub>A</sub>)<strong>j</strong> + (z<sub>B</sub>−z<sub>A</sub>)<strong>k</strong>. Always tip (B) minus tail (A), in each of the 3 directions separately.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 65</span>
+      <h4>Describing a 3D force two different ways</h4>
+      <div class="block idea">
+        <span class="label">The idea — Method 1: using given angles</span>
+        Sometimes a problem tells you the angle a force makes with one axis (say, the y-axis, θ<sub>y</sub>), plus an angle around the other axes (φ). You can then split the force step-by-step: first into a vertical piece and a horizontal "flat" piece, then split that flat piece further into its own x and z parts.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — Method 2: using "direction cosines"</span>
+        Alternatively, a problem might directly give you the angle the force makes with EACH of the three axes (θ<sub>x</sub>, θ<sub>y</sub>, θ<sub>z</sub>). In that case: F<sub>x</sub>=F·cos(θ<sub>x</sub>), F<sub>y</sub>=F·cos(θ<sub>y</sub>), F<sub>z</sub>=F·cos(θ<sub>z</sub>). These three cosines are called "direction cosines" — they always satisfy the neat rule cos²θ<sub>x</sub>+cos²θ<sub>y</sub>+cos²θ<sub>z</sub>=1, which is a great way to double-check your work.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 66–67</span>
+      <h4>The BEST method for 3D forces: using two points along the force's path</h4>
+      <div class="block idea">
+        <span class="label">The idea — this is the method you'll use the most, so learn it well</span>
+        Very often in 3D problems, we're told a force acts along a wire, rope, or chain connecting two known points (like point A to point B), but we're only given the force's total SIZE (like "the tension is 2500 N"), not the angles. Here's the reliable 3-step method:
+        <ol class="simple">
+          <li><strong>Step 1:</strong> Find the position vector from A to B: <strong>r</strong><sub>AB</sub> = (x<sub>B</sub>−x<sub>A</sub>)i + (y<sub>B</sub>−y<sub>A</sub>)j + (z<sub>B</sub>−z<sub>A</sub>)k.</li>
+          <li><strong>Step 2:</strong> Find its length (the straight-line distance from A to B), and divide the whole vector by that length to get a pure <strong>unit vector</strong> — this strips away the distance and keeps only the direction.</li>
+          <li><strong>Step 3:</strong> Multiply that unit vector by the actual force size to get the real force vector: <strong>F</strong> = F · <strong>u</strong>.</li>
+        </ol>
+        This "two points → unit vector → multiply by magnitude" recipe works every single time, no matter how complicated the angles look in the picture.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 67</span>
+      <h4>Example 7: adding two 3D forces already given in i,j,k form</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Two forces act on a ring: F₁ = {60j + 80k} lb and F₂ = {50i − 100j + 100k} lb. Find the resultant force's size and the angles it makes with each axis.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        When forces are already in i,j,k form, adding them is the easiest step in this whole chapter — just add matching letters:
+        <br><br>
+        F<sub>R</sub> = (0+50)i + (60−100)j + (80+100)k = <strong>{50i − 40j + 180k} lb</strong>
+        <br><br>
+        Its length: √(50²+40²+180²) = <strong>191.0 lb</strong>.
+        <br><br>
+        Its direction angles (dividing each piece by the total length, then taking cos⁻¹): <span class="answer-flag">α=74.8°, β=102°, γ=19.6°</span>. Since γ is small, the resultant points mostly along +z — which matches the numbers, since 180 (the z-piece) is by far the largest component.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 68</span>
+      <h4>Example 8 begins: the tension in a guy-wire holding up a mast</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        A guy wire runs from a bolt at A up to a point B on a tall mast, and its tension is 2500 N. Given the position differences (−40 m in x, 80 m in y, 30 m in z), find (a) the force components at A, and (b) the angles the wire makes with each axis.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it — using the "two points" method from page 66</span>
+        <strong>Step 1:</strong> distance AB = √((−40)²+80²+30²) = <strong>94.3 m</strong>.<br>
+        <strong>Step 2:</strong> unit vector λ = (−40/94.3, 80/94.3, 30/94.3) = (−0.424, 0.848, 0.318).<br>
+        <strong>Step 3:</strong> multiply by 2500 N.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 69</span>
+      <h4>Example 8 finished, plus Example 9 (a man pulling a cord)</h4>
+      <div class="block solve">
+        <span class="label">Example 8's final answer</span>
+        F = 2500 × (−0.424i + 0.848j + 0.318k) = <span class="answer-flag">Fx=−1060N, Fy=+2120N, Fz=+795N</span>. And since a unit vector's own components ARE the direction cosines, the angles are simply: θx = cos⁻¹(−0.424) = <strong>115.1°</strong>, θy = cos⁻¹(0.848) = <strong>32.0°</strong>, θz = cos⁻¹(0.318) = <strong>71.5°</strong>.
+      </div>
+      <div class="block problem">
+        <span class="label">Example 9 — the problem</span>
+        A man pulls a cord with a force of 350 N. The cord runs from support A(0,0,7.5) to point B(3,−2,1.5), measured in meters. Represent this force as a Cartesian (i,j,k) vector, and find its direction.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        <strong>r</strong> = B − A = 3i − 2j − 6k (m). Its length: √(3²+2²+6²)=√49=<strong>7 m</strong> (a nice round number!). Unit vector: u=(3/7, −2/7, −6/7). Multiply by 350 N:
+        <br><br>
+        <span class="answer-flag">F = {150i − 100j − 300k} N</span>, with angles α=cos⁻¹(3/7)=<strong>64.6°</strong>, β=cos⁻¹(−2/7)=<strong>107°</strong>, γ=cos⁻¹(−6/7)=<strong>149°</strong>.
+        <br><br>
+        Quick check: |F| = √(150²+100²+300²) = √122500 = exactly 350 N — matches the given force size perfectly!
+      </div>
+    </div>
+  </section>
+
+  <div class="final-idea">
+    <h3>Chapter 2 Recap — the Whole Chapter in Two Moves</h3>
+    <div class="table-scroll">
+    <table>
+      <tr><th>Move</th><th>When to use it</th><th>The recipe</th></tr>
+      <tr><td><strong>Combine forces into one</strong></td><td>You know several forces and need their total effect.</td><td>Break each into x,y(,z) pieces → add each column separately → recombine with Pythagorean theorem.</td></tr>
+      <tr><td><strong>Split one force into pieces</strong></td><td>You know a force's total size and either its angle, or 2 points it passes through.</td><td>With an angle: Fx=Fcosθ, Fy=Fsinθ. With 2 points: find r, divide by its length to get a unit vector, multiply by the force's magnitude.</td></tr>
+    </table>
+    </div>
+    <div class="rule">
+      <strong>Rule to memorize:</strong> x-pieces and y-pieces (and z-pieces) never mix with each other — you can always add up all the x's separately from all the y's, which is what makes vector math manageable instead of impossible.
+    </div>
+  </div>
+
+  <!-- ================= CHAPTER 3 ================= -->
+  <div class="chapter-band" id="ch3">
+    <div class="num">Chapter 3</div>
+    <h2>Force System Resultants (Moments &amp; Couples)</h2>
+    <span class="pages">pages 70–97</span>
+  </div>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 1 — What Is a "Moment"? The Idea of Twisting</h3>
+      <span class="pages">pages 70–76</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 70</span>
+      <h4>A new kind of question: not just "does it move," but "does it TURN?"</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        In Chapter 2, we treated objects like a single dot (a "particle") and only asked "do all the forces cancel out?" But real objects have SIZE — and a force pushing on one SIDE of an object can make it spin, even if the total push and pull are balanced! Think about pushing on the edge of a door versus pushing right at its hinge — pushing at the edge swings the door open easily, but pushing right at the hinge barely does anything, even with the exact same force. This chapter is all about that "twisting" effect, which we call a <strong>moment</strong>.
+        <br><br>
+        Big idea to hold onto: <strong>any messy collection of forces acting on a rigid body can always be replaced by just ONE force plus ONE twist (a "couple"), acting together at a single point.</strong> That's the entire goal of this chapter — learning to boil down complicated force systems into that one simple force-plus-twist package.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 71</span>
+      <h4>Forces from outside vs. inside (recap), and "equivalent forces"</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        Quick recap from Chapter 2: <strong>external forces</strong> come from outside the object (drawn on an FBD); <strong>internal forces</strong> happen inside, holding the object's own pieces together (usually not drawn).
+        <br><br>
+        New idea: two forces are called <strong>equivalent</strong> if they have the exact same magnitude, same direction, and the same line of action — meaning they cause the exact same overall effect on a rigid body, even if applied at slightly different points along that same line. This connects to the "transmissibility" idea from Chapter 2: sliding a force along its own line doesn't change what it does to the whole rigid body's motion.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 72</span>
+      <h4>A brand new kind of multiplication: the "cross product"</h4>
+      <div class="block idea">
+        <span class="label">The idea — why we need a new tool</span>
+        To measure "how much twist" a force creates, we need a mathematical tool that combines TWO vectors (a position and a force) into a THIRD vector (the twist itself) — and this third vector needs to point along the AXIS the object would spin around, not along either of the original vectors. That special tool is called the <strong>cross product</strong>, written <strong>V</strong> = <strong>P</strong> × <strong>Q</strong>.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — what the cross product actually does</span>
+        The cross product of two vectors <strong>P</strong> and <strong>Q</strong> makes a new vector <strong>V</strong> with 3 special properties: (1) its <strong>size</strong> equals PQ·sin(θ), where θ is the angle between P and Q; (2) its <strong>direction</strong> is exactly perpendicular (a right angle, poking straight out) to the flat plane that contains both P and Q; and (3) you find WHICH way it points using the <strong>Right-Hand Rule</strong> (point your right hand's fingers along P, then curl them toward Q — your thumb points the direction of V). We'll practice this rule more on page 76.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 73</span>
+      <h4>Order matters! And the official definition of a moment</h4>
+      <div class="block idea">
+        <span class="label">The idea — cross products are NOT like regular multiplication</span>
+        With regular numbers, 3×4 = 4×3 (order doesn't matter). With cross products, order matters a LOT: <strong>Q</strong>×<strong>P</strong> = −(<strong>P</strong>×<strong>Q</strong>) — swapping the order flips the direction completely backwards! Always be careful about which vector comes first.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — the moment of a force</span>
+        A <strong>moment</strong> (also called torque) measures how much a force tends to rotate/twist/bend an object around some point. The formula is: <strong>M</strong> = <strong>r</strong> × <strong>F</strong>, where <strong>r</strong> is a position vector from the pivot point to ANY point along the force's line of action, and <strong>F</strong> is the force itself.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 74</span>
+      <h4>Moment about a point: the full picture</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        <strong>M</strong><sub>O</sub> = <strong>r</strong> × <strong>F</strong>, and its magnitude works out to: <strong>M<sub>O</sub> = r·F·sin(θ) = F·d</strong>, where <strong>d</strong> is the <strong>perpendicular distance</strong> from the pivot point O to the force's line of action (the shortest, right-angle distance — like measuring how far a wall is from you by walking straight toward it, not diagonally).
+        <br><br>
+        The moment vector <strong>M</strong><sub>O</sub> points perpendicular to the flat plane containing both the pivot point and the force — its DIRECTION tells you the axis the object would spin around, and its SIZE tells you how strong that spin tendency is.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 75</span>
+      <h4>The simpler 2D version (most of our problems!), and moment arm geometry</h4>
+      <div class="block idea">
+        <span class="label">The idea — the easy 2D shortcut</span>
+        For flat (2D) problems, we don't need the full cross product — we can just use: <strong>M<sub>O</sub> = F·d</strong> (a plain number, called a <strong>scalar</strong>), where d is again the perpendicular distance. The SIGN tells us the spin direction: <strong>positive if it spins counter-clockwise</strong>, <strong>negative if clockwise</strong> (imagine looking at a clock — if the force would push the hands backward, that's counter-clockwise, which we call positive).
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — the moment arm doesn't have to be the shortest r</span>
+        Here's a neat fact: you can measure "d" (or use ANY position vector r) from the pivot point to ANY point along the force's full line of action — not just the exact spot where the force touches the object — and you'll always get the same moment. This is because the moment's size is really just the AREA of the parallelogram formed by r and F, and that area stays the same no matter which point along the line you pick.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 76</span>
+      <h4>The Right-Hand Rule, explained with your actual hand, and Varignon's Theorem</h4>
+      <div class="block idea">
+        <span class="label">The idea — Right-Hand Rule, step by step</span>
+        Hold up your right hand. Curl your fingers in the direction the object would spin (say, counter-clockwise). Your thumb, sticking straight out, points in the direction of the moment vector. Try it now with your own hand — curling your right-hand fingers counter-clockwise naturally makes your thumb point UP and OUT toward you. That's the rule, and it always works with your RIGHT hand specifically (not your left!).
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — Varignon's Theorem (a very useful shortcut)</span>
+        If several forces all meet at the same point, the moment of their COMBINED resultant force equals the SUM of each individual force's own moment. In simple words: instead of adding up all the forces first and then finding one big moment, you're allowed to find each force's moment separately and add THOSE up — same answer either way, but sometimes one way is much easier math than the other.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 2 — Moments in 2D: Simple Twisting Problems</h3>
+      <span class="pages">pages 77–79</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 77</span>
+      <h4>Example 1: a force on a lever — Part (a)</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        A 500 N vertical force is applied at the end of a 0.6 m lever, attached to a shaft at O. The lever makes a 60° angle with the vertical force. We need to find: (a) the moment about O, (b) the horizontal force at the same point giving the same moment, (c) the SMALLEST possible force at that point giving the same moment, (d) where a 1.2 kN vertical force must be applied to give the same moment, and (e) whether any of those alternate forces are truly equivalent to the original.
+      </div>
+      <div class="block solve">
+        <span class="label">Part (a) — how to solve it</span>
+        The perpendicular distance from O to the vertical force's line is the "sideways" part of the 0.6 m lever: d = 0.6×cos60° = 0.3 m. So M<sub>O</sub> = 500 N × 0.3 m = <span class="answer-flag">150 N·m, clockwise</span> (the force tends to spin the lever clockwise, since it pulls the far end down while the lever pivots at O).
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 78</span>
+      <h4>Example 1: parts (b) through (e)</h4>
+      <div class="block solve">
+        <span class="label">Part (b) — a horizontal force instead</span>
+        Now the perpendicular distance is the OTHER side of the triangle: d = 0.6×sin60° = 0.52 m. Since the moment must still equal 150 N·m: F = 150/0.52 = <span class="answer-flag">288.5 N</span>.
+      </div>
+      <div class="block solve">
+        <span class="label">Part (c) — the smallest possible force</span>
+        A smaller force needs a LARGER perpendicular distance to make the same moment (since M=F×d, if d goes up, F can go down for the same M). The biggest possible d is the full lever length itself (0.6 m) — happening exactly when the force is applied perpendicular to the lever: F = 150/0.6 = <span class="answer-flag">250 N</span>. This is always the smallest force that can create a given moment — a very handy trick to remember!
+      </div>
+      <div class="block solve">
+        <span class="label">Part (d) — where to apply a known 1.2 kN force</span>
+        150 = 1200×d, so d = 0.125 m. Since the force is vertical (like part a), OB×cos60° = 0.125, giving <span class="answer-flag">OB = 0.25 m</span>.
+      </div>
+      <div class="block idea">
+        <span class="label">Part (e) — the important trick question</span>
+        All four forces (original 500N, and the b/c/d answers) create the EXACT SAME moment. Does that mean they're all "equivalent" to each other? <strong>No!</strong> Equivalent forces need matching magnitude, direction, AND line of action — not just a matching moment. None of forces b, c, or d share the same magnitude, direction, and line as the original 500 N force, so <span class="answer-flag">none of them are truly equivalent</span> — they just happen to twist things the same amount.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 79</span>
+      <h4>Examples 2 &amp; 3: a beam balancing at a pivot (like a seesaw)</h4>
+      <div class="block problem">
+        <span class="label">Example 2 — the problem</span>
+        A beam has a 60 N downward force 2 m to the left of a pivot point "a," and an unknown downward force "x" 1.5 m to the right of "a." Find x, and the upward support reaction "y" at a.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        If the beam isn't spinning, the clockwise twist must exactly equal the counter-clockwise twist, measured about the SAME point. Taking moments about "a": 60×2 = x×1.5, so <span class="answer-flag">x = 80 N</span>. Then, since all the downward forces must be held up by y: <span class="answer-flag">y = 60+80 = 140 N</span>.
+      </div>
+      <div class="block problem">
+        <span class="label">Example 3 — the problem</span>
+        Same beam, but now it has its own weight too: 5 kg, which creates an extra 49 N force (=5×9.81) pulling down at its center, 0.25 m from "a." Find the new x and y.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        First, the beam's weight: 5 × 9.81 = 49 N. Now there are THREE downward-twisting forces about "a": (60×2) + (49×0.25) = x×1.5, which gives 120+12.25 = 132.25 = 1.5x, so <span class="answer-flag">x = 132.25/1.5 = 88.2 N</span>. The new support reaction is simply the sum of all downward forces: <span class="answer-flag">y = 60+49+88.2 = 197.2 N</span>. Notice that adding the beam's own weight made the counterweight bigger (80→88.2 N) — that makes sense, since there's more downward "twist" to balance now.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 3 — Moments in 3D: Using the Cross Product Formula</h3>
+      <span class="pages">pages 80–85</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 80</span>
+      <h4>The "cheat sheet" for i, j, k cross products</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        Since <strong>i</strong>, <strong>j</strong>, <strong>k</strong> always point perfectly perpendicular to each other, their cross products follow a simple repeating pattern (going "in order" x→y→z→x gives a positive answer; going "backward" gives negative): <strong>i</strong>×<strong>j</strong>=<strong>k</strong>, <strong>j</strong>×<strong>k</strong>=<strong>i</strong>, <strong>k</strong>×<strong>i</strong>=<strong>j</strong>. And going backward flips the sign: <strong>j</strong>×<strong>i</strong>=−<strong>k</strong>, and so on. Also, any vector crossed with ITSELF gives zero (<strong>i</strong>×<strong>i</strong>=0) — makes sense, since there's no "twist" if the two vectors point the exact same way.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 81</span>
+      <h4>The determinant trick — a shortcut for computing cross products</h4>
+      <div class="block idea">
+        <span class="label">The idea — the pattern (don't worry, it's very learnable with practice)</span>
+        To cross-multiply two full 3D vectors, we write them into a 3×3 grid (called a "determinant") with i, j, k on top, then follow a specific criss-cross pattern of multiplying and subtracting to get each of the 3 answer pieces. It looks intimidating the first time, but it's really just a repeatable recipe you can follow every single time — like a recipe card, not something you need to "understand" deeply, just practice.
+        <br><br>
+        The formula for the moment of a force about the origin using this method: <strong>M</strong><sub>O</sub> = (yF<sub>z</sub>−zF<sub>y</sub>)<strong>i</strong> + (zF<sub>x</sub>−xF<sub>z</sub>)<strong>j</strong> + (xF<sub>y</sub>−yF<sub>x</sub>)<strong>k</strong>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 82</span>
+      <h4>Moment about any point (not just the origin), and the easy 2D version again</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        Everything works the same way if we want the moment about some OTHER point B instead of the origin — we just use r<sub>A/B</sub> (position of the force's application point, relative to B) instead of a plain position vector from the origin.
+        <br><br>
+        For flat (2D) problems, the whole 3D formula collapses down to just one useful number: <strong>M<sub>O</sub> = xF<sub>y</sub> − yF<sub>x</sub></strong> — this is the 2D shortcut version of the full cross-product recipe, and it's much faster when everything lies flat in one plane.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 83</span>
+      <h4>Example 4: the moment of a wire's tension on a plate</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        A rectangular plate is held by brackets at A and B and a wire CD, with tension 200 N. Position of C relative to A: (0.3, 0.08, 0) m. Wire direction from C to D: (−0.3, 0.24, −0.32) m, total length 0.5 m. Find the moment about A caused by the wire's force at C.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        <strong>Step 1:</strong> position vector r<sub>C/A</sub> = 0.3i + 0.08j (z-part is 0 since C is at the same depth as A).<br>
+        <strong>Step 2:</strong> the force vector, using the "unit vector × magnitude" trick from Chapter 2: F = 200 × [(−0.3i+0.24j−0.32k)/0.5] = −120i + 96j − 128k (N).<br>
+        <strong>Step 3:</strong> plug r and F into the determinant formula:
+        <br><br>
+        <span class="answer-flag">M_A = −7.68i + 28.8j + 28.8k (N·m)</span>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 84</span>
+      <h4>Yet another type of multiplication: the "dot product"</h4>
+      <div class="block idea">
+        <span class="label">The idea — dot product vs. cross product</span>
+        The cross product gives you back a VECTOR (with direction). The <strong>dot product</strong> gives you back just a plain NUMBER (a scalar) — no direction. Formula: <strong>P</strong>·<strong>Q</strong> = PQ·cos(θ). Unlike the cross product, order does NOT matter here (P·Q = Q·P is always true).
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — what the dot product is actually used for</span>
+        Two very useful jobs: (1) finding the <strong>angle between two vectors</strong> — just rearrange the formula to cosθ = (P·Q)/(PQ); and (2) finding the <strong>projection</strong> of one vector onto a line or axis — basically, "how much of vector P is aimed along that direction?" If you have a unit vector λ pointing along some axis, the projection is simply P·λ.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 85</span>
+      <h4>Combining three vectors, and moments about a LINE (not just a point)</h4>
+      <div class="block idea">
+        <span class="label">The idea — mixed triple product</span>
+        This is a cross product AND a dot product used together: <strong>S</strong>·(<strong>P</strong>×<strong>Q</strong>). The result is just a plain number. This combination is exactly what we need for the next idea.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — moment about a specific axis, not just a point</span>
+        Sometimes we don't care about the FULL twisting effect at a point — we only care how much twist happens around one SPECIFIC line (axis), like a hinge or a rod. The recipe: first find the regular moment about any point O on that axis (M<sub>O</sub> = r×F, same as before), then take the DOT PRODUCT of that moment with a unit vector pointing along the axis: <strong>M<sub>axis</sub> = λ · M<sub>O</sub> = λ · (r × F)</strong>. This gives you just the "slice" of the twist that's aimed along that one particular line.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 4 — A Tricky (But Great) Practice Problem: the Cube</h3>
+      <span class="pages">pages 85–88</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 85–86</span>
+      <h4>Example 5 begins: a force on a cube</h4>
+      <div class="block idea">
+        <span class="label">The idea before the problem — same rule, applied 4 different ways</span>
+        This example uses the exact same two tools we just learned (M=r×F, and M<sub>axis</sub>=λ·M) four separate times, each answering a slightly different question about the same setup. Don't panic at the number of parts — each one reuses the same core idea.
+      </div>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        A cube of side length "a" is acted on by force P at corner F, pointing toward B. Find the moment of P: (a) about corner A, (b) about edge AB, (c) about the diagonal AG, (d) the perpendicular distance between lines AG and FC.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 87</span>
+      <h4>Example 5: parts (a), (b), and (c)</h4>
+      <div class="block solve">
+        <span class="label">Part (a) — moment about corner A</span>
+        Using the position vector from A to F and the force P (written so that its magnitude works out correctly to exactly P), the cross product gives:
+        <br><br>
+        <span class="answer-flag">M_A = (aP/√2)(i + j + k)</span>
+      </div>
+      <div class="block solve">
+        <span class="label">Part (b) — moment about edge AB</span>
+        Edge AB points along the i direction, so we just dot-product with i: M_AB = i · M_A = <span class="answer-flag">aP/√2</span>.
+      </div>
+      <div class="block solve">
+        <span class="label">Part (c) — moment about the diagonal AG</span>
+        The diagonal's unit vector is λ = (i−j−k)/√3. Dot-producting with M_A: M_AG = (aP/√6)(1−1−1) = <span class="answer-flag">−aP/√6</span>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 88</span>
+      <h4>Example 5: part (d), and a brand new idea — "Couples"</h4>
+      <div class="block solve">
+        <span class="label">Part (d) — perpendicular distance between AG and FC</span>
+        First, a check: P·λ = 0, meaning force P is exactly perpendicular to the diagonal AG. When a force is perpendicular to an axis, the moment magnitude simplifies to just force × distance: |M_AG| = P·d, so aP/√6 = P·d, giving <span class="answer-flag">d = a/√6</span>.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — introducing "couples"</span>
+        A <strong>couple</strong> is a special pair of forces: same size, same line-direction (parallel), but pointing OPPOSITE ways, and NOT on the same line. Picture using both hands to turn a steering wheel — one hand pushes up, the other pushes down, on opposite sides of the wheel. There's no overall push (the forces cancel out for movement purposes) — but there IS a pure twisting effect. The formula for a couple's moment is simply: <strong>M = F × d</strong>, where d is the perpendicular distance BETWEEN the two parallel force lines.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 5 — Couples: Twisting Without Pushing</h3>
+      <span class="pages">pages 88–92</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 89</span>
+      <h4>When are two couples "the same," and drawing couples as arrows</h4>
+      <div class="block idea">
+        <span class="label">The idea — comparing couples</span>
+        Two couples create the exact same twisting effect if F₁×d₁ = F₂×d₂ — even if one uses a bigger force with a smaller arm, and the other uses a smaller force with a bigger arm, as long as the PRODUCT matches, they twist things the same amount. Using a lug wrench to loosen a car's wheel nuts is a real-life couple: your two hands push in opposite directions on the wrench, creating pure twisting.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — couples as "free vectors"</span>
+        We can represent a whole couple with just ONE arrow (a moment vector), pointing along the twist's axis, with length equal to M=Fd. The amazing thing about couple-vectors is that they're <strong>free vectors</strong> — meaning you can slide them ANYWHERE on the object without changing their effect at all, unlike regular forces which must stay on their own line. This is because a couple doesn't care WHERE on the object it's applied — only how much twist it creates.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 90</span>
+      <h4>Sliding a force to a new point (this is where couples come from!)</h4>
+      <div class="block idea">
+        <span class="label">The idea — Case I: moving a force to a NEW point on the body</span>
+        Here's a clever trick: if we want to move a force from point A to a different point O on the same rigid body, we can't just slide it there for free (unlike sliding along its OWN line, which is fine per transmissibility). Instead, we add a pair of equal-and-opposite forces AT point O (which changes nothing, since they cancel each other out) — and this cleverly creates a leftover COUPLE. So: <strong>any force can be replaced by that same force moved to a new point, PLUS a couple that accounts for the "twist" the move creates.</strong>
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — Case II: what if we move it again, to yet another point?</span>
+        If we then move the force-couple system from point O to a different point O′, the moment changes according to: <strong>M<sub>O′</sub> = M<sub>O</sub> + s × F</strong>, where s is the position vector from O to O′. In plain words: whenever you relocate a force-couple system to a new reference point, you have to ADD the moment that the force itself would create about that new point.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 91</span>
+      <h4>Example 6: combining several couples into one</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Determine the single equivalent couple for the couples acting on a bent pipe: 150 N couples with perpendicular arm 0.46 m, and 100 N couples with arms 0.3 m and 0.23 m along different directions.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it</span>
+        Since couple-vectors are free vectors, we can just add each couple's contribution along each axis separately, exactly like adding regular vector components:
+        <br><br>
+        M<sub>x</sub> = −(150)(0.46) = −69 N·m &nbsp; M<sub>y</sub> = +(100)(0.3) = +30 N·m &nbsp; M<sub>z</sub> = +(100)(0.23) = +23 N·m
+        <br><br>
+        <span class="answer-flag">M = −69i + 30j + 23k (N·m)</span>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 92</span>
+      <h4>Double-checking Example 6, and turning any force system into ONE force plus ONE couple</h4>
+      <div class="block idea">
+        <span class="label">Checking our work with a totally different method</span>
+        The slide double-checks by summing the moments of ALL FOUR individual forces about a single point (D), using the full cross-product method instead — and gets the exact same answer: M = −(69 N·m)i + (30 N·m)j + (23 N·m)k. When two completely different methods agree, that's strong proof the answer is correct.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — reducing ANY force system to one force + one couple</span>
+        This is the big payoff of the whole chapter: no matter how many forces are acting on a rigid body, all at different points, you can always replace the entire mess with just ONE resultant force (<strong>R</strong> = sum of every force) PLUS ONE resultant couple (<strong>M</strong><sup>R</sup><sub>O</sub> = sum of every individual moment about your chosen point O). This "force-couple system" behaves EXACTLY like the original messy pile of forces, for any calculation you'd ever want to do.
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <h3 class="parttitle">Part 6 — Turning a Messy Force System into One Simple Force</h3>
+      <span class="pages">pages 92–97</span>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 93</span>
+      <h4>Sometimes you can simplify even further — down to just ONE force</h4>
+      <div class="block idea">
+        <span class="label">The idea</span>
+        If the resultant force R and the resultant couple M<sup>R</sup><sub>O</sub> happen to be perpendicular to each other, you can combine them into a SINGLE force acting along a shifted line (no separate couple needed at all!). This works whenever the original forces are: (a) all meeting at one point (concurrent), (b) all lying flat in the same plane (coplanar), or (c) all parallel to each other. For a coplanar system, you find exactly where to shift the line of R so that it alone produces the correct moment: xR<sub>y</sub> − yR<sub>x</sub> = M<sup>R</sup><sub>O</sub>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 94</span>
+      <h4>Example 7 begins: simplifying the forces on a beam</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        A beam has 4 downward forces: 150 N, 600 N, 100 N, 250 N, at distances 0, 1.6, 2.8, 4.8 m from end A. Find: (a) the equivalent force-couple system at A, (b) at B, (c) the single equivalent resultant force (and where it acts).
+      </div>
+      <div class="block solve">
+        <span class="label">Part (a) — how to solve it</span>
+        <strong>Step 1 — add all the forces</strong> (all point down, −j): R = −(150+600+100+250)j = <span class="answer-flag">600 N downward</span>.
+        <br><br>
+        <strong>Step 2 — add all the moments about A</strong> (each force times its distance from A): M<sub>A</sub> = (1.6)(−600)+(2.8)(100)+(4.8)(−250) = <span class="answer-flag">−1880 N·m</span>.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 95</span>
+      <h4>Example 7: parts (b) and (c)</h4>
+      <div class="block solve">
+        <span class="label">Part (b) — moving the force-couple system to B</span>
+        The force stays the same (600 N down). We move the couple using the "Case II" rule from page 90: M<sub>B</sub> = M<sub>A</sub> + r<sub>B/A</sub>×R = −1880 + (−4.8)×(−600) = <span class="answer-flag">+1000 N·m</span>.
+      </div>
+      <div class="block solve">
+        <span class="label">Part (c) — collapsing down to just one force</span>
+        We want to find where a single 600 N downward force would create the same moment (−1880 N·m) about A on its own: −x(600) = −1880, so <span class="answer-flag">x = 3.13 m</span> from A. Quick check: from B (4.8m from A), the distance is 4.8−3.13=1.67m, so its moment about B = 600×1.67 ≈ 1000 N·m — matches part (b)!
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 96</span>
+      <h4>Example 8 begins: three cables pulling on a bracket, in 3D</h4>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Three cables pull on a bracket at points B, C, D, with tensions 700 N, 1000 N, and 1200 N, at various given 3D positions and angles. Find the equivalent force-couple system at A.
+      </div>
+      <div class="block solve">
+        <span class="label">How to solve it — setting up</span>
+        Just like the 3D examples in Chapter 2: write each cable's force as a unit vector (from the given geometry) multiplied by its tension, to get i,j,k components for each one:
+        <br><br>
+        F<sub>B</sub> = 300i − 600j + 200k N &nbsp; F<sub>C</sub> = 707i − 707j N &nbsp; F<sub>D</sub> = 600i + 1039j N
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 97</span>
+      <h4>Example 8: finished, and the next chapter begins</h4>
+      <div class="block solve">
+        <span class="label">How to solve it — finishing up</span>
+        <strong>Add up the forces for R:</strong><br>
+        R = (300+707+600)i + (−600−707+1039)j + (200+0)k = <span class="answer-flag">1607i + 439j − 507k (N)</span>
+        <br><br>
+        <strong>Cross-multiply each force with its own position vector, and add for M_A:</strong><br>
+        <span class="answer-flag">M_A = 30i + 17.68j + 118.9k (N·m)</span>
+        <br><br>
+        This is the exact same "add all the forces, add all the moments" recipe from Example 7, just done fully in 3D this time.
+      </div>
+      <div class="block idea">
+        <span class="label">What's coming next</span>
+        This slide ends with a title banner: "Equilibrium of Rigid Bodies" — the next chapter. Everything we've built here (forces, moments, couples, force-couple systems) becomes the toolkit for the next big question: how do we find the UNKNOWN forces (like support reactions) that keep a whole structure perfectly still?
+      </div>
+    </div>
+  </section>
+
+  <div class="final-idea">
+    <h3>Chapter 3 Recap — the One Upgrade to Remember</h3>
+    <div class="table-scroll">
+    <table>
+      <tr><th>Chapter 2's rule</th><th>Chapter 3's upgrade</th></tr>
+      <tr><td>Forces cancel out → object doesn't move (ΣF=0)</td><td>Forces ALSO can't create a net twist → object doesn't spin (ΣM=0 too!)</td></tr>
+      <tr><td>Only worked for a single dot ("particle")</td><td>Now works for real-sized rigid bodies, where WHERE a force pushes matters</td></tr>
+    </table>
+    </div>
+    <div class="rule">
+      <strong>The one formula to remember:</strong> M = F × d (2D, simple) or M = r × F (3D, full version) — a moment is always "how strong the force is" times "how far its line is from the pivot, measured the short way (perpendicular)."
+    </div>
+  </div>
+
+  <!-- ================= CHAPTER 4 START ================= -->
+  <div class="chapter-band" id="ch4start">
+    <div class="num">Chapter 4 — first 3 pages only</div>
+    <h2>Equilibrium of a Rigid Body</h2>
+    <span class="pages">pages 98–100</span>
+  </div>
+
+  <section class="part">
+    <div class="page-card">
+      <span class="page-num">pg 98</span>
+      <h4>Two flavors of "not moving," and the official rules for a rigid body</h4>
+      <div class="block idea">
+        <span class="label">The idea — static vs. dynamic equilibrium</span>
+        We've used the word "equilibrium" a lot already — it just means "balanced, so nothing changes." There are actually two flavors:
+        <ul class="simple">
+          <li><strong>Static equilibrium</strong> — the object is completely, totally still. Zero speed, zero spin. Examples: a bridge just sitting there, a sign hanging on a wall, a ladder leaning against a wall.</li>
+          <li><strong>Dynamic equilibrium</strong> — the object's center is moving, but at a perfectly constant, unchanging speed in a straight line (no speeding up, slowing down, or turning).</li>
+        </ul>
+        <strong>Good news:</strong> this whole course (and basically every real civil engineering structure you'll design) only cares about <span class="answer-flag">static equilibrium</span> — completely still. So from here on, "equilibrium" basically always means "not moving at all."
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — the TWO rules a rigid body must obey</span>
+        Remember from Chapter 3: a rigid body has size, so it's not enough for the forces to just cancel out (that only stops it from sliding around) — the TWISTING has to cancel out too (that stops it from spinning). So a rigid body is in equilibrium only when BOTH of these are true at the same time:
+        <br><br>
+        <strong>ΣF = 0</strong> (all forces added together = zero — no sliding) &nbsp; <strong>AND</strong> &nbsp; <strong>ΣM<sub>O</sub> = 0</strong> (all moments about ANY point added together = zero — no spinning)
+        <br><br>
+        Both conditions must hold, and note that if ΣM=0 about ONE point, it will actually be true about EVERY point too (a fact that's very useful, but don't worry about proving it — just trust it and use it).
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 99</span>
+      <h4>A visual example (balanced rocks), and a "which is it?" thinking question</h4>
+      <div class="block idea">
+        <span class="label">The idea — the balanced rock photos</span>
+        The slide shows a famous "balanced rock" formation — a huge boulder resting on a tiny point of contact, that still doesn't tip over. If we only cared about the rock as a single dot (a particle), we'd just need ΣF=0 (no net force). But since it's a real, sized rigid body, we ALSO need ΣM=0 — otherwise, even if the total force balances, the rock could still topple over from a twisting effect. This picture is a great reminder of why the "no spinning" rule matters just as much as the "no sliding" rule.
+      </div>
+      <div class="block problem">
+        <span class="label">The problem — a thinking question</span>
+        A light (weightless) rod has two forces of EQUAL size acting on it: one pushing down at one end, one pushing up at the other end (like a capital "Z" shape of forces). Which statement is true: is the rod in force equilibrium, torque (moment) equilibrium, both, or neither?
+      </div>
+      <div class="block solve">
+        <span class="label">How to think about it</span>
+        <strong>Check force balance first:</strong> one force pushes up, the other pushes down, and they're equal size — so yes, ΣF=0 (force equilibrium ✓). <strong>Now check moment balance:</strong> even though the forces cancel out for sliding purposes, they're NOT on the same line — one is on the left end, one is on the right end. This is exactly a "couple" from Chapter 3! A couple creates a pure twist that never cancels to zero just because the forces are equal and opposite. So <span class="answer-flag">the rod is in force equilibrium, but NOT in torque (moment) equilibrium</span> — it would spin, even though it wouldn't slide anywhere.
+      </div>
+    </div>
+
+    <div class="page-card">
+      <span class="page-num">pg 100</span>
+      <h4>A classic seesaw example, and starting our first real FBD for this chapter</h4>
+      <div class="block idea">
+        <span class="label">The idea — the seesaw</span>
+        A seesaw is one of the simplest, most familiar examples of moment balance. Two people sit on opposite sides of a see-saw's pivot; for it to balance perfectly (not tip either way), their moments about the pivot must be exactly equal: 800 N × 3 m = 400 N × 6 m (both sides equal 2400 N·m). Notice the person with LESS weight (400 N) can still balance the heavier person (800 N) by sitting FARTHER from the pivot — that's the whole idea of "moment = force × distance" showing up in a playground.
+      </div>
+      <div class="block idea">
+        <span class="label">The idea — building a Free Body Diagram for a real structure</span>
+        The slide introduces a crane-like truss structure holding a 2400 kg load, supported by a pin at one point (A) and a roller at another (B). This is the FIRST step of solving ANY equilibrium problem for a rigid body:
+        <ol class="simple">
+          <li>Isolate the whole structure by itself, detached from the ground and anything else touching it.</li>
+          <li>Replace the structure's own weight with a single downward arrow at its center of gravity (labeled G).</li>
+          <li>Replace every support with the correct reaction force(s) it can actually provide (we'll learn exactly which supports give which reactions very soon).</li>
+          <li>Include all the measurement distances you'll need for the moment calculations.</li>
+        </ol>
+        This exact FBD (the crane holding 2400 kg) is the very first full worked example of the next part of Chapter 4 — where we'll actually solve for the unknown support reactions using both ΣF=0 and ΣM=0 together. That's where we'll pick back up.
+      </div>
+    </div>
+  </section>
+
+  <div class="stop-marker">
+    <strong>You've now reached page 100 — the end of what we agreed to cover.</strong><br>
+    Chapter 4 continues past this point (pages 101–120) with the full toolkit for solving real structures: choosing which point to sum moments about, the different TYPES of supports (pin, roller, fixed) and exactly what reaction force each one can provide, several fully worked crane/frame/tractor examples, and finally the same ideas extended into full 3D. Just say the word whenever you're ready to keep going from page 101.
+  </div>
+
+</div>
+</body>
+</html>

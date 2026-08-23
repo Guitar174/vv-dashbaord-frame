@@ -1,0 +1,788 @@
+<title>Statics Guide Redline</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --paper:#eef2f4;
+  --paper-raised:#ffffff;
+  --ink:#182430;
+  --ink-soft:#4b5b68;
+  --ink-faint:#7c8b96;
+  --rule:#c7d2d9;
+  --rule-strong:#a8b8c2;
+  --accent:#2f5d8a;
+  --accent-soft:#dce8f2;
+  --accent-ink:#1c3d5c;
+  --critical:#a83f27;
+  --critical-soft:#f7e3db;
+  --critical-ink:#7a2c18;
+  --moderate:#96701f;
+  --moderate-soft:#f5ecd6;
+  --moderate-ink:#6b4e14;
+  --good:#2f6f5c;
+  --good-soft:#dcece7;
+  --good-ink:#1f4d3f;
+  --shadow: 0 1px 2px rgba(24,36,48,0.06), 0 4px 14px rgba(24,36,48,0.05);
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111820;
+    --paper-raised:#182029;
+    --ink:#e7edf1;
+    --ink-soft:#a9b8c3;
+    --ink-faint:#728290;
+    --rule:#2b3844;
+    --rule-strong:#3a4a56;
+    --accent:#7bb0dd;
+    --accent-soft:#1f3548;
+    --accent-ink:#bcdcf5;
+    --critical:#e08a6c;
+    --critical-soft:#3a2018;
+    --critical-ink:#f4c3ae;
+    --moderate:#e0bd6f;
+    --moderate-soft:#3a2f14;
+    --moderate-ink:#f2ddab;
+    --good:#7fc4ae;
+    --good-soft:#14312a;
+    --good-ink:#b8e6d6;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 20px rgba(0,0,0,0.35);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111820;
+  --paper-raised:#182029;
+  --ink:#e7edf1;
+  --ink-soft:#a9b8c3;
+  --ink-faint:#728290;
+  --rule:#2b3844;
+  --rule-strong:#3a4a56;
+  --accent:#7bb0dd;
+  --accent-soft:#1f3548;
+  --accent-ink:#bcdcf5;
+  --critical:#e08a6c;
+  --critical-soft:#3a2018;
+  --critical-ink:#f4c3ae;
+  --moderate:#e0bd6f;
+  --moderate-soft:#3a2f14;
+  --moderate-ink:#f2ddab;
+  --good:#7fc4ae;
+  --good-soft:#14312a;
+  --good-ink:#b8e6d6;
+  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 20px rgba(0,0,0,0.35);
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  line-height:1.6;
+  margin:0;
+  padding:0 0 8rem;
+}
+::selection{background:var(--accent-soft); color:var(--accent-ink);}
+
+.wrap{max-width:920px; margin:0 auto; padding:0 1.5rem;}
+
+/* ---------- header ---------- */
+header.masthead{
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 27px, var(--rule) 27px, var(--rule) 28px),
+    repeating-linear-gradient(90deg, transparent, transparent 27px, var(--rule) 27px, var(--rule) 28px),
+    var(--paper-raised);
+  background-size: 28px 28px, 28px 28px, auto;
+  border-bottom:1px solid var(--rule-strong);
+  padding:3.2rem 0 2.4rem;
+}
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+}
+.eyebrow::before{
+  content:"";
+  width:1.6rem; height:1px;
+  background:var(--accent);
+  display:inline-block;
+}
+h1.title{
+  font-family:'IBM Plex Sans Condensed', sans-serif;
+  font-weight:700;
+  font-size:clamp(1.9rem, 4vw, 2.6rem);
+  letter-spacing:-0.01em;
+  margin:0.5rem 0 0.6rem;
+  text-wrap:balance;
+  color:var(--ink);
+}
+.subhead{
+  color:var(--ink-soft);
+  font-size:1.02rem;
+  max-width:60ch;
+  margin:0 0 1.4rem;
+}
+.meta-strip{
+  display:flex; flex-wrap:wrap; gap:0.5rem 1.6rem;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.76rem;
+  color:var(--ink-faint);
+  border-top:1px solid var(--rule);
+  padding-top:1rem;
+}
+.meta-strip b{color:var(--ink-soft); font-weight:500;}
+
+/* ---------- nav ---------- */
+nav.jump{
+  position:sticky; top:0; z-index:5;
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--rule);
+  padding:0.65rem 0;
+}
+nav.jump .wrap{
+  display:flex; gap:0.35rem; overflow-x:auto; padding-bottom:0.15rem;
+  scrollbar-width:thin;
+}
+nav.jump a{
+  flex:none;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.02em;
+  color:var(--ink-soft);
+  text-decoration:none;
+  padding:0.36rem 0.7rem;
+  border-radius:5px;
+  border:1px solid transparent;
+  white-space:nowrap;
+}
+nav.jump a:hover, nav.jump a:focus-visible{
+  border-color:var(--rule-strong);
+  color:var(--ink);
+  outline:none;
+}
+
+/* ---------- verdict ---------- */
+section.verdict{
+  margin:2.4rem 0;
+  background:var(--paper-raised);
+  border:1px solid var(--rule);
+  border-left:4px solid var(--accent);
+  border-radius:8px;
+  padding:1.6rem 1.8rem;
+  box-shadow:var(--shadow);
+}
+section.verdict p{margin:0; color:var(--ink); font-size:1.02rem;}
+section.verdict p + p{margin-top:0.8rem;}
+
+/* rating dial row */
+.rating-row{
+  display:flex; align-items:center; gap:1.6rem; flex-wrap:wrap;
+  margin:2rem 0 2.6rem;
+  padding:1.4rem 1.8rem;
+  background:var(--paper-raised);
+  border:1px solid var(--rule);
+  border-radius:8px;
+  box-shadow:var(--shadow);
+}
+.dial{
+  --pct: 65%;
+  width:112px; height:112px; border-radius:50%; flex:none;
+  background: conic-gradient(var(--accent) var(--pct), var(--rule) var(--pct));
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.dial::after{
+  content:"";
+  position:absolute; inset:10px;
+  border-radius:50%;
+  background:var(--paper-raised);
+}
+.dial span{
+  position:relative; z-index:1;
+  font-family:'IBM Plex Mono', monospace;
+  font-weight:600; font-size:1.15rem;
+  color:var(--ink);
+}
+.rating-copy{flex:1; min-width:220px;}
+.rating-copy .label{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ink-faint); margin-bottom:0.3rem;
+}
+.rating-copy .path{
+  font-size:0.94rem; color:var(--ink-soft);
+}
+.rating-copy .path b{color:var(--good-ink); background:var(--good-soft); padding:0.05rem 0.4rem; border-radius:4px; font-weight:600;}
+
+/* ---------- priority list ---------- */
+h2.section-title{
+  font-family:'IBM Plex Sans Condensed', sans-serif;
+  font-weight:700;
+  font-size:1.5rem;
+  margin:0 0 0.3rem;
+  color:var(--ink);
+  scroll-margin-top:3.5rem;
+}
+.section-sub{color:var(--ink-faint); font-size:0.86rem; font-family:'IBM Plex Mono',monospace; margin-bottom:1.2rem;}
+
+ol.priority{
+  list-style:none; margin:0 0 3rem; padding:0;
+  counter-reset:pr;
+  display:flex; flex-direction:column; gap:0.7rem;
+}
+ol.priority li{
+  counter-increment:pr;
+  background:var(--paper-raised);
+  border:1px solid var(--rule);
+  border-radius:8px;
+  padding:1rem 1.2rem 1rem 3.4rem;
+  position:relative;
+  box-shadow:var(--shadow);
+}
+ol.priority li::before{
+  content:counter(pr);
+  position:absolute; left:0.9rem; top:1rem;
+  font-family:'IBM Plex Mono', monospace;
+  font-weight:600; font-size:0.95rem;
+  color:var(--critical);
+  background:var(--critical-soft);
+  width:1.6rem; height:1.6rem;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+}
+ol.priority li b{color:var(--ink);}
+ol.priority li{color:var(--ink-soft); font-size:0.95rem;}
+.priority .loc{
+  display:inline-block;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  color:var(--accent-ink);
+  background:var(--accent-soft);
+  padding:0.1rem 0.4rem;
+  border-radius:4px;
+  margin-right:0.4rem;
+}
+
+/* ---------- chapters ---------- */
+.chapter{
+  margin:0 0 2.6rem;
+  scroll-margin-top:3.5rem;
+}
+.chapter-head{
+  display:flex; align-items:baseline; gap:0.8rem; flex-wrap:wrap;
+  border-bottom:2px solid var(--ink);
+  padding-bottom:0.5rem;
+  margin-bottom:1.1rem;
+}
+.chapter-num{
+  font-family:'IBM Plex Mono', monospace;
+  font-weight:600; font-size:0.85rem;
+  color:var(--accent);
+}
+.chapter-head h3{
+  font-family:'IBM Plex Sans Condensed', sans-serif;
+  font-weight:700; font-size:1.28rem;
+  margin:0; color:var(--ink);
+}
+.chapter-pages{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.76rem; color:var(--ink-faint);
+  margin-left:auto;
+}
+
+.field{margin:0 0 1rem;}
+.field-label{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-bottom:0.3rem;
+}
+.field p{margin:0 0 0.5rem; font-size:0.97rem;}
+.field p:last-child{margin-bottom:0;}
+
+/* callout cards for findings */
+.finding{
+  border-radius:8px;
+  border:1px solid var(--rule);
+  padding:0.95rem 1.1rem;
+  margin:0.7rem 0;
+  background:var(--paper-raised);
+  box-shadow:var(--shadow);
+}
+.finding.critical{border-left:4px solid var(--critical);}
+.finding.moderate{border-left:4px solid var(--moderate);}
+.finding.good{border-left:4px solid var(--good);}
+.chip{
+  display:inline-flex; align-items:center; gap:0.3rem;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.66rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase;
+  padding:0.18rem 0.5rem; border-radius:20px;
+  margin-bottom:0.5rem;
+}
+.chip.critical{background:var(--critical-soft); color:var(--critical-ink);}
+.chip.moderate{background:var(--moderate-soft); color:var(--moderate-ink);}
+.chip.good{background:var(--good-soft); color:var(--good-ink);}
+.finding .loc{
+  font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+  color:var(--ink-faint); margin-bottom:0.3rem;
+}
+.finding p{margin:0 0 0.55rem; font-size:0.95rem; color:var(--ink);}
+.finding p:last-child{margin-bottom:0;}
+
+pre.calc{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.82rem;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  padding:0.7rem 0.9rem;
+  overflow-x:auto;
+  margin:0.5rem 0;
+  color:var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space:pre-wrap;
+}
+.fix{
+  margin-top:0.6rem;
+  padding-top:0.6rem;
+  border-top:1px dashed var(--rule-strong);
+  font-size:0.92rem;
+}
+.fix b{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--accent);
+  display:block; margin-bottom:0.25rem;
+}
+
+/* audit note */
+.audit-box{
+  background:var(--critical-soft);
+  border:1px solid color-mix(in srgb, var(--critical) 35%, var(--rule));
+  border-radius:8px;
+  padding:1.2rem 1.4rem;
+  color:var(--critical-ink);
+  font-size:0.95rem;
+}
+.audit-box p{margin:0 0 0.6rem;}
+.audit-box p:last-child{margin-bottom:0;}
+
+footer{
+  margin-top:3rem;
+  padding-top:1.4rem;
+  border-top:1px solid var(--rule);
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.74rem;
+  color:var(--ink-faint);
+}
+
+@media (max-width:600px){
+  .chapter-pages{margin-left:0;}
+  .dial{width:88px;height:88px;}
+}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Study-guide redline · MES350 Engineering Statics</div>
+    <h1 class="title">Fixes for the Statics Study Guide</h1>
+    <p class="subhead">A page-by-page check of the HTML study guide against the 174-page source deck — what's missing, what's wrong, and what to say instead, chapter by chapter.</p>
+    <div class="meta-strip">
+      <span><b>Source:</b> statics.pdf, 174 pages, Dr. Amin Eisazadeh</span>
+      <span><b>Guide reviewed:</b> statics_full_study_guide.html</span>
+      <span><b>Method:</b> full read-through + every worked example recomputed by hand</span>
+    </div>
+  </div>
+</header>
+
+<nav class="jump">
+  <div class="wrap">
+    <a href="#verdict">Verdict</a>
+    <a href="#priority">Top 5 fixes</a>
+    <a href="#ch0">Ch 0</a>
+    <a href="#ch1">Ch 1</a>
+    <a href="#ch2">Ch 2</a>
+    <a href="#ch3">Ch 3</a>
+    <a href="#ch4">Ch 4</a>
+    <a href="#ch5">Ch 5</a>
+    <a href="#ch6">Ch 6</a>
+    <a href="#ch7">Ch 7</a>
+    <a href="#ch8">Ch 8</a>
+    <a href="#ch9">Ch 9</a>
+    <a href="#audit">Audit section</a>
+    <a href="#rating">Rating</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="verdict" id="verdict">
+    <p><b>Up front:</b> the guide's prose — Purpose, When to Use, Watch Out — is consistently strong, and in several places genuinely better pedagogy than the source slides. But the worked <b>Examples</b>, the part a struggling student leans on hardest, contain one serious arithmetic error, one badly garbled solution, and one flatly false claim about what the source material contains.</p>
+    <p>These are exactly the mistakes a weak student can't catch on their own — they look authoritative, so they get trusted, copied, and reproduced on an exam. Every issue below names the page, shows the recomputed correct math, and states the exact fix.</p>
+  </section>
+
+  <div class="rating-row" id="rating-preview">
+    <div class="dial" style="--pct:65%"><span>6.5/10</span></div>
+    <div class="rating-copy">
+      <div class="label">Current state, as published</div>
+      <div class="path">Foundation and coverage are sound. Fixing the five items below moves this to <b>8.5–9/10</b> — see full reasoning under Rating at the bottom.</div>
+    </div>
+  </div>
+
+  <section id="priority">
+    <h2 class="section-title">Top 5 fixes, ranked</h2>
+    <div class="section-sub">Do these first — everything else is polish</div>
+    <ol class="priority">
+      <li><span class="loc">Ch 3 · pg 60–61</span><b>Law of Sines sides paired with the wrong angles.</b> Automobile-on-a-cable example comes out ~25× off (T<sub>AB</sub> ≈ 141 N instead of 3.57 kN, T<sub>AC</sub> ≈ 3.43 kN instead of 144 N). The guide's own Watch Out box blames the deck for this — it's the guide's algebra.</li>
+      <li><span class="loc">Ch 9 · pg 174</span><b>Guide says the closing friction example has "no numbers shown." It does.</b> The PDF has a complete crate-on-an-incline problem (F = 80 N required vs. 60 N available → slides → 48 N kinetic friction) — arguably the chapter's best example, currently described as empty.</li>
+      <li><span class="loc">Ch 5 · pg 109–110</span><b>Crane moment equation doesn't reduce to its own answer.</b> Shown line <code>[(9.81×1.5)+(23.5×6)]/6</code> equals 25.95, not the stated 107.1 kN — correct division is by 1.5, not 6. Final answer happens to be right; the "work" isn't.</li>
+      <li><span class="loc">Audit section</span><b>References a Q1–Q57 worksheet that doesn't exist on the page.</b> Verified with a full-text search of all ~152,000 characters — no question stems, no answer key, anywhere.</li>
+      <li><span class="loc">Ch 2 · pg 47–49</span><b>Stops one step short of the deck's boxed answer.</b> Guide ends at 15.04°; the deck's actual final answer is 35.04° (15.04° + P's own 20° from horizontal). A student who correctly gets 35.04° will think they're wrong.</li>
+    </ol>
+  </section>
+
+  <!-- CH 0 -->
+  <div class="chapter" id="ch0">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 0</span>
+      <h3>Course Housekeeping</h3>
+      <span class="chapter-pages">pg 1–9</span>
+    </div>
+    <div class="finding good">
+      <span class="chip good">No fixes needed</span>
+      <p>Complete and appropriately brief. The guide correctly flags this section as non-examinable (grading, attendance, references, table of contents) and tells the student not to spend study time here — the right call, and the reassurance a stressed student needs on page 1 of a 174-page guide.</p>
+    </div>
+  </div>
+
+  <!-- CH 1 -->
+  <div class="chapter" id="ch1">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 1</span>
+      <h3>General Principles &amp; Units</h3>
+      <span class="chapter-pages">pg 10–29</span>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Coverage</div>
+      <p>Complete. Every sub-topic is hit: mechanics, particle vs. rigid body, all three Newton's Laws, gravitation, SI vs. FPS, mass-vs-weight, unit conversion, dimensional homogeneity, problem-solving strategy. The Hyatt Regency walkway collapse (pg 13–15) is framed better than the deck itself: "always draw the FBD for the as-built structure, not the as-designed one."</p>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Verified correct</span>
+      <div class="loc">pg 21 &amp; pg 26 — weight and unit-conversion worked numbers</div>
+      <pre class="calc">W = 1000 kg × 9.81 m/s² = 9810 N = 9.81 kN     ✓ matches PDF
+47 in·lb → 47 × 0.0254 × 4.448 = 5.31 N·m      ✓ matches PDF (5.31026116 N·m)</pre>
+      <p>The book-on-a-table Third-Law example (pg 20) is exactly the right level of concrete, and "action and reaction never appear together in one object's equilibrium equation" pre-empts the most common Newton's-3rd-Law confusion before the student hits a real problem.</p>
+    </div>
+
+    <div class="finding moderate">
+      <span class="chip moderate">Optional polish</span>
+      <div class="loc">pg 29 — Dimensional Homogeneity</div>
+      <p>The Watch Out note (dimensional homogeneity won't catch a wrong coefficient, e.g. s = 2vt + ½at²) is correct but reads as an assertion. One more sentence — <i>both terms would still individually reduce to meters, so the units check passes even though the physics is wrong</i> — would make it a demonstrated fact instead of a claim.</p>
+    </div>
+  </div>
+
+  <!-- CH 2 -->
+  <div class="chapter" id="ch2">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 2</span>
+      <h3>Force Vectors</h3>
+      <span class="chapter-pages">pg 30–55</span>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Coverage</div>
+      <p>Complete — coordinate systems, force terminology, FBD procedure, trigonometry, scalar vs. vector, vector classification, unit vectors, position vectors, all three addition laws, subtraction, graphical methods, Law of Sines/Cosines examples, rectangular components, and the table method for summing forces.</p>
+    </div>
+
+    <div class="finding critical">
+      <span class="chip critical">Incomplete final step</span>
+      <div class="loc">pg 47–49 — Example 2 (Problem 2.1)</div>
+      <p>The recomputed Law of Cosines/Sines is numerically correct (R = 97.73 N, intermediate angle = 15.04°) — but the guide stops there, when the deck's boxed final answer is <b>α = 35.04°</b>, measured from horizontal.</p>
+      <pre class="calc">α = 20° (P's own angle from horizontal) + 15.04° (angle inside the triangle) = 35.04°</pre>
+      <div class="fix"><b>Fix</b>Add the closing line above. Without it, a student who correctly reaches 35.04° will think they made an error, because the guide's "final" answer stops at 15.04°.</div>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Verified correct</span>
+      <div class="loc">pg 51–52 — Example 4 (Problem 2.3), table method</div>
+      <pre class="calc">Rx = 199.1 N   Ry = 14.3 N   R = 199.6 N   α = 4.1°      ✓ matches PDF exactly</pre>
+      <p>The unit-vector explanation on pg 41 (concrete 3-4-5 example, with an explicit "check: |u<sub>A</sub>| = √(0.36+0.64) = √1 = 1 ✓" self-verification step) is scaffolding the PDF itself never shows. Keep this pattern everywhere it can go.</p>
+    </div>
+  </div>
+
+  <!-- CH 3 -->
+  <div class="chapter" id="ch3">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 3</span>
+      <h3>Equilibrium of a Particle</h3>
+      <span class="chapter-pages">pg 56–69</span>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Coverage</div>
+      <p>Complete — equilibrium condition, FBD vs. space diagram, tension-only cable rule, pulleys, 1D/2D FBDs, worked examples 5–9, 3D position vectors, direction cosines, and the "given angles" method.</p>
+    </div>
+
+    <div class="finding critical">
+      <span class="chip critical">Highest-severity error in the guide</span>
+      <div class="loc">pg 60–61 — Example 5 (Problem 2.4), automobile on a cable</div>
+      <p>Every side is paired with the wrong opposite angle in the Law of Sines. The deck's actual equation:</p>
+      <pre class="calc">Correct (PDF):  T_AB/sin120° = T_AC/sin2° = 3.5 kN/sin58°  →  T_AB = 3.57 kN,  T_AC = 144 N
+
+Guide's version: 3.5/sin120° = T_AB/sin2° = T_AC/sin58°
+              →  T_AB ≈ 141 N   (should be 3.57 kN)
+              →  T_AC ≈ 3.43 kN (should be 144 N)</pre>
+      <p>Each guide value is roughly the <i>other</i> variable's correct answer, off by a factor of ~25. The guide's own Watch Out box notices the mismatch but blames it on the deck using "a differently-labeled side" — the error is in the guide's own pairing, not the source.</p>
+      <div class="fix"><b>Fix</b>Correct the ratio to T_AB/sin120° = T_AC/sin2° = 3.5/sin58°. Rewrite the Watch Out box: "the side opposite the LARGEST angle gets the LARGEST tension — sanity-check that against your triangle sketch before trusting the algebra."</div>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Verified correct</span>
+      <div class="loc">pg 68–69 — Example 8 (Problem 2.7), guy wire</div>
+      <pre class="calc">θx = cos⁻¹(−0.424) = 115.1°   θy = cos⁻¹(0.848) = 32.0°   θz = cos⁻¹(0.318) = 71.5°   ✓ all match PDF</pre>
+      <p>The obtuse-angle explanation (a negative direction cosine means &gt;90°) is genuinely useful — it heads off the common assumption that cos⁻¹ always returns an acute angle. The pulley explanation ("a single frictionless pulley never changes tension magnitude, only direction") is also correctly scoped.</p>
+    </div>
+  </div>
+
+  <!-- CH 4 -->
+  <div class="chapter" id="ch4">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 4</span>
+      <h3>Force System Resultants: Moments &amp; Couples</h3>
+      <span class="chapter-pages">pg 70–97</span>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Coverage</div>
+      <p>Complete and thorough — transmissibility, cross product, principle of moments, M<sub>O</sub> = r×F vs. Fd, geometric interpretation, right-hand rule, Varignon's theorem, Examples 1–3, the determinant method, moment about an arbitrary point, Example 4 (3D plate), dot product, mixed triple product, moment about an axis (Example 5, the cube problem), moment of a couple, force-couple systems (Examples 6–8), and system reduction.</p>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Strongest chapter in the guide — verified correct</span>
+      <pre class="calc">Ex.1 (lever, pg 77–78):    M_O = 500×0.3 = 150 N·m   ✓
+Ex.5 (cube, pg 86–88):     M_AG = −aP/√6, P·λ = 0     ✓
+Ex.8 (bracket, pg 96–97):  R = 1607i+439j−507k N      ✓
+                           M_A = 30i+17.68j+118.9k N·m ✓  (matches PDF's boxed values exactly)</pre>
+      <p>The cross-product walkthrough (pg 73: P=3i, Q=4j → P×Q=12k, "curl fingers from P toward Q, thumb points +z") is a genuinely good concrete check the PDF itself never provides — the deck just shows the right-hand rule as a static picture with no numeric verification.</p>
+    </div>
+
+    <div class="finding moderate">
+      <span class="chip moderate">Clarity gap</span>
+      <div class="loc">pg 76–77 — Varignon's Theorem</div>
+      <p>The worked example (100 N force at 30°, split into components) is clear on its own, but never ties back to <i>why it matters</i>: this is the actual mechanism behind every moment calculation for the rest of the course where a force isn't neatly perpendicular to its moment arm. Right now it reads as a standalone trick rather than the load-bearing technique it is.</p>
+      <div class="fix"><b>Fix</b>Add one "why should I care" sentence linking it forward to later moment problems.</div>
+    </div>
+  </div>
+
+  <!-- CH 5 -->
+  <div class="chapter" id="ch5">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 5</span>
+      <h3>Equilibrium of a Rigid Body</h3>
+      <span class="chapter-pages">pg 98–120</span>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Coverage</div>
+      <p>Complete — the two-condition requirement (∑F=0 and ∑M=0), see-saw intuition, support-reaction types with correct unknown counts, beam classification, the FBD-selection practice problem, Examples 2–5, 3D support reactions, Example 6, and the two-force/three-force body shortcuts.</p>
+    </div>
+
+    <div class="finding critical">
+      <span class="chip critical">Work shown doesn't reach its own answer</span>
+      <div class="loc">pg 109–110 — Example 3 (Problem 4.1), fixed crane</div>
+      <pre class="calc">Guide shows:  B = [(9.81×1.5)+(23.5×6)]/6 ≈ 107.1 kN
+              but (14.7+141)/6 = 25.95, NOT 107.1
+
+Correct (PDF): ΣM_A = 0:  B(1.5) − 9.81(2) − 23.5(6) = 0
+               B = (9.81×2 + 23.5×6)/1.5 = (19.62+141)/1.5 = 107.1 kN</pre>
+      <p>The distances (1.5 m vs. 2 m) are swapped and the division is by the wrong number — yet the final answer stated (107.1 kN) is correct anyway. A student who tries to follow the shown algebra cannot reproduce the guide's own number, which is more damaging than a wrong answer: it looks like a working solution and silently fails on inspection.</p>
+      <div class="fix"><b>Fix</b>Replace the shown line with the corrected equation above. A<sub>x</sub> = 107.1 kN and A<sub>y</sub> = 33.3 kN are already stated correctly elsewhere and need no change.</div>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Verified correct</span>
+      <div class="loc">pg 111–113 — Example 4 (Problem 4.4)</div>
+      <pre class="calc">Ex = −90.0 kN   Ey = +200 kN   ME = 180.0 kN·m
+sin36.9° = 4.5/7.5 = 0.6   cos36.9° = 6/7.5 = 0.8   (3-4-5 triangle × 1.5)     ✓ all correct</pre>
+      <p>The reconstructed "slide question → answer" boxes (pg 99, 106, 112, 113, 114, 115, 119) fill in discussion prompts the PDF poses but never answers — this is genuine original value, not transcription, and worth preserving or expanding.</p>
+    </div>
+  </div>
+
+  <!-- CH 6 -->
+  <div class="chapter" id="ch6">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 6</span>
+      <h3>Center of Gravity &amp; Centroids</h3>
+      <span class="chapter-pages">pg 121–141</span>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Coverage</div>
+      <p>Complete — CoG/centroid intro, symmetry shortcuts, common-shape centroid tables (areas and lines kept separate), composite-body method with the negative-area-for-holes rule, Examples 1–4, distributed loads on beams (Example 5), and the dam/fluid-pressure example (Example 6).</p>
+    </div>
+
+    <div class="finding moderate">
+      <span class="chip moderate">X̄ / Ȳ swapped</span>
+      <div class="loc">pg 133–134 — Example 3 (Problem 5.1), cutout bracket</div>
+      <pre class="calc">PDF's boxed answer:   X̄ = 54.8 mm,  Ȳ = 36.6 mm
+Guide's prose states: X̄ ≈ 36.6 mm, Ȳ ≈ 54.8 mm   ← reversed</pre>
+      <div class="fix"><b>Fix</b>Swap the labels so X̄ ≈ 54.8 mm and Ȳ ≈ 36.6 mm, matching the PDF's own boxed values.</div>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Verified correct</span>
+      <pre class="calc">Ex.1 (L-section, pg 130–131):     X̄ = 0.45 m, Ȳ = 0.325 m         ✓
+Ex.5 (distributed load, pg138–9): F = 18.0 kN, X̄ = 3.5 m, By = 10.5 kN, Ay = 7.5 kN   ✓</pre>
+      <p>The explanation of why holes get negative area (pg 128–129) — "this correctly removes the hole's contribution, shifting the composite centroid away from the hole" — beats the PDF's bare statement and is worth keeping as-is.</p>
+    </div>
+
+    <div class="finding moderate">
+      <span class="chip moderate">Suggested addition</span>
+      <p>The centroid-vs-center-of-gravity distinction (pg 121–122) would benefit from one explicit sentence: for a <i>homogeneous</i> object — true for essentially every problem in this course — centroid and center of gravity are literally the same point. This is implied but never stated outright, and a weak student may wonder why the guide alternates terms for what looks like the same calculation.</p>
+    </div>
+  </div>
+
+  <!-- CH 7 -->
+  <div class="chapter" id="ch7">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 7</span>
+      <h3>Structural Analysis: Trusses, Frames, Machines</h3>
+      <span class="chapter-pages">pg 142–161</span>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Coverage</div>
+      <p>Complete, and the guide's most example-dense chapter — truss assumptions, tension/compression, the determinacy formula with all three deck cases, zero-force-member shortcuts, space trusses, the full Method-of-Joints solve (all 7 members), Method of Sections, compound-truss determinacy, frames vs. trusses, the crane F/V/M example, and the dismembered-frame example.</p>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Verified correct</span>
+      <pre class="calc">Ex.1 Method of Joints (pg151–3): every one of 7 member forces checked — all match PDF
+Ex.2 Method of Sections (pg155–6): F_GI=13.13kN(T), F_FH=13.82kN(C), F_GH=1.371kN(C)  ✓
+Ex.3 Dismembered frame (pg159–61): Ay=480N, B=300N, Ax=300N, F_DE≈561N(C)             ✓</pre>
+    </div>
+
+    <div class="finding moderate">
+      <span class="chip moderate">Unflagged page-order jump</span>
+      <div class="loc">"Machines" — physically PDF page 168</div>
+      <p>The guide discusses Machines right after the Ch 7 frame examples (which top out at pg 161), before returning to pg 162 for Ch 8. In the actual PDF the page order is strictly 161→162→…→168, so grouping Machines with its topical siblings (trusses/frames) makes sense pedagogically, but a student flipping between guide and PDF side-by-side will be confused why "page 168" comes up before "page 162."</p>
+      <div class="fix"><b>Fix</b>Add one line where Machines is introduced: "this topic is physically on PDF page 168, out of numeric order — covered here because it belongs with trusses/frames, not the internal-forces material right before it."</div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Clarity — worth keeping</div>
+      <p>"Cables can only pull, bars can do either" (pg 143–144) directly sets up the later warning that a negative tension result signals a physically inconsistent structure, not just a sign to flip — a well-sequenced piece of pedagogy ahead of the Method of Joints.</p>
+    </div>
+  </div>
+
+  <!-- CH 8 -->
+  <div class="chapter" id="ch8">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 8</span>
+      <h3>Internal Forces, Stress/Strain, Moment of Inertia</h3>
+      <span class="chapter-pages">pg 162–168</span>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Honest, well-flagged gap — no change needed</span>
+      <p>Moment of Inertia (pg 167) genuinely is just a title/table-reference slide in the source deck with no worked content. The guide correctly says so — "full formulas are covered in a later course unit not included in these 174 pages" — rather than inventing content that isn't there. Good scope calibration; keep it.</p>
+    </div>
+
+    <div class="finding good">
+      <span class="chip good">Verified correct</span>
+      <pre class="calc">Stress (pg163): 1000 lb / 10 in² = 100 psi  |  4448 N / 6450 mm² = 0.69 MPa   ✓
+Strain (pg164): 0.12 in / 10 in = 0.012 in/in (dimensionless)                 ✓</pre>
+      <p>The knife-vs-palm stress analogy — a knife cuts because it concentrates force onto a tiny edge area, a flat palm applying the same force is harmless — is an excellent addition the PDF never provides; the deck just gives the formula and an abstract bar-in-tension example. Keep it.</p>
+    </div>
+  </div>
+
+  <!-- CH 9 -->
+  <div class="chapter" id="ch9">
+    <div class="chapter-head">
+      <span class="chapter-num">CH 9</span>
+      <h3>Friction</h3>
+      <span class="chapter-pages">pg 168–174</span>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Coverage</div>
+      <p>Intro, the four properties of friction force, the static→kinetic transition (four motion regimes), the friction-coefficient table, static-vs-kinetic summary, and the closing pg 174 entry.</p>
+    </div>
+
+    <div class="finding critical">
+      <span class="chip critical">Factually false coverage claim</span>
+      <div class="loc">pg 174 — "Friction Example" (closing slide)</div>
+      <p>The guide states this slide is essentially empty: "a title/placeholder for a worked friction example, without a fully rendered problem, numbers, or solution visible." <b>This is incorrect.</b> PDF pages 173–174 contain a complete worked problem — a 300 N weight on a 3-4-5 incline with a 100 N applied force:</p>
+      <pre class="calc">Force required for equilibrium
+  ΣFx=0:  100N − (3/5)(300N) − F = 0  →  F = 80 N required up-slope
+  ΣFy=0:  N = (4/5)(300N) = 240 N
+
+Maximum friction available
+  Fm = μs·N = 0.25 × 240N = 60 N        (60 N < 80 N required → the crate SLIDES)
+
+Actual kinetic friction once sliding
+  F_actual = μk·N = 0.20 × 240N = 48 N   →  net unbalanced force = 32 N down the incline</pre>
+      <p>This is arguably the single best fully-worked example in the whole Friction chapter — the only place in Ch 9 where the deck shows the complete static-check → "does it slide?" → kinetic-friction sequence with every number computed. The guide's chapter instead ends by telling the student to go build this themselves from the earlier ladder problem.</p>
+      <div class="fix"><b>Fix</b>Replace the pg 174 entry with the actual worked example above. It gives the guide a genuine "does it slide, and how do I check" template — exactly the skill the chapter's own Watch Out boxes elsewhere say matters most, but never demonstrate end-to-end.</div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Clarity — worth keeping</div>
+      <p>The "why it takes more force to START moving something than to KEEP it moving" framing (pg 171, couch-across-a-floor example) is a good everyday analogy. The μ&gt;1 clarification (rubber-on-glass, rubber-on-concrete) correctly heads off the misconception that friction coefficients must stay below 1.</p>
+    </div>
+  </div>
+
+  <!-- AUDIT -->
+  <div class="chapter" id="audit">
+    <div class="chapter-head">
+      <span class="chapter-num">AUDIT</span>
+      <h3>"Every topic vs. every question" section</h3>
+    </div>
+    <div class="audit-box">
+      <p><b>The worksheet this section repeatedly references does not exist anywhere on the page.</b> The coverage table states things like "Ch 1 … Tested by worksheet question(s): Q1–Q6" and claims "the worksheet below places 1–3 questions per major concept cluster." A full-text search of all ~152,000 characters of extracted page text turns up no Q1, Q2, … Q57 — no question stems, no answer key, anywhere.</p>
+      <p>What actually exists: (1) a coverage-mapping table, and (2) the seven "slide question → answer" boxes already reproduced inline earlier in the guide. The guide's own text even anticipates this gap ("if Kitar wants literal 1:1 coverage… a longer worksheet (Part 3) can be added"), implying Part 3 was never built. As published, a student clicking through to "Q1" finds nothing — worse than having no audit section at all.</p>
+      <p><b>Fix:</b> either build the actual Q1–Q57 worksheet with real question text and an answer key, or rewrite this section to describe only what's really there — the 7 inline Q&amp;A boxes and the topic-coverage table — without promising a numbered worksheet that isn't.</p>
+    </div>
+  </div>
+
+  <!-- RATING -->
+  <div class="chapter" id="rating">
+    <div class="chapter-head">
+      <span class="chapter-num">RATING</span>
+      <h3>How well-suited is this guide for a struggling student?</h3>
+    </div>
+
+    <div class="rating-row">
+      <div class="dial" style="--pct:65%"><span>6.5/10</span></div>
+      <div class="rating-copy">
+        <div class="label">As currently published</div>
+        <div class="path">The underlying structure and prose quality could easily support <b>8.5–9/10</b> once the fixes above are applied.</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">What's genuinely excellent — don't touch this in a rewrite</div>
+      <p>The Purpose / When-to-Use / Watch-Out framing is consistently well-pitched for a beginner, and in several places better than the source PDF: the knife-vs-palm stress analogy, the worked cross-product right-hand-rule check, the hole-as-negative-area intuition, the "action/reaction never share an FBD" warning, and the reconstructed answers to the deck's own unanswered discussion questions. Topic coverage is essentially complete across all ten chapters.</p>
+    </div>
+
+    <div class="field">
+      <div class="field-label">What actively undermines trust — for this specific student</div>
+      <p>A struggling student can't independently judge whether a worked example is right — they rely entirely on the guide being correct, because they don't yet have the fluency to catch a 25× Law-of-Sines error, or notice that <code>[14.7+141]/6</code> doesn't equal <code>107.1</code>. For a strong student these are speed bumps they'd self-correct; for the intended audience here, they're far more damaging, because they get trusted and reproduced. The false "no example here" claim in Ch 9 does different harm — it doesn't mislead with wrong numbers, it just wastes the guide's best opportunity to show the single most important friction skill end-to-end with real numbers that were already sitting in the source.</p>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Bottom line</div>
+      <p>A genuinely sound pedagogical foundation with real added value over the source slides — but it needs a careful arithmetic re-audit of every worked example, not only the ones sampled here, before it's safe to hand to a student who can't yet catch these kinds of errors on their own. For a weak student, trustworthiness may matter more than any other single quality this guide has.</p>
+    </div>
+  </div>
+
+  <footer>Reviewed against statics.pdf (174 pp.) and statics_full_study_guide.html — all worked examples independently recomputed.</footer>
+
+</main>

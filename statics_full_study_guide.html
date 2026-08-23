@@ -315,6 +315,33 @@
   </div>
 </div>
 
+<div class="qbox">
+  <span class="label">Diagram: FBD of a ladder against a smooth wall (pg 36)</span>
+  <div class="axisnote">The ladder leans at angle θ from the ground. The wall is smooth, so it can only push horizontally on the ladder (N_wall) — no friction there. The ground is rough, so it pushes both vertically (N_floor) and horizontally (F_friction, resisting the base's tendency to slide away from the wall). Weight W acts straight down at the ladder's midpoint (its center of gravity).</div>
+  <svg class="diagram" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg">
+    <rect width="460" height="300" fill="#fbfbfb"/>
+    <line x1="30" y1="260" x2="420" y2="260" stroke="#333" stroke-width="3"/>
+    <line x1="380" y1="30" x2="380" y2="260" stroke="#333" stroke-width="3"/>
+    <line x1="380" y1="40" x2="392" y2="30" stroke="#333" stroke-width="1"/>
+    <line x1="380" y1="70" x2="392" y2="60" stroke="#333" stroke-width="1"/>
+    <line x1="380" y1="100" x2="392" y2="90" stroke="#333" stroke-width="1"/>
+    <line x1="80" y1="260" x2="380" y2="70" stroke="#8a6a3e" stroke-width="6" stroke-linecap="round"/>
+    <text x="105" y="248" font-size="11" fill="#333">θ</text>
+    <line x1="230" y1="165" x2="230" y2="215" stroke="#a3242f" stroke-width="2.5"/>
+    <polygon points="230,222 224,208 236,208" fill="#a3242f"/>
+    <text x="238" y="220" font-size="11" fill="#a3242f">W = mg</text>
+    <line x1="380" y1="85" x2="332" y2="85" stroke="#1f5f8b" stroke-width="2.5"/>
+    <polygon points="325,85 339,79 339,91" fill="#1f5f8b"/>
+    <text x="290" y="72" font-size="11" fill="#1f5f8b">N_wall</text>
+    <line x1="80" y1="260" x2="80" y2="212" stroke="#1f6b3a" stroke-width="2.5"/>
+    <polygon points="80,205 74,219 86,219" fill="#1f6b3a"/>
+    <text x="88" y="215" font-size="11" fill="#1f6b3a">N_floor</text>
+    <line x1="80" y1="260" x2="32" y2="260" stroke="#8a4b00" stroke-width="2.5"/>
+    <polygon points="25,260 39,254 39,266" fill="#8a4b00"/>
+    <text x="10" y="278" font-size="11" fill="#8a4b00">F_friction</text>
+  </svg>
+</div>
+
 <div class="card">
   <span class="badge">pg 37</span>
   <div class="half">
@@ -379,6 +406,25 @@
     <div class="box example"><span class="label">Example</span>If a book is displaced by vector U, then displaced again by vector V, the triangle law says: draw U, then draw V starting from U's head; the resultant W = U + V is the vector from U's tail directly to V's head. Vector addition is commutative — U + V gives the same final position as V + U, even though the intermediate path looks different.</div>
     <div class="box watch"><span class="label">Watch out</span>In the triangle law, students often connect head-to-head or tail-to-tail instead of head-to-tail — the second vector's TAIL must start exactly at the first vector's HEAD, or the resultant will be wrong.</div>
   </div>
+</div>
+
+<div class="qbox">
+  <span class="label">Diagram: Triangle Law of vector addition (pg 43–44)</span>
+  <div class="axisnote">Draw vector U first. Then draw vector V starting exactly at U's head (tip-to-tail). The resultant W = U + V is the single vector drawn from U's original tail straight to V's final head — it "closes" the triangle. This works for any two vectors, in any order.</div>
+  <svg class="diagram" viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg">
+    <rect width="380" height="240" fill="#fbfbfb"/>
+    <line x1="40" y1="200" x2="220" y2="140" stroke="#1f5f8b" stroke-width="3"/>
+    <polygon points="227,138 208,133 214,148" fill="#1f5f8b"/>
+    <text x="110" y="158" font-size="12" fill="#1f5f8b">U</text>
+    <line x1="220" y1="140" x2="300" y2="40" stroke="#1f6b3a" stroke-width="3"/>
+    <polygon points="305,33 289,40 298,52" fill="#1f6b3a"/>
+    <text x="270" y="80" font-size="12" fill="#1f6b3a">V</text>
+    <line x1="40" y1="200" x2="300" y2="40" stroke="#a3242f" stroke-width="3" stroke-dasharray="6,3"/>
+    <text x="120" y="105" font-size="12" fill="#a3242f">W = U + V</text>
+    <circle cx="40" cy="200" r="3" fill="#333"/>
+    <circle cx="220" cy="140" r="3" fill="#333"/>
+    <text x="225" y="155" font-size="9" fill="#5a5a5a">U's head = V's tail</text>
+  </svg>
 </div>
 
 <div class="card">
@@ -494,6 +540,29 @@
   </div>
 </div>
 
+<div class="qbox">
+  <span class="label">Diagram: FBD at point A — automobile on a cable (pg 60)</span>
+  <div class="axisnote">All three forces meet at point A (the junction of rope AB, cable AC, and the automobile's weight). T_AB runs up to the mast, tilted only 2° off vertical. T_AC runs down to the dock at 30° below horizontal. The automobile's weight (3.5 kN) acts straight down. Drawn tip-to-tail, these three arrows form the closed force triangle used with the Law of Sines (interior angles 2°, 120°, 58°).</div>
+  <svg class="diagram" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+    <rect width="420" height="300" fill="#fbfbfb"/>
+    <circle cx="200" cy="150" r="4" fill="#333"/>
+    <text x="208" y="146" font-size="11" fill="#333">A</text>
+    <line x1="200" y1="150" x2="200" y2="40" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="200" y1="150" x2="186" y2="42" stroke="#1f5f8b" stroke-width="2.5"/>
+    <polygon points="184,35 178,50 193,47" fill="#1f5f8b"/>
+    <text x="130" y="55" font-size="11" fill="#1f5f8b">T_AB (to mast B)</text>
+    <text x="196" y="60" font-size="9" fill="#333">2°</text>
+    <line x1="200" y1="150" x2="200" y2="255" stroke="#a3242f" stroke-width="2.5"/>
+    <polygon points="200,262 194,248 206,248" fill="#a3242f"/>
+    <text x="208" y="250" font-size="11" fill="#a3242f">3.5 kN (weight)</text>
+    <line x1="200" y1="150" x2="340" y2="150" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="200" y1="150" x2="322" y2="220" stroke="#1f6b3a" stroke-width="2.5"/>
+    <polygon points="329,224 311,220 320,208" fill="#1f6b3a"/>
+    <text x="325" y="215" font-size="11" fill="#1f6b3a">T_AC (to dock C)</text>
+    <text x="230" y="165" font-size="9" fill="#333">30°</text>
+  </svg>
+</div>
+
 <div class="card">
   <span class="badge">pg 61–62</span>
   <div class="half">
@@ -583,6 +652,23 @@
     <div class="box example"><span class="label">Example</span>A 100 N force acts straight down on the end of a horizontal wrench, 0.3 m from the bolt (pivot O). Since the force is perpendicular to the wrench, d = 0.3 m exactly, so MO = Fd = 100 × 0.3 = 30 N·m, tending to rotate the wrench clockwise (negative by the standard CCW-positive convention).</div>
     <div class="box watch"><span class="label">Watch out</span>d must be the PERPENDICULAR distance from O to the force's LINE OF ACTION (extended infinitely in both directions if needed) — not simply the straight-line distance from O to wherever the force happens to be applied on the body. Using the wrong distance is the single most common moment-calculation error.</div>
   </div>
+</div>
+
+<div class="qbox">
+  <span class="label">Diagram: Moment of a force about a point, M = Fd (pg 74)</span>
+  <div class="axisnote">O is the pivot (e.g. a bolt). The wrench extends horizontally from O. Force F is applied straight down at the wrench's end, perpendicular to the wrench — so the perpendicular distance d is simply the wrench's full length. This is the simplest case: whenever F is perpendicular to the lever arm, d is just that arm's length.</div>
+  <svg class="diagram" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="180" fill="#fbfbfb"/>
+    <circle cx="60" cy="90" r="5" fill="#333"/>
+    <text x="45" y="75" font-size="11" fill="#333">O</text>
+    <line x1="60" y1="90" x2="330" y2="90" stroke="#8a6a3e" stroke-width="6" stroke-linecap="round"/>
+    <line x1="330" y1="90" x2="330" y2="145" stroke="#a3242f" stroke-width="2.5"/>
+    <polygon points="330,152 324,138 336,138" fill="#a3242f"/>
+    <text x="338" y="120" font-size="11" fill="#a3242f">F = 100 N</text>
+    <line x1="60" y1="115" x2="330" y2="115" stroke="#1f5f8b" stroke-width="1" stroke-dasharray="4,2"/>
+    <text x="160" y="130" font-size="11" fill="#1f5f8b">d = 0.3 m</text>
+    <text x="150" y="70" font-size="10" fill="#333">M_O = F·d = 30 N·m (clockwise)</text>
+  </svg>
 </div>
 
 <div class="card">
@@ -853,6 +939,41 @@
   </div>
 </div>
 
+<div class="qbox">
+  <span class="label">Diagram: FBD of the fixed crane (pg 109–110)</span>
+  <div class="axisnote">The crane's boom is pinned to the post at A and rests on a roller at B, 1.5 m below A. G (2 m out along the boom) is where the crane's own 9.81 kN weight acts; the crate's 23.5 kN weight hangs from the boom tip, 6 m out from A. Because the roller at B can only push horizontally, its reaction B is horizontal — which is exactly why summing moments about pin A (eliminating both Ax and Ay) isolates B in one equation.</div>
+  <svg class="diagram" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
+    <rect width="480" height="260" fill="#fbfbfb"/>
+    <line x1="60" y1="20" x2="60" y2="220" stroke="#333" stroke-width="5"/>
+    <circle cx="60" cy="80" r="4" fill="#333"/>
+    <text x="35" y="76" font-size="11" fill="#333">A</text>
+    <circle cx="60" cy="160" r="4" fill="#333"/>
+    <text x="35" y="164" font-size="11" fill="#333">B</text>
+    <line x1="60" y1="80" x2="60" y2="160" stroke="#999" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="15" y="124" font-size="9" fill="#5a5a5a">1.5 m</text>
+    <line x1="60" y1="80" x2="420" y2="35" stroke="#8a6a3e" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="180" cy="65" r="3" fill="#333"/>
+    <text x="168" y="55" font-size="10" fill="#333">G (2 m)</text>
+    <line x1="180" y1="65" x2="180" y2="110" stroke="#a3242f" stroke-width="2.5"/>
+    <polygon points="180,117 174,103 186,103" fill="#a3242f"/>
+    <text x="188" y="112" font-size="10" fill="#a3242f">9.81 kN</text>
+    <circle cx="420" cy="35" r="6" fill="#555"/>
+    <text x="392" y="20" font-size="10" fill="#333">tip (6 m)</text>
+    <line x1="420" y1="35" x2="420" y2="110" stroke="#a3242f" stroke-width="2.5"/>
+    <polygon points="420,117 414,103 426,103" fill="#a3242f"/>
+    <text x="428" y="112" font-size="10" fill="#a3242f">23.5 kN</text>
+    <line x1="60" y1="80" x2="15" y2="80" stroke="#1f5f8b" stroke-width="2.5"/>
+    <polygon points="8,80 22,74 22,86" fill="#1f5f8b"/>
+    <text x="0" y="68" font-size="9" fill="#1f5f8b">Ax=107.1kN</text>
+    <line x1="60" y1="80" x2="60" y2="45" stroke="#1f6b3a" stroke-width="2.5"/>
+    <polygon points="60,38 54,52 66,52" fill="#1f6b3a"/>
+    <text x="66" y="45" font-size="9" fill="#1f6b3a">Ay=33.3kN</text>
+    <line x1="60" y1="160" x2="15" y2="160" stroke="#1f5f8b" stroke-width="2.5"/>
+    <polygon points="8,160 22,154 22,166" fill="#1f5f8b"/>
+    <text x="0" y="148" font-size="9" fill="#1f5f8b">B=107.1kN</text>
+  </svg>
+</div>
+
 <div class="card">
   <span class="badge">pg 110</span>
   <div class="half">
@@ -955,8 +1076,28 @@
     <h3>Reactions @ Supports for 3D Structure / Example 6: Force Equilibrium (Problem 4.8) — sign held by ball-and-socket + cables</h3>
     <div class="box purpose"><span class="label">Purpose</span>Extends support types into 3D (ball-and-socket = 3 unknowns like a 3D pin; each cable = 1 unknown along its own known direction) and works a full 3D example: a sign held by one ball-and-socket joint and two cables, needing all 6 equilibrium equations.</div>
     <div class="box when"><span class="label">When to use</span>Use unit-vector position-to-force conversion (from Ch.3) for EACH cable individually first, then apply the 6 3D equilibrium equations together as a simultaneous system — this is the standard method for any 3D cable-supported structure.</div>
-    <div class="box example"><span class="label">Example</span>A 122 kg sign has weight W = 122×9.81 ≈ 1197 N ≈ 1200 N (matching the deck's own rounded value). With cable directions expressed as unit vectors (e.g. TBD's unit vector components 2/3, −1/3, 2/3 and TEC's 6/7, −3/7, 2/7 per the deck's own stated fractions), the deck notes that since all forces intersect the x-axis, ∑Mx = 0 gives no useful equation — leaving 5 independent equations for the 5 unknowns (2 cable tensions + 3 ball-socket reaction components), which the deck solves to get TBD ≈ 1400.8 N, TEC ≈ 1500.7 N, and reaction components Ax ≈ 499.7 N, Ay ≈ −450 N, Az ≈ 100.2 N (deck's stated final results).</div>
+    <div class="box example"><span class="label">Example</span>A 122 kg sign has weight W = 122×9.81 ≈ 1197 N ≈ 1200 N (matching the deck's own rounded value). With cable directions expressed as unit vectors (e.g. TBD's unit vector components 2/3, −1/3, 2/3 and TEC's 6/7, −3/7, 2/7 per the deck's own stated fractions), the deck notes that since all forces intersect the x-axis, ∑Mx = 0 gives no useful equation — leaving 5 independent equations for the 5 unknowns (2 cable tensions + 3 ball-socket reaction components), which the deck solves to get TBD = 450 N, TEC ≈ 1400.8 N, and the ball-and-socket reaction A ≈ (1500.7 N)i + (499.7 N)j − (100.2 N)k, i.e. Ax ≈ 1500.7 N, Ay ≈ 499.7 N, Az ≈ −100.2 N (deck's stated final boxed results, pg 119).</div>
     <div class="box watch"><span class="label">Watch out</span>With 5 unknowns and only 5 useful equations (one of the 6 standard equations turned out to give 0=0 here, since ∑Mx was automatically satisfied by the geometry), you must recognize which equation is "wasted" BEFORE you start solving — otherwise you'll wonder why your system of equations seems under-determined by one.</div>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">pg 119</span>
+  <div class="half">
+    <span class="halflabel">Top half</span>
+    <h3>Example 6 (cont.): Solving the 5 Simultaneous Equations</h3>
+    <div class="box purpose"><span class="label">Purpose</span>Shows the actual algebra of solving a 3D equilibrium problem once every force is in component form: two vector equations (∑F=0 and ∑MA=0) split into their i, j, k pieces, and — after dropping the useless ∑Mx equation from pg 117–118 — the remaining 5 scalar equations are solved together for the 5 unknowns (TBD, TEC, Ax, Ay, Az).</div>
+    <div class="box when"><span class="label">When to use</span>Use this exact "split into i/j/k, drop the equation that turns into 0=0, solve what's left" workflow for any 3D structure where you've already reduced the count of independent equations below 6 (as happened here, from 6 down to 5).</div>
+    <div class="box example"><span class="label">Example</span>Per the deck's own boxed steps: ∑F=0 splits into i: Ax − (2/3)TBD − (6/7)TEC = 0; j: Ay + (1/3)TBD + (3/7)TEC − 1200 N = 0; k: Az − (2/3)TBD + (2/7)TEC = 0. ∑MA=0 (with ∑Mx already discarded) splits into j: 5.333 TBD − 1.714 TEC = 0; k: 2.667 TBD + 2.571 TEC − 1440 N = 0. Solving the two moment equations together first gives the two cable tensions directly: TBD = 450 N, TEC ≈ 1400.8 N. Substituting those back into the three force equations then gives the ball-and-socket reaction: A ≈ (1500.7 N)i + (499.7 N)j − (100.2 N)k (matching the deck's boxed final answer).</div>
+    <div class="box watch"><span class="label">Watch out</span>The two MOMENT equations (j and k) involve only the two unknown tensions (TBD, TEC) — no reaction components — because moments were taken about A, which is exactly where the ball-and-socket reaction acts (zero moment arm). Solve THOSE two first as their own mini system, then plug the results into the three FORCE equations to get Ax, Ay, Az — trying to solve all 5 equations at once as one giant block is far more error-prone than exploiting this natural 2-then-3 split.</div>
+  </div>
+  <div class="half">
+    <span class="halflabel">Bottom half</span>
+    <h3>Example 6 (cont.): REFLECT and THINK — checking the tension signs</h3>
+    <div class="box purpose"><span class="label">Purpose</span>A built-in sanity check specific to cable problems: since a cable can only pull (never push), a valid solution MUST give positive tension for every cable — the deck explicitly confirms this here as its own verification step, separate from the numeric error-checking used elsewhere in the course.</div>
+    <div class="box when"><span class="label">When to use</span>After solving any cable-supported equilibrium problem, check the sign of every cable tension in your answer before reporting it as final — a negative "tension" is not a valid physical answer and signals either an arithmetic error or a wrong assumed geometry.</div>
+    <div class="box example"><span class="label">Example</span>Both TBD = 450 N and TEC ≈ 1400.8 N came out positive, matching the FBD's assumed direction (each cable's unit vector was built pointing FROM the sign TOWARD the wall, the only direction a taut cable can pull) — the deck states this positive result "confirms they are in tension and validates the analysis," i.e. the math and the physical setup agree.</div>
+    <div class="box watch"><span class="label">Watch out</span>This check only works if you were careful to define each cable's unit vector in the physically correct pulling direction BEFORE solving — if you'd defined it backwards, a physically valid tension would show up as a negative number instead, and you might wrongly "fix" it by assuming you made an error rather than recognizing the unit vector itself needs flipping.</div>
   </div>
 </div>
 
@@ -1176,7 +1317,7 @@
     <h3>Space Trusses (3D)</h3>
     <div class="box purpose"><span class="label">Purpose</span>Extends the 2D determinacy logic into 3D: the basic rigid unit is now a tetrahedron (6 members, 4 joints) instead of a triangle, and each joint gives 3 equilibrium equations (not 2) since it's now a 3D particle, giving the 3D determinacy formula m = 3n − 6 (where n = number of joints).</div>
     <div class="box when"><span class="label">When to use</span>Use m = 3n − 6 (rearranged as m + 6 = 3n, or generally m + r = 3n with r reactions) to check determinacy for any 3D space truss, exactly as you'd use m+r=2j for a 2D truss.</div>
-    <div class="box example"><span class="label">Example</span>A simple space truss starts as a tetrahedron: m=6 members, n=4 joints. Check: m = 3n−6 = 3(4)−6 = 6 ✓. Extending it by adding 3 new members and 1 new joint at a time (per the slide's rule) keeps this relationship satisfied at every stage.</div>
+    <div class="box example"><span class="label">Example</span>A simple space truss starts as a tetrahedron: m=6 members, n=4 joints. Check: m = 3n−6 = 3(4)−6 = 6 ✓. Extending it by adding 3 new members and 1 new joint at a time (per the slide's rule) keeps this relationship satisfied at every stage. A real-world analogy: a camera tripod (3 legs meeting at one head) is the simplest possible rigid 3D frame, exactly like a single tetrahedron face — that's why tripods are rigid with no wobble, while a 4-legged table (without a diagonal brace) can rock, because a simple rectangular leg arrangement isn't a triangulated (and therefore not fully rigid) 3D structure.</div>
     <div class="box watch"><span class="label">Watch out</span>The "6 additional equilibrium equations from the entire truss" mentioned on the slide are NOT independent of the per-joint equations — they're a consequence of them, so don't double-count them as extra information when checking a truss's determinacy.</div>
   </div>
 </div>
@@ -1190,6 +1331,40 @@
     <div class="box example"><span class="label">Example</span>Whole-truss reactions (from ∑ME=0, ∑Fx=0, ∑Fy=0 using the deck's own loads of 10 kN and 5 kN at given distances): Ey = 50 kN, Cx=0, Cy = 35 kN (deck's stated values, using moments −10kN(12m)−5kN(6m)+3m·E = 0-style equation). At joint A (2 unknowns): using the 3-4-5 triangle geometry, FAB/10kN = 4/3, giving FAB = 7.5 kN (tension), and FAD = 12.5 kN (compression). At joint D (2 unknowns remaining): using the 2:3:√13-style ratios shown, FDB = 12.5 kN (tension), FDE = 15 kN (compression). At joint B: FBE = 18.75 kN (compression), FBC = 26.25 kN (tension). At joint E (last unknown): FEC = 43.75 kN (compression). As a final check, the deck verifies equilibrium at joint C using the already-found FCB and FCE values against the independently-found reactions Cx, Cy — both checks pass (0 = 0), confirming the whole solution is self-consistent.</div>
     <div class="box watch"><span class="label">Watch out</span>The final "check joint" (here, joint C) is NOT optional busywork — it's your only independent verification that no arithmetic error crept in anywhere along the joint-to-joint chain, since an error at an early joint would otherwise propagate silently through every later joint.</div>
   </div>
+</div>
+
+<div class="qbox">
+  <span class="label">Diagram: Truss geometry — Method of Joints example (pg 151–153)</span>
+  <div class="axisnote">Top chord A–B–C is horizontal, 6 m per panel (12 m total). Bottom chord D–E is horizontal, offset 3 m in from each end, 4 m below the top chord. Diagonals AD, DB, BE, EC form the truss's W-pattern. The truss is supported by a roller at E (vertical reaction only) and a pin at C (both Cx and Cy) — D is just an ordinary joint, not a support.</div>
+  <svg class="diagram" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+    <rect width="420" height="260" fill="#fbfbfb"/>
+    <line x1="80" y1="104" x2="224" y2="104" stroke="#1f5f8b" stroke-width="3"/>
+    <line x1="224" y1="104" x2="368" y2="104" stroke="#1f5f8b" stroke-width="3"/>
+    <line x1="152" y1="200" x2="296" y2="200" stroke="#1f5f8b" stroke-width="3"/>
+    <line x1="80" y1="104" x2="152" y2="200" stroke="#1f5f8b" stroke-width="3"/>
+    <line x1="152" y1="200" x2="224" y2="104" stroke="#1f5f8b" stroke-width="3"/>
+    <line x1="224" y1="104" x2="296" y2="200" stroke="#1f5f8b" stroke-width="3"/>
+    <line x1="296" y1="200" x2="368" y2="104" stroke="#1f5f8b" stroke-width="3"/>
+    <circle cx="80" cy="104" r="3.5" fill="#333"/><text x="65" y="94" font-size="10" fill="#333">A</text>
+    <circle cx="224" cy="104" r="3.5" fill="#333"/><text x="218" y="94" font-size="10" fill="#333">B</text>
+    <circle cx="368" cy="104" r="3.5" fill="#333"/><text x="373" y="100" font-size="10" fill="#333">C</text>
+    <circle cx="152" cy="200" r="3.5" fill="#333"/><text x="140" y="220" font-size="10" fill="#333">D</text>
+    <circle cx="296" cy="200" r="3.5" fill="#333"/><text x="290" y="220" font-size="10" fill="#333">E</text>
+    <line x1="80" y1="70" x2="80" y2="97" stroke="#a3242f" stroke-width="2.5"/>
+    <polygon points="80,104 74,90 86,90" fill="#a3242f"/>
+    <text x="55" y="62" font-size="10" fill="#a3242f">10 kN</text>
+    <line x1="224" y1="70" x2="224" y2="97" stroke="#a3242f" stroke-width="2.5"/>
+    <polygon points="224,104 218,90 230,90" fill="#a3242f"/>
+    <text x="204" y="62" font-size="10" fill="#a3242f">5 kN</text>
+    <polygon points="296,200 288,216 304,216" fill="#555"/>
+    <circle cx="291" cy="221" r="3" fill="#555"/>
+    <circle cx="301" cy="221" r="3" fill="#555"/>
+    <line x1="280" y1="227" x2="312" y2="227" stroke="#333" stroke-width="2"/>
+    <text x="270" y="240" font-size="9" fill="#5a5a5a">roller (E)</text>
+    <polygon points="368,104 358,124 378,124" fill="#555"/>
+    <line x1="352" y1="124" x2="384" y2="124" stroke="#333" stroke-width="2"/>
+    <text x="352" y="140" font-size="9" fill="#5a5a5a">pin (C)</text>
+  </svg>
 </div>
 
 <div class="card">

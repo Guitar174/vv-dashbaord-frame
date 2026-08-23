@@ -1427,7 +1427,14 @@
       <figcaption>Original slide &mdash; page 4</figcaption>
     </figure>
     <p class="page-title">Marginal cost — the cost of just ONE more item</p>
-    <p>Average cost answers "what did the items I've already made cost me, on average?" But there's a different, often more useful question: having already made x items, what does it cost to make &Delta;x <em>more</em>? That extra cost is C(x+&Delta;x)&minus;C(x), so the cost <em>per extra item</em> is:</p>
+    <p>Average cost answers "what did the items I've already made cost me, on average?" But there's a different, often more useful question: having already made x items, what does it cost to make some more? Before the formula, here's what its symbols mean:</p>
+    <div class="callout">
+      <b>x</b> — how many items you've already made<br/>
+      <b>&Delta;x</b> — the Greek letter Delta (&Delta;) just means "a change in" — so &Delta;x means "a few extra items"<br/>
+      <b>C(x+&Delta;x)</b> — the total cost after making those extra &Delta;x items too<br/>
+      <b>&Delta;C</b> — short for C(x+&Delta;x)&minus;C(x): just the extra cost those extra items added
+    </div>
+    <p>So the cost <em>per extra item</em> is that extra cost, divided by how many extra items you made:</p>
     <div class="eq center"><span class="frac"><span class="num">C(x+&Delta;x) &minus; C(x)</span><span class="den">&Delta;x</span></span> = <span class="frac"><span class="num">&Delta;C</span><span class="den">&Delta;x</span></span></div>
     <p>That's just a difference quotient — the exact same shape we built derivatives out of back in Week 2! Let &Delta;x shrink to 0, and:</p>
     <div class="eq center"><span class="limtag"><span class="op">lim</span><span class="sub">&Delta;x&rarr;0</span></span> <span class="frac"><span class="num">&Delta;C</span><span class="den">&Delta;x</span></span> = C&prime;(x)</div>
@@ -1565,9 +1572,21 @@
       <p style="margin:0 0 8px;"><b>The real answer:</b> fg = x&sup3;&middot;x&#8308; = x&#8309;, so d/dx(fg) = 7x&#8310;.</p>
       <p style="margin:0;"><b>The tempting (wrong) guess:</b> f&prime;g&prime; = 3x&sup2;&middot;4x&sup3; = 12x&#8309;.</p>
     </div>
-    <p>7x&#8310; and 12x&#8309; are nowhere close — so the guess is busted. Multiplication (and, it turns out, division) needs its own dedicated rule.</p>
+    <p>7x&#8310; and 12x&#8309; are nowhere close — so the guess is busted. Multiplication (and, it turns out, division) needs its own dedicated rule. Before looking at the formula, here's what every letter in it means:</p>
+    <div class="callout">
+      <b>f(x)</b> — the first function you're multiplying<br/>
+      <b>g(x)</b> — the second function you're multiplying<br/>
+      <b>f&prime;(x)</b> — just the derivative of the first one, on its own<br/>
+      <b>g&prime;(x)</b> — just the derivative of the second one, on its own
+    </div>
     <div class="eq"><b>Product Rule</b> &nbsp; d/dx[f(x)g(x)] = f&prime;(x)g(x) + f(x)g&prime;(x)</div>
-    <p style="color:var(--ink-soft); font-size:14.5px;">In words: (derivative of the first)&times;(the second, untouched), PLUS (the first, untouched)&times;(derivative of the second). Every product-rule problem is exactly this pattern, twice.</p>
+    <p>Read left to right: <b>(derivative of the first)&times;(the second, left untouched)</b>, PLUS <b>(the first, left untouched)&times;(derivative of the second)</b>. Every product-rule problem, no matter how complicated, is exactly this same pattern applied twice — once for each piece.</p>
+    <div class="try">
+      <span class="lbl">Tiny warm-up before the real example</span>
+      Let's check the formula works on something we could also do the slow way. Take f(x)=x and g(x)=x&sup2;, so f(x)g(x)=x&sup3;. We already know d/dx(x&sup3;)=3x&sup2; the ordinary way.
+      <br/><br/>
+      Now the formula: f&prime;(x)=1 and g&prime;(x)=2x. Plug in: f&prime;g+fg&prime; = (1)(x&sup2;) + (x)(2x) = x&sup2;+2x&sup2; = 3x&sup2;. Same answer — the formula checks out, and now you've seen every piece of it move.
+    </div>
   </section>
 
   <section class="page" id="w3p11">
@@ -1599,8 +1618,14 @@
       <figcaption>Original slide &mdash; page 12</figcaption>
     </figure>
     <p class="page-title">The Quotient Rule, and Example 38</p>
-    <div class="eq"><b>Quotient Rule</b> &nbsp; d/dx<span class="frac"><span class="num">f(x)</span><span class="den">g(x)</span></span> = <span class="frac"><span class="num">g(x)f&prime;(x) &minus; f(x)g&prime;(x)</span><span class="den">(g(x))&sup2;</span></span></div>
-    <p style="color:var(--ink-soft); font-size:14.5px;">A classic memory trick: calling the top "hi" and the bottom "lo," this reads as <em>"lo·d(hi) minus hi·d(lo), all over lo·lo."</em> Notice the order matters here (unlike the product rule) — and watch the minus sign; it's the single most common place to slip up.</p>
+    <p>When one function is divided by another, there's a similar-looking but genuinely different formula — and division cares about order (5&divide;2 isn't 2&divide;5!), so this one is easy to mix up. To keep it straight, we always give the top of the fraction a nickname, "hi," and the bottom a nickname, "lo":</p>
+    <div class="callout">
+      <b>hi</b> — whatever is on <em>top</em> of the fraction<br/>
+      <b>lo</b> — whatever is on the <em>bottom</em> of the fraction<br/>
+      <b>hi&prime;</b> and <b>lo&prime;</b> — their derivatives, each found on its own
+    </div>
+    <div class="eq"><b>Quotient Rule</b> &nbsp; d/dx<span class="frac"><span class="num">hi</span><span class="den">lo</span></span> = <span class="frac"><span class="num">lo&middot;hi&prime; &minus; hi&middot;lo&prime;</span><span class="den">lo&middot;lo</span></span></div>
+    <p>Said out loud, that's the classic memory trick: <em>"lo·d(hi) minus hi·d(lo), all over lo·lo."</em> Two things to watch closely, since they're the two most common slip-ups: the <b>order</b> matters (it's lo&middot;hi&prime; <em>minus</em> hi&middot;lo&prime;, not the other way around), and the bottom gets <b>squared</b>, not just written twice added together.</p>
     <div class="eq center">Find the derivative of f(x) = <span class="frac"><span class="num">x&sup3; &minus; 4x&sup2; + x</span><span class="den">x &minus; 2</span></span></div>
     <div class="solution">
       <div class="lbl">Solution</div>
@@ -1671,10 +1696,23 @@
       <figcaption>Original slide &mdash; page 15</figcaption>
     </figure>
     <p class="page-title">Meet the Chain Rule</p>
-    <p>Some functions are really two functions stacked inside each other — an "outer" function wrapped around an "inner" one. Write the inner piece as u=g(x), and the outer piece as y=f(u). The Chain Rule says:</p>
+    <p>A real-world warm-up first, no formula yet: say your paycheck depends on how many hours you work, and how many hours you work depends on how many days you show up. If working one more day gets you 8 more hours, and one more hour gets you $20 more pay, then one more <em>day</em> gets you 8&times;$20=$160 more pay. You just multiplied two rates of change together to get a third one — that's the whole idea behind the chain rule, before any symbols show up.</p>
+    <p>Now the calculus version: some functions are really two functions stacked inside each other — an "outer" function wrapped around an "inner" one, the same way "pay depends on hours" wraps around "hours depends on days." Here's what each letter means:</p>
+    <div class="callout">
+      <b>u</b> — the <em>inner</em> function, u=g(x) (like "hours depends on days")<br/>
+      <b>y</b> — the <em>outer</em> function, written in terms of u: y=f(u) (like "pay depends on hours")<br/>
+      <b>dy/du</b> — how fast the outer function changes, per unit of u<br/>
+      <b>du/dx</b> — how fast the inner function changes, per unit of x
+    </div>
     <div class="eq center"><b>Version 1</b> &nbsp; <span class="frac"><span class="num">dy</span><span class="den">dx</span></span> = <span class="frac"><span class="num">dy</span><span class="den">du</span></span> &middot; <span class="frac"><span class="num">du</span><span class="den">dx</span></span></div>
     <div class="eq center"><b>Version 2</b> &nbsp; d/dx[f(g(x))] = f&prime;(g(x)) &middot; g&prime;(x)</div>
-    <p>Both versions say the identical thing: <b>differentiate the outside (leaving the inside alone), then multiply by the derivative of the inside.</b> Think of it like peeling an onion, one layer at a time, from the outside in — and multiplying a new derivative on with each layer you peel.</p>
+    <p>Both versions say the identical thing, and it's exactly the paycheck idea: <b>differentiate the outside (leaving the inside alone), then multiply by the derivative of the inside</b> — just like (rate of pay per hour)&times;(rate of hours per day). Think of it like peeling an onion, one layer at a time, from the outside in — and multiplying a new derivative on with each layer you peel.</p>
+    <div class="try">
+      <span class="lbl">Tiny warm-up before the real example</span>
+      Take y=(x+1)&sup2;. Inner: u=x+1, so du/dx=1. Outer: y=u&sup2;, so dy/du=2u. Chain rule: dy/dx = 2u&middot;1 = 2(x+1).
+      <br/><br/>
+      Double-check the slow way: expand (x+1)&sup2;=x&sup2;+2x+1 first, then use the ordinary power rule: d/dx(x&sup2;+2x+1)=2x+2, which is exactly the same as 2(x+1). The chain rule just skips the expanding step.
+    </div>
   </section>
 
   <section class="page" id="w3p16">
@@ -1692,8 +1730,9 @@
         <li>Find du/dx with the quotient rule on u=(x&sup2;+2)/(2x&minus;5): du/dx = [(2x&minus;5)(2x) &minus; (x&sup2;+2)(2)] / (2x&minus;5)&sup2; = (2x&sup2;&minus;10x&minus;4)/(2x&minus;5)&sup2;.</li>
         <li>Now plug in x=1. First find u itself: u = (1+2)/(2&minus;5) = 3/(&minus;3) = &minus;1.</li>
         <li>du/dx at x=1: (2&minus;10&minus;4)/(2&minus;5)&sup2; = (&minus;12)/9 = &minus;4/3.</li>
-        <li>dy/du at u=&minus;1: (1/3)(&minus;1)<sup>&minus;2/3</sup> &minus; 1. Since (&minus;1)<sup>1/3</sup>=&minus;1, squaring gives (&minus;1)<sup>2/3</sup>=1, so (&minus;1)<sup>&minus;2/3</sup>=1/1=1. So dy/du = (1/3)(1) &minus; 1 = &minus;2/3.</li>
-        <li>Chain rule: dy/dx = (dy/du)&middot;(du/dx) = (&minus;2/3)&middot;(&minus;4/3).</li>
+        <li>Now the fiddly part — dy/du at u=&minus;1, one tiny step at a time. We need (&minus;1)<sup>&minus;2/3</sup>. A negative exponent means "flip it into a fraction": (&minus;1)<sup>&minus;2/3</sup> = 1/(&minus;1)<sup>2/3</sup>. And 2/3 as an exponent means "cube-root it, then square it": (&minus;1)<sup>1/3</sup> = &minus;1 (the real cube root of &minus;1), and squaring that gives (&minus;1)&sup2;=1. So (&minus;1)<sup>2/3</sup>=1, which makes (&minus;1)<sup>&minus;2/3</sup>=1/1=1.</li>
+        <li>Plug that back in: dy/du = (1/3)(1) &minus; 1 = 1/3 &minus; 1 = &minus;2/3.</li>
+        <li>Chain rule: dy/dx = (dy/du)&middot;(du/dx) = (&minus;2/3)&middot;(&minus;4/3). Two negatives multiplied together give a positive: (2/3)&middot;(4/3) = 8/9.</li>
       </ol>
       <div class="answer">dy/dx at x=1 is 8/9</div>
     </div>

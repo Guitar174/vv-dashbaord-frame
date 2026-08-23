@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>2301115 — Weeks 1, 2 & 3, Explained Super Simply</title>
 <style>
   :root{
@@ -6,14 +7,9 @@
     --line:#e2ddd0; --line-strong:#cfc8b8; --code-bg:#eee9dc;
     --shadow: 0 1px 2px rgba(28,33,48,.06), 0 6px 20px rgba(28,33,48,.05);
   }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --paper:#12151c; --paper-raised:#181c25; --ink:#e7e5dd; --ink-soft:#a4a9b8; --ink-faint:#6b7180;
-      --navy:#8fb0ff; --teal:#59d6c6; --coral:#ef7a70; --amber:#e0a13f;
-      --line:#262b36; --line-strong:#333a48; --code-bg:#1d222c;
-      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
-    }
-  }
+  /* NOTE: dark mode is opt-in only, via the toggle button + data-theme attribute below.
+     We intentionally do NOT auto-switch on prefers-color-scheme, so the page defaults
+     to the light palette no matter what the visitor's OS/browser is set to. */
   :root[data-theme="dark"]{
     --paper:#12151c; --paper-raised:#181c25; --ink:#e7e5dd; --ink-soft:#a4a9b8; --ink-faint:#6b7180;
     --navy:#8fb0ff; --teal:#59d6c6; --coral:#ef7a70; --amber:#e0a13f;
@@ -45,6 +41,10 @@
     border-radius:99px; padding:6px 14px; cursor:pointer; transition:all .15s ease;}
   .tabbtn:hover{border-color:var(--teal); color:var(--teal);}
   .tabbtn.active{background:var(--navy); border-color:var(--navy); color:var(--paper-raised);}
+  .themebtn{font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size:12.5px; font-weight:600;
+    letter-spacing:.03em; color:var(--ink-soft); background:transparent; border:1px solid var(--line-strong);
+    border-radius:99px; padding:6px 14px; cursor:pointer; transition:all .15s ease; margin-left:8px;}
+  .themebtn:hover{border-color:var(--amber); color:var(--amber);}
 
   .cover{padding:46px 0 26px; border-bottom:1px solid var(--line); margin-bottom:30px; position:relative;}
   .cover-eyebrow{font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size:12px; letter-spacing:.14em;
@@ -148,6 +148,22 @@
   ::selection{background: color-mix(in srgb, var(--teal) 30%, transparent);}
 </style>
 
+<script>
+  (function(){
+    var saved = localStorage.getItem('theme');
+    var theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+  function toggleTheme(){
+    var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    var btn = document.getElementById('themetoggle');
+    if(btn){ btn.textContent = next === 'dark' ? '\u{1F319} Dark' : '☀ Light'; }
+  }
+</script>
+
 <div class="topbar">
   <div class="topbar-inner">
     <span class="topbar-title">2301115 · Calculus BUS I</span>
@@ -155,9 +171,20 @@
       <button class="tabbtn active" id="tab1" onclick="showWeek(1)">Week 1</button>
       <button class="tabbtn" id="tab2" onclick="showWeek(2)">Week 2</button>
       <button class="tabbtn" id="tab3" onclick="showWeek(3)">Week 3</button>
+      <button class="themebtn" id="themetoggle" onclick="toggleTheme()">&#9728; Light</button>
     </div>
   </div>
 </div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('themetoggle');
+    if(btn){
+      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      btn.textContent = current === 'dark' ? '\u{1F319} Dark' : '☀ Light';
+    }
+  })();
+</script>
 
 <div class="wrap">
 
@@ -190,6 +217,23 @@
     <p>In the picture, as x sneaks up on 1 from both sides, the curve's height sneaks up on 2 — even though there's a little hole right at x=1 itself. We don't care what's happening exactly at x=1. We only care where it's <em>headed</em>. Math people write that like this:</p>
     <div class="eq center"><span class="limtag"><span class="op">lim</span><span class="sub">x&rarr;1</span></span> f(x) = 2</div>
     <p>Say it out loud as: "as x heads toward 1, f(x) heads toward 2."</p>
+    <figure>
+      <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="190" x2="340" y2="190" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <polygon points="340,190 332,186 332,194" fill="var(--ink-faint)"/>
+        <line x1="180" y1="205" x2="180" y2="20" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <polygon points="180,20 176,28 184,28" fill="var(--ink-faint)"/>
+        <line x1="180" y1="90" x2="70" y2="90" stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 3"/>
+        <path d="M50,170 Q110,120 160,95" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M200,95 Q250,115 310,150" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <circle cx="180" cy="90" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <text x="30" y="94" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">y = 2</text>
+        <text x="184" y="212" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-faint)">x = 1</text>
+        <text x="70" y="182" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">x sneaks in &rarr;</text>
+        <text x="205" y="160" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">&larr; x sneaks in</text>
+      </svg>
+      <figcaption>Both sides tip-toe toward height 2, even though there's an open hole exactly at x=1.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p3">
@@ -226,6 +270,24 @@
       <div class="eq center"><span class="limtag"><span class="op">lim</span><span class="sub">x&rarr;0<sup>+</sup></span></span> f(x) = 1</div>
     </div>
     <p>The tiny &minus; means "sneaking in from the left/below." The tiny + means "sneaking in from the right/above." That's the whole secret code.</p>
+    <figure>
+      <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="110" x2="320" y2="110" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="170" y1="200" x2="170" y2="20" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="170" y1="70" x2="60" y2="70" stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="170" y1="150" x2="280" y2="150" stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 3"/>
+        <path d="M40,190 Q100,175 168,150" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M172,70 Q240,45 300,25" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <circle cx="170" cy="150" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <circle cx="170" cy="70" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <text x="60" y="64" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">y = 1</text>
+        <text x="285" y="146" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">y = &minus;1</text>
+        <text x="174" y="212" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-faint)">x = 0</text>
+        <text x="55" y="200" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">left path &rarr;</text>
+        <text x="215" y="20" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">&larr; right path</text>
+      </svg>
+      <figcaption>A bent "V": the left branch heads to &minus;1, the right branch heads to 1 &mdash; two different targets.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p6">
@@ -233,6 +295,20 @@
     <p class="page-title">When the two sides can't agree</p>
     <p>Same picture as page 5: the left path wants &minus;1, the right path wants 1. Since they can't agree on one number, the (regular, two-sided) limit doesn't exist. We write <b>DNE</b>, which just stands for "Does Not Exist" — like asking two friends where to eat and getting two completely different answers.</p>
     <div class="callout"><span class="lbl">Remember this</span>A limit — when it exists — can only ever point to <b>one</b> number. The moment you find two different numbers, you already know the answer is DNE. No more work needed!</div>
+    <figure>
+      <svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="100" x2="320" y2="100" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="170" y1="185" x2="170" y2="15" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <path d="M40,175 Q100,160 168,135" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M172,60 Q240,35 300,15" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <circle cx="170" cy="135" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <circle cx="170" cy="60" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <path d="M120,150 Q170,90 220,45" fill="none" stroke="var(--coral)" stroke-width="1.4" stroke-dasharray="3 4" opacity="0.6"/>
+        <text x="225" y="45" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="var(--coral)" font-weight="700">these never meet &rArr; DNE</text>
+        <text x="174" y="197" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-faint)">x = 0</text>
+      </svg>
+      <figcaption>No single height both paths agree on &mdash; that gap between the two open circles IS the DNE.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p7">
@@ -402,6 +478,23 @@
       </ol>
       <div class="answer">lim<sub>x&rarr;&minus;2</sub> f(x) = DNE</div>
     </div>
+    <figure>
+      <svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="15" y1="175" x2="345" y2="175" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="95" y1="188" x2="95" y2="15" stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="245" y1="188" x2="245" y2="15" stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 3"/>
+        <path d="M40,140 Q70,158 95,163" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M95,148 Q160,110 245,30" fill="none" stroke="var(--coral)" stroke-width="2.2"/>
+        <path d="M245,30 Q290,32 335,40" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <circle cx="95" cy="163" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <circle cx="95" cy="148" r="4.5" fill="var(--navy)"/>
+        <circle cx="245" cy="30" r="4.5" fill="var(--navy)"/>
+        <text x="60" y="200" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-faint)">x=&minus;2</text>
+        <text x="222" y="200" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-faint)">x=2</text>
+        <text x="150" y="200" font-family="ui-monospace,Consolas,monospace" font-size="9.5" fill="var(--ink-soft)">(top rule: &minus;2&le;x&le;2)</text>
+      </svg>
+      <figcaption>At x=2 the top-rule piece (coral) and bottom-rule piece (teal) meet at the same height, 9 &mdash; smooth, limit exists. At x=&minus;2 the bottom-rule piece approaches an open hole low down (&minus;5/3) while the top-rule piece actually starts higher up at a solid dot (1) &mdash; a jump, so DNE.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p15">
@@ -469,6 +562,22 @@
       </ol>
       <div class="answer">DNE (left side gives &minus;5, right side gives 5)</div>
     </div>
+    <figure>
+      <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="110" x2="320" y2="110" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="190" y1="200" x2="190" y2="20" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="190" y1="45" x2="90" y2="45" stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="190" y1="175" x2="290" y2="175" stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 3"/>
+        <path d="M50,178 Q120,177 188,175.5" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M192,44.5 Q260,44 300,42" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <circle cx="190" cy="175" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <circle cx="190" cy="45" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <text x="55" y="70" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">y = 5</text>
+        <text x="292" y="192" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">y = &minus;5</text>
+        <text x="194" y="212" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-faint)">x = 3</text>
+      </svg>
+      <figcaption>The absolute value bars flip the sign right at x=3, so the curve jumps from &minus;5 (left) to +5 (right) &mdash; both are open holes since x=3 itself is undefined (0 on the bottom).</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p19">
@@ -514,6 +623,18 @@
       <div class="eq center"><span class="limtag"><span class="op">lim</span><span class="sub">x&rarr;&minus;1<sup>&minus;</sup></span></span> <span class="frac"><span class="num">2</span><span class="den">x+1</span></span> = &minus;&infin;</div>
     </div>
     <p>Coming from the left, (x+1) shrinks toward 0 but stays tiny <em>negative</em> — so 2 divided by that is a giant negative number instead. Writing "= &infin;" is really just a fancy way of saying "runs away forever," not a real number you land on.</p>
+    <figure>
+      <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="110" x2="320" y2="110" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="150" y1="205" x2="150" y2="15" stroke="var(--coral)" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="150" y="12" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--coral)" text-anchor="middle">x = &minus;1</text>
+        <path d="M155,110 Q175,80 200,50 Q220,30 240,20" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M145,110 Q125,150 105,180 Q90,195 75,200" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <text x="250" y="35" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">shoots to +&infin;</text>
+        <text x="45" y="192" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">dives to &minus;&infin;</text>
+      </svg>
+      <figcaption>f(x) = 2/(x+1): coming from the right (x&gt;&minus;1) the curve shoots up; coming from the left it dives down &mdash; the dashed wall is the vertical asymptote at x=&minus;1.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p22">
@@ -583,6 +704,18 @@
       <div class="answer">&minus;&infin;</div>
     </div>
     <div class="try"><span class="lbl">Quick double-check</span>Try x=0.99: top &asymp;2.97, bottom = 0.99&sup2;&minus;1&asymp;&minus;0.0199, so the answer &asymp;&minus;149. Yep — heading toward &minus;&infin;.</div>
+    <figure>
+      <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="15" y1="100" x2="285" y2="100" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="200" y1="185" x2="200" y2="15" stroke="var(--coral)" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="200" y="12" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--coral)" text-anchor="middle">x = 1</text>
+        <path d="M195,100 Q170,140 140,165 Q110,182 60,190" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M195,100 Q180,80 165,60" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-dasharray="3 3" opacity="0.5"/>
+        <text x="40" y="184" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">dives to &minus;&infin;</text>
+        <text x="115" y="54" font-family="ui-monospace,Consolas,monospace" font-size="9.5" fill="var(--ink-faint)">(only the left side is asked about here)</text>
+      </svg>
+      <figcaption>Only the approach from the left (x&rarr;1<sup>&minus;</sup>) is asked about — the curve dives toward &minus;&infin; as it nears the wall at x=1.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p26">
@@ -603,6 +736,21 @@
       <div class="solution"><div class="lbl">(c) x&rarr;&minus;2</div><p style="font-size:14.5px;">The left answer and right answer disagree (+&infin; vs. &minus;&infin;), so they don't meet up.</p><div class="answer">DNE</div></div>
       <div class="solution"><div class="lbl">(d) x&rarr;2</div><p style="font-size:14.5px;">After canceling, the simplified version has no problem at x=2 anymore: (2&minus;3)/(2&middot;4) = &minus;1/8. Just plug it in!</p><div class="answer">&minus;1/8</div></div>
     </div>
+    <figure>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="130" x2="370" y2="130" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="120" y1="230" x2="120" y2="10" stroke="var(--coral)" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="120" y="8" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--coral)" text-anchor="middle">x=&minus;2</text>
+        <path d="M15,190 Q60,205 95,220" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M145,14 Q170,60 200,100 Q230,125 270,133" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <path d="M270,133 Q300,138 335,150" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <circle cx="270" cy="133" r="4.5" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+        <text x="275" y="128" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">x=2, hole at &minus;1/8</text>
+        <text x="60" y="180" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">dives to &minus;&infin;</text>
+        <text x="215" y="45" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--ink-soft)">shoots to +&infin;</text>
+      </svg>
+      <figcaption>Same wall-and-hole idea as page 24: at x=&minus;2 the two sides shoot off in opposite directions (DNE), while x=2 is just an ordinary removable hole after canceling.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p27">
@@ -625,6 +773,24 @@
       <li>x<sup>n</sup> runs off to +&infin; on the right but &minus;&infin; on the left when n is <b>odd</b> (like x&sup3; — the two ends point opposite ways).</li>
       <li>1/x<sup>n</sup> always shrinks down to 0 way out at either edge (a giant number on the bottom makes the whole fraction tiny).</li>
     </ol>
+    <div class="grid2">
+      <figure>
+        <svg viewBox="0 0 170 140" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10" y1="115" x2="160" y2="115" stroke="var(--ink-faint)" stroke-width="1.2"/>
+          <line x1="85" y1="130" x2="85" y2="10" stroke="var(--ink-faint)" stroke-width="1.2"/>
+          <path d="M20,20 Q60,90 85,105 Q110,90 150,20" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+          <text x="85" y="135" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)" text-anchor="middle">even n (like x&sup2;) — both ends up</text>
+        </svg>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 170 140" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10" y1="70" x2="160" y2="70" stroke="var(--ink-faint)" stroke-width="1.2"/>
+          <line x1="85" y1="130" x2="85" y2="10" stroke="var(--ink-faint)" stroke-width="1.2"/>
+          <path d="M20,110 Q55,80 85,70 Q115,60 150,20" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+          <text x="85" y="135" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)" text-anchor="middle">odd n (like x&sup3;) — ends point opposite ways</text>
+        </svg>
+      </figure>
+    </div>
     <p>For a polynomial (a sum of x-powers), only the single biggest power matters way out at the edges — every smaller term becomes too tiny to matter by comparison. So a polynomial's far-out behavior is decided entirely by its leading (highest-power) term.</p>
     <div class="solution"><div class="lbl">Example 13(a) — 3x&#8308; &minus; 6x&sup2; + x &minus; 10</div><p style="font-size:15px;">Biggest term: 3x&#8308;. Power 4 is even, and the number in front (+3) is positive, so both ends point up.</p><div class="answer">x&rarr;&infin;: +&infin; &nbsp;&middot;&nbsp; x&rarr;&minus;&infin;: +&infin;</div></div>
     <div class="solution"><div class="lbl">Example 13(b) — &minus;2x&sup3; + 3x&sup2; &minus; 12</div><p style="font-size:15px;">Biggest term: &minus;2x&sup3;. Power 3 is odd (so the ends normally point opposite ways), and the negative sign in front flips both of those directions.</p><div class="answer">x&rarr;&infin;: &minus;&infin; &nbsp;&middot;&nbsp; x&rarr;&minus;&infin;: +&infin;</div></div>
@@ -644,6 +810,17 @@
       <div class="answer">4/2 = 2 (same answer heading toward &minus;&infin;, too)</div>
     </div>
     <p>Picture it this way: the curve flattens out and hugs the flat line y=2 way out on both edges — that flat line is called a <b>horizontal asymptote</b>, the "way out there" cousin of page 24's vertical walls.</p>
+    <figure>
+      <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="150" x2="320" y2="150" stroke="var(--ink-faint)" stroke-width="1.2"/>
+        <line x1="30" y1="55" x2="310" y2="55" stroke="var(--coral)" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="310" y="48" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--coral)" text-anchor="end">y = 2</text>
+        <path d="M25,140 Q90,70 170,58 Q250,50 315,60" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <text x="55" y="130" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">x&rarr;&minus;&infin;</text>
+        <text x="270" y="80" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">x&rarr;+&infin;</text>
+      </svg>
+      <figcaption>f(x) = (4x&sup2;+5)/(2x&sup2;+1) flattens out and hugs y=2 on both far edges — a horizontal asymptote.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p30">
@@ -660,6 +837,16 @@
       <div class="answer">0</div>
     </div>
     <div class="try"><span class="lbl">A pattern worth remembering</span>Compare the top power and bottom power before you do any work: bottom bigger &rArr; answer is 0 (this page). Same size &rArr; answer is the ratio of the front numbers (Example 14). Top bigger &rArr; answer runs off to &plusmn;&infin; (Examples 10–13). The division trick is just how you prove it.</div>
+    <figure>
+      <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="90" x2="320" y2="90" stroke="var(--coral)" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="310" y="83" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--coral)" text-anchor="end">y = 0</text>
+        <path d="M25,20 Q90,60 170,85 Q250,95 315,90" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <text x="55" y="35" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">x&rarr;&minus;&infin;</text>
+        <text x="270" y="115" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)">x&rarr;+&infin;</text>
+      </svg>
+      <figcaption>Bottom power wins, so the curve flattens all the way down to the x-axis (y=0) way out at the edges.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w1p31">
@@ -813,6 +1000,25 @@
     <p class="page-title"><span class="kicker">Section 10.3</span>Meet continuity</p>
     <p>Here's the big shortcut this whole idea unlocks: for LOTS of functions, finding the limit is as easy as just calculating f at that number — no tricks, no sneaking up needed. Functions where this shortcut works are called <b>continuous</b> there.</p>
     <p>Picture it like a pencil test: the left graph never lifts the pencil, so it's continuous. The right graph has a break (the pencil has to jump), so it's not continuous there.</p>
+    <div class="grid2">
+      <figure>
+        <svg viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10" y1="105" x2="160" y2="105" stroke="var(--ink-faint)" stroke-width="1.2"/>
+          <path d="M20,90 Q60,30 85,45 Q120,65 150,25" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+          <text x="85" y="122" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)" text-anchor="middle">continuous — no lifting</text>
+        </svg>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10" y1="105" x2="160" y2="105" stroke="var(--ink-faint)" stroke-width="1.2"/>
+          <path d="M20,90 Q55,35 82,42" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+          <path d="M92,75 Q120,85 150,25" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+          <circle cx="82" cy="42" r="4" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+          <circle cx="92" cy="75" r="4" fill="var(--navy)"/>
+          <text x="85" y="122" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)" text-anchor="middle">not continuous — a jump</text>
+        </svg>
+      </figure>
+    </div>
   </section>
 
   <section class="page" id="w2p8">
@@ -1057,6 +1263,19 @@
     <p class="page-title"><span class="kicker">Section 11.1</span>What even IS a tangent line?</p>
     <p>Big scene change! From here on, calculus asks a brand new question: if you zoom in on a curve at one exact point, what's the slope (steepness) of the curve right there? That steepness is measured by a special line called the <b>tangent line</b> — the line that just barely "kisses" the curve at that one spot and points in the exact same direction the curve is going.</p>
     <p>The picture shows why "a line touching the curve at just one point" isn't a good enough definition: L1 really is tangent at P, but L2 also only touches at one point and it's clearly cutting across, not hugging the curve. Meanwhile L3 is tangent at P even though the wiggly curve happens to touch that same flat line again somewhere far away. Tangent-ness is about matching direction <em>right at that one spot</em>, not about counting touches.</p>
+    <figure>
+      <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20,180 Q90,40 160,90 Q220,130 260,90 Q300,50 345,95" fill="none" stroke="var(--ink-faint)" stroke-width="2"/>
+        <circle cx="160" cy="90" r="4.5" fill="var(--navy)"/><text x="167" y="86" font-family="ui-monospace,Consolas,monospace" font-size="11" fill="var(--ink-soft)">P</text>
+        <line x1="90" y1="150" x2="230" y2="30" stroke="var(--teal)" stroke-width="2.2"/>
+        <text x="228" y="24" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--teal)">L1 (tangent — hugs P)</text>
+        <line x1="105" y1="60" x2="225" y2="140" stroke="var(--coral)" stroke-width="2.2"/>
+        <text x="228" y="144" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--coral)">L2 (crosses through — not tangent)</text>
+        <line x1="60" y1="89" x2="345" y2="96" stroke="var(--amber)" stroke-width="2.2"/>
+        <text x="20" y="200" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="var(--amber)">L3 (tangent at P, even though it grazes the curve again later)</text>
+      </svg>
+      <figcaption>Only direction at that one exact point decides tangency — not how many times the line and curve happen to touch overall.</figcaption>
+    </figure>
   </section>
 
   <section class="page" id="w2p23">
@@ -1165,6 +1384,32 @@
       <div class="callout"><span class="lbl">Discontinuity</span>A hole or jump — page 28 already told us: no continuity means no differentiability, automatically.</div>
     </div>
     <div class="callout" style="margin-top:13px;"><span class="lbl">Vertical tangent line</span>The curve is so steep at that instant that the "tangent line" would have to stand straight up and down — and a vertical line's slope isn't a real number, so the derivative doesn't exist there either.</div>
+    <div class="grid2" style="margin-top:13px;">
+      <figure>
+        <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20,100 L80,40 L140,100" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+          <circle cx="80" cy="40" r="4" fill="var(--navy)"/>
+          <text x="80" y="120" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)" text-anchor="middle">kink — sharp corner</text>
+        </svg>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20,100 Q50,50 75,45" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+          <path d="M85,80 Q110,95 140,30" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+          <circle cx="75" cy="45" r="4" fill="var(--paper-raised)" stroke="var(--coral)" stroke-width="2"/>
+          <circle cx="85" cy="80" r="4" fill="var(--navy)"/>
+          <text x="80" y="120" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)" text-anchor="middle">discontinuity — a jump</text>
+        </svg>
+      </figure>
+    </div>
+    <figure>
+      <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30,110 Q70,105 95,70 Q110,35 100,10 Q95,35 100,70 Q120,105 170,110" fill="none" stroke="var(--teal)" stroke-width="2.2"/>
+        <circle cx="100" cy="70" r="4" fill="var(--navy)"/>
+        <line x1="100" y1="70" x2="100" y2="10" stroke="var(--coral)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <text x="100" y="125" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="var(--ink-soft)" text-anchor="middle">vertical tangent — straight up and down</text>
+      </svg>
+    </figure>
   </section>
 
   <section class="page" id="w2p30">

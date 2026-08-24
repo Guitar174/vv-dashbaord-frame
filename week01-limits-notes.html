@@ -1458,7 +1458,18 @@
       <b>Average cost</b> C&#772;(x) = C(x)/x — the cost per item, averaged over everything made so far.<br/>
       <b>Marginal cost</b> C&prime;(x) — the approximate cost of producing just one more item, after having made x.
     </div>
-    <p>The slide asks: can you see why C&prime;(x) can be read that way? Here's the connection — remember Week 2 page 38's rule, "if x changes by exactly 1, the change in y is approximately dy/dx"? Producing one more item is exactly &Delta;x=1, so &Delta;C &asymp; C&prime;(x)&middot;1 = C&prime;(x). That's the whole trick: marginal cost is just that one-unit-change approximation, applied to cost.</p>
+    <p>The slide asks: <b>can you see why C&prime;(x) can be read that way?</b> Here's the direct answer, worked out from scratch:</p>
+    <div class="solution">
+      <div class="lbl">Answer</div>
+      <ol>
+        <li>Go back to page 4's exact formula, before any limit was taken: [C(x+&Delta;x)&minus;C(x)] / &Delta;x. This is a completely honest, no-approximation ratio — it really is "cost of the extra items, divided by how many extra items."</li>
+        <li>Now set &Delta;x = 1, meaning "just one extra item": the formula becomes [C(x+1)&minus;C(x)] / 1, which simplifies to just C(x+1)&minus;C(x) — literally the price tag of that one extra item, exact and exact.</li>
+        <li>Separately, C&prime;(x) is defined as the <em>limit</em> of that same ratio as &Delta;x shrinks all the way to 0. A limit means "the ratio barely changes once &Delta;x is already small" — and compared to the size of a typical production run (thousands of items), &Delta;x=1 already counts as "small."</li>
+        <li>So the ratio at &Delta;x=1 (which is exactly C(x+1)&minus;C(x), from step 2) is already very close to the ratio's limiting value (which is C&prime;(x), from step 3).</li>
+      </ol>
+      <div class="answer">C(x+1) &minus; C(x) &asymp; C&prime;(x) — the real cost of one more item is approximately the marginal cost</div>
+    </div>
+    <p style="color:var(--ink-soft); font-size:14.5px;">You'll see this exact approximation hold up with real numbers coming up on page 9 (Example 37): the derivative's quick estimate is $248, and the true cost of that one extra unit turns out to be $248.05 — nearly identical, exactly as this argument predicts.</p>
     <p style="color:var(--ink-soft); font-size:14.5px;">Notation heads-up: the textbook often uses q (for "quantity") instead of x from here on — same idea, different letter.</p>
   </section>
 

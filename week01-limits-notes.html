@@ -1678,14 +1678,19 @@
     </figure>
     <p class="page-title">Example 39 — the product rule when you don't know the full formula</p>
     <div class="eq center">f(x) = &radic;x &middot; g(x), &nbsp; where g(4)=8 and g&prime;(4)=7. Find f&prime;(4).</div>
-    <p>We're never told what g(x) actually <em>is</em> as a formula — just its value and its derivative, both at x=4. That's completely fine: the product rule only ever needs values plugged in at the end, so we can plug in numbers instead of formulas the whole way through.</p>
+    <p>We're never told what g(x) actually <em>is</em> as a formula — just its value and its derivative, both at x=4. That confuses people at first, but it's actually fine, and here's exactly why: the product rule's final formula only ever needs four numbers plugged in at the very end. It never needs g(x) at any x other than 4. Since 4 is the only x we're ever asked about, knowing g <em>only</em> at x=4 is already 100% enough information. Let's go slowly, one tiny move at a time.</p>
     <div class="solution">
-      <div class="lbl">Solution</div>
+      <div class="lbl">Solution — every step spelled out</div>
       <ol>
-        <li>Let the "first" piece be &radic;x (so its derivative, by the power rule on x<sup>1/2</sup>, is 1/(2&radic;x)), and the "second" piece be g(x).</li>
-        <li>Product rule: f&prime;(x) = [1/(2&radic;x)]&middot;g(x) + &radic;x&middot;g&prime;(x).</li>
-        <li>Plug in x=4 everywhere, using &radic;4=2: f&prime;(4) = [1/(2&middot;2)]&middot;g(4) + 2&middot;g&prime;(4) = (1/4)(8) + 2(7).</li>
-        <li>(1/4)(8) = 2, and 2(7) = 14.</li>
+        <li><b>Name the two pieces being multiplied together.</b> f(x)=&radic;x&middot;g(x) is a product of two functions: call the first one "first" = &radic;x, and the second one "second" = g(x).</li>
+        <li><b>Write down the product rule pattern first, in words, before touching this problem:</b> derivative of (first &times; second) = (derivative of first)&times;(second, untouched) + (first, untouched)&times;(derivative of second). This is the exact same pattern from page 10 — we're just about to slot our two pieces into it.</li>
+        <li><b>Find the derivative of the first piece, &radic;x, on its own.</b> Rewrite &radic;x as x<sup>1/2</sup> (refresher #3). Power rule: bring the 1/2 down in front, shrink the exponent by 1 (to 1/2&minus;1=&minus;1/2): (1/2)x<sup>&minus;1/2</sup>. Rewrite the negative exponent as a fraction: (1/2)x<sup>&minus;1/2</sup> = 1/(2x<sup>1/2</sup>) = 1/(2&radic;x). So the derivative of &radic;x is 1/(2&radic;x).</li>
+        <li><b>Find the derivative of the second piece, g(x), on its own.</b> We can't — we don't have a formula for g. But we don't need one everywhere; we're only ever going to ask about x=4, and we're directly told g&prime;(4)=7. So we already have exactly the one number we'll need.</li>
+        <li><b>Now assemble the full product-rule formula for this specific problem</b>, by slotting the two pieces from steps 3–4 into the pattern from step 2: f&prime;(x) = [1/(2&radic;x)]&middot;g(x) + &radic;x&middot;g&prime;(x). Nothing has been computed yet — this is still a general formula, true for any x.</li>
+        <li><b>Only now do we plug in x=4</b> — one piece at a time, so nothing gets lost. &radic;4 = 2 (since 2&times;2=4). So 1/(2&radic;4) = 1/(2&middot;2) = 1/4. And g(4)=8, g&prime;(4)=7 are simply handed to us in the question.</li>
+        <li><b>Substitute all four of those numbers into the formula from step 5:</b> f&prime;(4) = (1/4)&middot;g(4) + 2&middot;g&prime;(4) = (1/4)&middot;8 + 2&middot;7.</li>
+        <li><b>Do the two multiplications separately, so each one is its own clean move:</b> (1/4)&middot;8 = 8/4 = 2. And 2&middot;7 = 14.</li>
+        <li><b>Add the two results together</b> — this last addition is exactly the "+" in the middle of the product rule formula, doing its job: 2 + 14 = 16.</li>
       </ol>
       <div class="answer">f&prime;(4) = 2 + 14 = 16</div>
     </div>

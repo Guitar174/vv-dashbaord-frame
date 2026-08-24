@@ -141,6 +141,18 @@
     color:var(--navy); margin:20px 0 8px;}
   .refresher h3:first-of-type{margin-top:0;}
   .refresher p{margin:0 0 10px; font-size:15px;}
+
+  .stepsol{margin-top:14px;}
+  .stepsol .stepline{font-weight:700; font-size:15.5px; color:var(--ink); margin:20px 0 8px;}
+  .stepsol .stepline:first-child{margin-top:0;}
+  .stepsol .stepnote{font-size:15px; margin:0 0 8px;}
+  .stepsol ul.subpts{list-style:none; margin:0 0 4px; padding-left:2px;}
+  .stepsol ul.subpts li{position:relative; padding-left:20px; margin-bottom:7px; font-size:15px;}
+  .stepsol ul.subpts li::before{content:"○"; position:absolute; left:2px; top:1px; font-size:9px; color:var(--ink-faint);}
+  .stepsol ol.subpts{margin:0 0 4px; padding-left:22px;}
+  .stepsol ol.subpts li{margin-bottom:10px; font-size:15px;}
+  .stepsol .finalhead{font-weight:700; font-size:15.5px; color:var(--teal); margin:22px 0 8px; padding-top:14px; border-top:1px solid var(--line);}
+  .stepsol .altform{font-size:14px; color:var(--ink-soft); margin-top:6px;}
   figcaption{font-size:13px; color:var(--ink-soft); margin-top:6px; text-align:center;}
   .grid2{display:grid; grid-template-columns:1fr 1fr; gap:13px;} @media (max-width:560px){.grid2{grid-template-columns:1fr;}}
   .joke{text-align:center; padding:10px 0 2px; color:var(--ink-soft); font-style:italic; font-size:14.5px;}
@@ -1644,16 +1656,35 @@
     <div class="eq"><b>Quotient Rule</b> &nbsp; d/dx<span class="frac"><span class="num">hi</span><span class="den">lo</span></span> = <span class="frac"><span class="num">lo&middot;hi&prime; &minus; hi&middot;lo&prime;</span><span class="den">lo&middot;lo</span></span></div>
     <p>Said out loud, that's the classic memory trick: <em>"lo·d(hi) minus hi·d(lo), all over lo·lo."</em> Two things to watch closely, since they're the two most common slip-ups: the <b>order</b> matters (it's lo&middot;hi&prime; <em>minus</em> hi&middot;lo&prime;, not the other way around), and the bottom gets <b>squared</b>, not just written twice added together.</p>
     <div class="eq center">Find the derivative of f(x) = <span class="frac"><span class="num">x&sup3; &minus; 4x&sup2; + x</span><span class="den">x &minus; 2</span></span></div>
-    <div class="solution">
+    <div class="solution stepsol">
       <div class="lbl">Solution</div>
-      <ol>
-        <li>Top is "hi": x&sup3;&minus;4x&sup2;+x, so hi&prime; = 3x&sup2;&minus;8x+1. Bottom is "lo": x&minus;2, so lo&prime;=1.</li>
-        <li>lo&middot;hi&prime; = (x&minus;2)(3x&sup2;&minus;8x+1) = 3x&sup3;&minus;8x&sup2;+x&minus;6x&sup2;+16x&minus;2 = 3x&sup3;&minus;14x&sup2;+17x&minus;2.</li>
-        <li>hi&middot;lo&prime; = (x&sup3;&minus;4x&sup2;+x)(1) = x&sup3;&minus;4x&sup2;+x.</li>
-        <li>Subtract: (3x&sup3;&minus;14x&sup2;+17x&minus;2) &minus; (x&sup3;&minus;4x&sup2;+x) = 2x&sup3;&minus;10x&sup2;+16x&minus;2.</li>
-        <li>Divide by lo&sup2; = (x&minus;2)&sup2;.</li>
+
+      <div class="stepline">Step 1: Identify "hi" (the numerator) and "lo" (the denominator)</div>
+      <ul class="subpts">
+        <li>hi = x&sup3; &minus; 4x&sup2; + x</li>
+        <li>lo = x &minus; 2</li>
+      </ul>
+
+      <div class="stepline">Step 2: Differentiate hi and lo, each completely on its own</div>
+      <ul class="subpts">
+        <li>hi&prime; = 3x&sup2; &minus; 8x + 1 &nbsp;(ordinary power rule, term by term)</li>
+        <li>lo&prime; = 1</li>
+      </ul>
+
+      <div class="stepline">Step 3: Write down the Quotient Rule formula itself, before touching any numbers</div>
+      <div class="eq center">d/dx<span class="frac"><span class="num">hi</span><span class="den">lo</span></span> = <span class="frac"><span class="num">lo&middot;hi&prime; &minus; hi&middot;lo&prime;</span><span class="den">lo&middot;lo</span></span></div>
+      <p class="stepnote">Now substitute Steps 1–2 into that formula — nothing simplified yet, just placed into position:</p>
+      <div class="eq center">f&prime;(x) = <span class="frac"><span class="num">(x&minus;2)(3x&sup2;&minus;8x+1) &minus; (x&sup3;&minus;4x&sup2;+x)(1)</span><span class="den">(x&minus;2)&sup2;</span></span></div>
+
+      <div class="stepline">Step 4: Expand and simplify the top only — leave the bottom, (x&minus;2)&sup2;, alone</div>
+      <ol class="subpts">
+        <li>Expand the first product, (x&minus;2)(3x&sup2;&minus;8x+1), by multiplying every term in the second bracket by both x and &minus;2: <br/>x&middot;(3x&sup2;&minus;8x+1) = 3x&sup3;&minus;8x&sup2;+x, and &minus;2&middot;(3x&sup2;&minus;8x+1) = &minus;6x&sup2;+16x&minus;2. Add those two rows together: 3x&sup3;&minus;8x&sup2;+x&minus;6x&sup2;+16x&minus;2 = 3x&sup3;&minus;14x&sup2;+17x&minus;2.</li>
+        <li>Subtract the second product, (x&sup3;&minus;4x&sup2;+x)(1), which is just itself since multiplying by 1 changes nothing: <br/>(3x&sup3;&minus;14x&sup2;+17x&minus;2) &minus; (x&sup3;&minus;4x&sup2;+x) = 2x&sup3;&minus;10x&sup2;+16x&minus;2.</li>
       </ol>
-      <div class="answer">f&prime;(x) = (2x&sup3; &minus; 10x&sup2; + 16x &minus; 2) / (x&minus;2)&sup2;</div>
+
+      <div class="finalhead">Final Answer</div>
+      <div class="eq center">f&prime;(x) = <span class="frac"><span class="num">2x&sup3; &minus; 10x&sup2; + 16x &minus; 2</span><span class="den">(x&minus;2)&sup2;</span></span></div>
+      <p class="altform">(every term on top shares a factor of 2, so this can also be written as <span class="frac"><span class="num">2(x&sup3;&minus;5x&sup2;+8x&minus;1)</span><span class="den">(x&minus;2)&sup2;</span></span> — same answer, just factored)</p>
     </div>
     <details class="check">
       <summary>Try it yourself — differentiate f(x) = (2x&sup2;+1)/(x+3)</summary>

@@ -45,6 +45,8 @@
     border-radius:99px; padding:6px 14px; cursor:pointer; transition:all .15s ease;}
   .tabbtn:hover{border-color:var(--teal); color:var(--teal);}
   .tabbtn.active{background:var(--navy); border-color:var(--navy); color:var(--paper-raised);}
+  .theme-toggle{display:flex; gap:6px;}
+  .theme-toggle .tabbtn{padding:6px 12px;}
 
   .cover{padding:46px 0 26px; border-bottom:1px solid var(--line); margin-bottom:30px; position:relative;}
   .cover-eyebrow{font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size:12px; letter-spacing:.14em;
@@ -155,6 +157,10 @@
       <button class="tabbtn active" id="tab1" onclick="showWeek(1)">Week 1</button>
       <button class="tabbtn" id="tab2" onclick="showWeek(2)">Week 2</button>
       <button class="tabbtn" id="tab3" onclick="showWeek(3)">Week 3</button>
+    </div>
+    <div class="theme-toggle">
+      <button class="tabbtn" id="themeLight" onclick="setTheme('light')">Light</button>
+      <button class="tabbtn" id="themeDark" onclick="setTheme('dark')">Dark</button>
     </div>
   </div>
 </div>
@@ -1999,4 +2005,17 @@ function showWeek(w){
   document.getElementById('tab3').classList.toggle('active', w===3);
   window.scrollTo(0,0);
 }
+
+function setTheme(mode){
+  document.documentElement.setAttribute('data-theme', mode);
+  document.getElementById('themeLight').classList.toggle('active', mode==='light');
+  document.getElementById('themeDark').classList.toggle('active', mode==='dark');
+  try{ localStorage.setItem('calc-guide-theme', mode); }catch(e){}
+}
+
+(function initTheme(){
+  var saved = null;
+  try{ saved = localStorage.getItem('calc-guide-theme'); }catch(e){}
+  if(saved === 'light' || saved === 'dark'){ setTheme(saved); }
+})();
 </script>

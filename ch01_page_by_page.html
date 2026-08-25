@@ -1028,14 +1028,14 @@
         A <strong>contingency table</strong> summarizes data for two categorical variables. Example: students' gender crossed with whether they're looking for a spouse while in college.
       </div>
       <div class="block idea">
-        <span class="label">Worked example table (numbers used through Page 16)</span>
+        <span class="label">The actual numbers from the Page 16 chart (measured from the axis)</span>
         <table class="mini-table">
           <tr><th></th><th>Looking (Yes)</th><th>Not looking (No)</th><th>Total</th></tr>
-          <tr><td>Female</td><td>60</td><td>30</td><td>90</td></tr>
-          <tr><td>Male</td><td>15</td><td>45</td><td>60</td></tr>
-          <tr><td><strong>Total</strong></td><td>75</td><td>75</td><td>150</td></tr>
+          <tr><td>Female</td><td>45</td><td>75</td><td>120</td></tr>
+          <tr><td>Male</td><td>16</td><td>45</td><td>61</td></tr>
+          <tr><td><strong>Total</strong></td><td>61</td><td>120</td><td>181</td></tr>
         </table>
-        150 students surveyed: 90 female, 60 male. This table's counts feed the row-proportion calculation on Page 15 and the bar-plot comparison on Page 16.
+        181 students surveyed: 120 female, 61 male. This is the actual contingency table behind Page 16's stacked/side-by-side/standardized bar plots and mosaic plot — these counts feed the row-proportion calculation on Page 15 too.
       </div>
     </div>
   </div>
@@ -1054,10 +1054,10 @@
         Using the Page 14 contingency table, find % of females looking for a spouse and % of males looking for a spouse — is there a relationship between gender and looking for a spouse?
       </div>
       <div class="block solve">
-        <span class="label">Step-by-step method, worked with Page 14's numbers</span>
-        <div class="step"><strong>Step 1 — % females looking.</strong> 60 females said yes, out of 90 females total: 60 ÷ 90 = <span class="answer-flag">66.7%</span>.</div>
-        <div class="step"><strong>Step 2 — % males looking.</strong> 15 males said yes, out of 60 males total: 15 ÷ 60 = <span class="answer-flag">25.0%</span>.</div>
-        <div class="step"><strong>Step 3 — compare.</strong> 66.7% vs. 25.0% is a big gap — about two-thirds of females are looking for a spouse, versus only a quarter of males. That gap suggests gender and spouse-searching <strong>are associated</strong> in this (made-up) dataset — if the two percentages had come out close (say 60% vs. 58%), that would instead point toward independence.</div>
+        <span class="label">Step-by-step method, worked with Page 14's actual numbers</span>
+        <div class="step"><strong>Step 1 — % females looking.</strong> 45 females said yes, out of 120 females total: 45 ÷ 120 = <span class="answer-flag">37.5%</span>.</div>
+        <div class="step"><strong>Step 2 — % males looking.</strong> 16 males said yes, out of 61 males total: 16 ÷ 61 = <span class="answer-flag">26.2%</span>.</div>
+        <div class="step"><strong>Step 3 — compare.</strong> 37.5% vs. 26.2% is a noticeable gap (about 11 percentage points) — females are somewhat more likely to say they're looking for a spouse than males are. That gap suggests gender and spouse-searching <strong>lean toward being associated</strong> here — if the two percentages had come out nearly identical, that would instead point toward independence.</div>
       </div>
       <div class="block idea">
         <span class="label">Bar plot vs. histogram</span>
@@ -1094,11 +1094,12 @@
         <div class="step"><strong>Standardized stacked bar plot</strong> — like the stacked version, but every bar is rescaled to 100% height, showing <em>proportions</em> instead of counts — best for comparing composition across groups of very different sizes.</div>
       </div>
       <div class="block idea">
-        <span class="label">Worked example, using Page 14's table</span>
+        <span class="label">Reading the actual chart on this page (measured pixel-by-pixel against the axis)</span>
+        The left-most chart's y-axis runs 0–120. Female's bar reaches all the way to 120, with the boundary between its two colors sitting at 75 — so <strong>Female = 75 "No" (bottom) + 45 "Yes" (top) = 120 total</strong>. Male's bar reaches only to 61, with its boundary at 45 — so <strong>Male = 45 "No" (bottom) + 16 "Yes" (top) = 61 total</strong>.
         <ul>
-          <li><strong>Stacked:</strong> a "Female" bar reaching up to 90, split into a 60-tall "Yes" segment and a 30-tall "No" segment on top; a "Male" bar reaching up to 60, split into 15 "Yes" + 45 "No."</li>
-          <li><strong>Side-by-side:</strong> four separate bars — Female-Yes (60), Female-No (30), Male-Yes (15), Male-No (45) — placed next to each other so you can compare heights directly.</li>
-          <li><strong>Standardized stacked:</strong> both the Female and Male bars are stretched to the same 100% height. Female becomes 66.7% "Yes" / 33.3% "No"; Male becomes 25% "Yes" / 75% "No." Even though there are more females (90) than males (60) in the raw counts, this version makes the <em>proportion</em> difference (66.7% vs. 25%) the easiest of the three to see at a glance.</li>
+          <li><strong>Stacked (1st chart):</strong> exactly what's pictured — a "Female" bar reaching up to 120 (75 "No" + 45 "Yes" stacked), and a shorter "Male" bar reaching up to 61 (45 "No" + 16 "Yes"). Because the female bar is taller, it's easy to misread this as "there are way more female 'No' answers" — really it's just a bigger group.</li>
+          <li><strong>Side-by-side (this page also shows a proportion version, 3rd/4th charts):</strong> converts each bar into 0.0–1.0 scale instead of raw counts. Female becomes 62.5% "No" / 37.5% "Yes" (75÷120 and 45÷120); Male becomes 73.8% "No" / 26.2% "Yes" (45÷61 and 16÷61). Now you can see Male actually has the <em>higher</em> "No" rate, something the raw-count stacked chart hides because Female's bar just looks bigger overall.</li>
+          <li><strong>Mosaic plot (right-most chart):</strong> combines both ideas — rectangle <em>width</em> shows group size (Female's column is wider, since 120 &gt; 61), and rectangle <em>height</em> shows the within-group proportion (each column's "No" portion sits on top, sized to 62.5% for Female and 73.8% for Male). The large top-left rectangle the page's pink annotation points to — "proportion of female who said no" — is exactly Female's 62.5% "No" share, which happens to be the single largest cell in the whole plot since Female is both the bigger group and majority-"No."</li>
         </ul>
       </div>
     </div>
@@ -1108,24 +1109,41 @@
     <span class="page-num">Page 17</span>
     <div class="page-img"><img src="page_images_wk2/page_17.png" alt="Page 17"></div>
     <div class="page-summary">
-      <h3>Mosaic Plots vs. Pie Charts</h3>
+      <h3>Two separate slides on this page</h3>
+      <div class="block idea">
+        <span class="label">Note</span>
+        This page image actually contains <strong>two unrelated slides</strong> stacked one above the other — the top one introduces mosaic plots using a survival-by-age example, and the bottom one is a completely separate pie chart example about mammal species. They're summarized separately below.
+      </div>
+
+      <h3 style="margin-top:1.4rem;">Top of page — Mosaic Plots (survival by age)</h3>
       <div class="block idea">
         <span class="label">Purpose &amp; when to use it</span>
-        <strong>Pie chart</strong> — shows how a single categorical variable's total splits into shares of one whole. Best with a small number of categories (roughly ≤5); beyond that, thin wedges become hard to compare by eye. <strong>Mosaic plot</strong> — extends the same idea to <em>two</em> categorical variables at once, encoding one variable in rectangle width and the other in rectangle height, so it can also reveal association between them (something a pie chart can't do at all). Use a mosaic plot whenever you'd otherwise reach for a standardized stacked bar plot (Page 16) but want group sizes visible too.
+        This slide shows the <strong>same two-variable data</strong> (Age: Adult/Child, crossed with Survival: Died/Survived) drawn two ways — first as the standardized stacked bar plot from Page 16, then as a mosaic plot. The point is to show these two chart types display identical information; the mosaic plot just adds rectangle <em>width</em> (proportional to group size) on top of what the stacked bar plot already shows.
       </div>
       <div class="block problem">
         <span class="label">The problem</span>
-        Compare a mosaic plot to a pie chart for the same categorical data (mammal species by order) — which order has the lowest percentage of species?
+        What are the differences between the two visualizations shown (the standardized stacked bar plot and the mosaic plot, both of Age vs. Survival)?
       </div>
       <div class="block solve">
-        <span class="label">How to read each chart</span>
-        <div class="step"><strong>Mosaic plot:</strong> each category is a rectangle whose <em>width</em> (and sometimes height) is proportional to its share of the data — the narrowest rectangle is the smallest category.</div>
-        <div class="step"><strong>Pie chart:</strong> each category is a wedge whose <em>angle</em> is proportional to its share — the smallest, thinnest wedge is the smallest category.</div>
-        <div class="step">To answer "which order has the lowest percentage," find the narrowest mosaic rectangle or the thinnest pie wedge in the actual chart image above.</div>
+        <span class="label">Reading the actual chart (measured against its axis)</span>
+        <div class="step">The top chart's bars both run 0.00–1.00. <strong>Adult</strong> bar: the Died/Survived boundary sits at ≈0.69 → <strong>69% Died, 31% Survived</strong>. <strong>Child</strong> bar: boundary at ≈0.48 → <strong>48% Died, 52% Survived</strong>. Children clearly survived at a much higher rate than adults.</div>
+        <div class="step">The mosaic plot below encodes the exact same 69/31 and 48/52 splits as rectangle heights within each column — but now the <strong>column widths</strong> also show that there were far more adults than children in this dataset (the Adult column is much wider). The stacked bar plot alone can't show that group-size difference, since both bars are forced to the same height.</div>
+        <div class="step"><strong>Key difference:</strong> the stacked bar plot only shows within-group proportions; the mosaic plot shows within-group proportions <em>and</em> relative group sizes at the same time.</div>
       </div>
+
+      <h3 style="margin-top:1.4rem;">Bottom of page — Pie Charts (mammal species by order)</h3>
       <div class="block idea">
-        <span class="label">Worked example</span>
-        Say 4 categories make up a dataset: A = 40%, B = 30%, C = 20%, D = 10%. In a <strong>mosaic plot</strong>, the four rectangles sit side by side with widths in a 4:3:2:1 ratio — D's rectangle is visibly the thinnest sliver. In a <strong>pie chart</strong>, the same data becomes wedges of 144°, 108°, 72°, and 36° (each % × 3.6°) — D's wedge is the smallest, at just 36° out of 360°. Both charts correctly show D as smallest; mosaic plots tend to make small differences (like C at 20% vs. B at 30%) easier to compare precisely, since comparing rectangle widths is easier for the eye than comparing wedge angles.
+        <span class="label">Purpose &amp; when to use it</span>
+        A completely separate example: a pie chart showing what share of all mammal species belongs to each taxonomic order (Rodentia, Chiroptera, Carnivora, etc. — over 25 categories). <strong>Use a pie chart</strong> only when there are few categories; this slide is really a cautionary example of what happens when you use one with <em>too many</em> categories.
+      </div>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Can you tell which order encompasses the lowest percentage of mammal species, just by looking at the pie chart?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Try to compare the thinnest slivers around the pie's edge — with over 25 categories crammed in, many wedges are just a few degrees wide and visually indistinguishable from each other.</div>
+        <div class="step"><strong>Step 2.</strong> This is the actual lesson of the slide: with this many categories, a pie chart <strong>fails</strong> at its one job — you genuinely cannot tell which sliver is smallest by eye. A table sorted by percentage, or a mosaic/bar plot with categories ordered by size, would answer the question instantly where the pie chart can't.</div>
       </div>
     </div>
   </div>

@@ -10,8 +10,12 @@
     --ink:#2b2b2b;
     --rule:#d8d0bd;
     --tag:#8a7a4f;
-    --summary-bg:#e9f1ec;
-    --summary-border:#3d6b57;
+    --idea:#3d6b57;
+    --idea-bg:#e9f1ec;
+    --problem:#a8471f;
+    --problem-bg:#fbeee5;
+    --solve:#1f5f8b;
+    --solve-bg:#e7f1f8;
   }
   *{box-sizing:border-box;}
   body{
@@ -22,13 +26,13 @@
     line-height:1.55;
   }
   .wrap{
-    max-width:1000px;
+    max-width:1080px;
     margin:0 auto;
     padding:2.5rem 1.3rem 6rem;
   }
   header.top{
     text-align:center;
-    margin-bottom:3rem;
+    margin-bottom:2rem;
     padding-bottom:1.5rem;
     border-bottom:3px solid var(--ink);
   }
@@ -46,63 +50,6 @@
     font-size:.95rem;
     color:#5a5a5a;
     margin:0;
-  }
-  .page-card{
-    position:relative;
-    margin:0 0 2rem;
-    padding:1.2rem;
-    background:#fff;
-    border:1px solid var(--rule);
-    border-radius:6px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:1.2rem;
-    align-items:start;
-  }
-  .page-num{
-    position:absolute;
-    left:-1px;
-    top:-1px;
-    background:var(--ink);
-    color:var(--paper);
-    font-family:"Helvetica Neue",Arial,sans-serif;
-    font-size:.72rem;
-    letter-spacing:.03em;
-    padding:.32rem .55rem;
-    border-radius:6px 0 6px 0;
-  }
-  .page-img{
-    grid-column:1;
-    padding-top:1.6rem;
-  }
-  .page-img img{
-    width:100%;
-    display:block;
-    border:1px solid var(--rule);
-    border-radius:4px;
-  }
-  .page-summary{
-    grid-column:2;
-    padding-top:1.6rem;
-  }
-  .page-summary h3{
-    margin:0 0 .5rem;
-    font-size:1.05rem;
-  }
-  .summary-block{
-    background:var(--summary-bg);
-    border-left:4px solid var(--summary-border);
-    border-radius:4px;
-    padding:.7rem .9rem;
-    font-size:.95rem;
-  }
-  .summary-block ul{ margin:.3rem 0; padding-left:1.1rem; }
-  .summary-block li{ margin:.25rem 0; }
-  @media(max-width:760px){
-    .page-card{ grid-template-columns:1fr; }
-    .page-img, .page-summary{ grid-column:1; }
-    .page-img{ padding-top:1.4rem; }
-    .page-summary{ padding-top:0; }
   }
   .tab-bar{
     display:flex;
@@ -123,12 +70,87 @@
     border-radius:999px;
     cursor:pointer;
   }
-  .tab-btn.active{
-    background:var(--ink);
-    color:var(--paper);
-  }
+  .tab-btn.active{ background:var(--ink); color:var(--paper); }
   .tab-panel{ display:none; }
   .tab-panel.active{ display:block; }
+  .page-card{
+    position:relative;
+    margin:0 0 2rem;
+    padding:1.2rem;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    display:grid;
+    grid-template-columns:1fr 1.15fr;
+    gap:1.2rem;
+    align-items:start;
+  }
+  .page-num{
+    position:absolute;
+    left:-1px;
+    top:-1px;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:.72rem;
+    letter-spacing:.03em;
+    padding:.32rem .55rem;
+    border-radius:6px 0 6px 0;
+  }
+  .page-img{ grid-column:1; padding-top:1.6rem; position:sticky; top:1rem; align-self:start; }
+  .page-img img{
+    width:100%;
+    display:block;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  .page-summary{ grid-column:2; padding-top:1.6rem; }
+  .page-summary h3{ margin:0 0 .6rem; font-size:1.08rem; }
+  .block{
+    margin:.6rem 0;
+    padding:.65rem .85rem;
+    border-radius:4px;
+    border-left:4px solid transparent;
+    font-size:.94rem;
+  }
+  .block .label{
+    display:block;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:.3rem;
+  }
+  .idea{ background:var(--idea-bg); border-left-color:var(--idea); }
+  .idea .label{ color:var(--idea); }
+  .problem{ background:var(--problem-bg); border-left-color:var(--problem); }
+  .problem .label{ color:var(--problem); }
+  .solve{ background:var(--solve-bg); border-left-color:var(--solve); }
+  .solve .label{ color:var(--solve); }
+  .block ul, .block ol{ margin:.3rem 0; padding-left:1.15rem; }
+  .block li{ margin:.2rem 0; }
+  .answer-flag{ font-weight:700; color:var(--solve); }
+  .step{ margin:.3rem 0; }
+  .mini-table{
+    border-collapse:collapse;
+    margin:.4rem 0;
+    font-size:.85rem;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    width:100%;
+  }
+  .mini-table th, .mini-table td{
+    border:1px solid var(--rule);
+    padding:.3rem .5rem;
+    text-align:center;
+  }
+  .mini-table th{ background:#f1ece0; }
+  @media(max-width:820px){
+    .page-card{ grid-template-columns:1fr; }
+    .page-img, .page-summary{ grid-column:1; }
+    .page-img{ padding-top:1.4rem; position:static; }
+    .page-summary{ padding-top:0; }
+  }
 </style>
 </head>
 <body>
@@ -136,8 +158,8 @@
 
   <header class="top">
     <div class="eyebrow">Intro Statistics · Student Handouts</div>
-    <h1>Page-by-Page: Original Slides + Summaries</h1>
-    <p>Every page of each handout, copied as an image, with a plain-English summary next to it.</p>
+    <h1>Page-by-Page: Original Slides + Step-by-Step Solutions</h1>
+    <p>Every page of each handout, copied as an image, with the idea, the problem, and a full worked solution next to it.</p>
   </header>
 
   <div class="tab-bar">
@@ -152,12 +174,14 @@
     <div class="page-img"><img src="page_images/page_01.png" alt="Page 1"></div>
     <div class="page-summary">
       <h3>1.1 Case Study: Evaluating Earthquake Damage</h3>
-      <div class="summary-block">
-        Sets up the case study: the 2015 Gorkha earthquake in Nepal (magnitude 7.8). Two types of reinforced concrete buildings are being compared:
+      <div class="block idea">
+        <span class="label">The idea</span>
+        In 2015, the Gorkha earthquake (magnitude 7.8) hit Nepal. Two types of reinforced concrete buildings are compared:
         <ul>
           <li><strong>Engineered</strong> — built following seismic design codes</li>
           <li><strong>Non-engineered</strong> — built without following those codes</li>
         </ul>
+        No problem to solve yet — this page just sets up the case study.
       </div>
     </div>
   </div>
@@ -167,8 +191,20 @@
     <div class="page-img"><img src="page_images/page_02.png" alt="Page 2"></div>
     <div class="page-summary">
       <h3>Earthquake Damage — the two-way table</h3>
-      <div class="summary-block">
-        "Success" = minor damage; "Failure" = severe damage. Out of 1,812 total buildings, the table gives success/failure counts for Engineered (716 success, 195 failure) vs. Non-engineered (668 success, 233 failure). The question: which type is better overall?
+      <div class="block problem">
+        <span class="label">The problem</span>
+        "Success" = minor damage, "Failure" = severe damage. Out of 1,812 total buildings — Engineered: 716 success / 195 failure. Non-engineered: 668 success / 233 failure. Which type is better overall?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1 — find each row's total.</strong><br>
+        Engineered: 716 + 195 = 911<br>
+        Non-engineered: 668 + 233 = 901</div>
+        <div class="step"><strong>Step 2 — divide successes by that row's total.</strong><br>
+        Engineered success rate = 716 ÷ 911 = <span class="answer-flag">78.6%</span><br>
+        Non-engineered success rate = 668 ÷ 901 = <span class="answer-flag">74.1%</span></div>
+        <div class="step"><strong>Step 3 — compare.</strong><br>
+        78.6% &gt; 74.1%, so at this stage <strong>Engineered looks better</strong> by about 4.5 percentage points.</div>
       </div>
     </div>
   </div>
@@ -177,9 +213,18 @@
     <span class="page-num">Page 3</span>
     <div class="page-img"><img src="page_images/page_03.png" alt="Page 3"></div>
     <div class="page-summary">
-      <h3>Introducing a third variable — building height</h3>
-      <div class="summary-block">
-        We also know each building's height: high-rise or low-rise (853 of the 1,812 are high-rise). Question: does the "better" building type change once you look only at high-rises? Table: Engineered 545/115, Non-engineered 165/28.
+      <h3>High-rise buildings only</h3>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Of the 1,812 buildings, 853 are high-rise. Engineered: 545/115. Non-engineered: 165/28. Which type is better for high-rises?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1 — totals.</strong> Engineered: 545+115=660. Non-engineered: 165+28=193.</div>
+        <div class="step"><strong>Step 2 — success rates.</strong><br>
+        Engineered = 545 ÷ 660 = 82.6%<br>
+        Non-engineered = 165 ÷ 193 = <span class="answer-flag">85.5%</span></div>
+        <div class="step"><strong>Step 3 — compare.</strong> 85.5% &gt; 82.6% — for high-rises, <strong>Non-engineered actually wins</strong>, the opposite of the Page 2 answer!</div>
       </div>
     </div>
   </div>
@@ -189,8 +234,23 @@
     <div class="page-img"><img src="page_images/page_04.png" alt="Page 4"></div>
     <div class="page-summary">
       <h3>Low-rise buildings only</h3>
-      <div class="summary-block">
-        959 of the 1,812 are low-rise. Table: Engineered 171/80, Non-engineered 503/205. The page then asks students to fill in blanks: which type wins overall, which wins for high-rise, which wins for low-rise — setting up the paradox.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        959 of the 1,812 buildings are low-rise. Engineered: 171/80. Non-engineered: 503/205. Which type is better for low-rises? Then fill in: overall winner, high-rise winner, low-rise winner.
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1 — totals.</strong> Engineered: 171+80=251. Non-engineered: 503+205=708.</div>
+        <div class="step"><strong>Step 2 — success rates.</strong><br>
+        Engineered = 171 ÷ 251 = 68.1%<br>
+        Non-engineered = 503 ÷ 708 = <span class="answer-flag">71.0%</span></div>
+        <div class="step"><strong>Step 3 — fill in the blanks.</strong>
+        <ul>
+          <li>Overall (Page 2): <strong>Engineered</strong> wins (78.6% vs 74.1%)</li>
+          <li>High-rise (Page 3): <strong>Non-engineered</strong> wins (85.5% vs 82.6%)</li>
+          <li>Low-rise (this page): <strong>Non-engineered</strong> wins (71.0% vs 68.1%)</li>
+        </ul>
+        Non-engineered wins <em>both</em> subgroups but loses overall — that contradiction is the puzzle the next pages solve.</div>
       </div>
     </div>
   </div>
@@ -199,9 +259,39 @@
     <span class="page-num">Page 5</span>
     <div class="page-img"><img src="page_images/page_05.png" alt="Page 5"></div>
     <div class="page-summary">
-      <h3>What's the explanation? (blank worksheet tables)</h3>
-      <div class="summary-block">
-        Repeats the three tables (all buildings, high-rise, low-rise) as blank worksheets — students are meant to compute the totals and success rates themselves in class, then compare.
+      <h3>What's the explanation? (fill in the blank worksheet)</h3>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Same three tables as Pages 2–4, but this time the <strong>Total row</strong> and <strong>Success Rate column</strong> are blank — you fill them in yourself.
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — All buildings</span>
+        <div class="step">Total row: success = 716+668 = 1,384. Failure = 195+233 = 428. Grand total = 1,384+428 = 1,812.</div>
+        <table class="mini-table">
+          <tr><th></th><th>Success</th><th>Failure</th><th>Total</th><th>Rate</th></tr>
+          <tr><td>Engineered</td><td>716</td><td>195</td><td>911</td><td>78.6%</td></tr>
+          <tr><td>Non-engineered</td><td>668</td><td>233</td><td>901</td><td>74.1%</td></tr>
+          <tr><td><strong>Total</strong></td><td>1384</td><td>428</td><td>1812</td><td><span class="answer-flag">76.4%</span></td></tr>
+        </table>
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — High-rise</span>
+        <table class="mini-table">
+          <tr><th></th><th>Success</th><th>Failure</th><th>Total</th><th>Rate</th></tr>
+          <tr><td>Engineered</td><td>545</td><td>115</td><td>660</td><td>82.6%</td></tr>
+          <tr><td>Non-engineered</td><td>165</td><td>28</td><td>193</td><td>85.5%</td></tr>
+          <tr><td><strong>Total</strong></td><td>710</td><td>143</td><td>853</td><td><span class="answer-flag">83.2%</span></td></tr>
+        </table>
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — Low-rise</span>
+        <table class="mini-table">
+          <tr><th></th><th>Success</th><th>Failure</th><th>Total</th><th>Rate</th></tr>
+          <tr><td>Engineered</td><td>171</td><td>80</td><td>251</td><td>68.1%</td></tr>
+          <tr><td>Non-engineered</td><td>503</td><td>205</td><td>708</td><td>71.0%</td></tr>
+          <tr><td><strong>Total</strong></td><td>674</td><td>285</td><td>959</td><td><span class="answer-flag">70.3%</span></td></tr>
+        </table>
+        Notice: 853 (high-rise) + 959 (low-rise) = 1,812 ✓ — the two subgroups add up to the full population, which is what lets you compare the "all buildings" row against the two split-out tables.
       </div>
     </div>
   </div>
@@ -211,8 +301,15 @@
     <div class="page-img"><img src="page_images/page_06.png" alt="Page 6"></div>
     <div class="page-summary">
       <h3>The explanation</h3>
-      <div class="summary-block">
-        Engineered looks better overall mainly because it adheres to seismic codes — but non-engineered buildings were more common among low-rises, which naturally survive better regardless of construction type. <strong>Building height is a confounding variable</strong>: it affects both which construction type a building tends to be, and how much damage it takes. Once height is accounted for, non-engineered actually wins in both subgroups.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Non-engineered wins in high-rise AND in low-rise, but Engineered won overall. How is that possible?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step reasoning</span>
+        <div class="step"><strong>Step 1.</strong> Look at how the two building types are split by height. Engineered: 660 high-rise / 251 low-rise → about 72% of Engineered buildings are high-rise. Non-engineered: 193 high-rise / 708 low-rise → about 79% of Non-engineered buildings are low-rise.</div>
+        <div class="step"><strong>Step 2.</strong> Low-rise buildings survive earthquakes better than high-rise buildings, regardless of construction type. So Non-engineered's overall rate gets pulled <em>up</em> (mostly low-rise = "easier" category), while Engineered's overall rate gets pulled <em>down</em> (mostly high-rise = "harder" category).</div>
+        <div class="step"><strong>Step 3.</strong> Lumping everyone together in the Page 2 table doesn't just compare construction type — it secretly also compares "mostly-high-rise" vs "mostly-low-rise" groups. That hidden mix flipped the answer. <span class="answer-flag">Building height is a confounding variable.</span></div>
       </div>
     </div>
   </div>
@@ -222,8 +319,19 @@
     <div class="page-img"><img src="page_images/page_07.png" alt="Page 7"></div>
     <div class="page-summary">
       <h3>Simpson's Paradox</h3>
-      <div class="summary-block">
-        Names the phenomenon: <strong>Simpson's Paradox</strong> — an observed relationship between two variables can change or reverse when a third variable is considered. In observational studies, a confounding variable can hide the "true" relationship. The page asks: looking at the combined (all-buildings) table, does it show a "real" difference between the two construction types?
+      <div class="block idea">
+        <span class="label">The idea</span>
+        <strong>Simpson's Paradox</strong>: an observed relationship between two variables can change — or even reverse — once a third variable is taken into account. In observational studies, a confounding variable can obscure the true relationship.
+      </div>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Looking only at the "all buildings" table (716/195 vs 668/233), does that data show a "real" difference between the two construction types?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step answer</span>
+        <div class="step"><strong>Step 1.</strong> The all-buildings table mixes two very different sub-populations (mostly-high-rise Engineered vs mostly-low-rise Non-engineered).</div>
+        <div class="step"><strong>Step 2.</strong> Since the subgroup comparisons (high-rise vs high-rise, low-rise vs low-rise) both favor Non-engineered, the "Engineered wins" signal in the combined table is an <strong>artifact of unequal group composition</strong>, not a real construction-quality difference.</div>
+        <div class="step"><strong>Answer:</strong> <span class="answer-flag">No</span> — the combined table does not show a trustworthy difference; it's confounded by height.</div>
       </div>
     </div>
   </div>
@@ -233,8 +341,15 @@
     <div class="page-img"><img src="page_images/page_08.png" alt="Page 8"></div>
     <div class="page-summary">
       <h3>Generalizing the results / start of 1.2 Data Basics</h3>
-      <div class="summary-block">
-        Closing question for the case study: can these earthquake results be generalized to buildings of all heights? This transitions into the next topic, <strong>1.2 Data Basics</strong>.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Are the results of this study generalizable to all buildings with various heights?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step answer</span>
+        <div class="step"><strong>Step 1.</strong> Ask: was this sample of 1,812 buildings randomly selected from "all buildings everywhere"? This is an observational study of a specific earthquake in a specific region — not a random sample of the world's buildings.</div>
+        <div class="step"><strong>Step 2.</strong> Without random sampling from a broader population, conclusions should be limited to buildings similar to the ones studied (Nepal, this earthquake, these construction types) rather than automatically generalized to every building everywhere.</div>
+        <div class="step">This closing question hands off into the next topic, <strong>1.2 Data Basics</strong>.</div>
       </div>
     </div>
   </div>
@@ -244,8 +359,9 @@
     <div class="page-img"><img src="page_images/page_09.png" alt="Page 9"></div>
     <div class="page-summary">
       <h3>Classroom Survey / Data Matrix</h3>
-      <div class="summary-block">
-        A real intro-stats classroom survey with variables: gender, intro_extra (introvert/extrovert), sleep (avg hours), bedtime, countries visited, dread (1–5 scale). These responses get organized into a <strong>data matrix</strong> — one row per student, one column per variable.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        A real intro-stats classroom survey with variables: <strong>gender</strong>, <strong>intro_extra</strong> (introvert/extrovert), <strong>sleep</strong> (avg hours), <strong>bedtime</strong>, <strong>countries</strong> visited, <strong>dread</strong> (1–5 scale). Responses get organized into a <strong>data matrix</strong> — one row per student, one column per variable. No problem to solve yet; this sets up Page 10's classification exercise.
       </div>
     </div>
   </div>
@@ -255,14 +371,20 @@
     <div class="page-img"><img src="page_images/page_10.png" alt="Page 10"></div>
     <div class="page-summary">
       <h3>Types of Variables (fill-in exercise)</h3>
-      <div class="summary-block">
-        Students classify each survey variable:
-        <ul>
-          <li><strong>sleep</strong> → numerical, continuous</li>
-          <li><strong>countries</strong> → numerical, discrete</li>
-          <li><strong>gender</strong>, <strong>intro_extra</strong> → categorical</li>
-          <li><strong>dread</strong> (1–5 scale) → categorical, ordinal</li>
-        </ul>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Classify each of the six survey variables as numerical (continuous/discrete) or categorical (nominal/ordinal).
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — walk each variable through the flowchart</span>
+        <ol>
+          <li><strong>gender</strong> — a label with no order → <span class="answer-flag">categorical, nominal</span></li>
+          <li><strong>intro_extra</strong> — a label with no order → <span class="answer-flag">categorical, nominal</span></li>
+          <li><strong>sleep</strong> — measured, can take any decimal value (e.g. 6.5 hrs) → <span class="answer-flag">numerical, continuous</span></li>
+          <li><strong>bedtime</strong> — a clock time, effectively continuous → <span class="answer-flag">numerical, continuous</span></li>
+          <li><strong>countries</strong> — counted, whole numbers only → <span class="answer-flag">numerical, discrete</span></li>
+          <li><strong>dread</strong> (1–5 scale) — a label with a built-in low→high order → <span class="answer-flag">categorical, ordinal</span></li>
+        </ol>
       </div>
     </div>
   </div>
@@ -272,8 +394,19 @@
     <div class="page-img"><img src="page_images/page_11.png" alt="Page 11"></div>
     <div class="page-summary">
       <h3>Practice: area codes / Relationships among variables</h3>
-      <div class="summary-block">
-        Practice question: what type of variable is a telephone area code? (Answer: categorical, nominal — averaging area codes is meaningless.) Then introduces looking for relationships between two numerical variables, e.g. hours of study per week vs. GPA.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        What type of variable is a telephone area code, like "212"? Then: is there a relationship between hours of study per week and GPA?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — area code</span>
+        <div class="step"><strong>Step 1.</strong> Would averaging two area codes (212 and 415) mean anything? Average = 313.5 — not a real area code, tells you nothing.</div>
+        <div class="step"><strong>Step 2.</strong> So it's not numerical → categorical. Is there a natural order? No, 212 isn't "more" than 415.</div>
+        <div class="step">Answer: <span class="answer-flag">(c) categorical, nominal</span></div>
+      </div>
+      <div class="block solve">
+        <span class="label">Study hours vs. GPA</span>
+        Plot the two numerical variables on a scatterplot. If the points trend upward together (more study hours paired with higher GPA), that's a positive association — the mechanism you'll use again on Page 13's possum example.
       </div>
     </div>
   </div>
@@ -283,8 +416,13 @@
     <div class="page-img"><img src="page_images/page_12.png" alt="Page 12"></div>
     <div class="page-summary">
       <h3>Spotting unusual points / possum scatterplot</h3>
-      <div class="summary-block">
-        Asks students to spot unusual (outlier) points in the study-hours-vs-GPA scatterplot. Then introduces a new scatterplot: head length vs. skull width in possums, and asks what can correctly be said about the relationship.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        In the study-hours-vs-GPA scatterplot, can you spot anything unusual about any of the data points? Then: based on the possum scatterplot (head length vs. skull width), which statement is correct?
+      </div>
+      <div class="block solve">
+        <span class="label">How to spot an unusual point</span>
+        Look for a dot that breaks the overall trend — e.g. a student with very high study hours but a low GPA, or vice versa. That point sits far from the general upward pattern the rest of the data follows. The possum question is answered step-by-step on Page 13.
       </div>
     </div>
   </div>
@@ -294,8 +432,19 @@
     <div class="page-img"><img src="page_images/page_13.png" alt="Page 13"></div>
     <div class="page-summary">
       <h3>Associated vs. Independent variables</h3>
-      <div class="summary-block">
-        Multiple-choice on the possum scatterplot — correct answer: head length and skull width are <strong>positively associated</strong> (you cannot claim causation from a graph alone). Defines: <strong>associated (dependent)</strong> variables show a connection; <strong>independent</strong> variables show no connection.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Which is correct about head length and skull width in the possum scatterplot? Options range from "no relationship" to "positively associated" to "a longer head causes a wider skull."
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> The dots trend upward together (bigger head length pairs with bigger skull width) — that's the definition of a <strong>positive association</strong>.</div>
+        <div class="step"><strong>Step 2.</strong> Rule out the causal options (d) and (e): a scatterplot alone can never prove causation, only association.</div>
+        <div class="step">Answer: <span class="answer-flag">(b) Head length and skull width are positively associated.</span></div>
+      </div>
+      <div class="block idea">
+        <span class="label">Vocabulary</span>
+        When two variables show a connection, they're <strong>associated</strong> (a.k.a. dependent). If there's no evident connection, they're <strong>independent</strong>.
       </div>
     </div>
   </div>
@@ -305,8 +454,9 @@
     <div class="page-img"><img src="page_images/page_14.png" alt="Page 14"></div>
     <div class="page-summary">
       <h3>1.3 Observational Studies and Sampling Strategies</h3>
-      <div class="summary-block">
-        Defines population vs. sample using a running example: research question is whether people become better runners just by running. The <strong>sample</strong> is a group of adult women who recently joined a running group; if randomly sampled, the results can generalize to the broader <strong>population</strong> of adult women.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        Running example: research question is whether people become better runners just by running. The <strong>sample</strong> is a group of adult women who recently joined a running group. If that sample was randomly chosen, results can generalize to the broader <strong>population</strong> of adult women.
       </div>
     </div>
   </div>
@@ -316,8 +466,9 @@
     <div class="page-img"><img src="page_images/page_15.png" alt="Page 15"></div>
     <div class="page-summary">
       <h3>Census</h3>
-      <div class="summary-block">
-        A <strong>census</strong> means surveying the entire population instead of a sample. Problems with censuses: hard-to-find individuals are often systematically different from the rest; populations change constantly so a "perfect" measurement is never possible; and a census can be more complex/costly than sampling.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        A <strong>census</strong> means surveying the entire population instead of a sample. Three problems with taking a census: (1) hard-to-find individuals are often systematically different from the rest of the population, (2) populations change constantly so a "perfect" measurement is never possible, (3) a census can be more complex/costly than sampling.
       </div>
     </div>
   </div>
@@ -327,12 +478,16 @@
     <div class="page-img"><img src="page_images/page_16.png" alt="Page 16"></div>
     <div class="page-summary">
       <h3>Exploratory Analysis to Inference / Sampling Bias</h3>
-      <div class="summary-block">
-        The soup analogy: tasting a spoonful = exploratory analysis; concluding the whole pot needs salt = inference. The sample must represent the population (stir the pot first). Three bias types defined:
+      <div class="block idea">
+        <span class="label">The soup analogy</span>
+        Tasting a spoonful = exploratory analysis. Concluding the whole pot needs salt = inference. For the inference to be valid, stir the pot first (make the sample representative).
+      </div>
+      <div class="block solve">
+        <span class="label">Three red flags to check for bias</span>
         <ul>
           <li><strong>Convenience sample</strong> — only easy-to-reach people included</li>
-          <li><strong>Non-response</strong> — few of the randomly sampled people actually respond</li>
-          <li><strong>Voluntary response</strong> — only people with strong opinions respond</li>
+          <li><strong>Non-response</strong> — only a small fraction of the randomly sampled people actually respond</li>
+          <li><strong>Voluntary response</strong> — only people with strong opinions bother to respond</li>
         </ul>
       </div>
     </div>
@@ -343,8 +498,14 @@
     <div class="page-img"><img src="page_images/page_17.png" alt="Page 17"></div>
     <div class="page-summary">
       <h3>Sampling Bias Example: Landon vs. FDR (1936)</h3>
-      <div class="summary-block">
-        The Literary Digest polled ~10 million people, got 2.4 million responses, and predicted Landon would win big over FDR. In reality, FDR won with 62% of the vote — the magazine was discredited and later shut down.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        The Literary Digest polled ~10 million people, got 2.4 million responses, and predicted Landon would beat FDR with FDR only getting 43%. What actually happened, and why did the poll fail?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Actual result: FDR won with 62% of the vote — the poll was wildly wrong despite its huge sample.</div>
+        <div class="step"><strong>Step 2.</strong> The full explanation (who was surveyed, and why it skewed the sample) is worked out on Page 18.</div>
       </div>
     </div>
   </div>
@@ -354,8 +515,11 @@
     <div class="page-img"><img src="page_images/page_18.png" alt="Page 18"></div>
     <div class="page-summary">
       <h3>What went wrong — large samples aren't enough</h3>
-      <div class="summary-block">
-        The poll sampled the magazine's own readers, registered car owners, and phone owners — all wealthier than average during the Great Depression, so the sample skewed Republican and wasn't representative. Lesson: a huge sample size (2.4 million) cannot fix a biased sample. Unstirred soup tastes wrong no matter how big the spoon.
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> The magazine surveyed its own readers, registered car owners, and registered phone owners.</div>
+        <div class="step"><strong>Step 2.</strong> During the Great Depression, all three of those groups had incomes well above the national average — a <strong>convenience sample</strong> that skewed Republican and didn't represent the actual electorate.</div>
+        <div class="step"><strong>Step 3.</strong> Lesson: <span class="answer-flag">a huge sample size (2.4 million) cannot fix a biased sample.</span> Unstirred soup tastes wrong no matter how big the spoon; a small spoon works fine if the soup is well stirred.</div>
       </div>
     </div>
   </div>
@@ -365,8 +529,9 @@
     <div class="page-img"><img src="page_images/page_19.png" alt="Page 19"></div>
     <div class="page-summary">
       <h3>Observational Studies / Prospective vs. Retrospective</h3>
-      <div class="summary-block">
-        In an <strong>observational study</strong>, researchers don't interfere with how the data arise — results can show association, not causation. <strong>Prospective</strong> studies track individuals forward in time as events unfold (e.g. the Nurses' Health Study, since 1976). <strong>Retrospective</strong> studies look backward at data already collected (e.g. reviewing old medical records).
+      <div class="block idea">
+        <span class="label">The idea</span>
+        In an <strong>observational study</strong>, researchers don't interfere with how the data arise — results can show association, not causation. <strong>Prospective</strong> studies track individuals forward as events unfold (e.g. the Nurses' Health Study, since 1976). <strong>Retrospective</strong> studies look backward at data already collected (e.g. reviewing old medical records).
       </div>
     </div>
   </div>
@@ -376,7 +541,8 @@
     <div class="page-img"><img src="page_images/page_20.png" alt="Page 20"></div>
     <div class="page-summary">
       <h3>Obtaining Good Samples / Simple Random Sample</h3>
-      <div class="summary-block">
+      <div class="block idea">
+        <span class="label">The idea</span>
         Statistical methods rely on randomness — non-random data collection makes the resulting estimates unreliable. <strong>Simple random sample</strong>: every case is selected from the population with no implied connection between selected points (like drawing names from a hat).
       </div>
     </div>
@@ -387,7 +553,8 @@
     <div class="page-img"><img src="page_images/page_21.png" alt="Page 21"></div>
     <div class="page-summary">
       <h3>Stratified Sample / Cluster Sample</h3>
-      <div class="summary-block">
+      <div class="block idea">
+        <span class="label">The idea</span>
         <strong>Stratified sample</strong>: split the population into similar groups (strata), then take a simple random sample from each. <strong>Cluster sample</strong>: population is split into (usually non-homogeneous) clusters; randomly select a few whole clusters and sample every individual inside them — cheaper to run.
       </div>
     </div>
@@ -398,8 +565,9 @@
     <div class="page-img"><img src="page_images/page_22.png" alt="Page 22"></div>
     <div class="page-summary">
       <h3>Multistage Sample / start of 1.4 Experiments</h3>
-      <div class="summary-block">
-        <strong>Multistage sample</strong>: randomly select clusters, then take a simple random sample of individuals from within those selected clusters (not everyone in the cluster). This closes out the sampling section and moves into <strong>1.4 Experiments</strong>.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        <strong>Multistage sample</strong>: randomly select clusters, then take a simple random sample of individuals from within those selected clusters (not everyone in the cluster). This closes out sampling and moves into <strong>1.4 Experiments</strong>.
       </div>
     </div>
   </div>
@@ -409,8 +577,19 @@
     <div class="page-img"><img src="page_images/page_23.png" alt="Page 23"></div>
     <div class="page-summary">
       <h3>Principles of Experimental Design</h3>
-      <div class="summary-block">
-        Four principles (remember "C-R-R-B"): <strong>Control</strong> (compare to a control group), <strong>Randomize</strong> (randomly assign subjects/sample from population), <strong>Replicate</strong> (large enough sample, or repeat the study), <strong>Block</strong> (group subjects by a known factor first, then randomize within each group). Worked example: testing energy gel on runners, blocking by pro/amateur status so that factor is balanced across treatment and control.
+      <div class="block idea">
+        <span class="label">The idea — remember "C-R-R-B"</span>
+        <strong>Control</strong> (compare to a control group), <strong>Randomize</strong> (randomly assign subjects), <strong>Replicate</strong> (large enough sample, or repeat the study), <strong>Block</strong> (group subjects by a known factor first, then randomize within each group).
+      </div>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Design an experiment testing whether energy gel makes runners faster, given that pros and amateurs might react differently.
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1 — block.</strong> Split runners into "pro" and "amateur" groups first, since pro status is suspected to affect the outcome.</div>
+        <div class="step"><strong>Step 2 — randomize within each block.</strong> Within the pro group, randomly assign gel vs. no gel. Do the same within the amateur group.</div>
+        <div class="step"><strong>Result:</strong> Pro/amateur status is now balanced evenly across the gel and no-gel groups, so it can't secretly skew the results.</div>
       </div>
     </div>
   </div>
@@ -420,8 +599,16 @@
     <div class="page-img"><img src="page_images/page_24.png" alt="Page 24"></div>
     <div class="page-summary">
       <h3>Blocking vs. Explanatory Variables (practice)</h3>
-      <div class="summary-block">
-        <strong>Explanatory variables (factors)</strong> are conditions the researcher can control/impose. <strong>Blocking variables</strong> are characteristics subjects already have that the researcher can't control but wants balanced. Practice question (light/noise/gender on exam scores) — correct answer: 2 explanatory variables (light, noise), 1 blocking variable (gender), 1 response variable (exam performance).
+      <div class="block problem">
+        <span class="label">The problem</span>
+        A study tests light and noise levels on exam scores, and also wants both genders equally represented in each group. Which option correctly labels the variables?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Ask "can the researcher directly control it?" Light level and noise level — yes, the researcher sets them → <strong>explanatory variables</strong>.</div>
+        <div class="step"><strong>Step 2.</strong> Gender — the researcher can't control it, but wants it balanced across groups → <strong>blocking variable</strong>.</div>
+        <div class="step"><strong>Step 3.</strong> Exam performance — this is what's being measured → <strong>response variable</strong>.</div>
+        <div class="step">Answer: <span class="answer-flag">(B) 2 explanatory variables (light, noise), 1 blocking variable (gender), 1 response variable (exam performance)</span></div>
       </div>
     </div>
   </div>
@@ -431,8 +618,18 @@
     <div class="page-img"><img src="page_images/page_25.png" alt="Page 25"></div>
     <div class="page-summary">
       <h3>More Experimental Design Terminology</h3>
-      <div class="summary-block">
-        <strong>Placebo</strong>: fake treatment, often the control in medical studies. <strong>Placebo effect</strong>: subjects improve just from believing they got real treatment. <strong>Blinding</strong>: subjects don't know their own group. <strong>Double-blind</strong>: neither subjects nor the researchers interacting with them know group assignment. Practice question — correct answer: most experiments use random assignment, while observational studies do not.
+      <div class="block idea">
+        <span class="label">Vocabulary</span>
+        <strong>Placebo</strong>: fake treatment, often the control in medical studies. <strong>Placebo effect</strong>: subjects improve just from believing they got real treatment. <strong>Blinding</strong>: subjects don't know their own group. <strong>Double-blind</strong>: neither subjects nor the researchers interacting with them know group assignment.
+      </div>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        What's the main difference between observational studies and experiments?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Ask: "Did the researcher randomly assign subjects to groups?" Experiments do this on purpose; observational studies just watch what happens without assigning anything.</div>
+        <div class="step">Answer: <span class="answer-flag">(C) Most experiments use random assignment, while observational studies do not.</span></div>
       </div>
     </div>
   </div>
@@ -442,8 +639,9 @@
     <div class="page-img"><img src="page_images/page_26.png" alt="Page 26"></div>
     <div class="page-summary">
       <h3>Random Assignment vs. Random Sampling</h3>
-      <div class="summary-block">
-        Closing title slide for the chapter's big final idea: distinguishing what <strong>random assignment</strong> (lets you claim causation) buys you versus what <strong>random sampling</strong> (lets you generalize to everyone) buys you — the 2×2 framework worked out in the companion study guide.
+      <div class="block idea">
+        <span class="label">The big final idea</span>
+        <strong>Random assignment</strong> → lets you say "this <em>caused</em> that." <strong>Random sampling</strong> → lets you say "this applies to <em>everyone</em>." Worked example: a researcher randomly selects 200 students from the whole school (random sampling ✓) and randomly assigns them to "study with music" vs. "study in silence" (random assignment ✓). Because both boxes are checked, if the music group scores higher, the researcher can say music <strong>caused</strong> the improvement, and that conclusion applies to the <strong>whole school</strong>.
       </div>
     </div>
   </div>
@@ -457,8 +655,19 @@
     <div class="page-img"><img src="page_images_wk2/page_01.png" alt="Page 1"></div>
     <div class="page-summary">
       <h3>Mean</h3>
-      <div class="summary-block">
-        The <strong>sample mean</strong> (x̄) is calculated from the observed values x₁, x₂, ..., xₙ. The <strong>population mean</strong> (µ) is computed the same way but is usually unavailable since population data are rarely collected in full. The sample mean is a <strong>point estimate</strong> of µ — imperfect, but usually good if the sample is representative. Introduces the <strong>stacked dot plot</strong>: taller stacks show where observations are more common, helping you judge the center and shape of a distribution.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        The <strong>sample mean</strong> (x̄) is calculated from the observed values x₁, x₂, ..., xₙ. The <strong>population mean</strong> (µ) is computed the same way but is usually unavailable since population data are rarely collected in full. The sample mean is a <strong>point estimate</strong> of µ — imperfect, but usually good if the sample is representative.
+      </div>
+      <div class="block solve">
+        <span class="label">How to compute a sample mean — step by step</span>
+        <div class="step"><strong>Step 1.</strong> Add up all n observed values: x₁ + x₂ + ... + xₙ.</div>
+        <div class="step"><strong>Step 2.</strong> Divide that sum by n (the sample size).</div>
+        <div class="step">Example: data = 4, 6, 8. Sum = 18, n = 3, mean = 18 ÷ 3 = <span class="answer-flag">6</span>.</div>
+      </div>
+      <div class="block idea">
+        <span class="label">Stacked Dot Plot</span>
+        Taller stacks show where observations are more common, helping you judge the center and shape of a distribution at a glance.
       </div>
     </div>
   </div>
@@ -468,8 +677,15 @@
     <div class="page-img"><img src="page_images_wk2/page_02.png" alt="Page 2"></div>
     <div class="page-summary">
       <h3>Histograms — bin width</h3>
-      <div class="summary-block">
-        Histograms show data density — taller bars = more common values — and are convenient for describing the shape of a distribution. The chosen <strong>bin width</strong> can change the story the histogram tells: too wide hides detail, too narrow reveals noise. Example uses extracurricular hours data.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Several histograms of the same extracurricular-hours data, drawn with different bin widths. Which are useful? Which reveal too much (noisy)? Which hide too much (over-smoothed)?
+      </div>
+      <div class="block solve">
+        <span class="label">How to judge bin width</span>
+        <div class="step"><strong>Too narrow</strong> (many tiny bins) → the histogram looks jagged/noisy, showing random fluctuation instead of the real shape.</div>
+        <div class="step"><strong>Too wide</strong> (few huge bins) → real structure (like a second peak) gets smoothed away and hidden.</div>
+        <div class="step"><strong>Just right</strong> → a bin width that's narrow enough to show the true shape but wide enough to smooth out noise. There's no single formula — you try a few widths and pick the one that tells the clearest story.</div>
       </div>
     </div>
   </div>
@@ -479,8 +695,14 @@
     <div class="page-img"><img src="page_images_wk2/page_03.png" alt="Page 3"></div>
     <div class="page-summary">
       <h3>Shape of a Distribution: Modality & Skewness</h3>
-      <div class="summary-block">
-        <strong>Modality</strong>: does the histogram have one prominent peak (unimodal), several (bimodal/multimodal), or none (uniform)? Trick for judging it: imagine draping limp spaghetti over the bars to see the smooth curve. <strong>Skewness</strong>: is it right-skewed, left-skewed, or symmetric? A histogram is skewed toward the side with the long tail.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        For a given histogram, is it unimodal, bimodal/multimodal, or uniform? And is it right-skewed, left-skewed, or symmetric?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — how to read modality and skew</span>
+        <div class="step"><strong>Modality:</strong> imagine draping limp spaghetti over the bars — the smooth curve it forms shows the peaks. One hump → unimodal. Two humps → bimodal. Flat, no real hump → uniform.</div>
+        <div class="step"><strong>Skewness:</strong> find the side with the long thin tail — that's the direction of skew. Long tail stretching right → right-skewed. Long tail stretching left → left-skewed. Roughly mirror-image on both sides → symmetric.</div>
       </div>
     </div>
   </div>
@@ -490,8 +712,14 @@
     <div class="page-img"><img src="page_images_wk2/page_04.png" alt="Page 4"></div>
     <div class="page-summary">
       <h3>Unusual Observations</h3>
-      <div class="summary-block">
-        Asks whether there are any unusual observations or potential outliers, and to describe the shape of the distribution of hours per week students spend on extracurricular activities.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Are there any unusual observations or potential outliers in the extracurricular-hours histogram? How would you describe its overall shape?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Scan the histogram for isolated bars far from the main cluster of data — those are candidate outliers.</div>
+        <div class="step"><strong>Step 2.</strong> Describe the shape using the vocabulary from Page 3: modality (uni/bi/multi/uniform) + skew direction (right/left/symmetric). For a typical "hours spent on extracurriculars" dataset, expect a right-skewed, unimodal shape — most students cluster at low-to-moderate hours, with a thin tail of students spending unusually many hours.</div>
       </div>
     </div>
   </div>
@@ -501,8 +729,16 @@
     <div class="page-img"><img src="page_images_wk2/page_05.png" alt="Page 5"></div>
     <div class="page-summary">
       <h3>Commonly Observed Shapes (practice)</h3>
-      <div class="summary-block">
-        Summary chart of shapes: <strong>Modality</strong> — unimodal, bimodal, multimodal, uniform. <strong>Skewness</strong> — right skew, left skew, symmetric. Practice question: which variable is uniformly distributed? Answer: <strong>(d) birthdays of classmates (day of the month)</strong> — roughly equally likely across all days, unlike weights, salaries, or house prices which cluster and skew.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Which of these is likely uniformly distributed: (a) weights of adult females, (b) salaries in Bangkok, (c) house prices, (d) birthdays of classmates (day of the month)?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — eliminate the non-uniform options</span>
+        <div class="step">(a) Weights cluster around a typical value → bell-shaped, not uniform.</div>
+        <div class="step">(b) Salaries — most people earn a moderate amount, a few earn a lot → right-skewed, not uniform.</div>
+        <div class="step">(c) House prices — same story, a long right tail of expensive homes → right-skewed, not uniform.</div>
+        <div class="step">(d) Day of the month someone was born — no day (1st, 15th, 30th) is inherently more likely than another, so counts should be roughly flat across all days → <span class="answer-flag">(d) is the uniform one</span>.</div>
       </div>
     </div>
   </div>
@@ -512,8 +748,26 @@
     <div class="page-img"><img src="page_images_wk2/page_06.png" alt="Page 6"></div>
     <div class="page-summary">
       <h3>Variance & Standard Deviation</h3>
-      <div class="summary-block">
-        <strong>Variance</strong> is roughly the average squared deviation from the mean (worked example: amount of sleep students get, n = 217). Squaring is used so positive and negative deviations don't cancel out; dividing by (n − 1) instead of n corrects for bias when estimating from a sample. <strong>Standard deviation</strong> is the square root of the variance and shares the same units as the data — most data fall within about 3 standard deviations of the mean.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        <strong>Variance</strong> is roughly the average squared deviation from the mean. <strong>Standard deviation</strong> is the square root of the variance, in the same units as the original data. The slide's worked numbers come from a sleep-hours dataset (n = 217); the handwritten scratch work on the page is that specific calculation, but the method below works for any dataset.
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — how to compute variance and SD by hand</span>
+        <div class="step"><strong>Step 1.</strong> Compute the sample mean x̄ (see Page 1).</div>
+        <div class="step"><strong>Step 2.</strong> For each data point xᵢ, compute the deviation (xᵢ − x̄), then square it.</div>
+        <div class="step"><strong>Step 3.</strong> Add up all the squared deviations.</div>
+        <div class="step"><strong>Step 4.</strong> Divide by (n − 1), not n — this is the sample variance, s².</div>
+        <div class="step"><strong>Step 5.</strong> Take the square root of s² to get the standard deviation, s.</div>
+        <div class="step">Example: data = 4, 6, 8. Mean = 6. Deviations: (4−6)²=4, (6−6)²=0, (8−6)²=4. Sum = 8. Variance = 8 ÷ (3−1) = 4. SD = √4 = <span class="answer-flag">2</span>.</div>
+      </div>
+      <div class="block idea">
+        <span class="label">Why square the deviations?</span>
+        If you just added the raw deviations (xᵢ − x̄), positive and negative differences would cancel out to zero every time. Squaring makes everything positive so the spread doesn't disappear.
+      </div>
+      <div class="block idea">
+        <span class="label">Why divide by (n − 1)?</span>
+        Using the sample mean (instead of the true population mean) to compute deviations makes the raw average slightly underestimate the true spread. Dividing by (n − 1) instead of n corrects for that bias — it's called Bessel's correction.
       </div>
     </div>
   </div>
@@ -523,8 +777,17 @@
     <div class="page-img"><img src="page_images_wk2/page_07.png" alt="Page 7"></div>
     <div class="page-summary">
       <h3>Median, Quartiles, and IQR</h3>
-      <div class="summary-block">
-        The <strong>median</strong> splits ordered data in half (average of the two middle values if n is even) — it's the 50th percentile. <strong>Q1</strong> = 25th percentile, <strong>Q2</strong> = median = 50th percentile, <strong>Q3</strong> = 75th percentile. The middle 50% of data lies between Q1 and Q3, a span called the <strong>interquartile range: IQR = Q3 − Q1</strong>.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        The <strong>median</strong> splits ordered data in half — it's the 50th percentile. <strong>Q1</strong> = 25th percentile, <strong>Q2</strong> = median, <strong>Q3</strong> = 75th percentile. <strong>IQR = Q3 − Q1</strong> is the span of the middle 50% of the data.
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step — finding the median, Q1, Q3, and IQR</span>
+        <div class="step"><strong>Step 1.</strong> Sort the data from smallest to largest.</div>
+        <div class="step"><strong>Step 2.</strong> Median = the middle value (if n is odd) or the average of the two middle values (if n is even).</div>
+        <div class="step"><strong>Step 3.</strong> Q1 = median of the lower half of the data (not including the overall median if n is odd). Q3 = median of the upper half.</div>
+        <div class="step"><strong>Step 4.</strong> IQR = Q3 − Q1.</div>
+        <div class="step">Example: sorted data = 2, 4, 5, 7, 9 (n=5, odd). Median = middle value = <strong>5</strong>. Lower half = {2,4} → Q1 = (2+4)/2 = <strong>3</strong>. Upper half = {7,9} → Q3 = (7+9)/2 = <strong>8</strong>. IQR = 8 − 3 = <span class="answer-flag">5</span>.</div>
       </div>
     </div>
   </div>
@@ -534,8 +797,9 @@
     <div class="page-img"><img src="page_images_wk2/page_08.png" alt="Page 8"></div>
     <div class="page-summary">
       <h3>Box Plot Anatomy</h3>
-      <div class="summary-block">
-        The box in a box plot represents the middle 50% of the data (Q1 to Q3), and the thick line inside the box marks the median.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        The box in a box plot represents the middle 50% of the data (from Q1 to Q3), and the thick line inside the box marks the median. No problem to solve on this page — it's the reference diagram for Page 9.
       </div>
     </div>
   </div>
@@ -545,8 +809,16 @@
     <div class="page-img"><img src="page_images_wk2/page_09.png" alt="Page 9"></div>
     <div class="page-summary">
       <h3>Whiskers and Outliers</h3>
-      <div class="summary-block">
-        Whiskers extend up to 1.5×IQR from the quartiles: <strong>max upper reach = Q3 + 1.5×IQR</strong>, <strong>max lower reach = Q1 − 1.5×IQR</strong>. Worked example: IQR = 20 − 10 = 10, so upper reach = 20 + 15 = 35, lower reach = 10 − 15 = −5. A <strong>potential outlier</strong> is any observation beyond those reaches. Outliers matter because a single extreme point can heavily distort an analysis and lead to wrong conclusions.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Given IQR = Q3 − Q1 = 20 − 10 = 10, find the maximum reach of the upper and lower whiskers, and explain what counts as an outlier.
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Whiskers can extend up to 1.5×IQR past each quartile. 1.5 × 10 = 15.</div>
+        <div class="step"><strong>Step 2 — upper reach.</strong> Q3 + 1.5×IQR = 20 + 15 = <span class="answer-flag">35</span>.</div>
+        <div class="step"><strong>Step 3 — lower reach.</strong> Q1 − 1.5×IQR = 10 − 15 = <span class="answer-flag">−5</span>.</div>
+        <div class="step"><strong>Step 4.</strong> Any observation beyond 35 or below −5 is a <strong>potential outlier</strong>. Outliers matter because a single extreme point can heavily distort the mean, SD, and any analysis built on them, leading to wrong conclusions.</div>
       </div>
     </div>
   </div>
@@ -556,8 +828,15 @@
     <div class="page-img"><img src="page_images_wk2/page_10.png" alt="Page 10"></div>
     <div class="page-summary">
       <h3>Extreme Observations / Robust Statistics</h3>
-      <div class="summary-block">
-        Thought experiment: how would mean, median, SD, and IQR of household income change if the largest value were replaced with $10 million? What if the smallest value were? (Mean and SD swing heavily; median and IQR barely move — this motivates the idea of "robust" statistics.)
+      <div class="block problem">
+        <span class="label">The problem</span>
+        How would the mean, median, SD, and IQR of household income change if the largest value in the dataset were replaced with $10 million? What if the smallest value were replaced with $10 million?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step reasoning</span>
+        <div class="step"><strong>Replacing the largest value with $10 million:</strong> the mean jumps up a lot (it's an average, so one huge number drags it up); SD explodes too (that point is now far from the mean). The median barely moves — it only cares about the middle position, not the extreme value's size. IQR is unaffected unless it changes which values fall in the middle 50%.</div>
+        <div class="step"><strong>Replacing the smallest value with $10 million:</strong> the mean and SD swing wildly again (now there's an unusually high value where a low one used to be); median and IQR are again largely unaffected.</div>
+        <div class="step"><span class="answer-flag">Conclusion:</span> mean and SD are sensitive to extreme values; median and IQR are "robust" — they resist being pulled around by outliers.</div>
       </div>
     </div>
   </div>
@@ -567,8 +846,15 @@
     <div class="page-img"><img src="page_images_wk2/page_11.png" alt="Page 11"></div>
     <div class="page-summary">
       <h3>Robust Statistics / Mean vs. Median</h3>
-      <div class="summary-block">
-        <strong>Median and IQR</strong> are more robust to skewness and outliers than mean and SD. For <strong>skewed</strong> distributions, median/IQR better describe center and spread; for <strong>symmetric</strong> distributions, mean/SD are usually more informative. In a symmetric distribution, mean ≈ median. Question: for typical household income (usually skewed), would you trust the mean or the median more? (Median.)
+      <div class="block problem">
+        <span class="label">The problem</span>
+        To estimate a "typical" student's household income, would you trust the mean or the median more?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Household income is typically right-skewed — most households earn a moderate amount, but a few earn extremely high incomes, stretching a long tail to the right.</div>
+        <div class="step"><strong>Step 2.</strong> As shown on Page 10, the mean gets pulled toward that long tail, so it overstates what's "typical." The median stays put in the middle of the pack.</div>
+        <div class="step">Answer: <span class="answer-flag">Median</span> — it's more robust and more representative of a "typical" household for skewed data like income.</div>
       </div>
     </div>
   </div>
@@ -578,8 +864,15 @@
     <div class="page-img"><img src="page_images_wk2/page_12.png" alt="Page 12"></div>
     <div class="page-summary">
       <h3>Mean vs. Median and Skew Direction</h3>
-      <div class="summary-block">
-        Rule: <strong>right-skewed → mean &gt; median</strong>; <strong>left-skewed → mean &lt; median</strong>. Practice question: for % of class time spent taking notes vs. on social media, with median at 80%, where's the mean? This is left-skewed (a long tail of low values pulls the mean down) → <strong>(c) mean &lt; median</strong>.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        For % of class time spent taking notes vs. on social media, the median is at 80%. Where's the mean — above, about equal to, or below the median?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Rule: right-skewed → mean &gt; median; left-skewed → mean &lt; median; symmetric → mean ≈ median.</div>
+        <div class="step"><strong>Step 2.</strong> Since the median is 80% (most students spend most of their time taking notes), there's likely a small tail of students spending very little time on notes (i.e., a lot on social media) — that's a <strong>long tail toward 0%, on the left</strong>.</div>
+        <div class="step">Answer: <span class="answer-flag">(c) mean &lt; median</span> — the low-percentage tail pulls the mean down below 80%.</div>
       </div>
     </div>
   </div>
@@ -589,8 +882,17 @@
     <div class="page-img"><img src="page_images_wk2/page_13.png" alt="Page 13"></div>
     <div class="page-summary">
       <h3>Transformations for Skewed Data</h3>
-      <div class="summary-block">
-        When data are extremely skewed (e.g. number of basketball games attended), a <strong>log transformation</strong> can make modeling easier — outliers become far less prominent after transforming. Downside: the log of a measured variable is often hard to interpret meaningfully.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        When data are extremely skewed (e.g. number of basketball games attended), a <strong>log transformation</strong> can make modeling easier — outliers become far less prominent afterward. Downside: the log of a measured variable is often hard to interpret meaningfully.
+      </div>
+      <div class="block problem">
+        <span class="label">The problem</span>
+        What other variables would you expect to be extremely skewed (and might benefit from a log transform)?
+      </div>
+      <div class="block solve">
+        <span class="label">Examples</span>
+        Household income, company revenue, city population, number of social media followers, home prices — all have a long right tail of unusually large values, the same shape as the basketball-games example.
       </div>
     </div>
   </div>
@@ -600,8 +902,9 @@
     <div class="page-img"><img src="page_images_wk2/page_14.png" alt="Page 14"></div>
     <div class="page-summary">
       <h3>2.2 Considering Categorical Data — Contingency Tables</h3>
-      <div class="summary-block">
-        A <strong>contingency table</strong> summarizes data for two categorical variables. Example: students' gender crossed with whether they're looking for a spouse while in college.
+      <div class="block idea">
+        <span class="label">The idea</span>
+        A <strong>contingency table</strong> summarizes data for two categorical variables. Example: students' gender crossed with whether they're looking for a spouse while in college. This table's counts feed the row-proportion calculation on Page 15.
       </div>
     </div>
   </div>
@@ -611,8 +914,19 @@
     <div class="page-img"><img src="page_images_wk2/page_15.png" alt="Page 15"></div>
     <div class="page-summary">
       <h3>Bar Plots / Choosing the Right Proportion</h3>
-      <div class="summary-block">
-        A <strong>bar plot</strong> displays a single categorical variable; if it shows proportions instead of counts it's a <strong>relative frequency bar plot</strong>. Bar plots compare separate categories with gaps between bars; histograms show a continuous numerical distribution with touching bars, no gaps. To compare gender vs. looking-for-a-spouse, use row proportions (% of females looking, % of males looking).
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Using the Page 14 contingency table, find % of females looking for a spouse and % of males looking for a spouse — is there a relationship between gender and looking for a spouse?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step method</span>
+        <div class="step"><strong>Step 1.</strong> From the table, find the count of females who said "yes" and divide by the total number of females (that row's total) → % females looking for a spouse.</div>
+        <div class="step"><strong>Step 2.</strong> Do the same for males: count of males who said "yes" ÷ total number of males.</div>
+        <div class="step"><strong>Step 3.</strong> Compare the two row proportions. If they're close, gender and spouse-searching look independent; if they're clearly different, that suggests an association between gender and the response.</div>
+      </div>
+      <div class="block idea">
+        <span class="label">Bar plot vs. histogram</span>
+        A <strong>bar plot</strong> compares separate categories with gaps between bars (categorical data); a <strong>histogram</strong> shows a continuous numerical distribution with touching bars, no gaps. A bar plot of proportions instead of counts is a <strong>relative frequency bar plot</strong>.
       </div>
     </div>
   </div>
@@ -622,8 +936,15 @@
     <div class="page-img"><img src="page_images_wk2/page_16.png" alt="Page 16"></div>
     <div class="page-summary">
       <h3>Segmented Bar and Mosaic Plots</h3>
-      <div class="summary-block">
-        Three ways to plot two categorical variables together: <strong>stacked bar plot</strong> (counts, stacked), <strong>side-by-side bar plot</strong> (counts, bars next to each other), and <strong>standardized stacked bar plot</strong> (proportions instead of raw counts).
+      <div class="block problem">
+        <span class="label">The problem</span>
+        What are the differences between a stacked bar plot, a side-by-side bar plot, and a standardized stacked bar plot?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step comparison</span>
+        <div class="step"><strong>Stacked bar plot</strong> — one bar per group, segments stacked on top of each other showing raw <em>counts</em>.</div>
+        <div class="step"><strong>Side-by-side bar plot</strong> — the same count information, but each segment gets its own bar placed next to the others instead of stacked — easier to compare segment sizes directly.</div>
+        <div class="step"><strong>Standardized stacked bar plot</strong> — like the stacked version, but every bar is rescaled to 100% height, showing <em>proportions</em> instead of counts — best for comparing composition across groups of very different sizes.</div>
       </div>
     </div>
   </div>
@@ -633,8 +954,15 @@
     <div class="page-img"><img src="page_images_wk2/page_17.png" alt="Page 17"></div>
     <div class="page-summary">
       <h3>Mosaic Plots vs. Pie Charts</h3>
-      <div class="summary-block">
-        Compares mosaic plots to pie charts for categorical data, including an example about mammal species by order — asking which order has the lowest percentage of species.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Compare a mosaic plot to a pie chart for the same categorical data (mammal species by order) — which order has the lowest percentage of species?
+      </div>
+      <div class="block solve">
+        <span class="label">How to read each chart</span>
+        <div class="step"><strong>Mosaic plot:</strong> each category is a rectangle whose <em>width</em> (and sometimes height) is proportional to its share of the data — the narrowest rectangle is the smallest category.</div>
+        <div class="step"><strong>Pie chart:</strong> each category is a wedge whose <em>angle</em> is proportional to its share — the smallest, thinnest wedge is the smallest category.</div>
+        <div class="step">To answer "which order has the lowest percentage," find the narrowest mosaic rectangle or the thinnest pie wedge in the actual chart image above.</div>
       </div>
     </div>
   </div>
@@ -644,8 +972,14 @@
     <div class="page-img"><img src="page_images_wk2/page_18.png" alt="Page 18"></div>
     <div class="page-summary">
       <h3>2.3 Case Study: Structural Failures</h3>
-      <div class="summary-block">
-        200 residential buildings were examined to see whether foundation soil type (clay vs. sand) is associated with major structural failures; 70 of the 200 had failures. Question posed: is this study an <strong>observational study</strong> or an <strong>experiment</strong>? (Observational — soil type wasn't randomly assigned to buildings.)
+      <div class="block problem">
+        <span class="label">The problem</span>
+        200 residential buildings were examined to see whether foundation soil type (clay vs. sand) is associated with major structural failures (70 of 200 had failures). Is this an observational study or an experiment?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1.</strong> Ask: did researchers randomly assign each building's foundation to clay or sand? No — buildings already existed on whatever soil they were built on.</div>
+        <div class="step">Answer: <span class="answer-flag">Observational study</span> — researchers just recorded existing conditions and outcomes without controlling any assignment.</div>
       </div>
     </div>
   </div>
@@ -655,8 +989,15 @@
     <div class="page-img"><img src="page_images_wk2/page_19.png" alt="Page 19"></div>
     <div class="page-summary">
       <h3>Data: Clay vs. Sand Foundations</h3>
-      <div class="summary-block">
-        Table: Clay foundation — 50 cracked, 30 not cracked (80 total, 62.5% cracked). Sand foundation — 20 cracked, 100 not cracked (120 total, ≈16.7% cracked). At first glance, clay foundations look far more prone to cracking. This sets up the next case study on earthquake-caused building damage.
+      <div class="block problem">
+        <span class="label">The problem</span>
+        Clay foundation: 50 cracked, 30 not cracked (80 total). Sand foundation: 20 cracked, 100 not cracked (120 total). At first glance, is there a relationship between foundation type and cracking?
+      </div>
+      <div class="block solve">
+        <span class="label">Step-by-step</span>
+        <div class="step"><strong>Step 1 — clay crack rate.</strong> 50 ÷ 80 = <span class="answer-flag">62.5%</span></div>
+        <div class="step"><strong>Step 2 — sand crack rate.</strong> 20 ÷ 120 = <span class="answer-flag">16.7%</span></div>
+        <div class="step"><strong>Step 3 — compare.</strong> 62.5% is nearly 4× higher than 16.7% — clay foundations look far more prone to cracking than sand foundations, at least before checking for any confounding variable (the same kind of check Simpson's Paradox taught you to make in Week 1).</div>
       </div>
     </div>
   </div>

@@ -949,6 +949,16 @@
         <div class="step"><strong>Step 2.</strong> As shown on Page 10, the mean gets pulled toward that long tail, so it overstates what's "typical." The median stays put in the middle of the pack.</div>
         <div class="step">Answer: <span class="answer-flag">Median</span> — it's more robust and more representative of a "typical" household for skewed data like income.</div>
       </div>
+      <div class="block idea">
+        <span class="label">More practice — matching real datasets to the right statistic (from the course cheat sheet)</span>
+        <ul>
+          <li><strong>Housing prices, version A:</strong> 25% below $350k, median $450k, 75% below $1,000k, and a meaningful number above $6,000k. → <strong>Right-skewed</strong> (a long tail of extremely expensive houses) → use <strong>median</strong> + <strong>IQR</strong>, since a few multi-million dollar homes would drag the mean far above what's "typical."</li>
+          <li><strong>Housing prices, version B:</strong> 25% below $300k, median $600k, 75% below $900k, very few above $1.2M. → the 25→50→75 gaps are equal ($300k each step) → <strong>approximately symmetric</strong> → <strong>mean</strong> + <strong>SD</strong> are fine here.</li>
+          <li><strong>Alcoholic drinks per week for college students</strong> (most drink zero, a few drink a lot): → <strong>right-skewed with a spike at 0</strong> → use <strong>median</strong> (often literally 0) + <strong>IQR</strong>, since heavy drinkers would inflate the mean.</li>
+          <li><strong>Annual salaries at a Fortune 500 company</strong> (a handful of executives earn vastly more than everyone else): → <strong>right-skewed</strong> → use <strong>median</strong> + <strong>IQR</strong> to represent a typical employee, not the mean.</li>
+        </ul>
+        Notice the pattern: the moment percentile gaps become uneven (25→50 gap ≠ 50→75 gap) or you know a few extreme values exist, that's your cue to skip mean/SD and reach for median/IQR.
+      </div>
     </div>
   </div>
 
@@ -1052,6 +1062,14 @@
       <div class="block idea">
         <span class="label">Bar plot vs. histogram</span>
         A <strong>bar plot</strong> compares separate categories with gaps between bars (categorical data); a <strong>histogram</strong> shows a continuous numerical distribution with touching bars, no gaps. A bar plot of proportions instead of counts is a <strong>relative frequency bar plot</strong>.
+      </div>
+      <div class="block idea">
+        <span class="label">More practice — spotting association from row proportions (from the course cheat sheet)</span>
+        <ul>
+          <li><strong>Organ transplant survival:</strong> about 88% of patients in the control group died, versus about 55% in the treatment group. Those row proportions (88% vs. 55%) are far apart → survival is <strong>not independent</strong> of transplant status — the treatment appears to genuinely increase survival.</li>
+          <li><strong>Political affiliation vs. "tax the rich" opinion:</strong> roughly 49% of Democrats, 30% of Republicans, and an in-between share of Independents support the policy. Since the percentage clearly shifts depending on party, opinion and party affiliation are <strong>not independent</strong> — party predicts the answer.</li>
+        </ul>
+        Same method both times: compute each group's proportion, then ask "are these numbers close, or clearly different?" Close → independent. Clearly different → associated. It's the identical test used with the Female/Male spouse-searching numbers above.
       </div>
     </div>
   </div>

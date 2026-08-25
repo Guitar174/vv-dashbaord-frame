@@ -678,6 +678,10 @@
     <div class="page-summary">
       <h3>Mean</h3>
       <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        The mean is a single number that summarizes the "center" of a numerical dataset by balancing all the values against each other. <strong>Use it when</strong> the data is roughly symmetric and free of extreme outliers — an income dataset with one billionaire in it is exactly when you should reach for the median instead (see Pages 10–12).
+      </div>
+      <div class="block idea">
         <span class="label">The idea</span>
         The <strong>sample mean</strong> (x̄) is calculated from the observed values x₁, x₂, ..., xₙ. The <strong>population mean</strong> (µ) is computed the same way but is usually unavailable since population data are rarely collected in full. The sample mean is a <strong>point estimate</strong> of µ — imperfect, but usually good if the sample is representative.
       </div>
@@ -688,8 +692,8 @@
         <div class="step">Example: data = 4, 6, 8. Sum = 18, n = 3, mean = 18 ÷ 3 = <span class="answer-flag">6</span>.</div>
       </div>
       <div class="block idea">
-        <span class="label">Stacked Dot Plot</span>
-        Taller stacks show where observations are more common, helping you judge the center and shape of a distribution at a glance.
+        <span class="label">Stacked Dot Plot — purpose &amp; when to use it</span>
+        Purpose: plot every individual data point as its own dot, stacked at its value, so you can see the exact raw data and its clustering. Taller stacks show where observations are more common. <strong>Use it when</strong> the dataset is small-to-moderate (roughly under 50 points) — beyond that, individual dots overlap too much and a histogram (Page 2) becomes the better tool.
       </div>
     </div>
   </div>
@@ -699,6 +703,10 @@
     <div class="page-img"><img src="page_images_wk2/page_02.png" alt="Page 2"></div>
     <div class="page-summary">
       <h3>Histograms — bin width</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        A histogram groups numerical data into bins and shows the count (or density) in each bin as a bar, revealing the overall shape of a distribution — its center, spread, modality, and skew. <strong>Use it when</strong> you have a numerical dataset large enough (dozens to thousands of points) that a stacked dot plot would be too cluttered to read. It's usually the very first thing you plot before choosing which summary statistics (mean vs. median, SD vs. IQR) are trustworthy for that data.
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         Several histograms of the same extracurricular-hours data, drawn with different bin widths. Which are useful? Which reveal too much (noisy)? Which hide too much (over-smoothed)?
@@ -727,6 +735,10 @@
     <div class="page-img"><img src="page_images_wk2/page_03.png" alt="Page 3"></div>
     <div class="page-summary">
       <h3>Shape of a Distribution: Modality & Skewness</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        Describing modality and skewness in words is how you translate a picture (histogram/dot plot) into a decision: it tells you which summary statistics to trust later. <strong>Use it</strong> every time, right after plotting a histogram and before computing mean/SD or median/IQR — skewed or multimodal data changes which numbers are meaningful (see Pages 10–12).
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         For a given histogram, is it unimodal, bimodal/multimodal, or uniform? And is it right-skewed, left-skewed, or symmetric?
@@ -753,6 +765,10 @@
     <div class="page-img"><img src="page_images_wk2/page_04.png" alt="Page 4"></div>
     <div class="page-summary">
       <h3>Unusual Observations</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        Scanning for unusual observations catches data-entry errors and genuinely rare cases before they distort your analysis. <strong>Use it</strong> as a standard first check on any new dataset, before computing mean, SD, or building a model — a single typo (like "500" instead of "50") can silently wreck a mean and SD.
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         Are there any unusual observations or potential outliers in the extracurricular-hours histogram? How would you describe its overall shape?
@@ -791,6 +807,10 @@
     <div class="page-summary">
       <h3>Variance & Standard Deviation</h3>
       <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        These measure how spread out the data is around the mean. Variance is in squared units (hard to interpret directly); standard deviation converts it back to the data's original units, which is why SD is the one usually reported and discussed. <strong>Use them when</strong> the data is roughly symmetric with no extreme outliers — like the mean they're built from, both variance and SD are sensitive to outliers, so for skewed/outlier-heavy data use IQR (Page 7) instead.
+      </div>
+      <div class="block idea">
         <span class="label">The idea</span>
         <strong>Variance</strong> is roughly the average squared deviation from the mean. <strong>Standard deviation</strong> is the square root of the variance, in the same units as the original data. The slide's worked numbers come from a sleep-hours dataset (n = 217); the handwritten scratch work on the page is that specific calculation, but the method below works for any dataset.
       </div>
@@ -820,6 +840,10 @@
     <div class="page-summary">
       <h3>Median, Quartiles, and IQR</h3>
       <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        The median and IQR summarize center and spread using the data's <em>rank order</em> instead of arithmetic averages, which makes them resistant to extreme values. <strong>Use them when</strong> the distribution is skewed or contains outliers — household income, home prices, and reaction times with slow outliers are classic cases where median/IQR give a more honest picture than mean/SD.
+      </div>
+      <div class="block idea">
         <span class="label">The idea</span>
         The <strong>median</strong> splits ordered data in half — it's the 50th percentile. <strong>Q1</strong> = 25th percentile, <strong>Q2</strong> = median, <strong>Q3</strong> = 75th percentile. <strong>IQR = Q3 − Q1</strong> is the span of the middle 50% of the data.
       </div>
@@ -839,6 +863,10 @@
     <div class="page-img"><img src="page_images_wk2/page_08.png" alt="Page 8"></div>
     <div class="page-summary">
       <h3>Box Plot Anatomy</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        A box plot packs the five-number summary (min, Q1, median, Q3, max) into one compact picture and flags potential outliers automatically. <strong>Use it when</strong> you want to compare the spread and center of several groups side by side (e.g. test scores across 5 different classes) — box plots line up neatly next to each other in a way histograms don't, though they hide finer details like modality that a histogram would show.
+      </div>
       <div class="block idea">
         <span class="label">The idea</span>
         The box in a box plot represents the middle 50% of the data (from Q1 to Q3), and the thick line inside the box marks the median. This is the reference diagram for Page 9's whisker/outlier calculation.
@@ -862,6 +890,10 @@
     <div class="page-img"><img src="page_images_wk2/page_09.png" alt="Page 9"></div>
     <div class="page-summary">
       <h3>Whiskers and Outliers</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        The 1.5×IQR rule gives a consistent, objective cutoff for flagging potential outliers, instead of eyeballing which points "look" extreme. <strong>Use it</strong> any time you have a box plot and need to decide whether an extreme point should be investigated, excluded, or just noted — it's the standard rule most statistical software uses to draw box plot whiskers automatically.
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         Given IQR = Q3 − Q1 = 20 − 10 = 10, find the maximum reach of the upper and lower whiskers, and explain what counts as an outlier.
@@ -881,6 +913,10 @@
     <div class="page-img"><img src="page_images_wk2/page_10.png" alt="Page 10"></div>
     <div class="page-summary">
       <h3>Extreme Observations / Robust Statistics</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        This thought experiment is the "why" behind the mean/median and SD/IQR choice: it demonstrates directly which statistics move when you change one extreme value. <strong>Use this test mentally</strong> whenever you're unsure if a statistic is trustworthy — ask "if I swapped out the biggest or smallest value, would this number barely move (robust) or swing wildly (not robust)?"
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         How would the mean, median, SD, and IQR of household income change if the largest value in the dataset were replaced with $10 million? What if the smallest value were replaced with $10 million?
@@ -899,6 +935,10 @@
     <div class="page-img"><img src="page_images_wk2/page_11.png" alt="Page 11"></div>
     <div class="page-summary">
       <h3>Robust Statistics / Mean vs. Median</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        This is the decision rule that ties Pages 6–11 together: <strong>symmetric, outlier-free data → report mean and SD; skewed or outlier-heavy data → report median and IQR.</strong> Use it as the last step whenever you're about to summarize a numerical variable — check the histogram's shape first (Page 3), then pick the matching pair of statistics.
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         To estimate a "typical" student's household income, would you trust the mean or the median more?
@@ -917,6 +957,10 @@
     <div class="page-img"><img src="page_images_wk2/page_12.png" alt="Page 12"></div>
     <div class="page-summary">
       <h3>Mean vs. Median and Skew Direction</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        This rule works as a shortcut in <em>both directions</em>: if you know the skew, you can predict where the mean sits relative to the median (this page); or, if you're only given the mean and median (no picture), you can infer the skew direction without ever seeing a histogram. <strong>Use it</strong> when a dataset is described only with summary numbers and you need to reason about its shape.
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         For % of class time spent taking notes vs. on social media, the median is at 80%. Where's the mean — above, about equal to, or below the median?
@@ -935,6 +979,10 @@
     <div class="page-img"><img src="page_images_wk2/page_13.png" alt="Page 13"></div>
     <div class="page-summary">
       <h3>Transformations for Skewed Data</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        A log transform compresses large values much more than small ones, pulling in a long right tail so the data looks closer to symmetric. <strong>Use it when</strong> data is extremely right-skewed with all-positive values (income, population, games attended, followers) and you need it to behave better for plotting or for statistical methods that assume roughly symmetric data. <strong>Don't use it</strong> when the result needs to stay easily interpretable to a non-technical audience, since "log dollars" means little to most readers.
+      </div>
       <div class="block idea">
         <span class="label">The idea</span>
         When data are extremely skewed (e.g. number of basketball games attended), a <strong>log transformation</strong> can make modeling easier — outliers become far less prominent afterward. Downside: the log of a measured variable is often hard to interpret meaningfully.
@@ -962,6 +1010,10 @@
     <div class="page-summary">
       <h3>2.2 Considering Categorical Data — Contingency Tables</h3>
       <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        A contingency table is the categorical-data equivalent of a scatterplot: it lets you see how two categorical variables move together by laying every combination of categories out in a grid of counts. <strong>Use it</strong> as the first step whenever you have two categorical variables and want to check whether they're related — it's the raw material every chart in Pages 15–17 is built from.
+      </div>
+      <div class="block idea">
         <span class="label">The idea</span>
         A <strong>contingency table</strong> summarizes data for two categorical variables. Example: students' gender crossed with whether they're looking for a spouse while in college.
       </div>
@@ -983,6 +1035,10 @@
     <div class="page-img"><img src="page_images_wk2/page_15.png" alt="Page 15"></div>
     <div class="page-summary">
       <h3>Bar Plots / Choosing the Right Proportion</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        A bar plot displays counts or proportions for a single categorical variable, with one bar per category and visible gaps between bars (unlike a histogram). <strong>Use plain counts</strong> when comparing categories within one group of a fixed size; <strong>switch to a relative frequency bar plot</strong> (proportions) the moment you're comparing groups of different sizes — like comparing 90 females to 60 males below, where raw counts alone would be misleading.
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         Using the Page 14 contingency table, find % of females looking for a spouse and % of males looking for a spouse — is there a relationship between gender and looking for a spouse?
@@ -1005,6 +1061,10 @@
     <div class="page-img"><img src="page_images_wk2/page_16.png" alt="Page 16"></div>
     <div class="page-summary">
       <h3>Segmented Bar and Mosaic Plots</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        These three all visualize two categorical variables together, but answer slightly different questions. <strong>Stacked</strong> — use when you care about total group sizes (e.g. "how many females total?"). <strong>Side-by-side</strong> — use when you want to compare exact segment counts precisely (harder to do when segments are stacked on top of each other). <strong>Standardized stacked</strong> — use when comparing the internal composition/proportions of groups that differ a lot in size, so a small group doesn't look "insignificant" just because its bar is short.
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         What are the differences between a stacked bar plot, a side-by-side bar plot, and a standardized stacked bar plot?
@@ -1031,6 +1091,10 @@
     <div class="page-img"><img src="page_images_wk2/page_17.png" alt="Page 17"></div>
     <div class="page-summary">
       <h3>Mosaic Plots vs. Pie Charts</h3>
+      <div class="block idea">
+        <span class="label">Purpose &amp; when to use it</span>
+        <strong>Pie chart</strong> — shows how a single categorical variable's total splits into shares of one whole. Best with a small number of categories (roughly ≤5); beyond that, thin wedges become hard to compare by eye. <strong>Mosaic plot</strong> — extends the same idea to <em>two</em> categorical variables at once, encoding one variable in rectangle width and the other in rectangle height, so it can also reveal association between them (something a pie chart can't do at all). Use a mosaic plot whenever you'd otherwise reach for a standardized stacked bar plot (Page 16) but want group sizes visible too.
+      </div>
       <div class="block problem">
         <span class="label">The problem</span>
         Compare a mosaic plot to a pie chart for the same categorical data (mammal species by order) — which order has the lowest percentage of species?

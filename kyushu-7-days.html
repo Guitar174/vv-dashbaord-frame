@@ -74,6 +74,17 @@ body{
 .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--bone-dim);margin-top:9px}
 .key-note{font-size:13px;color:var(--bone-dim);margin:14px 0 0}
 
+/* ---------- route map ---------- */
+.route-map{margin:16px 0 0;padding:20px 22px;background:var(--surface);border:1px solid var(--edge);border-radius:3px}
+.route-map h2{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bone-dim);margin:0 0 16px;font-weight:400;
+}
+.route-map svg{width:100%;height:auto;display:block}
+.route-map .rm-label{font-family:var(--mono);font-size:12px;fill:var(--bone)}
+.route-map .rm-day{font-family:var(--mono);font-size:10px;fill:var(--bone-dim)}
+.route-map .rm-mode{font-family:var(--mono);font-size:9.5px;fill:var(--mist)}
+
 /* ---------- day nav ---------- */
 nav{
   position:sticky;top:0;z-index:20;background:rgba(20,18,15,.94);
@@ -141,6 +152,19 @@ nav a:hover,nav a:focus-visible{color:var(--ash);background:var(--sulphur);outli
   color:var(--ember);margin:0 0 6px;font-weight:500;
 }
 .warn p{margin:0;font-size:14.5px;color:var(--bone)}
+
+.tip{
+  margin-top:14px;background:rgba(126,153,173,.08);border:1px solid rgba(126,153,173,.38);
+  border-left:3px solid var(--mist);border-radius:3px;padding:14px 18px;
+}
+.tip h5{
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mist);margin:0 0 6px;font-weight:500;
+}
+.tip p{margin:0;font-size:14.5px;color:var(--bone)}
+.tip ul{margin:8px 0 0;padding-left:18px}
+.tip li{font-size:14.5px;color:var(--bone);margin-bottom:6px}
+.tip li:last-child{margin-bottom:0}
 
 /* ---------- budget ---------- */
 .closing{padding:64px 0 40px}
@@ -212,6 +236,65 @@ footer{padding:32px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--
       <div class="ticks"><span>05:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>19:00</span><span>22:00</span></div>
       <p class="key-note">Every stop below is marked with the light you'll get there. Gold dots are the shots worth setting an alarm for.</p>
     </div>
+
+    <div class="route-map">
+      <h2>The route — 7 days, Fukuoka out and back</h2>
+      <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40,110 L160,60 L300,150 L440,60 L580,150 L720,90 L860,110"
+          fill="none" stroke="#332C23" stroke-width="2"/>
+        <path d="M160,60 L300,150 L440,60 L580,150 L720,90"
+          fill="none" stroke="#D4A03C" stroke-width="1.5" stroke-dasharray="1 7" stroke-linecap="round"/>
+
+        <text x="100" y="92" class="rm-mode" text-anchor="middle">train</text>
+        <text x="230" y="98" class="rm-mode" text-anchor="middle">car</text>
+        <text x="370" y="98" class="rm-mode" text-anchor="middle">car</text>
+        <text x="510" y="98" class="rm-mode" text-anchor="middle">car</text>
+        <text x="650" y="112" class="rm-mode" text-anchor="middle">car→train</text>
+        <text x="790" y="92" class="rm-mode" text-anchor="middle">train</text>
+
+        <circle cx="40" cy="110" r="7" fill="#CFC7B6" stroke="#14120F" stroke-width="2"/>
+        <circle cx="160" cy="60" r="7" fill="#CFC7B6" stroke="#14120F" stroke-width="2"/>
+        <circle cx="300" cy="150" r="7" fill="#C0722E" stroke="#14120F" stroke-width="2"/>
+        <circle cx="440" cy="60" r="8" fill="#D4A03C" stroke="#14120F" stroke-width="2" style="filter:drop-shadow(0 0 6px rgba(212,160,60,.6))"/>
+        <circle cx="580" cy="150" r="7" fill="#CFC7B6" stroke="#14120F" stroke-width="2"/>
+        <circle cx="720" cy="90" r="7" fill="#CFC7B6" stroke="#14120F" stroke-width="2"/>
+        <circle cx="860" cy="110" r="7" fill="#CFC7B6" stroke="#14120F" stroke-width="2"/>
+
+        <text x="40" y="140" class="rm-day" text-anchor="middle">DAY 1</text>
+        <text x="40" y="30" class="rm-label" text-anchor="middle">Fukuoka</text>
+
+        <text x="160" y="40" class="rm-day" text-anchor="middle">DAY 2</text>
+        <text x="160" y="185" class="rm-label" text-anchor="middle">Yufuin</text>
+
+        <text x="300" y="130" class="rm-day" text-anchor="middle">DAY 3</text>
+        <text x="300" y="30" class="rm-label" text-anchor="middle">Kurokawa</text>
+
+        <text x="440" y="40" class="rm-day" text-anchor="middle">DAY 4</text>
+        <text x="440" y="185" class="rm-label" text-anchor="middle">Mt Aso</text>
+
+        <text x="580" y="130" class="rm-day" text-anchor="middle">DAY 5</text>
+        <text x="580" y="30" class="rm-label" text-anchor="middle">Takachiho</text>
+
+        <text x="720" y="70" class="rm-day" text-anchor="middle">DAY 6</text>
+        <text x="720" y="185" class="rm-label" text-anchor="middle">Kumamoto</text>
+
+        <text x="860" y="140" class="rm-day" text-anchor="middle">DAY 7</text>
+        <text x="860" y="30" class="rm-label" text-anchor="middle">Fukuoka</text>
+      </svg>
+      <p class="key-note">Solid grey = fixed transit (train/subway). Dashed gold = self-driven, the four days with no fixed schedule — pull over wherever the view opens up.</p>
+    </div>
+
+    <div class="tip">
+      <h5>First time in Japan — read this first</h5>
+      <p>A few things this plan assumes you already know:</p>
+      <ul>
+        <li><strong>Get an IC card (Suica/ICOCA) on Day 1</strong> at Fukuoka Airport or Hakata Station — saves fumbling with ticket machines and works at convenience stores too.</li>
+        <li><strong>Carry more cash than you think.</strong> Yatai stalls, shrine donation boxes, the Takachiho boat, and the Yokagura dance are cash-only — card-heavy Thailand habits won't carry over.</li>
+        <li><strong>Onsen tattoo rules vary by venue.</strong> Traditional ryokan baths (Kurokawa's Rotenburo Meguri) can still turn away visible tattoos — check per-bath before you go if this applies to you.</li>
+        <li><strong>Rental car nav is often Japanese-only</strong>, and fuel stations split between self-serve and full-serve with different etiquette — ask the counter staff to set English nav before you drive off.</li>
+        <li><strong>Days 3 and 4 both start before 6am</strong> with a first-time mountain drive in between (Day 4's is in the dark). If this is your first time driving in Japan, consider dropping the Day 3 dawn shoot to arrive at Day 4's sunrise rested — it's the harder drive and the better photo.</li>
+      </ul>
+    </div>
   </div>
 </header>
 
@@ -244,7 +327,7 @@ footer{padding:32px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--
       <p>Stay on this side. Everything leaves from here tomorrow.</p></div></li>
     <li><span class="t">18:30</span><span class="dot" data-light="dusk"></span><div class="what">
       <h4>Nakasu yatai</h4>
-      <p>Open-air food stalls along the river. Tonkotsu ramen is the local thing and this is where it comes from.</p>
+      <p>Open-air food stalls along the river. Tonkotsu ramen is the local thing and this is where it comes from. Cash only, most stalls.</p>
       <span class="cost">~¥1,000</span></div></li>
     <li><span class="t">20:00</span><span class="dot" data-light="night"></span><div class="what">
       <h4>Long exposures on the Naka River</h4>
@@ -298,18 +381,22 @@ footer{padding:32px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--
       <p>You're finished before the tour buses arrive at eleven.</p></div></li>
     <li><span class="t">10:00</span><span class="dot" data-light="day"></span><div class="what">
       <h4>Collect the rental car</h4>
-      <p>Passport, Thai licence, and the International Driving Permit. Japan drives on the left, same as home.</p></div></li>
+      <p>Passport, Thai licence, and the International Driving Permit. Japan drives on the left, same as home. Ask the counter to set the nav to English before you drive off — it defaults to Japanese-only — and confirm whether the fuel is self-serve or full-serve here.</p></div></li>
     <li><span class="t">10:30</span><span class="dot" data-light="day"></span><div class="what">
       <h4>Yamanami Highway</h4>
       <p>Open highland road over the Kuju range. No fixed stops — pull over wherever the view opens up.</p></div></li>
     <li><span class="t">14:00</span><span class="dot" data-light="day"></span><div class="what">
       <h4>Rotenburo Meguri</h4>
-      <p>One wooden pass gets you into any three outdoor baths in the village.</p>
+      <p>One wooden pass gets you into any three outdoor baths in the village. Cash only, and some baths still turn away visible tattoos — check per-bath if it applies to you.</p>
       <span class="cost">¥1,500</span></div></li>
     <li><span class="t">18:00</span><span class="dot" data-light="dusk"></span><div class="what">
       <h4>Kurokawa after dark</h4>
       <p>Wooden bathhouses stacked down a river gorge, lanterns on. Slow shutter, no flash — people are walking to the baths in yukata.</p></div></li>
   </ul>
+  <div class="tip">
+    <h5>Sleep or shoot?</h5>
+    <p>Today already started at 06:00 and tomorrow's Aso sunrise means another pre-dawn start with a 40-minute mountain drive — your first night drive in Japan if you haven't done it before. If this is your first Japan trip, an early night tonight is worth more than a late lantern shot in Kurokawa.</p>
+  </div>
   <div class="panels">
     <div class="panel"><h5>Stay</h5><p>Kurokawa ryokan · <span class="amt">¥14,000</span></p></div>
     <div class="panel"><h5>Car</h5><p>Picked up Yufuin, dropping Kumamoto Day 6</p></div>
@@ -326,7 +413,7 @@ footer{padding:32px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--
       <p>Forty minutes in the dark. Free parking at the top, then a ten-minute paved walk to the lookout.</p></div></li>
     <li><span class="t">06:20</span><span class="dot" data-light="gold"></span><div class="what">
       <h4>Sunrise over Mt Aso</h4>
-      <p>The north rim of one of the largest calderas on earth. Spring mornings often fill the basin with unkai — a sea of cloud, with the volcano peaks breaking through it. This is the best shot of the trip. It is also freezing and very windy: jacket, gloves, spare battery.</p></div></li>
+      <p>The north rim of one of the largest calderas on earth. Spring mornings often fill the basin with unkai — a sea of cloud, with the volcano peaks breaking through it. This is the best shot of the trip. It is also freezing and very windy — colder than "windproof layer" sounds: proper base layer, gloves, a hat, hand warmers, and a spare battery kept warm in an inside pocket.</p></div></li>
     <li><span class="t">08:30</span><span class="dot" data-light="day"></span><div class="what">
       <h4>Milk Road</h4>
       <p>Ridge road running along the crater rim. Slow drive, frequent stops.</p></div></li>
@@ -341,6 +428,10 @@ footer{padding:32px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--
   <div class="warn">
     <h5>The main crater is often closed</h5>
     <p>Nakadake vents volcanic gas and access gets shut with no notice — visitors found it closed in March 2026. Don't build the day around it. Daikanbō and Kusasenri stay open, and they're the better photographs regardless.</p>
+  </div>
+  <div class="tip">
+    <h5>First mountain drive, in the dark</h5>
+    <p>If this is your first time driving in Japan, the 05:30 drive to Daikanbō is unfamiliar rural road with no shoulder lighting. It's a short 40 minutes and well-signed, but go slow, use headlights on full where there's no oncoming traffic, and leave a few minutes earlier than you think you need. Sunrise timing is somewhat forgiving here — arriving a little late costs you some of the gold light, not the shot entirely.</p>
   </div>
   <div class="panels">
     <div class="panel"><h5>Stay</h5><p>Aso or Takamori · <span class="amt">¥8,000</span></p></div>
@@ -358,7 +449,7 @@ footer{padding:32px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--
       <p>An hour and fifteen on Route 325, out of the caldera and over into Miyazaki.</p></div></li>
     <li><span class="t">08:30</span><span class="dot" data-light="day"></span><div class="what">
       <h4>Takachiho Gorge — first boat</h4>
-      <p>Basalt walls, blue-green water, a waterfall dropping in beside you. Thirty minutes, you row it yourself. Take the earliest slot: it's calm at half eight and swamped by quarter to eleven.</p>
+      <p>Basalt walls, blue-green water, a waterfall dropping in beside you. Thirty minutes, you row it yourself. Take the earliest slot: it's calm at half eight and swamped by quarter to eleven. Cash only on the day, but reserve the slot online first.</p>
       <span class="cost">~¥2,000</span></div></li>
     <li><span class="t">10:00</span><span class="dot" data-light="day"></span><div class="what">
       <h4>The top path</h4>
@@ -368,7 +459,7 @@ footer{padding:32px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--
       <p>Walk from the shrine down to a river cave stacked with thousands of small stone cairns left by visitors. Dim, and worth a tripod.</p></div></li>
     <li><span class="t">20:00</span><span class="dot" data-light="night"></span><div class="what">
       <h4>Yokagura night dance</h4>
-      <p>Masked folk performance at Takachiho Shrine, running nightly, four centuries old. Low light and constant movement — push the ISO and accept the grain.</p>
+      <p>Masked folk performance at Takachiho Shrine, running nightly, four centuries old. Low light and constant movement — push the ISO and accept the grain. Cash only at the door.</p>
       <span class="cost">~¥1,000</span></div></li>
   </ul>
   <div class="panels">

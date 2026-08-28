@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kyushu — 7 Days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ash:#14120F;
+  --surface:#1C1915;
+  --surface-2:#242019;
+  --edge:#332C23;
+  --bone:#E9E3D7;
+  --bone-dim:#9C9384;
+  --sulphur:#D4A03C;
+  --mist:#7E99AD;
+  --ember:#C0722E;
+
+  --l-night:#3C4450;
+  --l-blue:#5B7A9E;
+  --l-gold:#D4A03C;
+  --l-day:#CFC7B6;
+  --l-dusk:#C0722E;
+
+  --display:'Fraunces',Georgia,serif;
+  --body:'IBM Plex Sans',-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{
+  margin:0;background:var(--ash);color:var(--bone);
+  font-family:var(--body);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.mast{padding:72px 0 40px;border-bottom:1px solid var(--edge)}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--sulphur);margin:0 0 20px;
+}
+.mast h1{
+  font-family:var(--display);font-weight:300;font-size:clamp(44px,8vw,84px);
+  line-height:.96;margin:0 0 22px;letter-spacing:-.02em;
+}
+.mast h1 em{font-style:italic;color:var(--sulphur)}
+.standfirst{max-width:56ch;color:var(--bone-dim);font-size:17px;margin:0 0 32px}
+
+.facts{display:flex;flex-wrap:wrap;gap:28px 44px;font-family:var(--mono);font-size:13px}
+.fact span{display:block;color:var(--bone-dim);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px}
+.fact strong{font-weight:500;color:var(--bone)}
+
+/* ---------- light legend (signature) ---------- */
+.light-key{
+  margin:40px 0 0;padding:20px 22px;
+  background:var(--surface);border:1px solid var(--edge);border-radius:3px;
+}
+.light-key h2{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bone-dim);margin:0 0 16px;font-weight:400;
+}
+.bar{height:7px;border-radius:4px;background:linear-gradient(90deg,
+  var(--l-night) 0%, var(--l-night) 8%,
+  var(--l-blue) 13%, var(--l-gold) 20%,
+  var(--l-day) 34%, var(--l-day) 66%,
+  var(--l-gold) 80%, var(--l-dusk) 86%,
+  var(--l-blue) 91%, var(--l-night) 100%);}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--bone-dim);margin-top:9px}
+.key-note{font-size:13px;color:var(--bone-dim);margin:14px 0 0}
+
+/* ---------- day nav ---------- */
+nav{
+  position:sticky;top:0;z-index:20;background:rgba(20,18,15,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--edge);
+}
+nav ul{display:flex;gap:4px;list-style:none;margin:0 auto;padding:12px 24px;max-width:940px;overflow-x:auto}
+nav a{
+  font-family:var(--mono);font-size:12px;color:var(--bone-dim);text-decoration:none;
+  padding:7px 13px;border-radius:3px;white-space:nowrap;border:1px solid transparent;
+}
+nav a:hover,nav a:focus-visible{color:var(--ash);background:var(--sulphur);outline:none}
+
+/* ---------- day ---------- */
+.day{padding:64px 0;border-bottom:1px solid var(--edge)}
+.day-head{display:flex;align-items:baseline;gap:20px;margin-bottom:8px;flex-wrap:wrap}
+.day-num{
+  font-family:var(--display);font-weight:300;font-size:64px;line-height:1;
+  color:var(--sulphur);letter-spacing:-.03em;
+}
+.day-title{font-family:var(--display);font-weight:600;font-size:30px;line-height:1.1;margin:0;letter-spacing:-.01em}
+.day-route{
+  font-family:var(--mono);font-size:12px;color:var(--bone-dim);
+  letter-spacing:.08em;margin:0 0 34px;padding-left:2px;
+}
+
+/* timeline */
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:71px;top:10px;bottom:10px;width:1px;background:var(--edge)}
+.tl li{display:flex;gap:0;padding:0 0 26px;position:relative}
+.tl .t{
+  font-family:var(--mono);font-size:13px;color:var(--bone);width:56px;flex:none;
+  padding-top:1px;letter-spacing:-.02em;
+}
+.dot{
+  width:11px;height:11px;border-radius:50%;flex:none;margin:6px 22px 0 9px;
+  background:var(--l-day);border:2px solid var(--ash);position:relative;z-index:2;
+  box-shadow:0 0 0 1px var(--edge);
+}
+.dot[data-light="night"]{background:var(--l-night)}
+.dot[data-light="blue"]{background:var(--l-blue)}
+.dot[data-light="gold"]{background:var(--l-gold);box-shadow:0 0 0 1px var(--edge),0 0 12px rgba(212,160,60,.5)}
+.dot[data-light="day"]{background:var(--l-day)}
+.dot[data-light="dusk"]{background:var(--l-dusk);box-shadow:0 0 0 1px var(--edge),0 0 12px rgba(192,114,46,.45)}
+.tl .what{flex:1;min-width:0}
+.tl h4{font-size:16px;font-weight:600;margin:0 0 4px;letter-spacing:-.005em}
+.tl p{margin:0;color:var(--bone-dim);font-size:14.5px}
+.tl .cost{font-family:var(--mono);font-size:12px;color:var(--sulphur);margin-top:5px;display:block}
+
+/* panels */
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.panel{background:var(--surface);border:1px solid var(--edge);border-radius:3px;padding:16px 18px}
+.panel h5{
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--bone-dim);margin:0 0 8px;font-weight:400;
+}
+.panel p{margin:0;font-size:14.5px}
+.panel .amt{font-family:var(--mono);color:var(--sulphur)}
+
+.warn{
+  margin-top:14px;background:rgba(192,114,46,.08);border:1px solid rgba(192,114,46,.38);
+  border-left:3px solid var(--ember);border-radius:3px;padding:14px 18px;
+}
+.warn h5{
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ember);margin:0 0 6px;font-weight:500;
+}
+.warn p{margin:0;font-size:14.5px;color:var(--bone)}
+
+/* ---------- budget ---------- */
+.closing{padding:64px 0 40px}
+h3.sec{
+  font-family:var(--display);font-weight:600;font-size:26px;margin:0 0 22px;letter-spacing:-.01em;
+}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:11px 0;border-bottom:1px solid var(--edge)}
+th{
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--bone-dim);font-weight:400;
+}
+td.n{text-align:right;font-family:var(--mono);font-size:13.5px}
+tr.total td{border-bottom:none;padding-top:16px;font-weight:600;color:var(--sulphur)}
+tr.total td.n{font-size:16px}
+tr.buffer td{border-bottom:none;color:var(--mist)}
+
+.checks{list-style:none;padding:0;margin:34px 0 0}
+.checks li{
+  padding:13px 0 13px 34px;border-bottom:1px solid var(--edge);position:relative;font-size:15px;
+}
+.checks li::before{
+  content:"";position:absolute;left:2px;top:17px;width:13px;height:13px;
+  border:1.5px solid var(--sulphur);border-radius:2px;
+}
+.checks li:last-child{border-bottom:none}
+.checks small{display:block;color:var(--bone-dim);font-size:13.5px;margin-top:2px}
+
+footer{padding:32px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--bone-dim)}
+
+@media(max-width:700px){
+  .panels{grid-template-columns:1fr}
+  .day-num{font-size:46px}
+  .day-title{font-size:23px}
+  .tl::before{left:57px}
+  .tl .t{width:46px;font-size:12px}
+  .dot{margin:6px 16px 0 7px}
+  .mast{padding:48px 0 32px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{
+  body{background:#fff;color:#000}
+  nav{display:none}
+  .day{page-break-inside:avoid;border-bottom:1px solid #ccc}
+  .panel,.warn{border:1px solid #ccc;background:#f7f7f7}
+  .day-num,.tl .cost,tr.total td{color:#8a6410}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="eyebrow">Landscape photography route · March 2027</p>
+    <h1>Seven days<br>across <em>Kyushu</em></h1>
+    <p class="standfirst">Fukuoka in, onsen towns through the middle, a volcanic caldera at dawn, a river gorge, then out. Trains at both ends, a rental car for the four days where the buses stop making sense.</p>
+    <div class="facts">
+      <div class="fact"><span>Budget</span><strong>60,000 THB</strong></div>
+      <div class="fact"><span>Planned</span><strong>~44,200 THB</strong></div>
+      <div class="fact"><span>Nights</span><strong>6</strong></div>
+      <div class="fact"><span>Driving days</span><strong>4</strong></div>
+      <div class="fact"><span>Sunrise</span><strong>06:20</strong></div>
+      <div class="fact"><span>Sunset</span><strong>18:40</strong></div>
+    </div>
+
+    <div class="light-key">
+      <h2>Light through the day — late March, Kyushu</h2>
+      <div class="bar"></div>
+      <div class="ticks"><span>05:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>19:00</span><span>22:00</span></div>
+      <p class="key-note">Every stop below is marked with the light you'll get there. Gold dots are the shots worth setting an alarm for.</p>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#d1">01 Fukuoka</a></li>
+    <li><a href="#d2">02 Yufuin</a></li>
+    <li><a href="#d3">03 Kurokawa</a></li>
+    <li><a href="#d4">04 Mt Aso</a></li>
+    <li><a href="#d5">05 Takachiho</a></li>
+    <li><a href="#d6">06 Kumamoto</a></li>
+    <li><a href="#d7">07 Home</a></li>
+    <li><a href="#budget">Budget</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+<!-- DAY 1 -->
+<section class="day" id="d1">
+  <div class="day-head"><span class="day-num">01</span><h2 class="day-title">Land in Fukuoka</h2></div>
+  <p class="day-route">FUKUOKA AIRPORT → HAKATA · NO CAR</p>
+  <ul class="tl">
+    <li><span class="t">PM</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Airport to city</h4>
+      <p>Subway straight from the terminal to Hakata Station. Five minutes — the shortest airport run in Japan.</p>
+      <span class="cost">¥260</span></div></li>
+    <li><span class="t">16:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Check in near Hakata Station</h4>
+      <p>Stay on this side. Everything leaves from here tomorrow.</p></div></li>
+    <li><span class="t">18:30</span><span class="dot" data-light="dusk"></span><div class="what">
+      <h4>Nakasu yatai</h4>
+      <p>Open-air food stalls along the river. Tonkotsu ramen is the local thing and this is where it comes from.</p>
+      <span class="cost">~¥1,000</span></div></li>
+    <li><span class="t">20:00</span><span class="dot" data-light="night"></span><div class="what">
+      <h4>Long exposures on the Naka River</h4>
+      <p>Stall lanterns reflecting off the water. Bring something to brace the camera on — the railings work.</p></div></li>
+  </ul>
+  <div class="panels">
+    <div class="panel"><h5>Stay</h5><p>Hakata business hotel · <span class="amt">¥6,000</span></p></div>
+    <div class="panel"><h5>Eat</h5><p>Tonkotsu ramen, mentaiko, motsunabe</p></div>
+  </div>
+</section>
+
+<!-- DAY 2 -->
+<section class="day" id="d2">
+  <div class="day-head"><span class="day-num">02</span><h2 class="day-title">Up to Yufuin</h2></div>
+  <p class="day-route">HAKATA → DAZAIFU → YUFUIN · TRAIN</p>
+  <ul class="tl">
+    <li><span class="t">09:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Dazaifu Tenmangu</h4>
+      <p>Thirty minutes out of the city. Plum blossom is finishing, early sakura starting, and the red bridge over the pond is the frame everyone comes for.</p></div></li>
+    <li><span class="t">13:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Yufuin no Mori</h4>
+      <p>A sightseeing train with observation windows, not just transport. Two hours fifteen through the mountains.</p>
+      <span class="cost">~¥5,700</span></div></li>
+    <li><span class="t">15:30</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Yunotsubo street</h4>
+      <p>Walk the length of it toward the lake. Mt Yufu sits at the end of the road — a clean backdrop if the cloud lifts.</p></div></li>
+    <li><span class="t">17:45</span><span class="dot" data-light="gold"></span><div class="what">
+      <h4>Lake Kinrin at sunset</h4>
+      <p>A warm-up for tomorrow. Small lake, fifteen minutes to walk around, quiet once the day buses leave.</p></div></li>
+  </ul>
+  <div class="warn">
+    <h5>Book ahead</h5>
+    <p>Yufuin no Mori seats sell out weeks in advance. Reserve before you fly, or fall back on the regular Yufu limited express.</p>
+  </div>
+  <div class="panels">
+    <div class="panel"><h5>Stay</h5><p>Yufuin ryokan, private bath · <span class="amt">¥12,000</span></p></div>
+    <div class="panel"><h5>Shoot</h5><p>Dazaifu bridge · Mt Yufu at the end of the street</p></div>
+  </div>
+</section>
+
+<!-- DAY 3 -->
+<section class="day" id="d3">
+  <div class="day-head"><span class="day-num">03</span><h2 class="day-title">Mist, then the highland road</h2></div>
+  <p class="day-route">YUFUIN → YAMANAMI HIGHWAY → KUROKAWA ONSEN · CAR FROM 10:00</p>
+  <ul class="tl">
+    <li><span class="t">06:00</span><span class="dot" data-light="blue"></span><div class="what">
+      <h4>Lake Kinrin at dawn</h4>
+      <p>Hot spring water meeting cold March air puts a layer of mist on the surface. Shoot before the sun clears the ridge, not after — the buildings glow through the fog against a dark sky, and it's a different photo entirely once it's bright.</p></div></li>
+    <li><span class="t">09:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Breakfast</h4>
+      <p>You're finished before the tour buses arrive at eleven.</p></div></li>
+    <li><span class="t">10:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Collect the rental car</h4>
+      <p>Passport, Thai licence, and the International Driving Permit. Japan drives on the left, same as home.</p></div></li>
+    <li><span class="t">10:30</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Yamanami Highway</h4>
+      <p>Open highland road over the Kuju range. No fixed stops — pull over wherever the view opens up.</p></div></li>
+    <li><span class="t">14:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Rotenburo Meguri</h4>
+      <p>One wooden pass gets you into any three outdoor baths in the village.</p>
+      <span class="cost">¥1,500</span></div></li>
+    <li><span class="t">18:00</span><span class="dot" data-light="dusk"></span><div class="what">
+      <h4>Kurokawa after dark</h4>
+      <p>Wooden bathhouses stacked down a river gorge, lanterns on. Slow shutter, no flash — people are walking to the baths in yukata.</p></div></li>
+  </ul>
+  <div class="panels">
+    <div class="panel"><h5>Stay</h5><p>Kurokawa ryokan · <span class="amt">¥14,000</span></p></div>
+    <div class="panel"><h5>Car</h5><p>Picked up Yufuin, dropping Kumamoto Day 6</p></div>
+  </div>
+</section>
+
+<!-- DAY 4 -->
+<section class="day" id="d4">
+  <div class="day-head"><span class="day-num">04</span><h2 class="day-title">The caldera</h2></div>
+  <p class="day-route">KUROKAWA → DAIKANBŌ → MILK ROAD → KUSASENRI · CAR</p>
+  <ul class="tl">
+    <li><span class="t">05:30</span><span class="dot" data-light="night"></span><div class="what">
+      <h4>Drive to Daikanbō</h4>
+      <p>Forty minutes in the dark. Free parking at the top, then a ten-minute paved walk to the lookout.</p></div></li>
+    <li><span class="t">06:20</span><span class="dot" data-light="gold"></span><div class="what">
+      <h4>Sunrise over Mt Aso</h4>
+      <p>The north rim of one of the largest calderas on earth. Spring mornings often fill the basin with unkai — a sea of cloud, with the volcano peaks breaking through it. This is the best shot of the trip. It is also freezing and very windy: jacket, gloves, spare battery.</p></div></li>
+    <li><span class="t">08:30</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Milk Road</h4>
+      <p>Ridge road running along the crater rim. Slow drive, frequent stops.</p></div></li>
+    <li><span class="t">10:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Kusasenri</h4>
+      <p>A grass-floored crater with a shallow pond and horses grazing loose. Wide open and very exposed — the wind does not stop.</p>
+      <span class="cost">¥500 parking</span></div></li>
+    <li><span class="t">13:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Kamishikimi Kumanoimasu Shrine</h4>
+      <p>A forest staircase lined with moss-covered stone lanterns. Shade and soft light — the opposite of the morning, and a useful contrast in the set.</p></div></li>
+  </ul>
+  <div class="warn">
+    <h5>The main crater is often closed</h5>
+    <p>Nakadake vents volcanic gas and access gets shut with no notice — visitors found it closed in March 2026. Don't build the day around it. Daikanbō and Kusasenri stay open, and they're the better photographs regardless.</p>
+  </div>
+  <div class="panels">
+    <div class="panel"><h5>Stay</h5><p>Aso or Takamori · <span class="amt">¥8,000</span></p></div>
+    <div class="panel"><h5>Pack</h5><p>Windproof layer, gloves, spare battery — cold drains them</p></div>
+  </div>
+</section>
+
+<!-- DAY 5 -->
+<section class="day" id="d5">
+  <div class="day-head"><span class="day-num">05</span><h2 class="day-title">Down into the gorge</h2></div>
+  <p class="day-route">ASO → TAKACHIHO VIA ROUTE 325 · CAR</p>
+  <ul class="tl">
+    <li><span class="t">07:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Drive south</h4>
+      <p>An hour and fifteen on Route 325, out of the caldera and over into Miyazaki.</p></div></li>
+    <li><span class="t">08:30</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Takachiho Gorge — first boat</h4>
+      <p>Basalt walls, blue-green water, a waterfall dropping in beside you. Thirty minutes, you row it yourself. Take the earliest slot: it's calm at half eight and swamped by quarter to eleven.</p>
+      <span class="cost">~¥2,000</span></div></li>
+    <li><span class="t">10:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>The top path</h4>
+      <p>A kilometre along the rim for the view down onto Manai Falls — the angle you can't get from the boat.</p></div></li>
+    <li><span class="t">13:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Amano Iwato and Amano Yasukawara</h4>
+      <p>Walk from the shrine down to a river cave stacked with thousands of small stone cairns left by visitors. Dim, and worth a tripod.</p></div></li>
+    <li><span class="t">20:00</span><span class="dot" data-light="night"></span><div class="what">
+      <h4>Yokagura night dance</h4>
+      <p>Masked folk performance at Takachiho Shrine, running nightly, four centuries old. Low light and constant movement — push the ISO and accept the grain.</p>
+      <span class="cost">~¥1,000</span></div></li>
+  </ul>
+  <div class="panels">
+    <div class="panel"><h5>Stay</h5><p>Takachiho · <span class="amt">¥8,000</span></p></div>
+    <div class="panel"><h5>Book</h5><p>Boat slot online before you leave Thailand</p></div>
+  </div>
+</section>
+
+<!-- DAY 6 -->
+<section class="day" id="d6">
+  <div class="day-head"><span class="day-num">06</span><h2 class="day-title">Castle, then north</h2></div>
+  <p class="day-route">TAKACHIHO → KUMAMOTO → HAKATA · CAR, THEN SHINKANSEN</p>
+  <ul class="tl">
+    <li><span class="t">08:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Drive to Kumamoto</h4>
+      <p>Two hours back down out of the mountains.</p></div></li>
+    <li><span class="t">11:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Kumamoto Castle</h4>
+      <p>Black keep, sakura around the moat in late March. Last entry is 16:30. Signage is mostly Japanese — the city's app handles the translations.</p>
+      <span class="cost">¥800</span></div></li>
+    <li><span class="t">14:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Lunch</h4>
+      <p>Kumamoto ramen, or basashi if you want the thing you can't get at home.</p></div></li>
+    <li><span class="t">15:30</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Drop the car at Kumamoto Station</h4>
+      <p>Refuel first — returning it empty costs more than the petrol.</p></div></li>
+    <li><span class="t">16:30</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Shinkansen to Hakata</h4>
+      <p>Forty minutes for what took you six days to drive around.</p>
+      <span class="cost">~¥5,100</span></div></li>
+    <li><span class="t">18:00</span><span class="dot" data-light="gold"></span><div class="what">
+      <h4>Momochi Seaside</h4>
+      <p>Sun going down behind Fukuoka Tower, off the beach. Last golden hour of the trip.</p></div></li>
+  </ul>
+  <div class="panels">
+    <div class="panel"><h5>Stay</h5><p>Hakata · <span class="amt">¥6,000</span></p></div>
+    <div class="panel"><h5>Note</h5><p>One-way car drop fee applies — confirm at booking</p></div>
+  </div>
+</section>
+
+<!-- DAY 7 -->
+<section class="day" id="d7">
+  <div class="day-head"><span class="day-num">07</span><h2 class="day-title">Fly home</h2></div>
+  <p class="day-route">HAKATA → FUKUOKA AIRPORT</p>
+  <ul class="tl">
+    <li><span class="t">07:00</span><span class="dot" data-light="gold"></span><div class="what">
+      <h4>Ohori Park</h4>
+      <p>Sakura reflected in a lake in the middle of the city, empty at dawn. Cheap last frame if the blossom has landed.</p></div></li>
+    <li><span class="t">10:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Hakata Station</h4>
+      <p>Mentaiko and Hakata dolls, all under the station. No separate trip needed.</p></div></li>
+    <li><span class="t">12:00</span><span class="dot" data-light="day"></span><div class="what">
+      <h4>Airport</h4>
+      <p>Back on the subway you started on.</p></div></li>
+  </ul>
+  <div class="warn">
+    <h5>Allow extra time at the airport</h5>
+    <p>Domestic and international terminals sit on opposite sides of the runway, linked only by a shuttle bus. Add twenty minutes on top of whatever you'd normally allow.</p>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section class="closing" id="budget">
+  <h3 class="sec">What it costs</h3>
+  <table>
+    <thead><tr><th>Item</th><th class="n">JPY</th><th class="n">THB</th></tr></thead>
+    <tbody>
+      <tr><td>Flights, Bangkok ↔ Fukuoka</td><td class="n">—</td><td class="n">16,000</td></tr>
+      <tr><td>Accommodation, 6 nights</td><td class="n">54,000</td><td class="n">11,100</td></tr>
+      <tr><td>Rental car, 4 days incl. fuel, tolls, one-way fee</td><td class="n">35,000</td><td class="n">7,200</td></tr>
+      <tr><td>Trains and subway</td><td class="n">12,000</td><td class="n">2,500</td></tr>
+      <tr><td>Food, 7 days</td><td class="n">24,500</td><td class="n">5,000</td></tr>
+      <tr><td>Entries, onsen, boat, kagura</td><td class="n">8,000</td><td class="n">1,600</td></tr>
+      <tr><td>eSIM</td><td class="n">4,000</td><td class="n">800</td></tr>
+      <tr class="total"><td>Planned total</td><td class="n"></td><td class="n">44,200</td></tr>
+      <tr class="buffer"><td>Left against the 60,000 budget</td><td class="n"></td><td class="n">15,800</td></tr>
+    </tbody>
+  </table>
+  <p class="key-note">Converted at 1 THB ≈ 4.88 JPY. Re-check the rate before you book — a 5% move shifts the total by around 1,400 THB.</p>
+
+  <h3 class="sec" style="margin-top:52px">Book before you go</h3>
+  <ul class="checks">
+    <li>Yufuin no Mori seat<small>Sells out weeks ahead in sakura season</small></li>
+    <li>Takachiho Gorge boat, earliest slot<small>Online, well before you fly</small></li>
+    <li>Kurokawa and Yufuin ryokan<small>The two nights most likely to be full</small></li>
+    <li>Rental car, Yufuin pickup / Kumamoto drop<small>Confirm the one-way fee up front</small></li>
+    <li>International Driving Permit from the DLT<small>Japan accepts the Thai permit — apply a few weeks out</small></li>
+    <li>Fly mid-to-late March, not April<small>Songkran week spikes fares out of Bangkok, and Kyushu sakura peaks in late March anyway</small></li>
+  </ul>
+</section>
+
+<footer>Kyushu · 7 days · prices are estimates, verify before booking</footer>
+
+</main>
+</body>
+</html>

@@ -137,7 +137,7 @@ html = re.sub(
 )
 
 # ── 5. บันทึก ────────────────────────────────────────────────────────────
-html = re.sub(r'<!-- source:.*?-->', '', html)
+html = re.sub(r'\n?<!-- source:.*?-->\n?', '\n', html)
 html = html.replace('</head>', f'<!-- source:{xl.name} -->\n</head>', 1)
 HTML_PATH.write_text(html, encoding="utf-8")
 print(f"Done! Updated: {HTML_PATH.name}")

@@ -1,0 +1,864 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SAT Pub's Sheet 2 — Detailed Step-by-Step Solutions</title><style>
+:root{--bg:#F7F5EF;--card:#fff;--ink:#1f2a30;--soft:#5a6a70;--line:#e2ddd0;
+--acc:#2f6f63;--accs:#e6f0ec;--ans:#b54b2c;--anss:#fbeee7;--tip:#fff7dc;--tipl:#e0c96a;
+--know:#eef2fb;--knowl:#9fb3e0;--chk:#eaf6ea;--chkl:#8cc48c;--trap:#fdecec;--trapl:#e7a3a3}
+@media (prefers-color-scheme:dark){:root{--bg:#13171a;--card:#1b2126;--ink:#e7ece9;--soft:#9fb0ab;
+--line:#2c3431;--acc:#5fbfa9;--accs:#1d2c28;--ans:#e5855d;--anss:#2d211b;--tip:#2a2616;--tipl:#6b5d24;
+--know:#1b2233;--knowl:#3f5288;--chk:#1a2a1c;--chkl:#3f7a45;--trap:#2e1b1b;--trapl:#7a3a3a}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;line-height:1.65}
+.wrap{max-width:880px;margin:0 auto;padding:2.2rem 1rem 5rem}
+h1{font-family:Georgia,serif;font-weight:400;font-size:30px;line-height:1.2}
+.dek{color:var(--soft);margin:.5rem 0 .8rem;font-size:15px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;font-size:14px;color:var(--soft)}
+.how b{color:var(--ink)}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin:1rem 0 .5rem}
+.nav a,.qlink{font-size:13px;text-decoration:none;color:var(--acc);border:1px solid var(--line);background:var(--card);
+padding:.25rem .7rem;border-radius:999px;cursor:pointer}
+.nav a:hover,.qlink:hover{background:var(--accs)}
+.qnav{display:flex;flex-wrap:wrap;gap:4px;margin:.3rem 0 .6rem}
+.qlink{font-size:12px;padding:.1rem .5rem}
+h2{font-family:Georgia,serif;font-weight:400;font-size:24px;margin:2.4rem 0 .2rem;padding-top:.8rem;border-top:2px solid var(--acc);scroll-margin-top:10px}
+h2 small{display:block;font-family:inherit;font-size:13px;color:var(--soft)}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;margin:1rem 0;scroll-margin-top:10px}
+.hd{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem}
+.num{background:var(--acc);color:#fff;font-weight:700;font-size:13px;border-radius:6px;padding:.1rem .55rem}
+.tag{font-size:13px;color:var(--soft);font-weight:600}
+.pg{margin-left:auto;font-size:11px;color:var(--soft)}
+.stem{font-size:15px;background:var(--accs);border-radius:8px;padding:.7rem .9rem;margin-bottom:.8rem}
+.lbl{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:.8rem 0 .3rem;color:var(--acc)}
+.ask{font-size:15px}
+.know{background:var(--know);border-left:3px solid var(--knowl);border-radius:0 8px 8px 0;padding:.5rem .8rem;font-size:14.5px}
+ol.steps{margin:.2rem 0 .2rem 0;padding:0;list-style:none;counter-reset:st}
+ol.steps li{counter-increment:st;position:relative;padding:.45rem .6rem .45rem 2.6rem;margin:.35rem 0;
+border:1px solid var(--line);border-radius:8px;font-size:15px}
+ol.steps li::before{content:counter(st);position:absolute;left:.6rem;top:.55rem;font-size:12px;font-weight:700;
+color:#fff;background:var(--acc);border-radius:50%;width:1.45rem;height:1.45rem;line-height:1.45rem;text-align:center}
+.ans{display:inline-block;margin-top:.7rem;background:var(--anss);color:var(--ans);font-weight:700;
+border-radius:8px;padding:.35rem .9rem;font-size:16px}
+.box{margin-top:.6rem;border-radius:0 8px 8px 0;padding:.45rem .8rem;font-size:14px}
+.chk{background:var(--chk);border-left:3px solid var(--chkl)}
+.trap{background:var(--trap);border-left:3px solid var(--trapl)}
+.tip{background:var(--tip);border-left:3px solid var(--tipl)}
+.note{margin-top:.6rem;font-size:13.5px;color:var(--ans);font-weight:600}
+.key{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem;margin-top:2.4rem;font-size:14px}
+.key table{border-collapse:collapse;width:100%}
+.key td{padding:.25rem .4rem;border-bottom:1px solid var(--line);vertical-align:top}
+.top{position:fixed;right:16px;bottom:16px;background:var(--acc);color:#fff;text-decoration:none;
+font-size:13px;padding:.45rem .85rem;border-radius:999px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+@media print{.nav,.qnav,.top{display:none}.q{break-inside:avoid}}
+</style></head><body><div class="wrap">
+<h1 id="top">SAT Pub's Sheet 2 — Detailed Step-by-Step Solutions</h1>
+<p class="dek">All 51 questions from the 57-page sheet, explained slowly — every step and the reason for it.</p>
+<div class="how"><b>How each solution is organized:</b> ① the full question → ② <b>What is it asking?</b> in plain words → ③ <b>What you need to know</b> (the rule or formula) → ④ <b>numbered steps</b>, one idea each → ⑤ the <b>answer</b> → ⑥ a <b>check</b> → ⑦ <b>common mistakes</b> / why the other choices are wrong → ⑧ a <b>tip</b>.</div>
+<div class="nav">
+<a href="#s0" data-target="s0">Advanced Math — Nonlinear equations & systems</a>
+<a href="#s1" data-target="s1">Algebra — Linear equations, systems & inequalities</a>
+<a href="#s2" data-target="s2">Geometry — Angles, circles, triangles & trig</a>
+<a href="#s3" data-target="s3">Problem Solving & Data — Scatterplots and lines of best fit</a>
+<a href="#s4" data-target="s4">Advanced Math — Functions — exponential, quadratic, polynomial</a>
+</div>
+<h2 id="s0">Advanced Math<small>Nonlinear equations & systems · 2 questions</small></h2>
+<div class="qnav">
+<a class="qlink" href="#q0_0" data-target="q0_0">Q150</a>
+<a class="qlink" href="#q0_1" data-target="q0_1">Q14</a>
+</div>
+<div class="q" id="q0_0"><div class="hd"><span class="num">Q150</span><span class="tag">Rearranging a formula</span><span class="pg">PDF page 2</span></div>
+<div class="stem">During a 5-second time interval, the average acceleration <i>a</i>, in meters per second squared, of an object with an initial velocity of 12 meters per second is defined by the equation a = (v<sub>f</sub> − 12)/5, where v<sub>f</sub> is the final velocity in meters per second. If the equation is rewritten in the form v<sub>f</sub> = xa + y, where x and y are constants, what is the value of x?</div>
+<div class="lbl">What is it asking?</div><div class="ask">The formula currently gives <b>a</b> by itself. They want the SAME formula rearranged so that <b>v<sub>f</sub></b> is by itself. Then they want the number that multiplies <i>a</i>.</div>
+<div class="lbl">What you need to know</div><div class="know">To isolate a variable, undo the operations done to it in <b>reverse order</b>. Whatever you do to one side, you must do to the other side.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Look at what happens to v<sub>f</sub> in the formula a = (v<sub>f</sub> − 12)/5. First 12 is subtracted, THEN the result is divided by 5.</li>
+<li>Undo the LAST operation first. The last operation was "divide by 5", so multiply both sides by 5:<br>5 × a = 5 × (v<sub>f</sub> − 12)/5<br>5a = v<sub>f</sub> − 12</li>
+<li>Now undo "subtract 12" by adding 12 to both sides:<br>5a + 12 = v<sub>f</sub> − 12 + 12<br>5a + 12 = v<sub>f</sub></li>
+<li>Flip the sides so it reads the same way as the question: <b>v<sub>f</sub> = 5a + 12</b>.</li>
+<li>Compare with v<sub>f</sub> = <b>x</b>a + <b>y</b>. The number in front of <i>a</i> is 5, so x = 5 (and y = 12).</li>
+</ol><div class="ans">Answer: x = 5</div>
+<div class="box chk">✅ <b>Check:</b> Pick a = 2. Then v<sub>f</sub> = 5(2) + 12 = 22. Put back into the original: (22 − 12)/5 = 10/5 = 2 ✓</div>
+<div class="box tip">💡 <b>Tip:</b> Reverse order: the operation done LAST is undone FIRST — like taking off shoes before socks.</div>
+</div>
+<div class="q" id="q0_1"><div class="hd"><span class="num">Q14</span><span class="tag">Where two graphs intersect</span><span class="pg">PDF page 3</span></div>
+<div class="stem">In the xy-plane, the graph of y = 3x² − 14x intersects the graph of y = x at the points (0, 0) and (a, a). What is the value of a?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Two graphs cross at some points. One crossing is (0, 0). We need the x-value (also the y-value) of the OTHER crossing.</div>
+<div class="lbl">What you need to know</div><div class="know">At an intersection point, both equations give the <b>same y</b> for the same x. So you set the right-hand sides equal to each other.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Both equations start with "y =". At a crossing point the y-values match, so:<br>3x² − 14x = x</li>
+<li>This is a quadratic (it has x²). Get everything on one side so the other side is 0. Subtract x from both sides:<br>3x² − 14x − x = 0<br>3x² − 15x = 0</li>
+<li>Both terms contain 3x, so factor it out:<br>3x(x − 5) = 0</li>
+<li>A product equals zero only if one of the factors is zero:<br>3x = 0 → x = 0, &nbsp;or&nbsp; x − 5 = 0 → x = 5</li>
+<li>x = 0 gives the point (0, 0) that the question already told us. The OTHER point uses x = 5.</li>
+<li>Because the point is on y = x, its y-value equals its x-value: (5, 5). So a = 5.</li>
+</ol><div class="ans">Answer: a = 5</div>
+<div class="box chk">✅ <b>Check:</b> Put x = 5 into y = 3x² − 14x: 3(25) − 70 = 75 − 70 = 5. So (5, 5) is on both graphs ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> Do NOT divide both sides by x to "cancel" it — you would lose the solution x = 0. Always move everything to one side and factor.</div>
+<div class="box tip">💡 <b>Tip:</b> "Intersect", "meet", "cross" → set the two equations equal to each other.</div>
+</div>
+<h2 id="s1">Algebra<small>Linear equations, systems & inequalities · 9 questions</small></h2>
+<div class="qnav">
+<a class="qlink" href="#q1_0" data-target="q1_0">Q25</a>
+<a class="qlink" href="#q1_1" data-target="q1_1">Q28</a>
+<a class="qlink" href="#q1_2" data-target="q1_2">Q37</a>
+<a class="qlink" href="#q1_3" data-target="q1_3">Q77</a>
+<a class="qlink" href="#q1_4" data-target="q1_4">Q84</a>
+<a class="qlink" href="#q1_5" data-target="q1_5">Q116</a>
+<a class="qlink" href="#q1_6" data-target="q1_6">Q17</a>
+<a class="qlink" href="#q1_7" data-target="q1_7">Q58</a>
+<a class="qlink" href="#q1_8" data-target="q1_8">Q72</a>
+</div>
+<div class="q" id="q1_0"><div class="hd"><span class="num">Q25</span><span class="tag">Reading a linear equation</span><span class="pg">PDF page 5</span></div>
+<div class="stem">5G + 45R = 380. At a school fair, students can win colored tokens that are worth a different number of points depending on the color. One student won G green tokens and R red tokens worth a total of 380 points. The given equation represents this situation. How many more points is a red token worth than a green token?</div>
+<div class="lbl">What is it asking?</div><div class="ask">We must figure out how many points ONE green token is worth and how many ONE red token is worth, then subtract.</div>
+<div class="lbl">What you need to know</div><div class="know">In an equation like (price)(amount) + (price)(amount) = total, the number <b>in front of</b> each variable is the value of ONE item.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>G is the NUMBER of green tokens. If each green token is worth p points, the green tokens give p × G points in total.</li>
+<li>In the equation, the green part is 5G. So each green token is worth <b>5 points</b>.</li>
+<li>The red part is 45R. So each red token is worth <b>45 points</b>.</li>
+<li>The total 380 is just the student's total score — it is not needed for this question.</li>
+<li>"How many more" means subtract: 45 − 5 = 40.</li>
+</ol><div class="ans">Answer: 40</div>
+<div class="box chk">✅ <b>Check:</b> If the student had 1 green and 1 red token: 5 + 45 = 50 points, and the red one gave 40 more than the green one ✓</div>
+<div class="box tip">💡 <b>Tip:</b> Coefficient = value per item. Variable = how many items.</div>
+</div>
+<div class="q" id="q1_1"><div class="hd"><span class="num">Q28</span><span class="tag">Finding a line from a table</span><span class="pg">PDF page 6</span></div>
+<div class="stem">The table gives the coordinates of two points on a line in the xy-plane: (k, 13) and (k + 7, −15). The y-intercept of the line is (k − 5, b), where k and b are constants. What is the value of b?</div>
+<div class="lbl">What is it asking?</div><div class="ask">We have a line through two points that contain an unknown k. We need b, the y-value where the line crosses the y-axis.</div>
+<div class="lbl">What you need to know</div><div class="know"><b>Every</b> y-intercept has x-coordinate 0 (it sits on the y-axis). Slope = (change in y) ÷ (change in x).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The y-intercept is written as (k − 5, b). Any point on the y-axis has x = 0, so:<br>k − 5 = 0 → <b>k = 5</b>.</li>
+<li>Replace k with 5 in the table. The two points become (5, 13) and (5 + 7, −15) = (12, −15).</li>
+<li>Find the slope:<br>m = (−15 − 13) ÷ (12 − 5) = −28 ÷ 7 = <b>−4</b>.<br>This means every time x goes UP by 1, y goes DOWN by 4.</li>
+<li>Now go from the point (5, 13) back to x = 0. That is 5 steps to the LEFT.</li>
+<li>Going left is the opposite of going right, so instead of y going down 4 each step, y goes UP 4 each step: 5 × 4 = 20.</li>
+<li>So the y-value at x = 0 is 13 + 20 = 33. Therefore b = 33.</li>
+<li>(Algebra version: y − 13 = −4(x − 5) → y = −4x + 20 + 13 = −4x + 33. The constant 33 is the y-intercept.)</li>
+</ol><div class="ans">Answer: b = 33</div>
+<div class="box chk">✅ <b>Check:</b> Line y = −4x + 33. At x = 5: −20 + 33 = 13 ✓. At x = 12: −48 + 33 = −15 ✓</div>
+<div class="box tip">💡 <b>Tip:</b> Whenever a y-intercept is written with a variable x-coordinate, set that x-coordinate equal to 0.</div>
+</div>
+<div class="q" id="q1_2"><div class="hd"><span class="num">Q37</span><span class="tag">Finding a line from a table</span><span class="pg">PDF page 7</span></div>
+<div class="stem">The table shows two values of x and their corresponding values of y: (−18, −48) and (7, 52). In the xy-plane, the graph of the linear equation representing this relationship passes through the point (1/7, a). What is the value of a?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the equation of the line through the two points, then plug in x = 1/7 to get the y-value a.</div>
+<div class="lbl">What you need to know</div><div class="know">Slope m = (y₂ − y₁)/(x₂ − x₁). Point-slope form: y − y₁ = m(x − x₁).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Slope: m = (52 − (−48)) ÷ (7 − (−18)) = (52 + 48) ÷ (7 + 18) = 100 ÷ 25 = <b>4</b>.</li>
+<li>Use point (7, 52) in point-slope form: y − 52 = 4(x − 7).</li>
+<li>Distribute: y − 52 = 4x − 28.</li>
+<li>Add 52 to both sides: <b>y = 4x + 24</b>.</li>
+<li>Now plug in x = 1/7: a = 4 × (1/7) + 24 = 4/7 + 24.</li>
+<li>Write 24 as a fraction with denominator 7: 24 = 168/7.</li>
+<li>Add: a = 4/7 + 168/7 = 172/7.</li>
+</ol><div class="ans">Answer: D) 172/7</div>
+<div class="box chk">✅ <b>Check:</b> Check the other table point in y = 4x + 24: 4(−18) + 24 = −72 + 24 = −48 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A and B are negative — but the line has positive slope and y-intercept 24, so at x = 1/7 the value must be a bit more than 24. C (4/7) forgot to add the +24.</div>
+</div>
+<div class="q" id="q1_3"><div class="hd"><span class="num">Q77</span><span class="tag">Translating a line</span><span class="pg">PDF page 8</span></div>
+<div class="stem">For line h, the table shows three values of x and their corresponding values of y: (18, 130), (23, 160), (26, 178). Line k is the result of translating line h down 5 units in the xy-plane. What is the x-intercept of line k?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the equation of line h, shift it down 5 to get line k, then find where k crosses the x-axis (where y = 0).</div>
+<div class="lbl">What you need to know</div><div class="know">Translating a graph DOWN by 5 means subtracting 5 from every y-value: y = mx + b becomes y = mx + (b − 5). The slope does not change.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Slope of h using the first two points: (160 − 130) ÷ (23 − 18) = 30 ÷ 5 = <b>6</b>.</li>
+<li>Double-check with the third point: (178 − 160) ÷ (26 − 23) = 18 ÷ 3 = 6 ✓ (so it really is a line).</li>
+<li>Equation of h: y − 130 = 6(x − 18) → y = 6x − 108 + 130 → <b>y = 6x + 22</b>.</li>
+<li>Move the line down 5 units: subtract 5 from the constant. Line k: <b>y = 6x + 17</b>.</li>
+<li>x-intercept means y = 0: 0 = 6x + 17.</li>
+<li>Subtract 17: −17 = 6x. Divide by 6: x = −17/6.</li>
+<li>Write it as a point: (−17/6, 0).</li>
+</ol><div class="ans">Answer: D) (−17/6, 0)</div>
+<div class="box chk">✅ <b>Check:</b> 6 × (−17/6) + 17 = −17 + 17 = 0 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C (−11/3, 0) is the x-intercept of the ORIGINAL line h (6x + 22 = 0 → x = −11/3). That's the trap if you forget to shift down.</div>
+</div>
+<div class="q" id="q1_4"><div class="hd"><span class="num">Q84</span><span class="tag">Mixture problem</span><span class="pg">PDF page 9</span></div>
+<div class="stem">How many liters of a 25% saline solution must be added to 3 liters of a 10% saline solution to obtain a 15% saline solution?</div>
+<div class="lbl">What is it asking?</div><div class="ask">We mix a stronger solution (25%) with a weaker one (10%) to get something in between (15%). We need how much of the strong one to add.</div>
+<div class="lbl">What you need to know</div><div class="know">Amount of salt = (percent as a decimal) × (liters). The salt from each part adds up to the salt in the final mix.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Let x = liters of the 25% solution we add.</li>
+<li>Salt from the 25% solution: 0.25 × x = 0.25x liters of salt.</li>
+<li>Salt from the 10% solution: 0.10 × 3 = 0.3 liters of salt.</li>
+<li>Total volume after mixing: x + 3 liters. At 15%, it contains 0.15(x + 3) liters of salt.</li>
+<li>Salt in = salt out:<br>0.25x + 0.3 = 0.15(x + 3)</li>
+<li>Distribute on the right: 0.25x + 0.3 = 0.15x + 0.45.</li>
+<li>Subtract 0.15x from both sides: 0.10x + 0.3 = 0.45.</li>
+<li>Subtract 0.3: 0.10x = 0.15.</li>
+<li>Divide by 0.10: x = 1.5.</li>
+</ol><div class="ans">Answer: 1.5 liters</div>
+<div class="box chk">✅ <b>Check:</b> Salt: 0.25(1.5) + 0.3 = 0.375 + 0.3 = 0.675. Volume: 4.5 L. 0.675 ÷ 4.5 = 0.15 = 15% ✓</div>
+<div class="box tip">💡 <b>Tip:</b> Multiply both sides by 100 first to avoid decimals: 25x + 30 = 15x + 45 → 10x = 15.</div>
+</div>
+<div class="q" id="q1_5"><div class="hd"><span class="num">Q116</span><span class="tag">Perpendicular slope</span><span class="pg">PDF page 10</span></div>
+<div class="stem">Line p is defined by 4y + 8x = 6. Line r is perpendicular to line p in the xy-plane. What is the slope of line r?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the slope of line p, then use the perpendicular rule to get the slope of r.</div>
+<div class="lbl">What you need to know</div><div class="know">Slope is easiest to read in the form y = mx + b. Perpendicular lines have slopes that are <b>negative reciprocals</b> (flip the fraction AND change the sign). Their product is −1.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start with 4y + 8x = 6. We want y alone.</li>
+<li>Subtract 8x from both sides: 4y = −8x + 6.</li>
+<li>Divide every term by 4: y = −2x + 1.5.</li>
+<li>The slope of p is the coefficient of x: <b>m = −2</b>.</li>
+<li>Negative reciprocal of −2: write −2 as −2/1, flip it → −1/2, change the sign → +1/2.</li>
+<li>So the slope of r is 1/2.</li>
+</ol><div class="ans">Answer: 1/2 (or 0.5)</div>
+<div class="box chk">✅ <b>Check:</b> (−2) × (1/2) = −1 ✓ — that's the perpendicular test.</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> Common mistake: using 8 as the slope (forgetting to divide by 4) or only changing the sign (answer 2) or only flipping (answer −1/2).</div>
+</div>
+<div class="q" id="q1_6"><div class="hd"><span class="num">Q17</span><span class="tag">Writing an inequality</span><span class="pg">PDF page 11</span></div>
+<div class="stem">A team hosting an event to raise money for new uniforms plans to sell at least 140 tickets before this event and at least 220 tickets during this event to raise a total of at least $5,820 from all tickets sold. The price of a ticket during this event is $3 less than the price of a ticket before this event. Which inequality represents this situation, where x is the price, in dollars, of a ticket sold during this event?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Build an expression for the total money raised, then compare it to $5,820 using the right inequality sign.</div>
+<div class="lbl">What you need to know</div><div class="know">Money = price × number sold. "At least" means ≥ (that amount or more).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x = price of a ticket DURING the event (given).</li>
+<li>The during-price is $3 LESS than the before-price. So the before-price is $3 MORE than x: <b>x + 3</b>.</li>
+<li>Money from tickets before the event: 140 × (x + 3).</li>
+<li>Money from tickets during the event: 220 × x.</li>
+<li>Total money: 140(x + 3) + 220x.</li>
+<li>The team wants to raise "at least $5,820" → total ≥ 5,820.</li>
+<li>Inequality: 140(x + 3) + 220x ≥ 5,820.</li>
+</ol><div class="ans">Answer: B) 140(x + 3) + 220x ≥ 5,820</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C and D use (x − 3): that would make the before-price cheaper, which is backwards. A uses ≤, which would mean "at most".</div>
+</div>
+<div class="q" id="q1_7"><div class="hd"><span class="num">Q58</span><span class="tag">Checking points in an inequality</span><span class="pg">PDF page 12</span></div>
+<div class="stem">y &lt; 6x + 2. For which of the following tables are all the values of x and their corresponding values of y solutions to the given inequality?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Each choice is a table of (x, y) points. We need the table where EVERY point makes y &lt; 6x + 2 true.</div>
+<div class="lbl">What you need to know</div><div class="know">To test a point, plug in x, compute 6x + 2, and see whether y is strictly SMALLER. With "&lt;" (not "≤"), a point where y equals 6x + 2 does NOT count.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Test choice A, row 1: x = 3, y = 20. Compute 6(3) + 2 = 18 + 2 = 20.</li>
+<li>Is 20 &lt; 20? No — 20 is equal, not less. So this row fails.</li>
+<li>One failing row is enough to reject the whole table, so <b>A is wrong</b>.</li>
+<li>(Rows 2 and 3 of A also sit exactly on the line: 6(5) + 2 = 32 and 6(7) + 2 = 44 — all equal, none less.)</li>
+<li>For choices B, C, D do the same test on every row. The correct table is the one where every y is below 6x + 2.</li>
+</ol><div class="ans">Answer: Not A (see note)</div>
+<div class="box tip">💡 <b>Tip:</b> Strict inequality (&lt; or &gt;): points ON the boundary line are NOT solutions.</div>
+<div class="note">Note: Only choice A is visible in the screenshot — B, C and D were cut off, so the final letter can't be confirmed. Send the rest of the screenshot and it can be finished in one step.</div>
+</div>
+<div class="q" id="q1_8"><div class="hd"><span class="num">Q72</span><span class="tag">Budget inequality (maximum)</span><span class="pg">PDF page 13</span></div>
+<div class="stem">A small business owner budgets $2,200 to purchase candles. The owner must purchase a minimum of 200 candles to maintain the discounted pricing. If the owner pays $4.90 per candle to purchase small candles and $11.60 per candle to purchase large candles, what is the maximum number of large candles the owner can purchase to stay within the budget and maintain the discounted pricing?</div>
+<div class="lbl">What is it asking?</div><div class="ask">We want as many large candles as possible, while (1) total cost ≤ $2,200 and (2) total candles ≥ 200.</div>
+<div class="lbl">What you need to know</div><div class="know">Large candles are expensive, so to fit the most of them, spend as little as possible on small candles — buy only enough small candles to reach exactly 200 total.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Let L = number of large candles, S = number of small candles.</li>
+<li>Rules: S + L ≥ 200 (minimum candles) and 4.90S + 11.60L ≤ 2,200 (budget).</li>
+<li>Extra candles cost money without helping, so use exactly 200 total: S = 200 − L.</li>
+<li>Substitute into the budget: 4.90(200 − L) + 11.60L ≤ 2,200.</li>
+<li>Multiply out: 980 − 4.90L + 11.60L ≤ 2,200 → 980 + 6.70L ≤ 2,200.</li>
+<li>Subtract 980: 6.70L ≤ 1,220.</li>
+<li>Divide by 6.70: L ≤ 182.09…</li>
+<li>Candles must be whole numbers, and we cannot go OVER the budget, so round DOWN: L = 182.</li>
+</ol><div class="ans">Answer: 182</div>
+<div class="box chk">✅ <b>Check:</b> 182 large + 18 small = 200 candles. Cost: 182(11.60) + 18(4.90) = 2,111.20 + 88.20 = $2,199.40 ≤ $2,200 ✓. With 183 large + 17 small: 2,122.80 + 83.30 = $2,206.10 — over budget ✗</div>
+<div class="box tip">💡 <b>Tip:</b> "Maximum" in a budget problem → always round DOWN, even if the decimal is .9.</div>
+</div>
+<h2 id="s2">Geometry<small>Angles, circles, triangles & trig · 6 questions</small></h2>
+<div class="qnav">
+<a class="qlink" href="#q2_0" data-target="q2_0">Q95</a>
+<a class="qlink" href="#q2_1" data-target="q2_1">Q101</a>
+<a class="qlink" href="#q2_2" data-target="q2_2">Q53</a>
+<a class="qlink" href="#q2_3" data-target="q2_3">Q64</a>
+<a class="qlink" href="#q2_4" data-target="q2_4">Q67</a>
+<a class="qlink" href="#q2_5" data-target="q2_5">Q68</a>
+</div>
+<div class="q" id="q2_0"><div class="hd"><span class="num">Q95</span><span class="tag">Angles with parallel lines</span><span class="pg">PDF page 15</span></div>
+<div class="stem">A line intersects two parallel lines, forming four acute angles and four obtuse angles. The measure of one of the acute angles is (9x − 560)°. The sum of the measures of one of the acute angles and three of the obtuse angles is (−18x + w)°. What is the value of w?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Write the sum "one acute + three obtuse" in terms of x, then match it to −18x + w to find w.</div>
+<div class="lbl">What you need to know</div><div class="know">When a line crosses parallel lines, all 4 acute angles are equal and all 4 obtuse angles are equal. An acute angle and an obtuse angle next to each other form a straight line, so they add to <b>180°</b>.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Acute angle = (9x − 560)°. All acute angles have this size.</li>
+<li>Obtuse angle = 180 − (acute) = 180 − (9x − 560).</li>
+<li>Careful with the minus sign: 180 − 9x + 560 = <b>740 − 9x</b>.</li>
+<li>Sum of one acute and three obtuse:<br>(9x − 560) + 3(740 − 9x)</li>
+<li>Distribute the 3: 9x − 560 + 2,220 − 27x.</li>
+<li>Combine x-terms: 9x − 27x = −18x. Combine numbers: −560 + 2,220 = 1,660.</li>
+<li>Sum = −18x + 1,660. Compare with −18x + w → w = 1,660.</li>
+</ol><div class="ans">Answer: w = 1,660</div>
+<div class="box chk">✅ <b>Check:</b> The −18x part matches the question exactly, which confirms the setup is right.</div>
+<div class="box tip">💡 <b>Tip:</b> Parallel lines + transversal → only two angle sizes, and they are supplementary (add to 180°).</div>
+</div>
+<div class="q" id="q2_1"><div class="hd"><span class="num">Q101</span><span class="tag">Parallel lines — which sum is impossible</span><span class="pg">PDF page 16</span></div>
+<div class="stem">A line intersects two parallel lines, forming four acute angles and four obtuse angles. The measure of one of these eight angles is (7x − 250)°. The sum of the measures of four of the eight angles is k°. Which of the following could NOT be equivalent to k, for all values of x?</div>
+<div class="lbl">What is it asking?</div><div class="ask">List every possible sum of four angles, then find the answer choice that is NOT on the list.</div>
+<div class="lbl">What you need to know</div><div class="know">Only two sizes exist: call one a, then the other is 180 − a. Choosing 4 angles means choosing how many are size a (0 to 4).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Let a = 7x − 250. The other angle size is 180 − a = 180 − 7x + 250 = 430 − 7x.</li>
+<li>Case 4 of size a: 4a = 4(7x − 250) = <b>28x − 1,000</b>.</li>
+<li>Case 3a + 1(180 − a): = 2a + 180 = 14x − 500 + 180 = <b>14x − 320</b>. ← choice B</li>
+<li>Case 2a + 2(180 − a): = 360 (the a's cancel). ← choice D</li>
+<li>Case 1a + 3(180 − a): = 540 − 2a = 540 − 14x + 500 = <b>−14x + 1,040</b>.</li>
+<li>Case 4(180 − a): = 720 − 4a = 720 − 28x + 1,000 = <b>−28x + 1,720</b>. ← choice C</li>
+<li>Choice A is −14x + 1,540. The only sum with −14x is −14x + <b>1,040</b>, not 1,540. So A is impossible.</li>
+</ol><div class="ans">Answer: A) −14x + 1,540</div>
+<div class="box tip">💡 <b>Tip:</b> Organize by cases (0, 1, 2, 3, 4 of one type) so you never miss a possibility.</div>
+</div>
+<div class="q" id="q2_2"><div class="hd"><span class="num">Q53</span><span class="tag">Tangent lines to a circle</span><span class="pg">PDF page 17</span></div>
+<div class="stem">A circle has center O, and points A and U lie on the circle. Line segments AE and UE are tangent to the circle at points A and U, respectively. The distance between point O and point E is 510 centimeters and the distance between point O and point U is 78 centimeters. What is the area, in square centimeters, of quadrilateral OAEU?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the area of the 4-sided shape O–A–E–U formed by two radii and two tangent lines.</div>
+<div class="lbl">What you need to know</div><div class="know">A tangent line is always <b>perpendicular</b> to the radius at the touching point (90° angle). Two tangents from the same outside point are equal in length.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Draw it: O is the center, E is outside the circle, and AE and UE touch the circle at A and U.</li>
+<li>OU = 78 is a radius, so OA = 78 too.</li>
+<li>Because UE is tangent at U, angle OUE = 90°. So triangle OUE is a right triangle with hypotenuse OE = 510 and leg OU = 78.</li>
+<li>Pythagorean theorem for the other leg UE:<br>UE² = 510² − 78² = 260,100 − 6,084 = 254,016<br>UE = √254,016 = <b>504</b>.</li>
+<li>The line OE cuts the quadrilateral into two identical right triangles: OUE and OAE (same radius, same hypotenuse).</li>
+<li>Area of one right triangle = ½ × leg × leg = ½ × 78 × 504 = 19,656.</li>
+<li>Two triangles: 2 × 19,656 = 39,312.</li>
+</ol><div class="ans">Answer: 39,312 cm²</div>
+<div class="box chk">✅ <b>Check:</b> 78, 504, 510 is 6 × (13, 84, 85), a known right triangle: 13² + 84² = 169 + 7,056 = 7,225 = 85² ✓</div>
+<div class="box tip">💡 <b>Tip:</b> Tangent ⟂ radius. This turns almost every tangent problem into a right-triangle problem.</div>
+</div>
+<div class="q" id="q2_3"><div class="hd"><span class="num">Q64</span><span class="tag">Complementary angles in trig</span><span class="pg">PDF page 18</span></div>
+<div class="stem">Acute angle P has a measure of p radians, and acute angle T has a measure of t radians. The function g is defined by g(x) = p(8)<sup>x</sup> + 6t. If sin p = cos t, which of the following represents the value g(0) in terms of t?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Simplify g(0), then use sin p = cos t to replace p with something in terms of t.</div>
+<div class="lbl">What you need to know</div><div class="know">For acute angles, <b>sin p = cos t exactly when p + t = 90° = π/2 radians</b> (complementary angles). Also, any nonzero number to the power 0 equals 1.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Plug x = 0 into g: g(0) = p · 8<sup>0</sup> + 6t.</li>
+<li>8<sup>0</sup> = 1, so g(0) = p · 1 + 6t = p + 6t.</li>
+<li>sin p = cos t, and both angles are acute, so they are complementary: p + t = π/2.</li>
+<li>Solve for p: p = π/2 − t.</li>
+<li>Substitute: g(0) = (π/2 − t) + 6t.</li>
+<li>Combine the t-terms: −t + 6t = 5t. So g(0) = 5t + π/2.</li>
+</ol><div class="ans">Answer: D) 5t + π/2</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A and B come from treating 8<sup>0</sup> as 0 or forgetting to replace p. C uses π instead of π/2 (π radians = 180°, not 90°).</div>
+</div>
+<div class="q" id="q2_4"><div class="hd"><span class="num">Q67</span><span class="tag">Equilateral triangle height</span><span class="pg">PDF page 19</span></div>
+<div class="stem">What is the perimeter of an equilateral triangle with a height of 39√3?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Use the height to find the side length, then multiply by 3.</div>
+<div class="lbl">What you need to know</div><div class="know">The height of an equilateral triangle splits it into two 30-60-90 triangles. Height = (√3/2) × side. (Short leg = half the side, long leg = height = √3 × short leg.)</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Let s = side length. The height cuts the base in half, making a 30-60-90 triangle with short leg s/2.</li>
+<li>In a 30-60-90 triangle, the long leg = √3 × short leg. So height = √3 × (s/2).</li>
+<li>Set equal: √3 × (s/2) = 39√3.</li>
+<li>Divide both sides by √3: s/2 = 39.</li>
+<li>Multiply by 2: s = 78.</li>
+<li>Perimeter = 3 sides = 3 × 78 = 234.</li>
+</ol><div class="ans">Answer: C) 234</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A (117) is 3 × 39 — using the height number as if it were half the side. B and D keep a √3 that should have cancelled.</div>
+</div>
+<div class="q" id="q2_5"><div class="hd"><span class="num">Q68</span><span class="tag">Pythagorean theorem + simplifying roots</span><span class="pg">PDF page 20</span></div>
+<div class="stem">A right triangle has legs with lengths of 24 centimeters and 21 centimeters. If the length of this triangle's hypotenuse, in centimeters, can be written in the form 3√d, where d is an integer, what is the value of d?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the hypotenuse with the Pythagorean theorem, then simplify the square root into the form 3√d.</div>
+<div class="lbl">What you need to know</div><div class="know">a² + b² = c². To simplify √n, pull out the biggest perfect-square factor: √(9 × 113) = √9 × √113 = 3√113.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>c² = 24² + 21² = 576 + 441 = 1,017.</li>
+<li>c = √1,017.</li>
+<li>We need a 3 outside the root, so check if 9 divides 1,017: 1,017 ÷ 9 = 113 ✓.</li>
+<li>√1,017 = √(9 × 113) = √9 × √113 = 3√113.</li>
+<li>Compare with 3√d → d = 113.</li>
+</ol><div class="ans">Answer: d = 113</div>
+<div class="box chk">✅ <b>Check:</b> 3√113 ≈ 3 × 10.63 = 31.9, and √1,017 ≈ 31.9 ✓</div>
+</div>
+<h2 id="s3">Problem Solving & Data<small>Scatterplots and lines of best fit · 7 questions</small></h2>
+<div class="qnav">
+<a class="qlink" href="#q3_0" data-target="q3_0">Q6</a>
+<a class="qlink" href="#q3_1" data-target="q3_1">Q26</a>
+<a class="qlink" href="#q3_2" data-target="q3_2">Q42</a>
+<a class="qlink" href="#q3_3" data-target="q3_3">Q58</a>
+<a class="qlink" href="#q3_4" data-target="q3_4">Q62</a>
+<a class="qlink" href="#q3_5" data-target="q3_5">Q66</a>
+<a class="qlink" href="#q3_6" data-target="q3_6">Q70</a>
+</div>
+<div class="q" id="q3_0"><div class="hd"><span class="num">Q6</span><span class="tag">Line of best fit — choosing the equation</span><span class="pg">PDF page 22</span></div>
+<div class="stem">The scatterplot shows a company's ice cream sales d, in dollars, and the high temperature t, in degrees Celsius (°C), on 12 different days. A line of best fit for the data is also shown. Which of the following could be an equation of the line of best fit?<br>A) d = 0.03t + 402 &nbsp; B) d = 10t + 402 &nbsp; C) d = 33t + 300 &nbsp; D) d = 33t + 84</div>
+<div class="lbl">What is it asking?</div><div class="ask">Read the drawn line from the graph and match its slope and position to one equation.</div>
+<div class="lbl">What you need to know</div><div class="know">Every line d = mt + b has slope m = (change in d)/(change in t). Be careful: this graph's axes start at t = 10 and d = 300, NOT at 0, so the y-intercept can't be read directly.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Pick two points that sit ON the drawn line (not the dots). The line passes near (12, 480) and (25, 910).</li>
+<li>Slope = (910 − 480) ÷ (25 − 12) = 430 ÷ 13 ≈ 33. So sales rise about $33 per 1°C.</li>
+<li>A (slope 0.03) and B (slope 10) are far too small → eliminate them.</li>
+<li>C and D both have slope 33. Decide by testing a point. Use t = 12, where the line is about 480.</li>
+<li>C: 33(12) + 300 = 396 + 300 = 696 — the line is nowhere near 696 at t = 12 ✗</li>
+<li>D: 33(12) + 84 = 396 + 84 = 480 ✓</li>
+</ol><div class="ans">Answer: D) d = 33t + 84</div>
+<div class="box chk">✅ <b>Check:</b> D at t = 25: 33(25) + 84 = 825 + 84 = 909 ≈ 910 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C looks tempting because the bottom of the y-axis is labeled 300 — but that is not where t = 0; t = 0 is off the left edge of the graph.</div>
+</div>
+<div class="q" id="q3_1"><div class="hd"><span class="num">Q26</span><span class="tag">Line of best fit — choosing the equation</span><span class="pg">PDF page 23</span></div>
+<div class="stem">The scatterplot shows the size x (thousands of square feet) and the sale price y (thousands of dollars) of 25 houses for sale in Town H. Which of the following could be an equation for a line of best fit for the data?<br>A) y = 200x + 100 &nbsp; B) y = 100x + 100 &nbsp; C) y = 50x + 100 &nbsp; D) y = 100x</div>
+<div class="lbl">What is it asking?</div><div class="ask">Estimate the slope and intercept of the trend in the dots and match to a choice.</div>
+<div class="lbl">What you need to know</div><div class="know">Slope = rise ÷ run. All choices except D have the same intercept (100), so the slope decides most of it.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The dots go from roughly (1, 200) on the lower left to roughly (2.5, 350) on the upper right.</li>
+<li>Slope ≈ (350 − 200) ÷ (2.5 − 1) = 150 ÷ 1.5 = 100. So price rises about $100k per 1,000 sq ft.</li>
+<li>Choices with slope 100: B and D.</li>
+<li>Test x = 1 (a house of 1,000 sq ft, which sells for about $200k in the graph):</li>
+<li>B: 100(1) + 100 = 200 ✓ &nbsp;&nbsp; D: 100(1) = 100 ✗ (far below the dots).</li>
+</ol><div class="ans">Answer: B) y = 100x + 100</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A (slope 200) would reach 600 at x = 2.5 — off the top of the graph. C (slope 50) is too flat: only 225 at x = 2.5.</div>
+</div>
+<div class="q" id="q3_2"><div class="hd"><span class="num">Q42</span><span class="tag">Meaning of the slope</span><span class="pg">PDF page 24</span></div>
+<div class="stem">The scatterplot shows the numbers of grams of both total protein and total fat for eight sandwiches on a restaurant menu. The line of best fit for the data is also shown. According to the line of best fit, which of the following is closest to the predicted increase in total fat, in grams, for every increase of 1 gram in total protein?<br>A) 2.5 &nbsp; B) 2.0 &nbsp; C) 1.5 &nbsp; D) 1.0</div>
+<div class="lbl">What is it asking?</div><div class="ask">"Increase in fat for every 1 gram of protein" is exactly the definition of the slope.</div>
+<div class="lbl">What you need to know</div><div class="know">Slope = (change in y) ÷ (change in x). Use two points far apart on the line for accuracy.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x = protein (horizontal), y = fat (vertical).</li>
+<li>The line starts near (10, 17) and ends near (45, 73).</li>
+<li>Change in fat = 73 − 17 = 56. Change in protein = 45 − 10 = 35.</li>
+<li>Slope = 56 ÷ 35 = 1.6.</li>
+<li>Closest choice: 1.5.</li>
+</ol><div class="ans">Answer: C) 1.5</div>
+<div class="box tip">💡 <b>Tip:</b> "Increase in y for each increase of 1 in x" = slope. Every time.</div>
+</div>
+<div class="q" id="q3_3"><div class="hd"><span class="num">Q58</span><span class="tag">Using the slope for a bigger change</span><span class="pg">PDF page 25</span></div>
+<div class="stem">Each dot in the scatterplot represents the temperature and the number of people who visited a beach in Lagos, Nigeria, on one of 11 different days. The line of best fit for the data is also shown. The line of best fit has a slope of approximately 57. According to this estimate, how many additional people per day are predicted to visit the beach for each 5°C increase in average temperature?</div>
+<div class="lbl">What is it asking?</div><div class="ask">The slope gives the change for ONE degree. We need the change for FIVE degrees.</div>
+<div class="lbl">What you need to know</div><div class="know">Slope 57 means: +1°C → +57 people. For a change of n degrees, multiply: n × 57.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Slope ≈ 57 → each 1°C increase predicts 57 more people.</li>
+<li>5°C is five times as much.</li>
+<li>5 × 57 = 285.</li>
+</ol><div class="ans">Answer: 285</div>
+<div class="note">Note: Pages 25 and 26 are two screenshots of this same question (graph on one, text on the other).</div>
+</div>
+<div class="q" id="q3_4"><div class="hd"><span class="num">Q62</span><span class="tag">Interpreting the slope in context</span><span class="pg">PDF page 27</span></div>
+<div class="stem">The scatterplot shows the federal-mandated minimum wage every 10 years between 1940 and 2010. A line of best fit is shown, and its equation is y = 0.096x − 0.488. What does the line of best fit predict about the increase in the minimum wage over the 70-year period?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Explain what the slope 0.096 means, using the correct units.</div>
+<div class="lbl">What you need to know</div><div class="know">In y = mx + b, the slope m is the change in y for each increase of 1 in x. The units of x matter.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x = years since 1940. So x goes up by 1 when ONE year passes.</li>
+<li>y = minimum wage in dollars per hour.</li>
+<li>Slope 0.096 → each year the wage goes up about $0.096 on average.</li>
+<li>Choice A says exactly this.</li>
+</ol><div class="ans">Answer: A) Each year between 1940 and 2010, the average increase was 0.096 dollars</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C and D talk about "every 10 years" because the dots are 10 years apart — but x is still counted in single years. B and D use 0.49 / 0.488, which is the y-intercept, not the slope.</div>
+</div>
+<div class="q" id="q3_5"><div class="hd"><span class="num">Q66</span><span class="tag">Choosing a quadratic model</span><span class="pg">PDF page 28</span></div>
+<div class="stem">The scatterplot shows the amount of electric energy generated, in millions of megawatt-hours, by nuclear sources over a 10-year period. Of the following equations, which best models the data?<br>A) y = 1.674x² + 19.76x − 745.73<br>B) y = −1.674x² − 19.76x − 745.73<br>C) y = 1.674x² + 19.76x + 745.73<br>D) y = −1.674x² + 19.76x + 745.73</div>
+<div class="lbl">What is it asking?</div><div class="ask">Match the SHAPE and the STARTING VALUE of the dots to the signs in the equations.</div>
+<div class="lbl">What you need to know</div><div class="know">For y = ax² + bx + c: if a &lt; 0 the parabola opens DOWN (hill shape); c is the y-value at x = 0.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Look at the dots: they rise, level off around x = 7, then fall. That is a hill → opens DOWN → a must be <b>negative</b>. Eliminate A and C.</li>
+<li>At x = 0 the data is around 745 (positive, near the top of the graph). So c should be <b>+745.73</b>. Eliminate B (it has −745.73).</li>
+<li>Only D is left.</li>
+<li>Extra check: at the start the dots go UP, so the x-term should be positive: +19.76x ✓</li>
+</ol><div class="ans">Answer: D) y = −1.674x² + 19.76x + 745.73</div>
+<div class="box chk">✅ <b>Check:</b> D at x = 10: −167.4 + 197.6 + 745.73 ≈ 776 — matches the graph's level around year 10 ✓</div>
+</div>
+<div class="q" id="q3_6"><div class="hd"><span class="num">Q70</span><span class="tag">Exponential model — finding b</span><span class="pg">PDF page 29</span></div>
+<div class="stem">The scatterplot shows the relationship between two variables, x and y. An equation for the exponential model shown can be written as y = a(b)<sup>x</sup>, where a and b are positive constants. Which of the following is closest to the value of b?<br>A) 0.83 &nbsp; B) 1.83 &nbsp; C) 18.36 &nbsp; D) 126.35</div>
+<div class="lbl">What is it asking?</div><div class="ask">b is the growth/decay factor — what y gets multiplied by each time x goes up by 1.</div>
+<div class="lbl">What you need to know</div><div class="know">In y = a(b)<sup>x</sup>: if b &gt; 1 the graph goes UP (growth); if 0 &lt; b &lt; 1 it goes DOWN (decay). a is the starting value at x = 0.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The curve goes DOWN from left to right → decay → b must be between 0 and 1.</li>
+<li>Only A (0.83) is between 0 and 1. B, C, D are all bigger than 1 (they would be growth).</li>
+<li>Numeric check: the curve starts at about 125 (x = 0) and is about 10 at x = 14.</li>
+<li>125 × b<sup>14</sup> ≈ 10 → b<sup>14</sup> ≈ 0.08 → b ≈ 0.83 ✓</li>
+</ol><div class="ans">Answer: A) 0.83</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D (126.35) is actually the value of a (the starting height), not b.</div>
+</div>
+<h2 id="s4">Advanced Math<small>Functions — exponential, quadratic, polynomial · 27 questions</small></h2>
+<div class="qnav">
+<a class="qlink" href="#q4_0" data-target="q4_0">Q4</a>
+<a class="qlink" href="#q4_1" data-target="q4_1">Q14</a>
+<a class="qlink" href="#q4_2" data-target="q4_2">Q15</a>
+<a class="qlink" href="#q4_3" data-target="q4_3">Q17</a>
+<a class="qlink" href="#q4_4" data-target="q4_4">Q20</a>
+<a class="qlink" href="#q4_5" data-target="q4_5">Q21</a>
+<a class="qlink" href="#q4_6" data-target="q4_6">Q25</a>
+<a class="qlink" href="#q4_7" data-target="q4_7">Q28</a>
+<a class="qlink" href="#q4_8" data-target="q4_8">Q33</a>
+<a class="qlink" href="#q4_9" data-target="q4_9">Q37</a>
+<a class="qlink" href="#q4_10" data-target="q4_10">Q39</a>
+<a class="qlink" href="#q4_11" data-target="q4_11">Q44</a>
+<a class="qlink" href="#q4_12" data-target="q4_12">Q57</a>
+<a class="qlink" href="#q4_13" data-target="q4_13">Q62</a>
+<a class="qlink" href="#q4_14" data-target="q4_14">Q64</a>
+<a class="qlink" href="#q4_15" data-target="q4_15">Q65</a>
+<a class="qlink" href="#q4_16" data-target="q4_16">Q70</a>
+<a class="qlink" href="#q4_17" data-target="q4_17">Q71</a>
+<a class="qlink" href="#q4_18" data-target="q4_18">Q73</a>
+<a class="qlink" href="#q4_19" data-target="q4_19">Q75</a>
+<a class="qlink" href="#q4_20" data-target="q4_20">Q76</a>
+<a class="qlink" href="#q4_21" data-target="q4_21">Q78</a>
+<a class="qlink" href="#q4_22" data-target="q4_22">Q81</a>
+<a class="qlink" href="#q4_23" data-target="q4_23">Q86</a>
+<a class="qlink" href="#q4_24" data-target="q4_24">Q88</a>
+<a class="qlink" href="#q4_25" data-target="q4_25">Q89</a>
+<a class="qlink" href="#q4_26" data-target="q4_26">Q91</a>
+</div>
+<div class="q" id="q4_0"><div class="hd"><span class="num">Q4</span><span class="tag">Exponential growth model</span><span class="pg">PDF page 31</span></div>
+<div class="stem">A company has a newsletter. In January 2018, there were 1,300 customers subscribed to the newsletter. For the next 24 months after January 2018, the total number of customers subscribed to the newsletter each month was 7% greater than the total number subscribed the previous month. Which equation gives the total number of customers, c, subscribed m months after January 2018, where m ≤ 24?<br>A) c = 1,300(0.07)<sup>m</sup> &nbsp; B) c = 1,300(1.07)<sup>m</sup> &nbsp; C) c = 1,300(1.7)<sup>m</sup> &nbsp; D) c = 1,300(7)<sup>m</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">Build the equation: start at 1,300 and grow by 7% every month.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (r as a decimal).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Starting amount (m = 0, January 2018): 1,300. This goes in front.</li>
+<li>"7% greater than the previous month" means each month = 100% + 7% = 107% of the month before.</li>
+<li>107% as a decimal = 1.07. That is the growth factor.</li>
+<li>After m months, you multiply by 1.07 a total of m times: c = 1,300(1.07)<sup>m</sup>.</li>
+</ol><div class="ans">Answer: B) c = 1,300(1.07)<sup>m</sup></div>
+<div class="box chk">✅ <b>Check:</b> After 1 month: 1,300 × 1.07 = 1,391, which is 91 more = 7% of 1,300 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A (0.07) would shrink the list to almost nothing. C (1.7) means 70% growth. D (7) means ×7 every month.</div>
+</div>
+<div class="q" id="q4_1"><div class="hd"><span class="num">Q14</span><span class="tag">Doubling backward in time</span><span class="pg">PDF page 32</span></div>
+<div class="stem">The population of the town of Smithville doubled every 75 years from 1659 to 1959. The population of this town was 240,000 in 1959. What was the population of this town in 1659?</div>
+<div class="lbl">What is it asking?</div><div class="ask">We know the END value; we need the START value. Go backward by undoing the doublings.</div>
+<div class="lbl">What you need to know</div><div class="know">Undoing a doubling = halving. If it doubled n times, the start = end ÷ 2<sup>n</sup>.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Time span: 1959 − 1659 = 300 years.</li>
+<li>Number of doublings: 300 ÷ 75 = 4.</li>
+<li>So: start × 2 × 2 × 2 × 2 = 240,000 → start × 16 = 240,000.</li>
+<li>Start = 240,000 ÷ 16 = 15,000.</li>
+</ol><div class="ans">Answer: 15,000</div>
+<div class="box chk">✅ <b>Check:</b> 15,000 → 30,000 (1734) → 60,000 (1809) → 120,000 (1884) → 240,000 (1959) ✓</div>
+</div>
+<div class="q" id="q4_2"><div class="hd"><span class="num">Q15</span><span class="tag">Solving with a cube</span><span class="pg">PDF page 33</span></div>
+<div class="stem">The function p is defined by p(n) = 7n³. What is the value of n when p(n) is equal to 56?<br>A) 2 &nbsp; B) 8/3 &nbsp; C) 7 &nbsp; D) 8</div>
+<div class="lbl">What is it asking?</div><div class="ask">Set the function equal to 56 and solve for n.</div>
+<div class="lbl">What you need to know</div><div class="know">To undo a cube, take the cube root: if n³ = 8, then n = ∛8 = 2 (because 2 × 2 × 2 = 8).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Set p(n) = 56: 7n³ = 56.</li>
+<li>Divide both sides by 7: n³ = 8.</li>
+<li>Cube root of both sides: n = ∛8 = 2.</li>
+</ol><div class="ans">Answer: A) 2</div>
+<div class="box chk">✅ <b>Check:</b> 7 × 2³ = 7 × 8 = 56 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D (8) stops at n³ = 8 without taking the cube root.</div>
+</div>
+<div class="q" id="q4_3"><div class="hd"><span class="num">Q17</span><span class="tag">Absolute value function</span><span class="pg">PDF page 34</span></div>
+<div class="stem">The function f is defined by f(x) = |x − 4x|. What value of a satisfies f(5) − f(a) = −15?<br>A) −20 &nbsp; B) 5 &nbsp; C) 10 &nbsp; D) 45</div>
+<div class="lbl">What is it asking?</div><div class="ask">Compute f(5), use the equation to find what f(a) must be, then solve for a.</div>
+<div class="lbl">What you need to know</div><div class="know">|expression| is the distance from 0, so it is never negative: |−15| = 15. If |x| = 10, then x = 10 or x = −10.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Simplify inside first: x − 4x = −3x, so f(x) = |−3x| = 3|x|.</li>
+<li>f(5) = 3|5| = 15.</li>
+<li>Put into the equation: 15 − f(a) = −15.</li>
+<li>Subtract 15 from both sides: −f(a) = −30 → f(a) = 30.</li>
+<li>So 3|a| = 30 → |a| = 10 → a = 10 or a = −10.</li>
+<li>Only 10 appears in the choices.</li>
+</ol><div class="ans">Answer: C) 10</div>
+<div class="box chk">✅ <b>Check:</b> f(10) = |10 − 40| = |−30| = 30. Then 15 − 30 = −15 ✓</div>
+</div>
+<div class="q" id="q4_4"><div class="hd"><span class="num">Q20</span><span class="tag">Initial value of an exponential</span><span class="pg">PDF page 35</span></div>
+<div class="stem">y = 3,600(a)<sup>x</sup>. The given equation, where a is a positive constant, gives the predicted number of bacteria, y, in a growth medium x hours after the number of bacteria was initially measured. According to the equation, what was the predicted number of bacteria initially measured in the growth medium?</div>
+<div class="lbl">What is it asking?</div><div class="ask">"Initially" means at the very start, when no time has passed.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup>, the number a is the value when x = 0 — the starting (initial) amount — because b<sup>0</sup> = 1.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Initially → x = 0 hours.</li>
+<li>y = 3,600 × a<sup>0</sup>.</li>
+<li>Any positive number to the power 0 equals 1, so a<sup>0</sup> = 1.</li>
+<li>y = 3,600 × 1 = 3,600.</li>
+</ol><div class="ans">Answer: 3,600</div>
+<div class="box tip">💡 <b>Tip:</b> We never needed to know a — the starting value is always the number in front.</div>
+</div>
+<div class="q" id="q4_5"><div class="hd"><span class="num">Q21</span><span class="tag">Bouncing ball (repeated halving)</span><span class="pg">PDF page 36</span></div>
+<div class="stem">A rubber ball bounces upward one-half the height that it falls each time it hits the ground. If the ball was originally dropped from a distance of 20.0 feet above the ground, what was its maximum height above the ground, in feet, between the third and fourth time it hit the ground?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Track the height after each bounce and find the bounce that happens between hit #3 and hit #4.</div>
+<div class="lbl">What you need to know</div><div class="know">Each bounce reaches ½ of the height it fell from. So heights go 20 → 10 → 5 → 2.5 → …</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Dropped from 20 ft. It falls and hits the ground for the <b>1st time</b>.</li>
+<li>Bounces up to ½ × 20 = 10 ft, falls, hits the ground the <b>2nd time</b>.</li>
+<li>Bounces up to ½ × 10 = 5 ft, falls, hits the ground the <b>3rd time</b>.</li>
+<li>Bounces up to ½ × 5 = 2.5 ft, falls, hits the ground the <b>4th time</b>.</li>
+<li>The bounce BETWEEN the 3rd and 4th hit reaches 2.5 ft.</li>
+</ol><div class="ans">Answer: 2.5</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> 5 is the height between the 2nd and 3rd hits — the most common mistake.</div>
+<div class="box tip">💡 <b>Tip:</b> Draw a quick timeline of hits and bounces — it's easy to be off by one bounce.</div>
+</div>
+<div class="q" id="q4_6"><div class="hd"><span class="num">Q25</span><span class="tag">Interpreting a function value</span><span class="pg">PDF page 37</span></div>
+<div class="stem">A sample of a certain isotope takes 29 years to decay to half its original mass. The function s(t) = 184(0.5)<sup>t/29</sup> gives the approximate mass of this isotope, in grams, that remains t years after a 184-gram sample starts to decay. Which statement is the best interpretation of s(87) = 23 in this context?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Translate the math sentence s(87) = 23 into words.</div>
+<div class="lbl">What you need to know</div><div class="know">In s(t) = value, the number inside the brackets is the INPUT (here t = time in years) and the result is the OUTPUT (here the mass remaining in grams).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Inside the brackets: 87 → t = 87 years.</li>
+<li>Output: 23 → s = 23 grams remaining.</li>
+<li>Put together: "87 years after it starts to decay, about 23 grams of the sample remain."</li>
+<li>That matches choice A.</li>
+</ol><div class="ans">Answer: A) Approximately 23 grams of the sample remains 87 years after the sample starts to decay</div>
+<div class="box chk">✅ <b>Check:</b> 87 years = 3 half-lives (87 ÷ 29 = 3). 184 → 92 → 46 → 23 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B says the mass DECREASED BY 23 — but s(t) gives what REMAINS, not what was lost. C and D swap 87 and 23.</div>
+</div>
+<div class="q" id="q4_7"><div class="hd"><span class="num">Q28</span><span class="tag">Exponential decay model</span><span class="pg">PDF page 38</span></div>
+<div class="stem">For the function q, the value of q(x) decreases by 45% for every increase in the value of x by 1. If q(0) = 14, which equation defines q?<br>A) q(x) = 0.55(14)<sup>x</sup> &nbsp; B) q(x) = 1.45(14)<sup>x</sup> &nbsp; C) q(x) = 14(0.55)<sup>x</sup> &nbsp; D) q(x) = 14(1.45)<sup>x</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the starting value and the decay factor.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (r as a decimal).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>q(0) = 14 → start value is 14 (goes in front).</li>
+<li>Decreasing by 45% means you KEEP 100% − 45% = 55%.</li>
+<li>55% as a decimal = 0.55 → decay factor.</li>
+<li>q(x) = 14(0.55)<sup>x</sup>.</li>
+</ol><div class="ans">Answer: C) q(x) = 14(0.55)<sup>x</sup></div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D uses 1.45, which would be a 45% INCREASE. A and B put 14 as the base, which would mean multiplying by 14 each step.</div>
+</div>
+<div class="q" id="q4_8"><div class="hd"><span class="num">Q33</span><span class="tag">Interpreting the start value</span><span class="pg">PDF page 39</span></div>
+<div class="stem">f(x) = 4,000(0.75)<sup>x</sup>. An entomologist recommended a program to reduce a certain invasive beetle population in an area. The given function estimates this beetle species' population x years after 2012, where x ≤ 7. Which of the following is the best interpretation of 4,000 in this context?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Explain what the number 4,000 means in the story.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup>, the number a is the value when x = 0 — the starting (initial) amount — because b<sup>0</sup> = 1.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x = years after 2012. So x = 0 means the year 2012 itself.</li>
+<li>f(0) = 4,000 × 0.75<sup>0</sup> = 4,000 × 1 = 4,000.</li>
+<li>So 4,000 is the population at the start, in 2012.</li>
+</ol><div class="ans">Answer: A) The estimated initial beetle population for this species and area in 2012</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C and D describe the 0.75 (a 25% decrease each year), not the 4,000. B describes f(7).</div>
+</div>
+<div class="q" id="q4_9"><div class="hd"><span class="num">Q37</span><span class="tag">Quadratic word problem</span><span class="pg">PDF page 40</span></div>
+<div class="stem">The product of two positive integers is 546. If the first integer is 11 greater than twice the second integer, what is the smaller of the two integers?<br>A) 7 &nbsp; B) 14 &nbsp; C) 39 &nbsp; D) 78</div>
+<div class="lbl">What is it asking?</div><div class="ask">Write the relationship as an equation, solve it, and report the SMALLER number.</div>
+<div class="lbl">What you need to know</div><div class="know">"11 greater than twice s" → 2s + 11. "Product" → multiply. A quadratic can be solved by factoring, the quadratic formula, or testing the answer choices.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Let s = the second integer. Then the first = 2s + 11.</li>
+<li>Product = 546: s(2s + 11) = 546.</li>
+<li>Expand: 2s² + 11s = 546 → 2s² + 11s − 546 = 0.</li>
+<li>Quadratic formula: s = [−11 ± √(11² + 4·2·546)] ÷ 4 = [−11 ± √4,489] ÷ 4 = [−11 ± 67] ÷ 4.</li>
+<li>s = 56 ÷ 4 = 14 (the other value is negative, so ignore it).</li>
+<li>First integer = 2(14) + 11 = 39.</li>
+<li>The two integers are 14 and 39. The smaller is 14.</li>
+</ol><div class="ans">Answer: B) 14</div>
+<div class="box chk">✅ <b>Check:</b> 14 × 39 = 546 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C (39) is the LARGER integer — read the question carefully.</div>
+<div class="box tip">💡 <b>Tip:</b> Faster: test the choices. s = 14 → 2(14) + 11 = 39 → 14 × 39 = 546 ✓</div>
+</div>
+<div class="q" id="q4_10"><div class="hd"><span class="num">Q39</span><span class="tag">Matching a polynomial graph</span><span class="pg">PDF page 41</span></div>
+<div class="stem">Which of the following could be the equation of the graph shown in the xy-plane?<br>A) y = −(1/10)x(x − 4)(x + 5) &nbsp; B) y = −(1/10)x(x − 4)(x + 5)² &nbsp; C) y = −(1/10)x(x − 5)(x + 4) &nbsp; D) y = −(1/10)x(x − 5)²(x + 4)</div>
+<div class="lbl">What is it asking?</div><div class="ask">Use the x-intercepts and the way the graph behaves at each one to pick the equation.</div>
+<div class="lbl">What you need to know</div><div class="know">A zero at x = r gives a factor (x − r). If the graph CROSSES the x-axis there, the factor is to the 1st power. If it only TOUCHES and bounces back, the factor is SQUARED.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Read the x-intercepts: x = −5, x = 0, and x = 4.</li>
+<li>Zeros −5, 0, 4 → factors (x + 5), x, (x − 4). This eliminates C and D (they use 5 and −4).</li>
+<li>At x = −5 the graph comes up, touches the axis, and turns back down — it does NOT cross. That means (x + 5) is <b>squared</b>.</li>
+<li>At x = 0 and x = 4 the graph crosses → single factors.</li>
+<li>So the equation is y = −(1/10)x(x − 4)(x + 5)² → choice B.</li>
+<li>End behaviour check: highest power is x · x · x² = x⁴ (even) with a negative coefficient, so BOTH ends go down — matches the graph ✓</li>
+</ol><div class="ans">Answer: B) y = −(1/10)x(x − 4)(x + 5)²</div>
+<div class="box chk">✅ <b>Check:</b> x = −2 in B: −0.1 × (−2) × (−6) × 9 = −10.8 (below the axis, matches the small dip) ✓. x = 2: −0.1 × 2 × (−2) × 49 = 19.6 (the hump near 20) ✓</div>
+</div>
+<div class="q" id="q4_11"><div class="hd"><span class="num">Q44</span><span class="tag">Exponential decay model</span><span class="pg">PDF page 42</span></div>
+<div class="stem">A certain college had 3,000 students enrolled in 2015. The college predicts that after 2015, the number of students enrolled each year will be 2% less than the number of students enrolled the year before. Which of the following functions models the relationship between the number of students enrolled, f(x), and the number of years after 2015, x?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Start at 3,000 and shrink by 2% each year.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (r as a decimal).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start value (x = 0, year 2015): 3,000 → in front.</li>
+<li>2% less each year → keep 98% → factor 0.98.</li>
+<li>f(x) = 3,000(0.98)<sup>x</sup>.</li>
+</ol><div class="ans">Answer: D) f(x) = 3,000(0.98)<sup>x</sup></div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C uses 0.02, which would keep only 2% each year. A and B put 3,000 in the exponent base.</div>
+</div>
+<div class="q" id="q4_12"><div class="hd"><span class="num">Q57</span><span class="tag">Minimum of a quadratic</span><span class="pg">PDF page 43</span></div>
+<div class="stem">g(x) = x² + 55. What is the minimum value of the given function?<br>A) 0 &nbsp; B) 55 &nbsp; C) 110 &nbsp; D) 3,025</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the smallest output g(x) can ever produce.</div>
+<div class="lbl">What you need to know</div><div class="know">A square is never negative: x² ≥ 0, and its smallest value is 0 (when x = 0).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x² can be 0, 1, 4, 9, … but never below 0.</li>
+<li>The smallest possible x² is 0, at x = 0.</li>
+<li>Then g(0) = 0 + 55 = 55.</li>
+<li>For any other x, x² &gt; 0 makes g bigger than 55.</li>
+</ol><div class="ans">Answer: B) 55</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A (0) is the x-value where the minimum happens, not the minimum value itself.</div>
+</div>
+<div class="q" id="q4_13"><div class="hd"><span class="num">Q62</span><span class="tag">Starting height</span><span class="pg">PDF page 44</span></div>
+<div class="stem">An object is kicked from a platform. The equation h = −4.9t² + 7t + 9 represents this situation, where h is the height of the object above the ground, in meters, t seconds after it is kicked. Which number represents the height, in meters, from which the object was kicked?</div>
+<div class="lbl">What is it asking?</div><div class="ask">The moment it is kicked is time zero. Find h at that moment.</div>
+<div class="lbl">What you need to know</div><div class="know">The constant term of h = at² + bt + c is the value at t = 0 (the starting height).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Kicked → t = 0 seconds.</li>
+<li>h = −4.9(0)² + 7(0) + 9 = 0 + 0 + 9 = 9.</li>
+</ol><div class="ans">Answer: D) 9</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B (4.9) relates to gravity; C (7) is the starting upward speed.</div>
+</div>
+<div class="q" id="q4_14"><div class="hd"><span class="num">Q64</span><span class="tag">Minimum of a quadratic</span><span class="pg">PDF page 45</span></div>
+<div class="stem">p(x) + 57 = x². The given equation relates the value of x and its corresponding value of p(x) for the function p. What is the minimum value of the function p?<br>A) −3,249 &nbsp; B) −57 &nbsp; C) 57 &nbsp; D) 3,249</div>
+<div class="lbl">What is it asking?</div><div class="ask">Get p(x) by itself, then find its smallest possible value.</div>
+<div class="lbl">What you need to know</div><div class="know">x² ≥ 0 always, with smallest value 0.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Subtract 57 from both sides: p(x) = x² − 57.</li>
+<li>The smallest x² can be is 0 (at x = 0).</li>
+<li>Minimum p = 0 − 57 = −57.</li>
+</ol><div class="ans">Answer: B) −57</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C (57) forgets the minus sign when moving 57 across. A and D square 57 (57² = 3,249).</div>
+</div>
+<div class="q" id="q4_15"><div class="hd"><span class="num">Q65</span><span class="tag">Evaluating at 0</span><span class="pg">PDF page 46</span></div>
+<div class="stem">The function f is defined by f(x) = 270(0.1)<sup>x</sup>. What is the value of f(0)?<br>A) 0 &nbsp; B) 1 &nbsp; C) 27 &nbsp; D) 270</div>
+<div class="lbl">What is it asking?</div><div class="ask">Plug in x = 0.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup>, the number a is the value when x = 0 — the starting (initial) amount — because b<sup>0</sup> = 1.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>f(0) = 270 × (0.1)<sup>0</sup>.</li>
+<li>(0.1)<sup>0</sup> = 1.</li>
+<li>f(0) = 270 × 1 = 270.</li>
+</ol><div class="ans">Answer: D) 270</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C (27) is f(1) = 270 × 0.1. A thinks "power 0 = 0".</div>
+</div>
+<div class="q" id="q4_16"><div class="hd"><span class="num">Q70</span><span class="tag">Interpreting the start value</span><span class="pg">PDF page 47</span></div>
+<div class="stem">The function C defined by C(t) = 6(1.5)<sup>t</sup> gives the estimated number of clients at a certain business, where t is the number of weeks since the business opened. Which of the following is the best interpretation of the number 6 in this context?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Say what the 6 means in the story.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup>, the number a is the value when x = 0 — the starting (initial) amount — because b<sup>0</sup> = 1.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>t = weeks since opening, so t = 0 is the day it opened.</li>
+<li>C(0) = 6 × 1.5<sup>0</sup> = 6 × 1 = 6.</li>
+<li>So 6 is the estimated number of clients when the business opened.</li>
+</ol><div class="ans">Answer: A) The estimated number of clients when the business opened</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D describes the 1.5 (a 50% increase each week). B would be a fixed number added each week, which is linear, not exponential.</div>
+</div>
+<div class="q" id="q4_17"><div class="hd"><span class="num">Q71</span><span class="tag">Interpreting f(5)</span><span class="pg">PDF page 48</span></div>
+<div class="stem">The function f(x) = 206(1.034)<sup>x</sup> models the value, in dollars, of a certain bank account by the end of each year from 1957 through 1972, where x is the number of years after 1957. Which of the following is the best interpretation of "f(5) is approximately equal to 243" in this context?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Translate f(5) ≈ 243 into words.</div>
+<div class="lbl">What you need to know</div><div class="know">Input (inside the brackets) = years after 1957. Output = account value in dollars.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Input x = 5 → 5 years after 1957 → the year 1962.</li>
+<li>Output ≈ 243 → the account value is about $243.</li>
+<li>Together: "The value of the account is estimated to be about $243 in 1962."</li>
+</ol><div class="ans">Answer: B) The value of the bank account is estimated to be approximately 243 dollars in 1962</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A and C misread the 5 as "5 dollars" or "5 times". D says it increases BY 243, but f gives the total value.</div>
+</div>
+<div class="q" id="q4_18"><div class="hd"><span class="num">Q73</span><span class="tag">Quadratic from a table</span><span class="pg">PDF page 49</span></div>
+<div class="stem">For the quadratic function f, the table shows three values of x and their corresponding values of f(x): f(−1) = 10, f(0) = 14, f(1) = 20. Which equation defines f?<br>A) 3x² + 3x + 14 &nbsp; B) 5x² + x + 14 &nbsp; C) 9x² − x + 14 &nbsp; D) x² + 5x + 14</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the equation that produces all three table values.</div>
+<div class="lbl">What you need to know</div><div class="know">For f(x) = ax² + bx + c: f(0) = c. Plugging x = 1 and x = −1 gives two easy equations for a and b.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>f(0) = c = 14 (every choice has +14, good).</li>
+<li>f(1) = a + b + 14 = 20 → a + b = 6.</li>
+<li>f(−1) = a − b + 14 = 10 → a − b = −4.</li>
+<li>Add the two equations: 2a = 2 → a = 1.</li>
+<li>Then b = 6 − 1 = 5.</li>
+<li>f(x) = x² + 5x + 14 → choice D.</li>
+</ol><div class="ans">Answer: D) f(x) = x² + 5x + 14</div>
+<div class="box chk">✅ <b>Check:</b> D: f(−1) = 1 − 5 + 14 = 10 ✓, f(1) = 1 + 5 + 14 = 20 ✓</div>
+<div class="box tip">💡 <b>Tip:</b> Shortcut: just test x = 1 in each choice — only D gives 20.</div>
+</div>
+<div class="q" id="q4_19"><div class="hd"><span class="num">Q75</span><span class="tag">Interpreting the start value</span><span class="pg">PDF page 50</span></div>
+<div class="stem">f(x) = 3,000(0.75)<sup>x</sup>. A conservation scientist implemented a program to reduce the population of a certain species in an area. The given function estimates this species' population x years after 2008, where x ≤ 8. Which of the following is the best interpretation of 3,000 in this context?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Say what 3,000 represents.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup>, the number a is the value when x = 0 — the starting (initial) amount — because b<sup>0</sup> = 1.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x = years after 2008, so x = 0 is the year 2008.</li>
+<li>f(0) = 3,000 × 1 = 3,000.</li>
+<li>3,000 is the population at the start, in 2008.</li>
+</ol><div class="ans">Answer: D) The estimated initial population for this species and area in 2008</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A and B describe the 0.75 (a 25% yearly decrease). C describes f(8).</div>
+</div>
+<div class="q" id="q4_20"><div class="hd"><span class="num">Q76</span><span class="tag">Quadratic word problem</span><span class="pg">PDF page 51</span></div>
+<div class="stem">The product of a positive number x and the number that is 8 more than x is 180. What is the value of x?<br>A) 5 &nbsp; B) 10 &nbsp; C) 18 &nbsp; D) 36</div>
+<div class="lbl">What is it asking?</div><div class="ask">Translate the sentence into an equation and solve.</div>
+<div class="lbl">What you need to know</div><div class="know">"8 more than x" = x + 8. "Product" = multiply. Factor a quadratic by finding two numbers that multiply to c and add to b.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Equation: x(x + 8) = 180.</li>
+<li>Expand: x² + 8x = 180 → x² + 8x − 180 = 0.</li>
+<li>Find two numbers that multiply to −180 and add to +8: 18 and −10.</li>
+<li>Factor: (x + 18)(x − 10) = 0.</li>
+<li>x = −18 or x = 10. The number must be positive → x = 10.</li>
+</ol><div class="ans">Answer: B) 10</div>
+<div class="box chk">✅ <b>Check:</b> 10 × 18 = 180 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C (18) is the "8 more" number, not x.</div>
+</div>
+<div class="q" id="q4_21"><div class="hd"><span class="num">Q78</span><span class="tag">Area of a rectangle</span><span class="pg">PDF page 52</span></div>
+<div class="stem">The area A, in square centimeters, of a rectangular cutting board can be represented by the expression w(w + 9), where w is the width, in centimeters, of the cutting board. Which expression represents the length, in centimeters, of the cutting board?<br>A) w(w + 9) &nbsp; B) w &nbsp; C) 9 &nbsp; D) (w + 9)</div>
+<div class="lbl">What is it asking?</div><div class="ask">Identify which part of the area expression is the length.</div>
+<div class="lbl">What you need to know</div><div class="know">Area of a rectangle = width × length.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Area = w(w + 9) = w × (w + 9).</li>
+<li>We are told w is the width.</li>
+<li>Area = width × length, so the other factor, (w + 9), must be the length.</li>
+</ol><div class="ans">Answer: D) (w + 9)</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A is the whole area. B is the width. C (9) is only how much LONGER the length is than the width.</div>
+</div>
+<div class="q" id="q4_22"><div class="hd"><span class="num">Q81</span><span class="tag">Factor from x-intercepts</span><span class="pg">PDF page 53</span></div>
+<div class="stem">For the polynomial function f, the graph of y = f(x) in the xy-plane passes through the points (−5, 0), (1, 0), and (4, 0). Which of the following must be a factor of f(x)?<br>A) x + 1 &nbsp; B) x + 4 &nbsp; C) x − 1 &nbsp; D) x − 5</div>
+<div class="lbl">What is it asking?</div><div class="ask">Turn each x-intercept into a factor and see which one is listed.</div>
+<div class="lbl">What you need to know</div><div class="know">Factor Theorem: if f(r) = 0, then (x − r) is a factor. Note the sign FLIPS.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Zero at x = −5 → factor (x − (−5)) = (x + 5).</li>
+<li>Zero at x = 1 → factor (x − 1).</li>
+<li>Zero at x = 4 → factor (x − 4).</li>
+<li>Of the choices, only (x − 1) is on this list.</li>
+</ol><div class="ans">Answer: C) x − 1</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A, B, D all have the sign flipped the wrong way: x + 1 would mean a zero at −1, x + 4 a zero at −4, x − 5 a zero at +5.</div>
+</div>
+<div class="q" id="q4_23"><div class="hd"><span class="num">Q86</span><span class="tag">x-intercepts of a factored quadratic</span><span class="pg">PDF page 54</span></div>
+<div class="stem">f(x) = (x + 6)(x − 4). If the given function f is graphed in the xy-plane, where y = f(x), what is the x-coordinate of an x-intercept of the graph?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find where the graph crosses the x-axis (where y = 0).</div>
+<div class="lbl">What you need to know</div><div class="know">x-intercept means y = 0. A product is 0 when one of its factors is 0 (zero-product rule).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Set f(x) = 0: (x + 6)(x − 4) = 0.</li>
+<li>x + 6 = 0 → x = −6.</li>
+<li>x − 4 = 0 → x = 4.</li>
+<li>Either one is correct. Enter one answer.</li>
+</ol><div class="ans">Answer: 4 (or −6)</div>
+<div class="box tip">💡 <b>Tip:</b> Signs flip: (x + 6) gives −6, and (x − 4) gives +4.</div>
+</div>
+<div class="q" id="q4_24"><div class="hd"><span class="num">Q88</span><span class="tag">Exponential model from a table</span><span class="pg">PDF page 55</span></div>
+<div class="stem">Rosa opened a savings account at a bank. The table shows the exponential relationship between the time t, in years, since Rosa opened the account and the total amount n, in dollars, in the account: t = 0 → 604.00, t = 1 → 606.42, t = 2 → 608.84. If Rosa made no additional deposits or withdrawals, which of the following equations best represents the relationship between t and n?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the starting amount and the yearly growth factor.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (r as a decimal).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>At t = 0 the amount is $604.00 → start value 604 goes in front. Only choice C has 604 in front.</li>
+<li>Growth factor: 606.42 ÷ 604 ≈ 1.004 → a 0.4% increase per year → (1 + 0.004).</li>
+<li>n = 604(1 + 0.004)<sup>t</sup>.</li>
+</ol><div class="ans">Answer: C) n = 604(1 + 0.004)<sup>t</sup></div>
+<div class="box chk">✅ <b>Check:</b> 604 × 1.004 = 606.416 ≈ 606.42 ✓</div>
+</div>
+<div class="q" id="q4_25"><div class="hd"><span class="num">Q89</span><span class="tag">Interpreting m(330)</span><span class="pg">PDF page 56</span></div>
+<div class="stem">m(t) = −0.0274(t/7)² + 7.3873(t/7) + 75.032. The function m gives the predicted body mass m(t), in kilograms (kg), of a certain animal t days after it was born in a wildlife reserve, where t ≤ 390. Which of the following is the best interpretation of the statement "m(330) is approximately equal to 362" in this context?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Translate m(330) ≈ 362 into words.</div>
+<div class="lbl">What you need to know</div><div class="know">Inside the brackets = input (t = days after birth). Result = output (mass in kg).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Input t = 330 → 330 days after birth.</li>
+<li>Output ≈ 362 → predicted mass ≈ 362 kg.</li>
+<li>"The predicted body mass was about 362 kg 330 days after it was born."</li>
+</ol><div class="ans">Answer: B) The predicted body mass of the animal was approximately 362 kg 330 days after it was born</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> The t/7 inside the formula is a distraction (it converts days to weeks) — t itself is still 330 days. C uses 330/7.</div>
+</div>
+<div class="q" id="q4_26"><div class="hd"><span class="num">Q91</span><span class="tag">Exponential decay (depreciation)</span><span class="pg">PDF page 57</span></div>
+<div class="stem">The value of a certain fishing boat was $24,000 when it was purchased. Each year, the value of the fishing boat decreased by 20% of the previous year's value. Which equation represents this situation, where v is the value of the fishing boat, in dollars, and y is the number of years since the fishing boat was purchased?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Start at 24,000 and lose 20% every year.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (r as a decimal).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start value (y = 0): 24,000 → in front.</li>
+<li>Lose 20% → keep 80% → factor 0.8.</li>
+<li>v = 24,000(0.8)<sup>y</sup>.</li>
+</ol><div class="ans">Answer: C) v = 24,000(0.8)<sup>y</sup></div>
+<div class="box chk">✅ <b>Check:</b> After 1 year: 24,000 × 0.8 = 19,200 — a drop of 4,800, which is 20% of 24,000 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D (1.2) would be a 20% INCREASE. A and B put 24,000 in the base.</div>
+</div>
+<div class="key" id="key"><b>Answer key</b><table>
+<tr><td>p.2</td><td>Advanced Math</td><td><a class="qlink" href="#q0_0" data-target="q0_0">Q150</a></td><td><b>x = 5</b></td></tr>
+<tr><td>p.3</td><td>Advanced Math</td><td><a class="qlink" href="#q0_1" data-target="q0_1">Q14</a></td><td><b>a = 5</b></td></tr>
+<tr><td>p.5</td><td>Algebra</td><td><a class="qlink" href="#q1_0" data-target="q1_0">Q25</a></td><td><b>40</b></td></tr>
+<tr><td>p.6</td><td>Algebra</td><td><a class="qlink" href="#q1_1" data-target="q1_1">Q28</a></td><td><b>b = 33</b></td></tr>
+<tr><td>p.7</td><td>Algebra</td><td><a class="qlink" href="#q1_2" data-target="q1_2">Q37</a></td><td><b>D) 172/7</b></td></tr>
+<tr><td>p.8</td><td>Algebra</td><td><a class="qlink" href="#q1_3" data-target="q1_3">Q77</a></td><td><b>D) (−17/6, 0)</b></td></tr>
+<tr><td>p.9</td><td>Algebra</td><td><a class="qlink" href="#q1_4" data-target="q1_4">Q84</a></td><td><b>1.5 liters</b></td></tr>
+<tr><td>p.10</td><td>Algebra</td><td><a class="qlink" href="#q1_5" data-target="q1_5">Q116</a></td><td><b>1/2 (or 0.5)</b></td></tr>
+<tr><td>p.11</td><td>Algebra</td><td><a class="qlink" href="#q1_6" data-target="q1_6">Q17</a></td><td><b>B) 140(x + 3) + 220x ≥ 5,820</b></td></tr>
+<tr><td>p.12</td><td>Algebra</td><td><a class="qlink" href="#q1_7" data-target="q1_7">Q58</a></td><td><b>Not A (see note)</b></td></tr>
+<tr><td>p.13</td><td>Algebra</td><td><a class="qlink" href="#q1_8" data-target="q1_8">Q72</a></td><td><b>182</b></td></tr>
+<tr><td>p.15</td><td>Geometry</td><td><a class="qlink" href="#q2_0" data-target="q2_0">Q95</a></td><td><b>w = 1,660</b></td></tr>
+<tr><td>p.16</td><td>Geometry</td><td><a class="qlink" href="#q2_1" data-target="q2_1">Q101</a></td><td><b>A) −14x + 1,540</b></td></tr>
+<tr><td>p.17</td><td>Geometry</td><td><a class="qlink" href="#q2_2" data-target="q2_2">Q53</a></td><td><b>39,312 cm²</b></td></tr>
+<tr><td>p.18</td><td>Geometry</td><td><a class="qlink" href="#q2_3" data-target="q2_3">Q64</a></td><td><b>D) 5t + π/2</b></td></tr>
+<tr><td>p.19</td><td>Geometry</td><td><a class="qlink" href="#q2_4" data-target="q2_4">Q67</a></td><td><b>C) 234</b></td></tr>
+<tr><td>p.20</td><td>Geometry</td><td><a class="qlink" href="#q2_5" data-target="q2_5">Q68</a></td><td><b>d = 113</b></td></tr>
+<tr><td>p.22</td><td>Problem Solving & Data</td><td><a class="qlink" href="#q3_0" data-target="q3_0">Q6</a></td><td><b>D) d = 33t + 84</b></td></tr>
+<tr><td>p.23</td><td>Problem Solving & Data</td><td><a class="qlink" href="#q3_1" data-target="q3_1">Q26</a></td><td><b>B) y = 100x + 100</b></td></tr>
+<tr><td>p.24</td><td>Problem Solving & Data</td><td><a class="qlink" href="#q3_2" data-target="q3_2">Q42</a></td><td><b>C) 1.5</b></td></tr>
+<tr><td>p.25</td><td>Problem Solving & Data</td><td><a class="qlink" href="#q3_3" data-target="q3_3">Q58</a></td><td><b>285</b></td></tr>
+<tr><td>p.27</td><td>Problem Solving & Data</td><td><a class="qlink" href="#q3_4" data-target="q3_4">Q62</a></td><td><b>A) Each year between 1940 and 2010, the average increase was 0.096 dollars</b></td></tr>
+<tr><td>p.28</td><td>Problem Solving & Data</td><td><a class="qlink" href="#q3_5" data-target="q3_5">Q66</a></td><td><b>D) y = −1.674x² + 19.76x + 745.73</b></td></tr>
+<tr><td>p.29</td><td>Problem Solving & Data</td><td><a class="qlink" href="#q3_6" data-target="q3_6">Q70</a></td><td><b>A) 0.83</b></td></tr>
+<tr><td>p.31</td><td>Advanced Math</td><td><a class="qlink" href="#q4_0" data-target="q4_0">Q4</a></td><td><b>B) c = 1,300(1.07)<sup>m</sup></b></td></tr>
+<tr><td>p.32</td><td>Advanced Math</td><td><a class="qlink" href="#q4_1" data-target="q4_1">Q14</a></td><td><b>15,000</b></td></tr>
+<tr><td>p.33</td><td>Advanced Math</td><td><a class="qlink" href="#q4_2" data-target="q4_2">Q15</a></td><td><b>A) 2</b></td></tr>
+<tr><td>p.34</td><td>Advanced Math</td><td><a class="qlink" href="#q4_3" data-target="q4_3">Q17</a></td><td><b>C) 10</b></td></tr>
+<tr><td>p.35</td><td>Advanced Math</td><td><a class="qlink" href="#q4_4" data-target="q4_4">Q20</a></td><td><b>3,600</b></td></tr>
+<tr><td>p.36</td><td>Advanced Math</td><td><a class="qlink" href="#q4_5" data-target="q4_5">Q21</a></td><td><b>2.5</b></td></tr>
+<tr><td>p.37</td><td>Advanced Math</td><td><a class="qlink" href="#q4_6" data-target="q4_6">Q25</a></td><td><b>A) Approximately 23 grams of the sample remains 87 years after the sample starts to decay</b></td></tr>
+<tr><td>p.38</td><td>Advanced Math</td><td><a class="qlink" href="#q4_7" data-target="q4_7">Q28</a></td><td><b>C) q(x) = 14(0.55)<sup>x</sup></b></td></tr>
+<tr><td>p.39</td><td>Advanced Math</td><td><a class="qlink" href="#q4_8" data-target="q4_8">Q33</a></td><td><b>A) The estimated initial beetle population for this species and area in 2012</b></td></tr>
+<tr><td>p.40</td><td>Advanced Math</td><td><a class="qlink" href="#q4_9" data-target="q4_9">Q37</a></td><td><b>B) 14</b></td></tr>
+<tr><td>p.41</td><td>Advanced Math</td><td><a class="qlink" href="#q4_10" data-target="q4_10">Q39</a></td><td><b>B) y = −(1/10)x(x − 4)(x + 5)²</b></td></tr>
+<tr><td>p.42</td><td>Advanced Math</td><td><a class="qlink" href="#q4_11" data-target="q4_11">Q44</a></td><td><b>D) f(x) = 3,000(0.98)<sup>x</sup></b></td></tr>
+<tr><td>p.43</td><td>Advanced Math</td><td><a class="qlink" href="#q4_12" data-target="q4_12">Q57</a></td><td><b>B) 55</b></td></tr>
+<tr><td>p.44</td><td>Advanced Math</td><td><a class="qlink" href="#q4_13" data-target="q4_13">Q62</a></td><td><b>D) 9</b></td></tr>
+<tr><td>p.45</td><td>Advanced Math</td><td><a class="qlink" href="#q4_14" data-target="q4_14">Q64</a></td><td><b>B) −57</b></td></tr>
+<tr><td>p.46</td><td>Advanced Math</td><td><a class="qlink" href="#q4_15" data-target="q4_15">Q65</a></td><td><b>D) 270</b></td></tr>
+<tr><td>p.47</td><td>Advanced Math</td><td><a class="qlink" href="#q4_16" data-target="q4_16">Q70</a></td><td><b>A) The estimated number of clients when the business opened</b></td></tr>
+<tr><td>p.48</td><td>Advanced Math</td><td><a class="qlink" href="#q4_17" data-target="q4_17">Q71</a></td><td><b>B) The value of the bank account is estimated to be approximately 243 dollars in 1962</b></td></tr>
+<tr><td>p.49</td><td>Advanced Math</td><td><a class="qlink" href="#q4_18" data-target="q4_18">Q73</a></td><td><b>D) f(x) = x² + 5x + 14</b></td></tr>
+<tr><td>p.50</td><td>Advanced Math</td><td><a class="qlink" href="#q4_19" data-target="q4_19">Q75</a></td><td><b>D) The estimated initial population for this species and area in 2008</b></td></tr>
+<tr><td>p.51</td><td>Advanced Math</td><td><a class="qlink" href="#q4_20" data-target="q4_20">Q76</a></td><td><b>B) 10</b></td></tr>
+<tr><td>p.52</td><td>Advanced Math</td><td><a class="qlink" href="#q4_21" data-target="q4_21">Q78</a></td><td><b>D) (w + 9)</b></td></tr>
+<tr><td>p.53</td><td>Advanced Math</td><td><a class="qlink" href="#q4_22" data-target="q4_22">Q81</a></td><td><b>C) x − 1</b></td></tr>
+<tr><td>p.54</td><td>Advanced Math</td><td><a class="qlink" href="#q4_23" data-target="q4_23">Q86</a></td><td><b>4 (or −6)</b></td></tr>
+<tr><td>p.55</td><td>Advanced Math</td><td><a class="qlink" href="#q4_24" data-target="q4_24">Q88</a></td><td><b>C) n = 604(1 + 0.004)<sup>t</sup></b></td></tr>
+<tr><td>p.56</td><td>Advanced Math</td><td><a class="qlink" href="#q4_25" data-target="q4_25">Q89</a></td><td><b>B) The predicted body mass of the animal was approximately 362 kg 330 days after it was born</b></td></tr>
+<tr><td>p.57</td><td>Advanced Math</td><td><a class="qlink" href="#q4_26" data-target="q4_26">Q91</a></td><td><b>C) v = 24,000(0.8)<sup>y</sup></b></td></tr>
+</table></div></div><a class="top" href="#top" data-target="top">↑ Top</a>
+<script>
+document.querySelectorAll('[data-target]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var el = document.getElementById(a.getAttribute('data-target'));
+    if (el) { e.preventDefault(); el.scrollIntoView({block:'start'}); }
+  });
+});
+</script></body></html>

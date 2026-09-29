@@ -1,0 +1,717 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SAT Pub's Sheet 2 (Part 2) — Detailed Step-by-Step Solutions</title><style>
+:root{--bg:#F7F5EF;--card:#fff;--ink:#1f2a30;--soft:#5a6a70;--line:#e2ddd0;
+--acc:#2f6f63;--accs:#e6f0ec;--ans:#b54b2c;--anss:#fbeee7;--tip:#fff7dc;--tipl:#e0c96a;
+--know:#eef2fb;--knowl:#9fb3e0;--chk:#eaf6ea;--chkl:#8cc48c;--trap:#fdecec;--trapl:#e7a3a3}
+@media (prefers-color-scheme:dark){:root{--bg:#13171a;--card:#1b2126;--ink:#e7ece9;--soft:#9fb0ab;
+--line:#2c3431;--acc:#5fbfa9;--accs:#1d2c28;--ans:#e5855d;--anss:#2d211b;--tip:#2a2616;--tipl:#6b5d24;
+--know:#1b2233;--knowl:#3f5288;--chk:#1a2a1c;--chkl:#3f7a45;--trap:#2e1b1b;--trapl:#7a3a3a}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;line-height:1.65}
+.wrap{max-width:880px;margin:0 auto;padding:2.2rem 1rem 5rem}
+h1{font-family:Georgia,serif;font-weight:400;font-size:30px;line-height:1.2}
+.dek{color:var(--soft);margin:.5rem 0 .8rem;font-size:15px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;font-size:14px;color:var(--soft)}
+.how b{color:var(--ink)}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin:1rem 0 .5rem}
+.nav a,.qlink{font-size:13px;text-decoration:none;color:var(--acc);border:1px solid var(--line);background:var(--card);
+padding:.25rem .7rem;border-radius:999px;cursor:pointer}
+.nav a:hover,.qlink:hover{background:var(--accs)}
+.qnav{display:flex;flex-wrap:wrap;gap:4px;margin:.3rem 0 .6rem}
+.qlink{font-size:12px;padding:.1rem .5rem}
+h2{font-family:Georgia,serif;font-weight:400;font-size:24px;margin:2.4rem 0 .2rem;padding-top:.8rem;border-top:2px solid var(--acc);scroll-margin-top:10px}
+h2 small{display:block;font-family:inherit;font-size:13px;color:var(--soft)}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;margin:1rem 0;scroll-margin-top:10px}
+.hd{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem}
+.num{background:var(--acc);color:#fff;font-weight:700;font-size:13px;border-radius:6px;padding:.1rem .55rem}
+.tag{font-size:13px;color:var(--soft);font-weight:600}
+.pg{margin-left:auto;font-size:11px;color:var(--soft)}
+.stem{font-size:15px;background:var(--accs);border-radius:8px;padding:.7rem .9rem;margin-bottom:.8rem}
+.lbl{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:.8rem 0 .3rem;color:var(--acc)}
+.ask{font-size:15px}
+.know{background:var(--know);border-left:3px solid var(--knowl);border-radius:0 8px 8px 0;padding:.5rem .8rem;font-size:14.5px}
+ol.steps{margin:.2rem 0 .2rem 0;padding:0;list-style:none;counter-reset:st}
+ol.steps li{counter-increment:st;position:relative;padding:.45rem .6rem .45rem 2.6rem;margin:.35rem 0;
+border:1px solid var(--line);border-radius:8px;font-size:15px}
+ol.steps li::before{content:counter(st);position:absolute;left:.6rem;top:.55rem;font-size:12px;font-weight:700;
+color:#fff;background:var(--acc);border-radius:50%;width:1.45rem;height:1.45rem;line-height:1.45rem;text-align:center}
+.ans{display:inline-block;margin-top:.7rem;background:var(--anss);color:var(--ans);font-weight:700;
+border-radius:8px;padding:.35rem .9rem;font-size:16px}
+.box{margin-top:.6rem;border-radius:0 8px 8px 0;padding:.45rem .8rem;font-size:14px}
+.chk{background:var(--chk);border-left:3px solid var(--chkl)}
+.trap{background:var(--trap);border-left:3px solid var(--trapl)}
+.tip{background:var(--tip);border-left:3px solid var(--tipl)}
+.note{margin-top:.6rem;font-size:13.5px;color:var(--ans);font-weight:600}
+.key{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem;margin-top:2.4rem;font-size:14px}
+.key table{border-collapse:collapse;width:100%}
+.key td{padding:.25rem .4rem;border-bottom:1px solid var(--line);vertical-align:top}
+.top{position:fixed;right:16px;bottom:16px;background:var(--acc);color:#fff;text-decoration:none;
+font-size:13px;padding:.45rem .85rem;border-radius:999px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+@media print{.nav,.qnav,.top{display:none}.q{break-inside:avoid}}
+</style></head><body><div class="wrap">
+<h1 id="top">SAT Pub's Sheet 2 (Part 2) — Detailed Step-by-Step Solutions</h1>
+<p class="dek">All 46 questions from the 47-page sheet (Advanced Math — Functions), explained slowly — every step and the reason for it.</p>
+<div class="how"><b>How each solution is organized:</b> ① the full question → ② <b>What is it asking?</b> in plain words → ③ <b>What you need to know</b> (the rule or formula) → ④ <b>numbered steps</b>, one idea each → ⑤ the <b>answer</b> → ⑥ a <b>check</b> → ⑦ <b>common mistakes</b> / why the other choices are wrong → ⑧ a <b>tip</b>.</div>
+<div class="nav">
+<a href="#s0" data-target="s0">Exponential functions — Growth, decay, doubling and reading the numbers in the formula</a>
+<a href="#s1" data-target="s1">Quadratic & polynomial functions — Vertex, intercepts, zeros and graphs</a>
+<a href="#s2" data-target="s2">Other functions & interpretation — Rectangles, rational functions, transformations</a>
+</div>
+<h2 id="s0">Exponential functions<small>Growth, decay, doubling and reading the numbers in the formula · 19 questions</small></h2>
+<div class="qnav">
+<a class="qlink" href="#q0_0" data-target="q0_0">Q99</a>
+<a class="qlink" href="#q0_1" data-target="q0_1">Q106</a>
+<a class="qlink" href="#q0_2" data-target="q0_2">Q112</a>
+<a class="qlink" href="#q0_3" data-target="q0_3">Q115</a>
+<a class="qlink" href="#q0_4" data-target="q0_4">Q118</a>
+<a class="qlink" href="#q0_5" data-target="q0_5">Q120</a>
+<a class="qlink" href="#q0_6" data-target="q0_6">Q121</a>
+<a class="qlink" href="#q0_7" data-target="q0_7">Q129</a>
+<a class="qlink" href="#q0_8" data-target="q0_8">Q131</a>
+<a class="qlink" href="#q0_9" data-target="q0_9">Q135</a>
+<a class="qlink" href="#q0_10" data-target="q0_10">Q150</a>
+<a class="qlink" href="#q0_11" data-target="q0_11">Q152</a>
+<a class="qlink" href="#q0_12" data-target="q0_12">Q161</a>
+<a class="qlink" href="#q0_13" data-target="q0_13">Q162</a>
+<a class="qlink" href="#q0_14" data-target="q0_14">Q169</a>
+<a class="qlink" href="#q0_15" data-target="q0_15">Q177</a>
+<a class="qlink" href="#q0_16" data-target="q0_16">Q184</a>
+<a class="qlink" href="#q0_17" data-target="q0_17">Q188</a>
+<a class="qlink" href="#q0_18" data-target="q0_18">Q217</a>
+</div>
+<div class="q" id="q0_0"><div class="hd"><span class="num">Q99</span><span class="tag">Building an exponential model</span><span class="pg">PDF page 2</span></div>
+<div class="stem">There were no jackrabbits in Australia before 1788 when 24 jackrabbits were introduced. By 1920 the population of jackrabbits had reached 10 billion. If the population had grown exponentially, this would correspond to a 16.2% increase, on average, in the population each year. Which of the following functions best models the population p(t) of jackrabbits t years after 1788?<br>A) p(t) = 1.162(24)<sup>t</sup> &nbsp; B) p(t) = 24(2)<sup>1.162t</sup> &nbsp; C) p(t) = 24(1.162)<sup>t</sup> &nbsp; D) p(t) = (24 · 1.162)<sup>t</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">Write the equation that starts at 24 rabbits and grows 16.2% every year.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (write r as a decimal). The start value is the number in front.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Starting amount (t = 0, the year 1788): 24 rabbits. This number goes in front.</li>
+<li>"16.2% increase each year" means each year is 100% + 16.2% = 116.2% of the year before.</li>
+<li>116.2% as a decimal is 1.162. That is the growth factor.</li>
+<li>After t years you multiply by 1.162 a total of t times: p(t) = 24(1.162)<sup>t</sup>.</li>
+<li>The 10 billion in 1920 is just background; it isn't needed to pick the form.</li>
+</ol><div class="ans">Answer: C) p(t) = 24(1.162)<sup>t</sup></div>
+<div class="box chk">✅ <b>Check:</b> At t = 0: 24 × 1.162<sup>0</sup> = 24 × 1 = 24 rabbits ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A swaps the start and the factor. B uses base 2 (that is doubling, not 16.2%). D puts the 24 inside the power, so t = 0 would give 1 rabbit.</div>
+</div>
+<div class="q" id="q0_1"><div class="hd"><span class="num">Q106</span><span class="tag">Growth that happens every 2 days</span><span class="pg">PDF page 5</span></div>
+<div class="stem">On April 1, there were 233 views of an advertisement posted on a website. Every 2 days after April 1, the number of views of the advertisement had increased by 70% of the number of views 2 days earlier. The function f gives the predicted number of views x days after April 1. Which equation defines f?<br>A) f(x) = 233(0.70)<sup>x/2</sup> &nbsp; B) f(x) = 233(0.70)<sup>2x</sup> &nbsp; C) f(x) = 233(1.70)<sup>x/2</sup> &nbsp; D) f(x) = 233(1.70)<sup>2x</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">Build the model: start at 233 and grow by 70% once every 2 days.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (write r as a decimal). The start value is the number in front. If the growth happens once every k days, the exponent is x/k (the number of k-day periods that have passed).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start (x = 0, April 1): 233 → goes in front.</li>
+<li>Increase of 70% → multiply by 1 + 0.70 = 1.70. This removes A and B (0.70 would be a 70% drop).</li>
+<li>How many times do we multiply? Once every 2 days. After x days, that is x ÷ 2 times.</li>
+<li>So the exponent is x/2: f(x) = 233(1.70)<sup>x/2</sup>.</li>
+</ol><div class="ans">Answer: C) f(x) = 233(1.70)<sup>x/2</sup></div>
+<div class="box chk">✅ <b>Check:</b> After 2 days: 233 × 1.70<sup>1</sup> = 396.1, which is 70% more than 233 ✓. With D, after 2 days you would get 233 × 1.70<sup>4</sup> — far too big.</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D uses 2x, which means growing twice EVERY day instead of once every 2 days.</div>
+</div>
+<div class="q" id="q0_2"><div class="hd"><span class="num">Q112</span><span class="tag">What the model predicts</span><span class="pg">PDF page 7</span></div>
+<div class="stem">N(d) = 115(0.90)<sup>d</sup>. The function N defined above can be used to model the number of species of brachiopods at various ocean depths d, where d is in hundreds of meters. Which of the following does the model predict?<br>A) For every increase in depth by 1 meter, the number of brachiopod species decreases by 115.<br>B) For every increase in depth by 1 meter, the number of brachiopod species decreases by 10%.<br>C) For every increase in depth by 100 meters, the number of brachiopod species decreases by 115.<br>D) For every increase in depth by 100 meters, the number of brachiopod species decreases by 10%.</div>
+<div class="lbl">What is it asking?</div><div class="ask">Explain in words what happens to the number of species as the depth grows.</div>
+<div class="lbl">What you need to know</div><div class="know">Factor 0.90 = keep 90% = lose 10% each time the exponent grows by 1. Watch the units: d = 1 means 100 meters here.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The factor is 0.90. Keeping 90% means a <b>10% decrease</b> each step. This removes A and C (115 is the starting number, not the change).</li>
+<li>Each step is "d increases by 1".</li>
+<li>d is measured in hundreds of meters, so d increasing by 1 means the depth increases by <b>100 meters</b>.</li>
+<li>So: every 100 meters deeper, the number of species drops by 10%.</li>
+</ol><div class="ans">Answer: D) For every increase in depth by 100 meters, the number of species decreases by 10%</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B has the right 10% but the wrong unit (1 meter). The question tells you d is in hundreds of meters.</div>
+</div>
+<div class="q" id="q0_3"><div class="hd"><span class="num">Q115</span><span class="tag">Starting value</span><span class="pg">PDF page 8</span></div>
+<div class="stem">y = 7,400(0.87)<sup>x</sup>. The given equation estimates the value, in dollars, of a certain piece of equipment x years after it was purchased. According to the given equation, what was the estimated value, in dollars, of the piece of equipment at the time it was purchased?<br>A) 740 &nbsp; B) 6,438 &nbsp; C) 7,400 &nbsp; D) 8,700</div>
+<div class="lbl">What is it asking?</div><div class="ask">"At the time it was purchased" means 0 years after. Find y when x = 0.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup> the number a is the value when x = 0, because b<sup>0</sup> = 1. So a is always the starting (initial) amount.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>At purchase, x = 0 years.</li>
+<li>y = 7,400 × (0.87)<sup>0</sup>.</li>
+<li>(0.87)<sup>0</sup> = 1, so y = 7,400 × 1 = 7,400.</li>
+</ol><div class="ans">Answer: C) 7,400</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B (6,438) is the value after 1 year (7,400 × 0.87).</div>
+</div>
+<div class="q" id="q0_4"><div class="hd"><span class="num">Q118</span><span class="tag">Finding the rate constant</span><span class="pg">PDF page 10</span></div>
+<div class="stem">A scientist initially measures 12,000 bacteria in a growth medium. 4 hours later, the scientist measures 24,000 bacteria. Assuming exponential growth, the formula P = C(2)<sup>rt</sup> gives the number of bacteria in the growth medium, where r and C are constants and P is the number of bacteria t hours after the initial measurement. What is the value of r?<br>A) 1/12,000 &nbsp; B) 1/4 &nbsp; C) 4 &nbsp; D) 12,000</div>
+<div class="lbl">What is it asking?</div><div class="ask">Use the two measurements to find C, then r.</div>
+<div class="lbl">What you need to know</div><div class="know">At t = 0 the formula gives P = C (because 2<sup>0</sup> = 1). If 2<sup>something</sup> = 2, the something must equal 1.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Initial measurement: t = 0, P = 12,000. So 12,000 = C × 2<sup>0</sup> = C. <b>C = 12,000</b>.</li>
+<li>After 4 hours: t = 4, P = 24,000. So 24,000 = 12,000 × 2<sup>4r</sup>.</li>
+<li>Divide both sides by 12,000: 2 = 2<sup>4r</sup>.</li>
+<li>2 is the same as 2<sup>1</sup>, so the exponents must match: 4r = 1.</li>
+<li>Divide by 4: r = 1/4.</li>
+</ol><div class="ans">Answer: B) 1/4</div>
+<div class="box chk">✅ <b>Check:</b> With r = 1/4, after 4 hours the exponent is 4 × 1/4 = 1, so the bacteria double: 12,000 → 24,000 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D (12,000) is C, not r. C (4) is the doubling time in hours, not r.</div>
+</div>
+<div class="q" id="q0_5"><div class="hd"><span class="num">Q120</span><span class="tag">Equivalent exponential forms</span><span class="pg">PDF page 11</span></div>
+<div class="stem">For the exponential function f, the value of f(0) is c, where c is a constant. Of the following equations that define the function f, which equation shows the value of c as the coefficient or the base?<br>A) f(x) = 22(1.5)<sup>x+1</sup> &nbsp; B) f(x) = 33(1.5)<sup>x</sup> &nbsp; C) f(x) = 49.5(1.5)<sup>x−1</sup> &nbsp; D) f(x) = 74.25(1.5)<sup>x−2</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">All four equations are the same function written differently. Find f(0), then pick the form where that number is written out in front.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup> the number a is the value when x = 0, because b<sup>0</sup> = 1. So a is always the starting (initial) amount. Only the plain form a(b)<sup>x</sup> shows f(0) directly as the coefficient.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Find f(0) using any choice. Choice A: 22 × 1.5<sup>0+1</sup> = 22 × 1.5 = 33.</li>
+<li>Check choice C gives the same: 49.5 × 1.5<sup>−1</sup> = 49.5 ÷ 1.5 = 33 ✓. Choice D: 74.25 ÷ 1.5² = 74.25 ÷ 2.25 = 33 ✓.</li>
+<li>So c = f(0) = 33.</li>
+<li>Which equation shows 33 as the coefficient (the number in front)? Choice B: 33(1.5)<sup>x</sup>.</li>
+</ol><div class="ans">Answer: B) f(x) = 33(1.5)<sup>x</sup></div>
+<div class="box tip">💡 <b>Tip:</b> When the exponent is exactly x (no +1, −1, −2), the front number is the value at x = 0.</div>
+</div>
+<div class="q" id="q0_6"><div class="hd"><span class="num">Q121</span><span class="tag">Solving an exponential equation</span><span class="pg">PDF page 12</span></div>
+<div class="stem">The function g is defined by g(x) = 10<sup>5x−8</sup>. What is the value of x when g(x) is equal to 10,000?<br>A) 11/5 &nbsp; B) 12/5 &nbsp; C) 3 &nbsp; D) 4</div>
+<div class="lbl">What is it asking?</div><div class="ask">Solve 10<sup>5x−8</sup> = 10,000.</div>
+<div class="lbl">What you need to know</div><div class="know">Write both sides as a power of the same base. If 10<sup>a</sup> = 10<sup>b</sup>, then a = b.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>10,000 = 10 × 10 × 10 × 10 = 10<sup>4</sup>.</li>
+<li>So 10<sup>5x−8</sup> = 10<sup>4</sup>.</li>
+<li>Same base 10 → set the exponents equal: 5x − 8 = 4.</li>
+<li>Add 8: 5x = 12.</li>
+<li>Divide by 5: x = 12/5.</li>
+</ol><div class="ans">Answer: B) 12/5</div>
+<div class="box chk">✅ <b>Check:</b> 5(12/5) − 8 = 12 − 8 = 4, and 10<sup>4</sup> = 10,000 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D (4) is the exponent, not x. A comes from 5x − 8 = 3.</div>
+</div>
+<div class="q" id="q0_7"><div class="hd"><span class="num">Q129</span><span class="tag">Exponential growth model</span><span class="pg">PDF page 14</span></div>
+<div class="stem">A function p estimates that there were 2,000 animals in a population in 1998. Each year from 1998 to 2010, the function estimates that the number of animals in this population increased by 3% of the number of animals in the population the previous year. Which equation defines this function, where p(x) is the estimated number of animals in the population x years after 1998?<br>A) 2,000(3)<sup>x</sup> &nbsp; B) 2,000(1.97)<sup>x</sup> &nbsp; C) 2,000(1.03)<sup>x</sup> &nbsp; D) 2,000(0.97)<sup>x</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">Start at 2,000 and grow 3% each year.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (write r as a decimal). The start value is the number in front.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start (x = 0, 1998): 2,000 → in front.</li>
+<li>3% increase → 1 + 0.03 = 1.03.</li>
+<li>p(x) = 2,000(1.03)<sup>x</sup>.</li>
+</ol><div class="ans">Answer: C) p(x) = 2,000(1.03)<sup>x</sup></div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D (0.97) is a 3% decrease. A (3) would triple every year.</div>
+</div>
+<div class="q" id="q0_8"><div class="hd"><span class="num">Q131</span><span class="tag">Doubling every day</span><span class="pg">PDF page 15</span></div>
+<div class="stem">The number of bacteria in a liquid medium doubles every day. There are 44,000 bacteria in the liquid medium at the start of an observation. Which represents the number of bacteria, y, in the liquid medium t days after the start of the observation?<br>A) y = ½(44,000)<sup>t</sup> &nbsp; B) y = 2(44,000)<sup>t</sup> &nbsp; C) y = 44,000(½)<sup>t</sup> &nbsp; D) y = 44,000(2)<sup>t</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">Start at 44,000 and multiply by 2 each day.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (write r as a decimal). The start value is the number in front.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start: 44,000 → in front.</li>
+<li>Doubles every day → multiply by 2 each day → factor 2.</li>
+<li>y = 44,000(2)<sup>t</sup>.</li>
+</ol><div class="ans">Answer: D) y = 44,000(2)<sup>t</sup></div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C uses ½, which halves every day. A and B put 44,000 in the base.</div>
+</div>
+<div class="q" id="q0_9"><div class="hd"><span class="num">Q135</span><span class="tag">Counting doublings</span><span class="pg">PDF page 17</span></div>
+<div class="stem">Bacteria are growing in a liquid growth medium. There were 300,000 cells per milliliter during an initial observation. The number of cells per milliliter doubles every 3 hours. How many cells per milliliter will there be 15 hours after the initial observation?<br>A) 1,500,000 &nbsp; B) 2,400,000 &nbsp; C) 4,500,000 &nbsp; D) 9,600,000</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find how many times the amount doubles in 15 hours, then multiply.</div>
+<div class="lbl">What you need to know</div><div class="know">Number of doublings = total time ÷ doubling time. Doubling n times multiplies by 2<sup>n</sup>.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Doublings: 15 hours ÷ 3 hours = 5 doublings.</li>
+<li>2<sup>5</sup> = 2 × 2 × 2 × 2 × 2 = 32.</li>
+<li>300,000 × 32 = 9,600,000.</li>
+</ol><div class="ans">Answer: D) 9,600,000</div>
+<div class="box chk">✅ <b>Check:</b> 300k → 600k (3 h) → 1.2M (6 h) → 2.4M (9 h) → 4.8M (12 h) → 9.6M (15 h) ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A (1.5M) is 300,000 × 5 — multiplying by the number of doublings instead of doubling 5 times. B (2.4M) is only 3 doublings.</div>
+</div>
+<div class="q" id="q0_10"><div class="hd"><span class="num">Q150</span><span class="tag">Doubling time (grid-in)</span><span class="pg">PDF page 19</span></div>
+<div class="stem">The function f(t) = 60,000(2)<sup>t/410</sup> gives the number of bacteria in a population t minutes after an initial observation. How much time, in minutes, does it take for the number of bacteria in the population to double?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find how many minutes pass while the amount doubles.</div>
+<div class="lbl">What you need to know</div><div class="know">In N(2)<sup>t/k</sup>, the exponent t/k grows by 1 every time t grows by k. Each +1 in the exponent multiplies by 2, so the amount doubles every k units of time.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The amount doubles when the exponent goes up by 1 (because 2<sup>1</sup> = 2).</li>
+<li>The exponent is t/410. It goes up by 1 when t goes up by 410.</li>
+<li>So every 410 minutes the population doubles.</li>
+</ol><div class="ans">Answer: 410</div>
+<div class="box chk">✅ <b>Check:</b> f(0) = 60,000 and f(410) = 60,000 × 2<sup>1</sup> = 120,000 ✓ (double)</div>
+</div>
+<div class="q" id="q0_11"><div class="hd"><span class="num">Q152</span><span class="tag">Interpreting the start value</span><span class="pg">PDF page 20</span></div>
+<div class="stem">D = 5,640(1.9)<sup>t</sup>. The equation above estimates the global data traffic D, in terabytes, for the year that is t years after 2010. What is the best interpretation of the number 5,640 in this context?<br>A) The estimated amount of increase of data traffic, in terabytes, each year<br>B) The estimated percent increase in the data traffic, in terabytes, each year<br>C) The estimated data traffic, in terabytes, for the year that is t years after 2010<br>D) The estimated data traffic, in terabytes, in 2010</div>
+<div class="lbl">What is it asking?</div><div class="ask">Say what 5,640 means in the story.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup> the number a is the value when x = 0, because b<sup>0</sup> = 1. So a is always the starting (initial) amount.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>t = years after 2010, so t = 0 is the year 2010.</li>
+<li>D = 5,640 × 1.9<sup>0</sup> = 5,640 × 1 = 5,640.</li>
+<li>So 5,640 terabytes is the data traffic in 2010.</li>
+</ol><div class="ans">Answer: D) The estimated data traffic, in terabytes, in 2010</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B describes the 1.9 (a 90% increase each year). C describes the whole D, not just 5,640.</div>
+</div>
+<div class="q" id="q0_12"><div class="hd"><span class="num">Q161</span><span class="tag">Missing value in a table</span><span class="pg">PDF page 25</span></div>
+<div class="stem">The table shows three values of x and their corresponding values of y for the equation y = 4(2)<sup>x</sup> + 3: x = 1 → 11, x = 2 → 19, x = 3 → a. In the table, a is a constant. What is the value of a?<br>A) 67 &nbsp; B) 35 &nbsp; C) 32 &nbsp; D) 27</div>
+<div class="lbl">What is it asking?</div><div class="ask">Plug x = 3 into the equation.</div>
+<div class="lbl">What you need to know</div><div class="know">Order of operations: power first, then multiply, then add.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>y = 4 × 2<sup>3</sup> + 3.</li>
+<li>2<sup>3</sup> = 8.</li>
+<li>4 × 8 = 32.</li>
+<li>32 + 3 = 35.</li>
+</ol><div class="ans">Answer: B) 35</div>
+<div class="box chk">✅ <b>Check:</b> The given rows also fit: 4(2) + 3 = 11 ✓, 4(4) + 3 = 19 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C (32) forgets the + 3. A (67) is 4 × 2<sup>4</sup> + 3 — using x = 4 instead of x = 3.</div>
+</div>
+<div class="q" id="q0_13"><div class="hd"><span class="num">Q162</span><span class="tag">Exponential growth model</span><span class="pg">PDF page 26</span></div>
+<div class="stem">A model predicts that the population of Bergen was 15,000 in 2005. The model also predicts that each year for the next 5 years, the population p increased by 4% of the previous year's population. Which equation best represents this model, where x is the number of years after 2005, for x ≤ 5?<br>A) p = 0.96(15,000)<sup>x</sup> &nbsp; B) p = 1.04(15,000)<sup>x</sup> &nbsp; C) p = 15,000(0.96)<sup>x</sup> &nbsp; D) p = 15,000(1.04)<sup>x</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">Start at 15,000 and grow 4% each year.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (write r as a decimal). The start value is the number in front.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start (x = 0, 2005): 15,000 → in front.</li>
+<li>4% increase → 1.04.</li>
+<li>p = 15,000(1.04)<sup>x</sup>.</li>
+</ol><div class="ans">Answer: D) p = 15,000(1.04)<sup>x</sup></div>
+<div class="note">Note: Page 36 (Q191) is the same question again — same answer, D.</div>
+</div>
+<div class="q" id="q0_14"><div class="hd"><span class="num">Q169</span><span class="tag">Exponential decay model</span><span class="pg">PDF page 28</span></div>
+<div class="stem">From 2005 through 2014, the number of music CDs sold in the United States declined each year by approximately 15% of the number sold the preceding year. In 2005, approximately 600 million CDs were sold in the United States. Of the following, which best models C, the number of millions of CDs sold in the United States, t years after 2005?<br>A) C = 600(0.15)<sup>t</sup> &nbsp; B) C = 600(0.85)<sup>t</sup> &nbsp; C) C = 600(1.15)<sup>t</sup> &nbsp; D) C = 600(1.85)<sup>t</sup></div>
+<div class="lbl">What is it asking?</div><div class="ask">Start at 600 and shrink 15% each year.</div>
+<div class="lbl">What you need to know</div><div class="know">Exponential model: y = (start) × (factor)<sup>x</sup>. Growth by r% → factor 1 + r. Decay by r% → factor 1 − r (write r as a decimal). The start value is the number in front.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start (t = 0, 2005): 600 → in front.</li>
+<li>Declining 15% → keep 85% → factor 0.85.</li>
+<li>C = 600(0.85)<sup>t</sup>.</li>
+</ol><div class="ans">Answer: B) C = 600(0.85)<sup>t</sup></div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A keeps only 15% each year. C (1.15) is a 15% increase.</div>
+</div>
+<div class="q" id="q0_15"><div class="hd"><span class="num">Q177</span><span class="tag">Doubling time</span><span class="pg">PDF page 30</span></div>
+<div class="stem">The function f(t) = 40,000(2)<sup>t/790</sup> gives the number of bacteria in a population t minutes after an initial observation. How much time, in minutes, does it take for the number of bacteria in the population to double?<br>A) 2 &nbsp; B) 790 &nbsp; C) 1,580 &nbsp; D) 40,000</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find how many minutes it takes for the amount to double.</div>
+<div class="lbl">What you need to know</div><div class="know">In N(2)<sup>t/k</sup>, the exponent t/k grows by 1 every time t grows by k. Each +1 in the exponent multiplies by 2, so the amount doubles every k units of time.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The amount doubles when the exponent t/790 goes up by 1.</li>
+<li>t/790 goes up by 1 when t goes up by 790.</li>
+<li>So it doubles every 790 minutes.</li>
+</ol><div class="ans">Answer: B) 790</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C (1,580) is the time to multiply by 4 (two doublings). A (2) is the base.</div>
+</div>
+<div class="q" id="q0_16"><div class="hd"><span class="num">Q184</span><span class="tag">Interpreting the start value</span><span class="pg">PDF page 32</span></div>
+<div class="stem">The equation E(t) = 5(1.8)<sup>t</sup> gives the estimated number of employees at a restaurant, where t is the number of years since the restaurant opened. Which of the following is the best interpretation of the number 5 in this context?<br>A) The estimated number of employees when the restaurant opened<br>B) The increase in the estimated number of employees each year<br>C) The number of years the restaurant has been open<br>D) The percent increase in the estimated number of employees each year</div>
+<div class="lbl">What is it asking?</div><div class="ask">Say what 5 means in the story.</div>
+<div class="lbl">What you need to know</div><div class="know">In f(x) = a(b)<sup>x</sup> the number a is the value when x = 0, because b<sup>0</sup> = 1. So a is always the starting (initial) amount.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>t = 0 means the restaurant just opened.</li>
+<li>E(0) = 5 × 1.8<sup>0</sup> = 5 × 1 = 5.</li>
+<li>So 5 is the number of employees when the restaurant opened.</li>
+</ol><div class="ans">Answer: A) The estimated number of employees when the restaurant opened</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D describes the 1.8 (an 80% increase each year).</div>
+</div>
+<div class="q" id="q0_17"><div class="hd"><span class="num">Q188</span><span class="tag">Interpreting f(8)</span><span class="pg">PDF page 34</span></div>
+<div class="stem">Immanuel purchased a certain rare coin on January 1. The function f(x) = 65(1.03)<sup>x</sup>, where 0 ≤ x ≤ 10, gives the predicted value, in dollars, of the rare coin x years after Immanuel purchased it. What is the best interpretation of the statement "f(8) is approximately equal to 82" in this context?<br>A) When the coin's predicted value is about 82 dollars, it is 8% greater than the value on January 1 of the previous year.<br>B) When the coin's predicted value is about 82 dollars, it is 8 times the value on January 1 of the previous year.<br>C) From the day Immanuel purchased the coin to 8 years after, its predicted value increased by a total of about 82 dollars.<br>D) 8 years after Immanuel purchased the rare coin, its predicted value is approximately 82 dollars.</div>
+<div class="lbl">What is it asking?</div><div class="ask">Translate f(8) ≈ 82 into words.</div>
+<div class="lbl">What you need to know</div><div class="know">f(input) = output. The number inside the brackets is the input (here: time), and the number after = is the output (the amount).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Input 8 → x = 8 → 8 years after the purchase.</li>
+<li>Output 82 → the coin's value is about $82.</li>
+<li>Together: 8 years after he bought it, the coin is worth about $82.</li>
+</ol><div class="ans">Answer: D) 8 years after purchase, the predicted value is about 82 dollars</div>
+<div class="box chk">✅ <b>Check:</b> 65 × 1.03<sup>8</sup> = 65 × 1.267 ≈ 82.3 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C says it INCREASED BY 82, but f gives the total value, not the increase (it went up by only about 17).</div>
+</div>
+<div class="q" id="q0_18"><div class="hd"><span class="num">Q217</span><span class="tag">Graph of an exponential</span><span class="pg">PDF page 46</span></div>
+<div class="stem">y = 4 · (2<sup>x</sup>). Which of the following is the graph in the xy-plane of the given equation?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Pick the graph that matches y = 4 · 2<sup>x</sup>.</div>
+<div class="lbl">What you need to know</div><div class="know">Base bigger than 1 → the graph goes UP from left to right. The y-intercept is the front number (when x = 0).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Find the y-intercept: x = 0 → y = 4 × 2<sup>0</sup> = 4 × 1 = 4. The graph crosses the y-axis at (0, 4).</li>
+<li>The base 2 is bigger than 1, so the graph <b>rises</b> as x increases.</li>
+<li>A few more points to check a graph: x = 1 → 8, x = 2 → 16, x = 3 → 32, x = −1 → 2.</li>
+<li>On the left side the graph gets close to 0 but never touches it.</li>
+<li>Choice A goes DOWN from left to right, so A is wrong.</li>
+<li>The correct graph rises through (0, 4), (1, 8), (2, 16).</li>
+</ol><div class="ans">Answer: Not A — the rising graph through (0, 4)</div>
+<div class="note">Note: Only choice A is visible in the screenshot (choices B–D are cut off), so the final letter can't be confirmed. Pick the rising curve that passes through (0, 4).</div>
+</div>
+<h2 id="s1">Quadratic & polynomial functions<small>Vertex, intercepts, zeros and graphs · 17 questions</small></h2>
+<div class="qnav">
+<a class="qlink" href="#q1_0" data-target="q1_0">Q98</a>
+<a class="qlink" href="#q1_1" data-target="q1_1">Q103</a>
+<a class="qlink" href="#q1_2" data-target="q1_2">Q110</a>
+<a class="qlink" href="#q1_3" data-target="q1_3">Q125</a>
+<a class="qlink" href="#q1_4" data-target="q1_4">Q139</a>
+<a class="qlink" href="#q1_5" data-target="q1_5">Q155</a>
+<a class="qlink" href="#q1_6" data-target="q1_6">Q166</a>
+<a class="qlink" href="#q1_7" data-target="q1_7">Q180</a>
+<a class="qlink" href="#q1_8" data-target="q1_8">Q187</a>
+<a class="qlink" href="#q1_9" data-target="q1_9">Q193</a>
+<a class="qlink" href="#q1_10" data-target="q1_10">Q197</a>
+<a class="qlink" href="#q1_11" data-target="q1_11">Q202</a>
+<a class="qlink" href="#q1_12" data-target="q1_12">Q203</a>
+<a class="qlink" href="#q1_13" data-target="q1_13">Q205</a>
+<a class="qlink" href="#q1_14" data-target="q1_14">Q209</a>
+<a class="qlink" href="#q1_15" data-target="q1_15">Q216</a>
+<a class="qlink" href="#q1_16" data-target="q1_16">Q218</a>
+</div>
+<div class="q" id="q1_0"><div class="hd"><span class="num">Q98</span><span class="tag">Meaning of the constant</span><span class="pg">PDF page 1</span></div>
+<div class="stem">h(t) = −16t² + 110t + 72. The function above models the height h, in feet, of an object above ground t seconds after being launched straight up in the air. What does the number 72 represent in the function?<br>A) The initial height, in feet, of the object &nbsp; B) The maximum height, in feet, of the object<br>C) The initial speed, in feet per second, of the object &nbsp; D) The maximum speed, in feet per second, of the object</div>
+<div class="lbl">What is it asking?</div><div class="ask">Explain what 72 means.</div>
+<div class="lbl">What you need to know</div><div class="know">In h(t) = at² + bt + c, the constant c is the value at t = 0 — the starting height.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>"Launched" means t = 0 seconds.</li>
+<li>h(0) = −16(0)² + 110(0) + 72 = 72.</li>
+<li>So 72 feet is the height at the start (the initial height).</li>
+</ol><div class="ans">Answer: A) The initial height, in feet, of the object</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C: the 110 is the initial speed, not 72. B: the maximum height happens later, at the vertex.</div>
+</div>
+<div class="q" id="q1_1"><div class="hd"><span class="num">Q103</span><span class="tag">Vertex form</span><span class="pg">PDF page 3</span></div>
+<div class="stem">f(θ) = −0.28(θ − 27)² + 880. An engineer wanted to identify the best angle for a cooling fan in an engine in order to get the greatest airflow. The engineer discovered that the function above models the airflow f(θ), in cubic feet per minute, as a function of the angle of the fan θ, in degrees. According to the model, what angle, in degrees, gives the greatest airflow?<br>A) −0.28 &nbsp; B) 0.28 &nbsp; C) 27 &nbsp; D) 880</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the angle where the airflow is largest.</div>
+<div class="lbl">What you need to know</div><div class="know">Vertex form: f(x) = a(x − h)² + k. The vertex is (h, k). If a is negative, the parabola opens down and the vertex is the MAXIMUM point.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Match f(θ) = −0.28(θ − <b>27</b>)² + <b>880</b> with a(x − h)² + k.</li>
+<li>a = −0.28 (negative → opens down → the vertex is the highest point).</li>
+<li>h = 27, k = 880. So the vertex is (27, 880).</li>
+<li>The greatest airflow (880) happens at angle θ = 27°.</li>
+</ol><div class="ans">Answer: C) 27</div>
+<div class="box chk">✅ <b>Check:</b> At θ = 27, the squared part is (0)² = 0, so f = 880. Any other angle makes the squared part positive, and multiplying by −0.28 subtracts from 880.</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D (880) is the greatest AIRFLOW, but the question asks for the ANGLE.</div>
+</div>
+<div class="q" id="q1_2"><div class="hd"><span class="num">Q110</span><span class="tag">Shifting a graph down</span><span class="pg">PDF page 6</span></div>
+<div class="stem">f(x) = (x + 6)(x + 5)(x − 4). The function f is given. Which table of values represents y = f(x) − 3?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the correct y-values of f(x) − 3 at the x-values in the tables.</div>
+<div class="lbl">What you need to know</div><div class="know">y = f(x) − 3 means: compute f(x) first, then subtract 3. It moves the whole graph down 3 units.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The tables use x = −6, −5 and 4. These are exactly the zeros of f.</li>
+<li>f(−6) = (0)(−1)(−10) = 0. So y = 0 − 3 = <b>−3</b>.</li>
+<li>f(−5) = (1)(0)(−9) = 0. So y = 0 − 3 = <b>−3</b>.</li>
+<li>f(4) = (10)(9)(0) = 0. So y = 0 − 3 = <b>−3</b>.</li>
+<li>The correct table has y = −3 for all three x-values.</li>
+<li>Choice A shows −9, −8, 1 — that is x − 3, not f(x) − 3. So A is wrong.</li>
+</ol><div class="ans">Answer: Not A — the table with y = −3, −3, −3</div>
+<div class="note">Note: Only choice A is visible in the screenshot (B–D are cut off). The correct table shows x = −6, −5, 4 with y = −3, −3, −3.</div>
+</div>
+<div class="q" id="q1_3"><div class="hd"><span class="num">Q125</span><span class="tag">Evaluating a polynomial</span><span class="pg">PDF page 13</span></div>
+<div class="stem">f(x) = x³ + 3x² − 6x − 1. For the function f defined above, what is the value of f(−1)?<br>A) −11 &nbsp; B) −7 &nbsp; C) 7 &nbsp; D) 11</div>
+<div class="lbl">What is it asking?</div><div class="ask">Replace every x with −1.</div>
+<div class="lbl">What you need to know</div><div class="know">(−1)³ = −1 (odd power keeps the minus). (−1)² = +1 (even power makes it positive).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x³ → (−1)³ = −1.</li>
+<li>3x² → 3 × (−1)² = 3 × 1 = 3.</li>
+<li>−6x → −6 × (−1) = +6.</li>
+<li>Add them with the −1 at the end: −1 + 3 + 6 − 1 = 7.</li>
+</ol><div class="ans">Answer: C) 7</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B (−7) usually comes from −6 × (−1) = −6 (sign mistake).</div>
+</div>
+<div class="q" id="q1_4"><div class="hd"><span class="num">Q139</span><span class="tag">x-intercepts (grid-in)</span><span class="pg">PDF page 18</span></div>
+<div class="stem">What is an x-coordinate of an x-intercept of the graph of y = 3(x − 14)(x + 5)(x + 4) in the xy-plane?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find an x where y = 0.</div>
+<div class="lbl">What you need to know</div><div class="know">A product is 0 when one of its factors is 0 (zero-product rule). The 3 in front can never be 0.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Set y = 0: 3(x − 14)(x + 5)(x + 4) = 0.</li>
+<li>x − 14 = 0 → x = 14.</li>
+<li>x + 5 = 0 → x = −5.</li>
+<li>x + 4 = 0 → x = −4.</li>
+<li>Any one of these is correct. Enter one answer.</li>
+</ol><div class="ans">Answer: 14 (or −5, or −4)</div>
+<div class="box tip">💡 <b>Tip:</b> Signs flip: (x − 14) gives +14, (x + 5) gives −5.</div>
+</div>
+<div class="q" id="q1_5"><div class="hd"><span class="num">Q155</span><span class="tag">Reading the y-intercept from a graph</span><span class="pg">PDF page 22</span></div>
+<div class="stem">The graph models the number of active projects a company was working on x months after the end of November 2012, where 0 ≤ x ≤ 6. According to the model, what is the predicted number of active projects the company was working on at the end of November 2012?<br>A) 0 &nbsp; B) 5 &nbsp; C) 8 &nbsp; D) 9</div>
+<div class="lbl">What is it asking?</div><div class="ask">"At the end of November 2012" is 0 months after. Read the graph at x = 0.</div>
+<div class="lbl">What you need to know</div><div class="know">The value at x = 0 is where the graph meets the y-axis (the y-intercept).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x = months after the end of November 2012, so the end of November 2012 is x = 0.</li>
+<li>Find where the curve touches the y-axis: it starts at y = 5.</li>
+<li>So the model predicts 5 active projects.</li>
+</ol><div class="ans">Answer: B) 5</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D (9) is about the highest point of the curve, which happens later (around x = 3).</div>
+</div>
+<div class="q" id="q1_6"><div class="hd"><span class="num">Q166</span><span class="tag">Meaning of the x-intercept</span><span class="pg">PDF page 27</span></div>
+<div class="stem">A competitive diver dives from a platform into the water. The graph shown gives the height above the water y, in meters, of the diver x seconds after diving from the platform. What is the best interpretation of the x-intercept of the graph?<br>A) The diver reaches a maximum height above the water at 1.6 seconds.<br>B) The diver hits the water at 1.6 seconds.<br>C) The diver reaches a maximum height above the water at 0.2 seconds.<br>D) The diver hits the water at 0.2 seconds.</div>
+<div class="lbl">What is it asking?</div><div class="ask">Explain what the point where the graph touches the x-axis means.</div>
+<div class="lbl">What you need to know</div><div class="know">On the x-intercept, y = 0. Here y is the height above the water, so y = 0 means the diver is at the water.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The curve meets the x-axis at about x = 1.6 seconds.</li>
+<li>At that point the height above the water is 0.</li>
+<li>Height 0 above the water = the diver hits the water.</li>
+<li>So the diver hits the water at 1.6 seconds.</li>
+</ol><div class="ans">Answer: B) The diver hits the water at 1.6 seconds</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C: the maximum height (the top of the curve) is at about 0.2 seconds, but that is the vertex, not the x-intercept.</div>
+</div>
+<div class="q" id="q1_7"><div class="hd"><span class="num">Q180</span><span class="tag">Quadratic from a table</span><span class="pg">PDF page 31</span></div>
+<div class="stem">For the quadratic function f, the table shows three values of x and their corresponding values of f(x): x = 24 → −8, x = 30 → −8, x = 32 → 8. Which equation defines f?<br>A) (x − 24)(x − 30) + 4 &nbsp; B) (x − 24)(x − 30) − 8 &nbsp; C) (x − 8)(x − 32) + 32 &nbsp; D) (x − 8)(x − 32) − 32</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the equation that gives all three table values.</div>
+<div class="lbl">What you need to know</div><div class="know">In (x − 24)(x − 30) + k, plugging in x = 24 or x = 30 makes the product 0, so the result is just k.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>f(24) = −8 and f(30) = −8. For A and B, x = 24 makes (x − 24) = 0, so f(24) = the constant at the end.</li>
+<li>We need that constant to be −8 → choice B. (A would give 4.)</li>
+<li>Check the third point in B: f(32) = (32 − 24)(32 − 30) − 8 = 8 × 2 − 8 = 16 − 8 = 8 ✓</li>
+<li>Quickly rule out C: f(24) = (16)(−8) + 32 = −128 + 32 = −96, not −8 ✗</li>
+</ol><div class="ans">Answer: B) f(x) = (x − 24)(x − 30) − 8</div>
+<div class="box tip">💡 <b>Tip:</b> Test the x-values that make a bracket zero — the arithmetic becomes easy.</div>
+</div>
+<div class="q" id="q1_8"><div class="hd"><span class="num">Q187</span><span class="tag">Evaluating at 0</span><span class="pg">PDF page 33</span></div>
+<div class="stem">The function f is defined by f(x) = 10x² − 32x − 152. What is the value of f(0)?<br>A) −152 &nbsp; B) −32 &nbsp; C) 0 &nbsp; D) 10</div>
+<div class="lbl">What is it asking?</div><div class="ask">Plug in x = 0.</div>
+<div class="lbl">What you need to know</div><div class="know">Any term with x becomes 0 when x = 0; only the constant is left.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>10(0)² = 0.</li>
+<li>−32(0) = 0.</li>
+<li>So f(0) = 0 + 0 − 152 = −152.</li>
+</ol><div class="ans">Answer: A) −152</div>
+</div>
+<div class="q" id="q1_9"><div class="hd"><span class="num">Q193</span><span class="tag">Starting height (grid-in)</span><span class="pg">PDF page 37</span></div>
+<div class="stem">An egg is thrown from a rooftop. The equation h = −4.9t² + 9t + 18 represents this situation, where h is the height of the egg above the ground, in meters, t seconds after it is thrown. According to the equation, what is the height, in meters, from which the egg was thrown?</div>
+<div class="lbl">What is it asking?</div><div class="ask">"Thrown" is the moment t = 0. Find h at t = 0.</div>
+<div class="lbl">What you need to know</div><div class="know">The constant term is the value at t = 0.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>t = 0 at the moment it is thrown.</li>
+<li>h = −4.9(0)² + 9(0) + 18 = 18.</li>
+</ol><div class="ans">Answer: 18</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> 9 is the starting upward speed; 4.9 comes from gravity.</div>
+</div>
+<div class="q" id="q1_10"><div class="hd"><span class="num">Q197</span><span class="tag">x-intercepts by factoring</span><span class="pg">PDF page 40</span></div>
+<div class="stem">f(x) = x² − 18x − 360. If the given function f is graphed in the xy-plane, where y = f(x), what is an x-intercept of the graph?<br>A) (−12, 0) &nbsp; B) (−30, 0) &nbsp; C) (−360, 0) &nbsp; D) (12, 0)</div>
+<div class="lbl">What is it asking?</div><div class="ask">Solve f(x) = 0.</div>
+<div class="lbl">What you need to know</div><div class="know">To factor x² + bx + c, find two numbers that multiply to c and add to b.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Set x² − 18x − 360 = 0.</li>
+<li>Find two numbers that multiply to −360 and add to −18: −30 and +12 (−30 × 12 = −360, −30 + 12 = −18).</li>
+<li>Factor: (x − 30)(x + 12) = 0.</li>
+<li>x = 30 or x = −12.</li>
+<li>Only (−12, 0) is a choice.</li>
+</ol><div class="ans">Answer: A) (−12, 0)</div>
+<div class="box chk">✅ <b>Check:</b> (−12)² − 18(−12) − 360 = 144 + 216 − 360 = 0 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B (−30) has the wrong sign: the zero is +30. D (12) also has the wrong sign.</div>
+</div>
+<div class="q" id="q1_11"><div class="hd"><span class="num">Q202</span><span class="tag">Interpreting the vertex</span><span class="pg">PDF page 41</span></div>
+<div class="stem">A physics class is planning an experiment about a toy rocket. The equation y = −16(x − 5.6)² + 502 gives the estimated height y, in feet, of the toy rocket x seconds after it is launched into the air. Which of the following is the best interpretation of the vertex of the graph of the equation in the xy-plane?<br>A) Max height 502 feet, 16 seconds after launch &nbsp; B) Max height 502 feet, 5.6 seconds after launch<br>C) Max height 16 feet, 502 seconds after launch &nbsp; D) Max height 5.6 feet, 502 seconds after launch</div>
+<div class="lbl">What is it asking?</div><div class="ask">Read the vertex and say what it means.</div>
+<div class="lbl">What you need to know</div><div class="know">Vertex form y = a(x − h)² + k has vertex (h, k). With a negative, (h, k) is the highest point: x = h is the time, y = k is the height.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Match: y = −16(x − <b>5.6</b>)² + <b>502</b>. So h = 5.6 and k = 502.</li>
+<li>Vertex = (5.6, 502).</li>
+<li>x is time in seconds → 5.6 seconds. y is height in feet → 502 feet.</li>
+<li>a = −16 is negative, so this is the MAXIMUM height.</li>
+</ol><div class="ans">Answer: B) Maximum height of 502 feet, 5.6 seconds after launch</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A uses 16 (that is from gravity, the a value), not the time.</div>
+</div>
+<div class="q" id="q1_12"><div class="hd"><span class="num">Q203</span><span class="tag">Evaluating a vertex-form function (grid-in)</span><span class="pg">PDF page 42</span></div>
+<div class="stem">The function f is defined by f(x) = 5(¼ − x)² + 11/4. What is the value of f(¼)?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Plug in x = ¼.</div>
+<div class="lbl">What you need to know</div><div class="know">Any number minus itself is 0, and 0² = 0.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Inside the bracket: ¼ − ¼ = 0.</li>
+<li>0² = 0, and 5 × 0 = 0.</li>
+<li>f(¼) = 0 + 11/4 = 11/4.</li>
+<li>As a decimal, 11/4 = 2.75. Either form can be entered.</li>
+</ol><div class="ans">Answer: 11/4 (or 2.75)</div>
+</div>
+<div class="q" id="q1_13"><div class="hd"><span class="num">Q205</span><span class="tag">Counting zeros from a graph</span><span class="pg">PDF page 43</span></div>
+<div class="stem">The graph of y = f(x) is shown, where the function f is defined by f(x) = ax³ + bx² + cx + d and a, b, c, and d are constants. For how many values of x does f(x) = 0?<br>A) One &nbsp; B) Two &nbsp; C) Three &nbsp; D) Four</div>
+<div class="lbl">What is it asking?</div><div class="ask">Count how many times the graph meets the x-axis.</div>
+<div class="lbl">What you need to know</div><div class="know">f(x) = 0 exactly where the graph crosses or touches the x-axis. A cubic can have at most 3 such points.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Follow the curve from left to right.</li>
+<li>It comes down from the top and crosses the x-axis just left of x = 0 (1st).</li>
+<li>It dips to about −10, then rises and crosses again near x = 4 (2nd).</li>
+<li>It goes up to a small hump, then comes down and crosses near x = 7 (3rd).</li>
+<li>Total: three crossings.</li>
+</ol><div class="ans">Answer: C) Three</div>
+</div>
+<div class="q" id="q1_14"><div class="hd"><span class="num">Q209</span><span class="tag">Shifting a graph up</span><span class="pg">PDF page 44</span></div>
+<div class="stem">The graph of y = f(x) is shown. What is the y-intercept of y = f(x) + 5?<br>A) (0, 8) &nbsp; B) (0, 5) &nbsp; C) (0, 3) &nbsp; D) (0, 0)</div>
+<div class="lbl">What is it asking?</div><div class="ask">Find the y-intercept of the original graph, then move it up 5.</div>
+<div class="lbl">What you need to know</div><div class="know">f(x) + 5 moves every point of the graph UP 5 units. The x-values stay the same.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Read the graph where x = 0: the curve passes through (0, 3). So f(0) = 3.</li>
+<li>For the new graph, y = f(0) + 5 = 3 + 5 = 8.</li>
+<li>New y-intercept: (0, 8).</li>
+</ol><div class="ans">Answer: A) (0, 8)</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> C (0, 3) is the y-intercept of the ORIGINAL graph. B (0, 5) just uses the +5.</div>
+</div>
+<div class="q" id="q1_15"><div class="hd"><span class="num">Q216</span><span class="tag">Area equation</span><span class="pg">PDF page 45</span></div>
+<div class="stem">A rectangle has a length of x units and a width of (x − 15) units. If the rectangle has an area of 76 square units, what is the value of x?<br>A) 4 &nbsp; B) 19 &nbsp; C) 23 &nbsp; D) 76</div>
+<div class="lbl">What is it asking?</div><div class="ask">Use Area = length × width to make an equation, then solve.</div>
+<div class="lbl">What you need to know</div><div class="know">Factor x² + bx + c using two numbers that multiply to c and add to b. Lengths must be positive.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Area = x(x − 15) = 76.</li>
+<li>Expand: x² − 15x = 76 → x² − 15x − 76 = 0.</li>
+<li>Two numbers that multiply to −76 and add to −15: −19 and +4.</li>
+<li>Factor: (x − 19)(x + 4) = 0 → x = 19 or x = −4.</li>
+<li>A length can't be negative, so x = 19.</li>
+</ol><div class="ans">Answer: B) 19</div>
+<div class="box chk">✅ <b>Check:</b> Length 19, width 19 − 15 = 4. Area = 19 × 4 = 76 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A (4) is the WIDTH, not x.</div>
+</div>
+<div class="q" id="q1_16"><div class="hd"><span class="num">Q218</span><span class="tag">Interpreting h(1.4)</span><span class="pg">PDF page 47</span></div>
+<div class="stem">The height, in feet, of an object x seconds after it is thrown straight up in the air can be modeled by the function h(x) = −16x² + 20x + 5. Based on the model, which of the following statements best interprets the equation h(1.4) = 1.64?<br>A) The height of the object 1.4 seconds after being thrown is 1.64 feet.<br>B) The height of the object 1.64 seconds after being thrown is 1.4 feet.<br>C) The height 1.64 seconds after being thrown is about 1.4 times its initial height.<br>D) The speed of the object 1.4 seconds after being thrown is about 1.64 feet per second.</div>
+<div class="lbl">What is it asking?</div><div class="ask">Translate h(1.4) = 1.64 into words.</div>
+<div class="lbl">What you need to know</div><div class="know">f(input) = output. The number inside the brackets is the input (here: time), and the number after = is the output (the amount).</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Input 1.4 → x = 1.4 seconds after being thrown.</li>
+<li>Output 1.64 → the height h is 1.64 feet.</li>
+<li>So: 1.4 seconds after being thrown, the object is 1.64 feet high.</li>
+</ol><div class="ans">Answer: A) The height 1.4 seconds after being thrown is 1.64 feet</div>
+<div class="box chk">✅ <b>Check:</b> −16(1.4)² + 20(1.4) + 5 = −31.36 + 28 + 5 = 1.64 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B swaps the input and output. D: h gives height, not speed.</div>
+</div>
+<h2 id="s2">Other functions & interpretation<small>Rectangles, rational functions, transformations · 10 questions</small></h2>
+<div class="qnav">
+<a class="qlink" href="#q2_0" data-target="q2_0">Q105</a>
+<a class="qlink" href="#q2_1" data-target="q2_1">Q117</a>
+<a class="qlink" href="#q2_2" data-target="q2_2">Q134</a>
+<a class="qlink" href="#q2_3" data-target="q2_3">Q154</a>
+<a class="qlink" href="#q2_4" data-target="q2_4">Q158</a>
+<a class="qlink" href="#q2_5" data-target="q2_5">Q159</a>
+<a class="qlink" href="#q2_6" data-target="q2_6">Q175</a>
+<a class="qlink" href="#q2_7" data-target="q2_7">Q189</a>
+<a class="qlink" href="#q2_8" data-target="q2_8">Q195</a>
+<a class="qlink" href="#q2_9" data-target="q2_9">Q196</a>
+</div>
+<div class="q" id="q2_0"><div class="hd"><span class="num">Q105</span><span class="tag">Interpreting f(14)</span><span class="pg">PDF page 4</span></div>
+<div class="stem">The function f(w) = 6w² gives the area of a rectangle, in square feet (ft²), if its width is w ft and its length is 6 times its width. Which of the following is the best interpretation of f(14) = 1,176?<br>A) If the width of the rectangle is 14 ft, then the area of the rectangle is 1,176 ft².<br>B) If the width is 14 ft, then the length is 1,176 ft.<br>C) If the width is 1,176 ft, then the length is 14 ft.<br>D) If the width is 1,176 ft, then the area is 14 ft².</div>
+<div class="lbl">What is it asking?</div><div class="ask">Translate f(14) = 1,176 into words.</div>
+<div class="lbl">What you need to know</div><div class="know">The input w is the WIDTH. The output f(w) is the AREA.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Input 14 → the width is 14 ft.</li>
+<li>Output 1,176 → the area is 1,176 ft².</li>
+<li>So: if the width is 14 ft, the area is 1,176 ft².</li>
+</ol><div class="ans">Answer: A) If the width is 14 ft, then the area is 1,176 ft²</div>
+<div class="box chk">✅ <b>Check:</b> Width 14, length 6 × 14 = 84. Area 14 × 84 = 1,176 ✓ (also 6 × 14² = 6 × 196 = 1,176)</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> B says LENGTH, but f gives area. The length would be 84 ft.</div>
+</div>
+<div class="q" id="q2_1"><div class="hd"><span class="num">Q117</span><span class="tag">Interpreting a point</span><span class="pg">PDF page 9</span></div>
+<div class="stem">y = 0.25x² − 7.5x + 90.25. The equation gives the estimated stock price y, in dollars, for a certain company x days after a new product launched, where 0 ≤ x ≤ 20. Which statement is the best interpretation of (x, y) = (1, 83) in this context?<br>A) The stock price increased $83 every day after the new product launched.<br>B) The stock price increased $1 every 83 days after the new product launched.<br>C) 1 day after the new product launched, the company's estimated stock price is $83.<br>D) 83 days after the new product launched, the company's estimated stock price is $1.</div>
+<div class="lbl">What is it asking?</div><div class="ask">Say what the point (1, 83) means.</div>
+<div class="lbl">What you need to know</div><div class="know">In a point (x, y): x = days after launch, y = stock price in dollars.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x = 1 → 1 day after the launch.</li>
+<li>y = 83 → the stock price is $83.</li>
+<li>So: 1 day after the launch, the price is about $83.</li>
+</ol><div class="ans">Answer: C) 1 day after launch, the estimated stock price is $83</div>
+<div class="box chk">✅ <b>Check:</b> 0.25(1)² − 7.5(1) + 90.25 = 0.25 − 7.5 + 90.25 = 83 ✓</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> D swaps x and y. A and B talk about a rate, but one point only gives one value.</div>
+</div>
+<div class="q" id="q2_2"><div class="hd"><span class="num">Q134</span><span class="tag">Interpreting a point on a graph</span><span class="pg">PDF page 16</span></div>
+<div class="stem">The graph shows the estimated boiling point y, in degrees Celsius, of a normal paraffin with a molecular weight of x grams per mole, where 1 ≤ x ≤ 280. Which statement is the best interpretation of the point (149.02, 186.05)?<br>A) Molecular weight 186.05 has boiling point 149.02. &nbsp; B) Molecular weight 149.02 has boiling point 186.05.<br>C) The MINIMUM boiling point is at weight 149.02 and 186.05°C. &nbsp; D) The MAXIMUM boiling point is at weight 149.02 and 186.05°C.</div>
+<div class="lbl">What is it asking?</div><div class="ask">Say what the point (149.02, 186.05) means.</div>
+<div class="lbl">What you need to know</div><div class="know">In a point (x, y): x = molecular weight, y = boiling point.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>x = 149.02 → the molecular weight is 149.02 grams per mole.</li>
+<li>y = 186.05 → the boiling point is 186.05 °C.</li>
+<li>So a paraffin with weight 149.02 has a boiling point of about 186.05 °C.</li>
+<li>It is NOT a maximum or minimum: the curve keeps rising to the right of this point.</li>
+</ol><div class="ans">Answer: B) Molecular weight 149.02 g/mol has a boiling point of 186.05 °C</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A swaps x and y. C and D call it a min/max, but the point is just somewhere in the middle of a rising curve.</div>
+</div>
+<div class="q" id="q2_3"><div class="hd"><span class="num">Q154</span><span class="tag">Evaluating a rational function (grid-in)</span><span class="pg">PDF page 21</span></div>
+<div class="stem">The function h is defined by h(x) = 8/(5x + 6). What is the value of h(2)?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Plug in x = 2 and simplify the fraction.</div>
+<div class="lbl">What you need to know</div><div class="know">Work out the bottom (denominator) first, then divide.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Denominator: 5(2) + 6 = 10 + 6 = 16.</li>
+<li>h(2) = 8/16.</li>
+<li>Simplify: 8/16 = 1/2 = 0.5.</li>
+</ol><div class="ans">Answer: 1/2 (or 0.5)</div>
+</div>
+<div class="q" id="q2_4"><div class="hd"><span class="num">Q158</span><span class="tag">Area expression</span><span class="pg">PDF page 23</span></div>
+<div class="stem">The area A, in square centimeters, of a rectangular painting can be represented by the expression w(w + 29), where w is the width, in centimeters, of the painting. Which expression represents the length, in centimeters, of the painting?<br>A) w &nbsp; B) 29 &nbsp; C) (w + 29) &nbsp; D) w(w + 29)</div>
+<div class="lbl">What is it asking?</div><div class="ask">Pick the part of the area expression that is the length.</div>
+<div class="lbl">What you need to know</div><div class="know">Area of a rectangle = width × length.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Area = w × (w + 29).</li>
+<li>w is the width (given).</li>
+<li>So the other factor, (w + 29), is the length.</li>
+</ol><div class="ans">Answer: C) (w + 29)</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A is the width. D is the whole area. B (29) is only how much longer the length is than the width.</div>
+</div>
+<div class="q" id="q2_5"><div class="hd"><span class="num">Q159</span><span class="tag">Translating a rational function</span><span class="pg">PDF page 24</span></div>
+<div class="stem">f(x) = (a − 19)/x + 5. In the given function f, a is a constant. The graph of function f in the xy-plane, where y = f(x), is translated 3 units down and 4 units to the right to produce the graph of y = g(x). Which equation defines function g?<br>A) (a − 19)/(x + 4) + 2 &nbsp; B) (a − 19)/(x − 4) + 2 &nbsp; C) (a − 22)/(x + 4) + 5 &nbsp; D) (a − 22)/(x − 4) + 5</div>
+<div class="lbl">What is it asking?</div><div class="ask">Apply the two moves to the equation.</div>
+<div class="lbl">What you need to know</div><div class="know">Move RIGHT by 4 → replace x with (x − 4). Move DOWN by 3 → subtract 3 from the whole function. (Right uses a minus inside — that's the part people get backwards.)</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Start: f(x) = (a − 19)/x + 5.</li>
+<li>4 units right: replace x with (x − 4) → (a − 19)/(x − 4) + 5.</li>
+<li>3 units down: subtract 3 from the outside → (a − 19)/(x − 4) + 5 − 3.</li>
+<li>5 − 3 = 2, so g(x) = (a − 19)/(x − 4) + 2.</li>
+<li>The a − 19 on top doesn't change — moving the graph doesn't change that number.</li>
+</ol><div class="ans">Answer: B) g(x) = (a − 19)/(x − 4) + 2</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A uses (x + 4), which moves LEFT. C and D subtract 3 from the top number instead of from the whole function.</div>
+</div>
+<div class="q" id="q2_6"><div class="hd"><span class="num">Q175</span><span class="tag">Shifting a graph up</span><span class="pg">PDF page 29</span></div>
+<div class="stem">The graph of the rational function f is shown, where y = f(x) and x ≥ 0. Which of the following is the graph of y = f(x) + 5, where x ≥ 0?</div>
+<div class="lbl">What is it asking?</div><div class="ask">Pick the graph that is the original moved UP 5.</div>
+<div class="lbl">What you need to know</div><div class="know">y = f(x) + 5 adds 5 to every y-value: the whole graph moves UP 5, and the flat line it approaches moves up by 5 too.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>The original curve drops steeply near x = 0, then flattens out and approaches about y = 0 on the right.</li>
+<li>Adding 5 lifts every point by 5.</li>
+<li>So the new curve has the same shape, but it flattens out toward y = 5 instead of y = 0.</li>
+<li>It should never go below y = 5 on the right side.</li>
+<li>Choice A flattens out BELOW the x-axis (moved down), so A is wrong.</li>
+</ol><div class="ans">Answer: Not A — the same curve lifted up 5 (levels off near y = 5)</div>
+<div class="note">Note: Only choice A is visible in the screenshot (choices B–D are cut off), so the final letter can't be confirmed. Pick the graph with the same shape that levels off near y = 5.</div>
+</div>
+<div class="q" id="q2_7"><div class="hd"><span class="num">Q189</span><span class="tag">Interpreting part of a formula</span><span class="pg">PDF page 35</span></div>
+<div class="stem">A rectangle has a length that is 15 times its width. The function y = (15w)(w) represents this situation, where y is the area, in square feet, of the rectangle and y &gt; 0. Which of the following is the best interpretation of 15w in this context?<br>A) The length of the rectangle, in feet &nbsp; B) The area of the rectangle, in square feet<br>C) The difference between the length and the width, in feet &nbsp; D) The width of the rectangle, in feet</div>
+<div class="lbl">What is it asking?</div><div class="ask">Explain what 15w stands for.</div>
+<div class="lbl">What you need to know</div><div class="know">Area = length × width. Here the length is 15 times the width.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>w is the width.</li>
+<li>"Length is 15 times its width" → length = 15w.</li>
+<li>Area = (15w)(w) = length × width ✓</li>
+<li>So 15w is the length.</li>
+</ol><div class="ans">Answer: A) The length of the rectangle, in feet</div>
+</div>
+<div class="q" id="q2_8"><div class="hd"><span class="num">Q195</span><span class="tag">Negative exponent</span><span class="pg">PDF page 38</span></div>
+<div class="stem">The function f is defined by f(x) = 4x<sup>−1</sup>. What is the value of f(21)?<br>A) −84 &nbsp; B) 1/84 &nbsp; C) 4/21 &nbsp; D) 21/4</div>
+<div class="lbl">What is it asking?</div><div class="ask">Plug in 21 and handle the negative exponent.</div>
+<div class="lbl">What you need to know</div><div class="know">A negative exponent means "one over": x<sup>−1</sup> = 1/x. It does NOT make the number negative.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>f(21) = 4 × 21<sup>−1</sup>.</li>
+<li>21<sup>−1</sup> = 1/21.</li>
+<li>4 × 1/21 = 4/21.</li>
+</ol><div class="ans">Answer: C) 4/21</div>
+<div class="box trap">⚠️ <b>Common mistakes:</b> A (−84) treats the −1 as "multiply by −1". B (1/84) takes the −1 power of 4 × 21 together. D flips the wrong way.</div>
+</div>
+<div class="q" id="q2_9"><div class="hd"><span class="num">Q196</span><span class="tag">y-intercept</span><span class="pg">PDF page 39</span></div>
+<div class="stem">In the xy-plane, the y-coordinate of the y-intercept of the graph of the function f is c. Which of the following must be equal to c?<br>A) f(0) &nbsp; B) f(1) &nbsp; C) f(2) &nbsp; D) f(3)</div>
+<div class="lbl">What is it asking?</div><div class="ask">Which input gives the y-intercept?</div>
+<div class="lbl">What you need to know</div><div class="know">The y-intercept is on the y-axis, where x = 0.</div>
+<div class="lbl">Step-by-step solution</div><ol class="steps">
+<li>Every point on the y-axis has x = 0.</li>
+<li>So the y-intercept is the point (0, f(0)).</li>
+<li>Its y-coordinate is f(0), so c = f(0).</li>
+</ol><div class="ans">Answer: A) f(0)</div>
+</div>
+<div class="key" id="key"><b>Answer key</b><table>
+<tr><td>p.2</td><td>Exponential functions</td><td><a class="qlink" href="#q0_0" data-target="q0_0">Q99</a></td><td><b>C) p(t) = 24(1.162)<sup>t</sup></b></td></tr>
+<tr><td>p.5</td><td>Exponential functions</td><td><a class="qlink" href="#q0_1" data-target="q0_1">Q106</a></td><td><b>C) f(x) = 233(1.70)<sup>x/2</sup></b></td></tr>
+<tr><td>p.7</td><td>Exponential functions</td><td><a class="qlink" href="#q0_2" data-target="q0_2">Q112</a></td><td><b>D) For every increase in depth by 100 meters, the number of species decreases by 10%</b></td></tr>
+<tr><td>p.8</td><td>Exponential functions</td><td><a class="qlink" href="#q0_3" data-target="q0_3">Q115</a></td><td><b>C) 7,400</b></td></tr>
+<tr><td>p.10</td><td>Exponential functions</td><td><a class="qlink" href="#q0_4" data-target="q0_4">Q118</a></td><td><b>B) 1/4</b></td></tr>
+<tr><td>p.11</td><td>Exponential functions</td><td><a class="qlink" href="#q0_5" data-target="q0_5">Q120</a></td><td><b>B) f(x) = 33(1.5)<sup>x</sup></b></td></tr>
+<tr><td>p.12</td><td>Exponential functions</td><td><a class="qlink" href="#q0_6" data-target="q0_6">Q121</a></td><td><b>B) 12/5</b></td></tr>
+<tr><td>p.14</td><td>Exponential functions</td><td><a class="qlink" href="#q0_7" data-target="q0_7">Q129</a></td><td><b>C) p(x) = 2,000(1.03)<sup>x</sup></b></td></tr>
+<tr><td>p.15</td><td>Exponential functions</td><td><a class="qlink" href="#q0_8" data-target="q0_8">Q131</a></td><td><b>D) y = 44,000(2)<sup>t</sup></b></td></tr>
+<tr><td>p.17</td><td>Exponential functions</td><td><a class="qlink" href="#q0_9" data-target="q0_9">Q135</a></td><td><b>D) 9,600,000</b></td></tr>
+<tr><td>p.19</td><td>Exponential functions</td><td><a class="qlink" href="#q0_10" data-target="q0_10">Q150</a></td><td><b>410</b></td></tr>
+<tr><td>p.20</td><td>Exponential functions</td><td><a class="qlink" href="#q0_11" data-target="q0_11">Q152</a></td><td><b>D) The estimated data traffic, in terabytes, in 2010</b></td></tr>
+<tr><td>p.25</td><td>Exponential functions</td><td><a class="qlink" href="#q0_12" data-target="q0_12">Q161</a></td><td><b>B) 35</b></td></tr>
+<tr><td>p.26</td><td>Exponential functions</td><td><a class="qlink" href="#q0_13" data-target="q0_13">Q162</a></td><td><b>D) p = 15,000(1.04)<sup>x</sup></b></td></tr>
+<tr><td>p.28</td><td>Exponential functions</td><td><a class="qlink" href="#q0_14" data-target="q0_14">Q169</a></td><td><b>B) C = 600(0.85)<sup>t</sup></b></td></tr>
+<tr><td>p.30</td><td>Exponential functions</td><td><a class="qlink" href="#q0_15" data-target="q0_15">Q177</a></td><td><b>B) 790</b></td></tr>
+<tr><td>p.32</td><td>Exponential functions</td><td><a class="qlink" href="#q0_16" data-target="q0_16">Q184</a></td><td><b>A) The estimated number of employees when the restaurant opened</b></td></tr>
+<tr><td>p.34</td><td>Exponential functions</td><td><a class="qlink" href="#q0_17" data-target="q0_17">Q188</a></td><td><b>D) 8 years after purchase, the predicted value is about 82 dollars</b></td></tr>
+<tr><td>p.46</td><td>Exponential functions</td><td><a class="qlink" href="#q0_18" data-target="q0_18">Q217</a></td><td><b>Not A — the rising graph through (0, 4)</b></td></tr>
+<tr><td>p.1</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_0" data-target="q1_0">Q98</a></td><td><b>A) The initial height, in feet, of the object</b></td></tr>
+<tr><td>p.3</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_1" data-target="q1_1">Q103</a></td><td><b>C) 27</b></td></tr>
+<tr><td>p.6</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_2" data-target="q1_2">Q110</a></td><td><b>Not A — the table with y = −3, −3, −3</b></td></tr>
+<tr><td>p.13</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_3" data-target="q1_3">Q125</a></td><td><b>C) 7</b></td></tr>
+<tr><td>p.18</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_4" data-target="q1_4">Q139</a></td><td><b>14 (or −5, or −4)</b></td></tr>
+<tr><td>p.22</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_5" data-target="q1_5">Q155</a></td><td><b>B) 5</b></td></tr>
+<tr><td>p.27</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_6" data-target="q1_6">Q166</a></td><td><b>B) The diver hits the water at 1.6 seconds</b></td></tr>
+<tr><td>p.31</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_7" data-target="q1_7">Q180</a></td><td><b>B) f(x) = (x − 24)(x − 30) − 8</b></td></tr>
+<tr><td>p.33</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_8" data-target="q1_8">Q187</a></td><td><b>A) −152</b></td></tr>
+<tr><td>p.37</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_9" data-target="q1_9">Q193</a></td><td><b>18</b></td></tr>
+<tr><td>p.40</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_10" data-target="q1_10">Q197</a></td><td><b>A) (−12, 0)</b></td></tr>
+<tr><td>p.41</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_11" data-target="q1_11">Q202</a></td><td><b>B) Maximum height of 502 feet, 5.6 seconds after launch</b></td></tr>
+<tr><td>p.42</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_12" data-target="q1_12">Q203</a></td><td><b>11/4 (or 2.75)</b></td></tr>
+<tr><td>p.43</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_13" data-target="q1_13">Q205</a></td><td><b>C) Three</b></td></tr>
+<tr><td>p.44</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_14" data-target="q1_14">Q209</a></td><td><b>A) (0, 8)</b></td></tr>
+<tr><td>p.45</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_15" data-target="q1_15">Q216</a></td><td><b>B) 19</b></td></tr>
+<tr><td>p.47</td><td>Quadratic & polynomial functions</td><td><a class="qlink" href="#q1_16" data-target="q1_16">Q218</a></td><td><b>A) The height 1.4 seconds after being thrown is 1.64 feet</b></td></tr>
+<tr><td>p.4</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_0" data-target="q2_0">Q105</a></td><td><b>A) If the width is 14 ft, then the area is 1,176 ft²</b></td></tr>
+<tr><td>p.9</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_1" data-target="q2_1">Q117</a></td><td><b>C) 1 day after launch, the estimated stock price is $83</b></td></tr>
+<tr><td>p.16</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_2" data-target="q2_2">Q134</a></td><td><b>B) Molecular weight 149.02 g/mol has a boiling point of 186.05 °C</b></td></tr>
+<tr><td>p.21</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_3" data-target="q2_3">Q154</a></td><td><b>1/2 (or 0.5)</b></td></tr>
+<tr><td>p.23</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_4" data-target="q2_4">Q158</a></td><td><b>C) (w + 29)</b></td></tr>
+<tr><td>p.24</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_5" data-target="q2_5">Q159</a></td><td><b>B) g(x) = (a − 19)/(x − 4) + 2</b></td></tr>
+<tr><td>p.29</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_6" data-target="q2_6">Q175</a></td><td><b>Not A — the same curve lifted up 5 (levels off near y = 5)</b></td></tr>
+<tr><td>p.35</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_7" data-target="q2_7">Q189</a></td><td><b>A) The length of the rectangle, in feet</b></td></tr>
+<tr><td>p.38</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_8" data-target="q2_8">Q195</a></td><td><b>C) 4/21</b></td></tr>
+<tr><td>p.39</td><td>Other functions & interpretation</td><td><a class="qlink" href="#q2_9" data-target="q2_9">Q196</a></td><td><b>A) f(0)</b></td></tr>
+</table></div></div><a class="top" href="#top" data-target="top">↑ Top</a>
+<script>
+document.querySelectorAll('[data-target]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var el = document.getElementById(a.getAttribute('data-target'));
+    if (el) { e.preventDefault(); el.scrollIntoView({block:'start'}); }
+  });
+});
+</script></body></html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#12142b">
+<title>Six Weeks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12142b; --card:rgba(255,255,255,.055); --card2:rgba(255,255,255,.09); --stroke:rgba(255,255,255,.09);
+  --text:#f2f3fa; --muted:#9499b8; --empty:rgba(255,255,255,.08);
+  --body:#ff8a7a; --career:#6cb6ff; --money:#ffc857; --accent:#a99bff;
+}
+:root[data-theme="light"]{
+  --bg:#f4f5fb; --card:#ffffff; --card2:#eef0f8; --stroke:#e1e4f0;
+  --text:#171a33; --muted:#666c8c; --empty:#e6e8f2;
+  --body:#e8604d; --career:#2f86e0; --money:#d39a12; --accent:#6c5ce7;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.45;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:-20% -30% auto auto;width:90vw;height:90vw;max-width:620px;max-height:620px;background:radial-gradient(circle,rgba(169,155,255,.22),transparent 65%);pointer-events:none;z-index:0}
+body::after{content:"";position:fixed;left:-30%;bottom:-10%;width:80vw;height:80vw;max-width:560px;max-height:560px;background:radial-gradient(circle,rgba(108,182,255,.14),transparent 65%);pointer-events:none;z-index:0}
+main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:18px 14px 120px}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
+
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.top h1{font-size:26px;font-weight:800;letter-spacing:-.03em;margin:0}
+.sub{color:var(--muted);font-size:13px;margin-top:2px}
+.streak{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--stroke);padding:7px 12px;border-radius:999px;font-weight:700;font-size:14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+
+.glass{background:var(--card);border:1px solid var(--stroke);border-radius:22px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+
+/* day switcher */
+.dayswitch{display:flex;align-items:center;justify-content:space-between;padding:8px;margin-bottom:14px}
+.dayswitch button.arrow{width:40px;height:40px;border-radius:14px;background:var(--card2);font-size:18px}
+.dayswitch button.arrow:disabled{opacity:.3;cursor:default}
+.dayswitch .mid{text-align:center}
+.dayswitch .mid b{display:block;font-size:16px}
+.dayswitch .mid span{font-size:12px;color:var(--muted)}
+
+/* rings */
+.rings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+.ring{padding:14px 8px 12px;text-align:center}
+.ring svg{width:64px;height:64px;display:block;margin:0 auto 6px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:7}
+.ring .bgc{stroke:var(--empty)}
+.ring .fg{stroke:var(--c);stroke-linecap:round;transition:stroke-dashoffset .5s cubic-bezier(.2,.8,.2,1)}
+.ring .pct{font-weight:800;font-size:17px;font-variant-numeric:tabular-nums}
+.ring .lbl{font-size:12px;color:var(--muted)}
+
+.group{margin-bottom:20px}
+.ghead{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin:0 4px 8px}
+.ghead i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.ghead span{margin-left:auto;font-weight:600;color:var(--muted);font-size:12px}
+
+.item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 14px;margin-bottom:8px;transition:background .2s,transform .1s}
+.item:active{transform:scale(.985)}
+.item .emo{width:40px;height:40px;border-radius:13px;background:var(--card2);display:grid;place-items:center;font-size:19px;flex:none}
+.item .txt{flex:1;min-width:0}
+.item .txt b{display:block;font-weight:700;font-size:15px}
+.item .txt small{color:var(--muted);font-size:12px}
+.item .chk{width:30px;height:30px;border-radius:50%;border:2px solid var(--stroke);display:grid;place-items:center;flex:none;transition:all .2s}
+.item .chk svg{width:16px;height:16px;opacity:0;transform:scale(.5);transition:all .2s}
+.item.on{background:color-mix(in srgb,var(--c) 14%,transparent)}
+.item.on .chk{background:var(--c);border-color:var(--c)}
+.item.on .chk svg{opacity:1;transform:scale(1)}
+.item.on .txt b{color:var(--text)}
+.pop .chk{animation:pop .35s ease}
+@keyframes pop{40%{transform:scale(1.25)}}
+.stepper{display:flex;align-items:center;gap:8px;flex:none}
+.stepper button{width:32px;height:32px;border-radius:11px;background:var(--card2);font-size:18px;font-weight:700}
+.stepper b{min-width:18px;text-align:center;font-variant-numeric:tabular-nums}
+
+/* week view */
+.chips{display:flex;gap:6px;overflow-x:auto;padding:4px;margin-bottom:14px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:1;min-width:52px;padding:7px 0;border-radius:14px;font-weight:700;font-size:14px;color:var(--muted);line-height:1.2}
+.chip small{display:block;font-size:10.5px;font-weight:600;opacity:.8}
+.chip[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+.weekscore{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;margin-bottom:14px}
+.weekscore b{font-size:30px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.weekscore span{color:var(--muted);font-size:13px}
+.bigbar{height:8px;border-radius:99px;background:var(--empty);overflow:hidden;margin-top:8px;width:160px}
+.bigbar i{display:block;height:100%;background:linear-gradient(90deg,var(--body),var(--career),var(--money));border-radius:99px;transition:width .5s}
+.grid{padding:14px 10px 8px;margin-bottom:14px}
+.grid h3{display:flex;align-items:center;gap:8px;font-size:15px;margin:0 4px 8px}
+.grid h3 i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.grid h3 span{margin-left:auto;color:var(--muted);font-size:12px;font-weight:600}
+.days,.row{display:grid;grid-template-columns:minmax(0,1fr) repeat(7,26px) 30px;gap:4px;align-items:center}
+.days span{font-size:11px;color:var(--muted);text-align:center;font-weight:600;line-height:1.15}
+.days span em{display:block;font-style:normal;font-size:12px;color:var(--text);font-weight:700;font-variant-numeric:tabular-nums}
+.days span.now em{color:var(--accent)}
+.days span u{display:block;text-decoration:none;font-size:9.5px;color:var(--muted);font-weight:600}
+.days span.now{color:var(--accent)}
+.row{padding:5px 4px}
+.row .n{font-size:13px;font-weight:600;line-height:1.2}
+.dot{width:26px;height:26px;border-radius:9px;background:var(--empty)}
+.dot[aria-pressed="true"]{background:var(--c)}
+.dot.now{box-shadow:inset 0 0 0 2px var(--accent)}
+.row .cnt{font-size:12px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:600}
+.row .cnt.hit{color:var(--c)}
+.row .stp{grid-column:2 / span 7;display:flex;gap:8px;align-items:center}
+.row .stp button{width:30px;height:26px;border-radius:9px;background:var(--card2);font-weight:700}
+.review{padding:16px}
+.review h3{margin:0 0 2px;font-size:15px}
+.review p{margin:0 0 10px;color:var(--muted);font-size:13px}
+textarea{width:100%;min-height:110px;background:var(--card2);color:var(--text);border:1px solid var(--stroke);border-radius:14px;padding:12px;font:inherit;resize:vertical}
+
+/* journey */
+.heat{padding:16px;margin-bottom:14px}
+.heat h3{margin:0 0 12px;font-size:15px}
+.hrow{display:grid;grid-template-columns:44px repeat(7,1fr) 44px;gap:5px;align-items:center;margin-bottom:5px}
+.hrow .wl{font-size:12px;color:var(--muted);font-weight:700;line-height:1.1}
+.hrow .wl small{display:block;font-size:9.5px;font-weight:600}
+.hrow .ws{font-size:12px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.sq{aspect-ratio:1;border-radius:7px;background:var(--empty);position:relative;overflow:hidden}
+.sq i{position:absolute;inset:0;background:linear-gradient(135deg,var(--accent),var(--career))}
+.sq b{position:absolute;inset:0;display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--text);opacity:.85;font-variant-numeric:tabular-nums}
+.hhead{display:grid;grid-template-columns:44px repeat(7,1fr) 44px;gap:5px;margin-bottom:6px;font-size:11px;color:var(--muted);font-weight:600;text-align:center}
+.sq.now{box-shadow:0 0 0 2px var(--text)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.stat{padding:14px 16px}
+.stat b{display:block;font-size:24px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+.reset{display:block;margin:20px auto 0;font-size:13px;color:var(--muted);padding:8px 14px;border-radius:12px;border:1px solid var(--stroke)}
+.note{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}
+
+/* bottom nav */
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;z-index:5;width:min(520px,100%);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px))}
+nav .bar{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:6px;border-radius:22px;background:rgba(25,28,58,.82);border:1px solid var(--stroke);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+:root[data-theme="light"] nav .bar{background:rgba(255,255,255,.88)}
+nav button{padding:10px 0;border-radius:16px;font-weight:700;font-size:13px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button span{font-size:18px;line-height:1}
+nav button[aria-pressed="true"]{background:var(--card2);color:var(--text)}
+.view{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div><h1 id="title">Today</h1><div class="sub" id="sub"></div></div>
+    <div class="streak" id="streak"></div>
+  </div>
+  <div id="view"></div>
+</main>
+<nav><div class="bar">
+  <button data-v="today"><span>☀️</span>Today</button>
+  <button data-v="week"><span>🗓️</span>Week</button>
+  <button data-v="journey"><span>📈</span>Journey</button>
+</div></nav>
+
+<script>
+const START = new Date(2026, 9, 5); // Mon 5 Oct 2026
+const DAYS = ['M','T','W','T','F','S','S'];
+const TRACKS = [
+  {id:'body', name:'Body & skin', short:'Body', color:'var(--body)', habits:[
+    {id:'workout', name:'Workout', note:'45–60 min', emo:'💪', target:5},
+    {id:'sleep', name:'Sleep 7h+', note:'Lights out on time', emo:'😴', target:7},
+    {id:'skinam', name:'Morning skincare', note:'Sunscreen SPF 30+', emo:'🧴', target:7},
+    {id:'skinpm', name:'Night skincare', note:'Cleanse + moisturize', emo:'🌙', target:7},
+  ]},
+  {id:'career', name:'Career + English', short:'Career', color:'var(--career)', habits:[
+    {id:'portfolio', name:'Portfolio project', note:'30 min', emo:'📊', target:3},
+    {id:'english', name:'English speaking', note:'Record 20 min', emo:'🎙️', target:3},
+    {id:'jobs', name:'Job applications', note:'This week', emo:'📨', target:3, counter:true},
+  ]},
+  {id:'money', name:'Money', short:'Money', color:'var(--money)', habits:[
+    {id:'trades', name:'Trade review', note:'Wins, losses, mistakes', emo:'📉', target:1},
+    {id:'side', name:'Side income block', note:'2 hours', emo:'💰', target:1},
+  ]},
+];
+const DAILY = TRACKS.flatMap(t => t.habits.filter(h => !h.counter));
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="#12142b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+const KEY = 'sixweek-v1';
+let state = {cells:{}, counters:{}, notes:{}};
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.cells) state = s; } catch(e) {}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+function dayDate(i){ const d = new Date(START); d.setDate(d.getDate()+i); return d; }
+function iso(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+const now = new Date(); now.setHours(0,0,0,0);
+const todayIdx = Math.round((now - START) / 864e5);
+const clamp = i => Math.min(41, Math.max(0, i));
+let dayIdx = clamp(todayIdx);
+let week = Math.floor(dayIdx/7);
+let view = 'today';
+let popId = null;
+
+const key = (h,i) => h.id+'|'+iso(dayDate(i));
+const done = (h,i) => !!state.cells[key(h,i)];
+function weekCount(h,w){
+  if (h.counter) return state.counters[h.id+'|w'+w] || 0;
+  let n=0; for (let d=0; d<7; d++) if (done(h,w*7+d)) n++; return n;
+}
+function pctOf(habits,w){ let g=0,n=0; habits.forEach(h=>{g+=Math.min(weekCount(h,w),h.target);n+=h.target;}); return g/n; }
+const weekPct = w => pctOf(TRACKS.flatMap(t=>t.habits), w);
+const dayFrac = i => DAILY.filter(h=>done(h,i)).length / DAILY.length;
+function streak(){
+  let i = Math.min(todayIdx, 41), n = 0;
+  if (i < 0) return 0;
+  if (dayFrac(i) === 0) i--;           // today not started yet: count from yesterday
+  while (i >= 0 && dayFrac(i) > 0){ n++; i--; }
+  return n;
+}
+const fmt = (d,o) => d.toLocaleDateString('en-GB', o);
+
+function setHeader(t, s){
+  document.getElementById('title').textContent = t;
+  document.getElementById('sub').textContent = s;
+  document.getElementById('streak').innerHTML = '🔥 ' + streak();
+  document.getElementById('streak').setAttribute('aria-label', streak()+' day streak');
+}
+
+function ringHTML(t, p){
+  const C = 2*Math.PI*26;
+  return `<div class="ring glass" style="--c:${t.color}">
+    <svg viewBox="0 0 64 64"><circle class="bgc" cx="32" cy="32" r="26"/><circle class="fg" cx="32" cy="32" r="26" stroke-dasharray="${C.toFixed(2)}" stroke-dashoffset="${(C*(1-p)).toFixed(2)}"/></svg>
+    <div class="pct">${Math.round(p*100)}%</div><div class="lbl">${t.short} this week</div></div>`;
+}
+
+function renderToday(){
+  const d = dayDate(dayIdx), w = Math.floor(dayIdx/7);
+  const isToday = dayIdx === todayIdx;
+  const before = todayIdx < 0;
+  setHeader(isToday ? 'Today' : fmt(d,{weekday:'long'}),
+    before ? 'Your six weeks start on Monday 5 Oct' : `Week ${w+1} of 6, day ${dayIdx%7+1}`);
+  let h = `<div class="dayswitch glass">
+    <button class="arrow" id="prev" aria-label="Previous day" ${dayIdx===0?'disabled':''}>‹</button>
+    <div class="mid"><b>${fmt(d,{weekday:'short',day:'numeric',month:'short'})}</b><span>${isToday?'Today':Math.round(dayFrac(dayIdx)*100)+'% done'}</span></div>
+    <button class="arrow" id="next" aria-label="Next day" ${dayIdx===41?'disabled':''}>›</button></div>`;
+  h += '<div class="rings">' + TRACKS.map(t => ringHTML(t, pctOf(t.habits,w))).join('') + '</div>';
+  TRACKS.forEach(t => {
+    const daily = t.habits.filter(x=>!x.counter);
+    const doneToday = daily.filter(x=>done(x,dayIdx)).length;
+    h += `<div class="group" style="--c:${t.color}"><div class="ghead"><i></i>${t.name}<span>${doneToday}/${daily.length} today</span></div>`;
+    t.habits.forEach(x => {
+      const c = weekCount(x,w);
+      if (x.counter){
+        h += `<div class="item glass"><div class="emo">${x.emo}</div><div class="txt"><b>${x.name}</b><small>${c} of ${x.target} this week</small></div>
+          <div class="stepper"><button data-dec="${x.id}" aria-label="Remove one">−</button><b>${c}</b><button data-inc="${x.id}" aria-label="Add one">+</button></div></div>`;
+      } else {
+        const on = done(x,dayIdx);
+        h += `<button class="item glass ${on?'on':''} ${popId===x.id?'pop':''}" data-tog="${x.id}" aria-pressed="${on}">
+          <div class="emo">${x.emo}</div><div class="txt"><b>${x.name}</b><small>${x.note}, ${c}/${x.target} this week</small></div>
+          <div class="chk">${CHECK}</div></button>`;
+      }
+    });
+    h += '</div>';
+  });
+  return h;
+}
+
+function renderWeek(){
+  const a = dayDate(week*7), b = dayDate(week*7+6);
+  setHeader('Week '+(week+1), fmt(a,{day:'numeric',month:'short'})+' to '+fmt(b,{day:'numeric',month:'short'}));
+  const p = Math.round(weekPct(week)*100);
+  let h = '<div class="chips glass">' + [0,1,2,3,4,5].map(w=>`<button class="chip" data-week="${w}" aria-pressed="${w===week}">W${w+1}<small>${fmt(dayDate(w*7),{day:'numeric',month:'short'})}</small></button>`).join('') + '</div>';
+  h += `<div class="weekscore glass"><div><span>Weekly targets hit</span><div class="bigbar"><i style="width:${p}%"></i></div></div><b>${p}%</b></div>`;
+  TRACKS.forEach(t => {
+    h += `<div class="grid glass" style="--c:${t.color}"><h3><i></i>${t.name}<span>${Math.round(pctOf(t.habits,week)*100)}%</span></h3>
+      <div class="days"><span></span>${DAYS.map((d,k)=>`<span class="${week*7+k===todayIdx?'now':''}">${d}<em>${dayDate(week*7+k).getDate()}</em><u>${fmt(dayDate(week*7+k),{month:'short'})}</u></span>`).join('')}<span></span></div>`;
+    t.habits.forEach(x => {
+      const c = weekCount(x,week);
+      h += `<div class="row"><div class="n">${x.name}</div>`;
+      if (x.counter){
+        h += `<div class="stp"><button data-dec="${x.id}" aria-label="Remove one">−</button><b>${c}</b><button data-inc="${x.id}" aria-label="Add one">+</button></div>`;
+      } else {
+        for (let d=0; d<7; d++){ const i = week*7+d;
+          h += `<button class="dot ${i===todayIdx?'now':''}" data-cell="${x.id}" data-i="${i}" aria-pressed="${done(x,i)}" aria-label="${x.name}, ${dayDate(i).toDateString()}"></button>`; }
+      }
+      h += `<div class="cnt ${c>=x.target?'hit':''}">${c}/${x.target}</div></div>`;
+    });
+    h += '</div>';
+  });
+  h += `<div class="review glass"><h3>Sunday review</h3><p>What worked, what didn't, and one thing to change next week.</p>
+    <textarea id="notes" placeholder="Write a few lines…">${(state.notes['w'+week]||'').replace(/</g,'&lt;')}</textarea></div>`;
+  return h;
+}
+
+function renderJourney(){
+  setHeader('Journey', '5 Oct to 15 Nov 2026');
+  let h = '<div class="heat glass"><h3>Every day, all six weeks</h3><div class="hhead"><span></span>' + DAYS.map(d=>`<span>${d}</span>`).join('') + '<span></span></div>';
+  for (let w=0; w<6; w++){
+    const m1=fmt(dayDate(w*7),{month:'short'}), m2=fmt(dayDate(w*7+6),{month:'short'});
+    h += `<div class="hrow"><span class="wl">W${w+1}<small>${m1===m2?m1:m1+'/'+m2}</small></span>`;
+    for (let d=0; d<7; d++){ const i=w*7+d, f=dayFrac(i);
+      h += `<div class="sq ${i===todayIdx?'now':''}" title="${dayDate(i).toDateString()}: ${Math.round(f*100)}%"><i style="opacity:${f?0.25+f*0.75:0}"></i><b>${dayDate(i).getDate()}</b></div>`; }
+    h += `<span class="ws">${Math.round(weekPct(w)*100)}%</span></div>`;
+  }
+  h += '</div>';
+  let logged=0, workouts=0, english=0, best=-1, bestP=0;
+  for (let i=0;i<42;i++){ if(dayFrac(i)>0) logged++; if(done(TRACKS[0].habits[0],i)) workouts++; if(done(TRACKS[1].habits[1],i)) english++; }
+  for (let w=0; w<6; w++){ const p=weekPct(w); if(p>bestP){bestP=p;best=w;} }
+  let apps=0; for (let w=0; w<6; w++) apps += state.counters['jobs|w'+w]||0;
+  h += `<div class="stats">
+    <div class="stat glass"><b>${logged}<small style="font-size:14px;color:var(--muted)">/42</small></b><span>Days with progress</span></div>
+    <div class="stat glass"><b>${best<0?'–':'W'+(best+1)}</b><span>Best week${best<0?'':' ('+Math.round(bestP*100)+'%)'}</span></div>
+    <div class="stat glass"><b>${workouts}</b><span>Workouts done</span></div>
+    <div class="stat glass"><b>${english}</b><span>English sessions</span></div>
+    <div class="stat glass"><b>${apps}</b><span>Jobs applied</span></div>
+    <div class="stat glass"><b>${streak()}</b><span>Day streak</span></div></div>`;
+  h += '<button class="reset" id="reset">Clear all data</button><div class="note">Saved on this device only.</div>';
+  return h;
+}
+
+function render(){
+  const el = document.getElementById('view');
+  el.className = 'view';
+  el.innerHTML = view==='today' ? renderToday() : view==='week' ? renderWeek() : renderJourney();
+  document.querySelectorAll('nav button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v===view));
+  popId = null;
+}
+function rerender(){ // update without the fade-in
+  const el = document.getElementById('view');
+  el.innerHTML = view==='today' ? renderToday() : view==='week' ? renderWeek() : renderJourney();
+  popId = null;
+}
+
+document.getElementById('view').addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t) return;
+  const wNow = view==='today' ? Math.floor(dayIdx/7) : week;
+  if (t.id==='prev'){ dayIdx=clamp(dayIdx-1); rerender(); return; }
+  if (t.id==='next'){ dayIdx=clamp(dayIdx+1); rerender(); return; }
+  if (t.dataset.week){ week=+t.dataset.week; rerender(); return; }
+  if (t.dataset.tog){ const h=DAILY.find(x=>x.id===t.dataset.tog), k=key(h,dayIdx);
+    if (state.cells[k]) delete state.cells[k]; else { state.cells[k]=true; popId=h.id; if (navigator.vibrate) navigator.vibrate(10); }
+    save(); rerender(); return; }
+  if (t.dataset.cell){ const h=DAILY.find(x=>x.id===t.dataset.cell), k=key(h,+t.dataset.i);
+    if (state.cells[k]) delete state.cells[k]; else state.cells[k]=true; save(); rerender(); return; }
+  if (t.dataset.inc){ const k=t.dataset.inc+'|w'+wNow; state.counters[k]=(state.counters[k]||0)+1; save(); rerender(); return; }
+  if (t.dataset.dec){ const k=t.dataset.dec+'|w'+wNow; state.counters[k]=Math.max(0,(state.counters[k]||0)-1); save(); rerender(); return; }
+  if (t.id==='reset' && confirm('Clear every tick, count and note for all 6 weeks?')){ state={cells:{},counters:{},notes:{}}; save(); rerender(); }
+});
+document.getElementById('view').addEventListener('input', e => {
+  if (e.target.id==='notes'){ state.notes['w'+week]=e.target.value; save(); }
+});
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
+  view = b.dataset.v;
+  if (view==='week') week = Math.floor(dayIdx/7);
+  render(); window.scrollTo({top:0});
+});
+render();
+</script>
+</body>
+</html>
